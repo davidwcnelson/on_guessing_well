@@ -1,6 +1,6 @@
 ---
 author: W.C. Telson
-title: About this Blog
+title: About This Blog
 date: '2019-02-03T00:00:00'
 ---
 
