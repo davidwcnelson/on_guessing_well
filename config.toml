@@ -1,0 +1,50 @@
+baseurl = "/"
+languageCode = "en-us"
+theme = "hugo-theme-terminal"
+paginate = 5
+googleAnalytics = ""
+disqusShortname = ""
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+[params]
+  contentTypeName = "post"
+  themeColor = "green"
+  showMenuItems = 5
+
+[languages]
+  [languages.en]
+    title = "On Guessing Well"
+    subtitle = "A probability, statistics, machine learning, and philosophy blog"
+    keywords = ""
+    copyright = "&copy; W.C. Telson 2019"
+    menuMore = "Show more"
+    readMore = "Read more"
+    readOtherPosts = "Read other posts"
+
+    [languages.en.params.logo]
+      logoText = "On Guessing Well"
+      logoHomeLink = "/"
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        identifier = "about"
+        name = "About"
+        url = "/about"
+        weight = 1
+        
+          [[languages.en.menu.main]]
+        identifier = "posts"
+        name = "Posts"
+        url = "/"
+        weight = 2
+   
+      [[languages.en.menu.main]]
+        identifier = "github"
+        name = "GitHub"
+        url = "https://github.com/wctelson"
+        
+    
+      [[languages.en.menu.main]]
+        identifier = "twitter"
+        name = "Twitter"
+        url = "https://twitter.com/wctelson"

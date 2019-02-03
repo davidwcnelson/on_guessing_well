@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1549215245819.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "7BA42993",
+    "lastKnownWriteTime" : 1549218251,
+    "last_content_update" : 1549218251830,
+    "path" : "~/on_guessing_well/config.toml",
+    "project_path" : "config.toml",
+    "properties" : {
+        "cursorPosition" : "16,80",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "toml"
+}

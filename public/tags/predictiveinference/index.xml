@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Predictiveinference on On Guessing Well</title>
+    <link>/tags/predictiveinference/</link>
+    <description>Recent content in Predictiveinference on On Guessing Well</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; W.C. Telson 2019</copyright>
+    <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/predictiveinference/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Making Our Best Guess</title>
+      <link>/post/making-our-best-guess/</link>
+      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/making-our-best-guess/</guid>
+      <description>The purpose of this blog is to answer the question “how should we make our best guess?” That is, given what information we have, how do we use that information to predict some outcome that we would find useful to know.</description>
+    </item>
+    
+  </channel>
+</rss>

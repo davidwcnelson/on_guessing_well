@@ -1,0 +1,7 @@
+---
+author: W.C. Telson
+title: About the Blog
+date: '2019-02-03'
+---
+
+This blog is intended as a space for me to explore ideas related to probability theory, statistics, machine learning, and the philosophy of science. Feel free to reach out via <wctelson@gmail.com> with questions, comments, or concerns. The views expressed are my own and do not necessarily reflect the views of my employers or partners.
