@@ -12,8 +12,8 @@
     "path" : "~/on_guessing_well/config.toml",
     "project_path" : "config.toml",
     "properties" : {
-        "cursorPosition" : "16,80",
-        "scrollLine" : "0"
+        "cursorPosition" : "24,35",
+        "scrollLine" : "4"
     },
     "relative_order" : 1,
     "source_on_save" : false,
