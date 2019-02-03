@@ -1,0 +1,18 @@
+---
+title: ggplot test
+author: ''
+date: '2019-02-03'
+slug: ggplot-test
+categories: []
+tags: []
+draft: true
+---
+
+
+```{r}
+require(ggplot2)
+
+qplot(rnorm(1000))
+
+```
+

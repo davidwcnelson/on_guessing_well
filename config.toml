@@ -1,58 +1,39 @@
 baseurl = "/"
-languageCode = "en-us"
-theme = "hugo-theme-terminal"
-paginate = 5
+title = "On Guessing Well"
+author = "W.C. Telson"
+canonifyurls = true
+languagecode = "en"
+theme = "hugo-tanka"
+
 googleAnalytics = ""
 disqusShortname = ""
+disable_mathjax = false
+
+pygmentsstyle      = "vs"
+pygmentscodefences = true
+
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [params]
-  contentTypeName = "post"
-  themeColor = "green"
-  showMenuItems = 5
+  sitename = "On Guessing Well"
 
-[languages]
-  [languages.en]
-    title = "On Guessing Well"
-    subtitle = "A probability, statistics, machine learning, and philosophy blog"
-    keywords = ""
-    copyright = "&copy; W.C. Telson 2019"
-    menuMore = "Show more"
-    readMore = "Read more"
-    readOtherPosts = "Read other posts"
-
-    [languages.en.params.logo]
-      logoText = "On Guessing Well"
-      logoHomeLink = "/"
-
-    [languages.en.menu]
-      [[languages.en.menu.main]]
-        identifier = "about"
-        name = "About"
-        url = "/about"
-        weight = 1
-        
-          [[languages.en.menu.main]]
-        identifier = "posts"
-        name = "Posts"
-        url = "/"
-        weight = 2
-   
-      [[languages.en.menu.main]]
-        identifier = "github"
-        name = "GitHub"
-        url = "https://github.com/wctelson"
-        weight = 3
-        
-    
-      [[languages.en.menu.main]]
-        identifier = "twitter"
-        name = "Twitter"
-        url = "https://twitter.com/wctelson"
-        weight = 4
-        
-      [[languages.en.menu.main]]
-        identifier = "linkedin"
-        name = "LinkedIn"
-        url = "https://www.linkedin.com/in/davidwcnelson/"
-        weight = 5
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+[[menu.main]]
+    name = "GitHub"
+    url = "https://github.com/wctelson"
+    weight = 2
+[[menu.main]]
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/davidwcnelson/"
+    weight = 3
+[[menu.main]]
+    name = "Twitter"
+    url = "https://twitter.com/wctelson"
+    weight = 4
+[[menu.main]]
+    name = "RSS"
+    url = "/index.xml"
+    weight = 5

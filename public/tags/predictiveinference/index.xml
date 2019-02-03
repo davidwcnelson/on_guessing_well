@@ -5,8 +5,7 @@
     <link>/tags/predictiveinference/</link>
     <description>Recent content in Predictiveinference on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>&amp;copy; W.C. Telson 2019</copyright>
+    <language>en</language>
     <lastBuildDate>Sun, 03 Feb 2019 14:32:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/predictiveinference/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +17,7 @@
       <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
       
       <guid>/post/making-our-best-guess/</guid>
-      <description>This post is an attempt to express the general theme of this blog: “how can we make good decisions under uncertainty?”, or as I prefer “how can we guess well?” As a working Data Scientist, my principal role is to support decision makers by recommending a set of actions (alternatively, a “course” of action) they can take that will help them achieve their goals. Which course of action should I recommend?</description>
+      <description>This post is an attempt to express the general theme of this blog: “how can we make good decisions under uncertainty?”, or as I prefer “how can we guess well?” As a data scientist my role is to support decision makers by recommending a course of action that is likely to achieve their goals. This task requires us to predict (or guess) at how likely any set of actions is to succeed.</description>
     </item>
     
   </channel>

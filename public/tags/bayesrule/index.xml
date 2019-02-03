@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bayesrule on On Guessing Well</title>
+    <link>/tags/bayesrule/</link>
+    <description>Recent content in Bayesrule on On Guessing Well</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/bayesrule/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bayes’ Theorem</title>
+      <link>/post/bayes-theorem/</link>
+      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bayes-theorem/</guid>
+      <description>This post will explore Bayes’ theorem, and its applicability to our problem of making good guesses.
+The definition of conditional probability. \[ P(A|B) = \frac{P(A,B)}{P(B)}\]
+Getting a conjunction from conditional probability. \[ P(A,B) = P(A|B)P(B) = P(B|A)P(A)\]
+Bayes’ theorem. \[ P(A|B) = \frac{P(B|A)P(A)}{P(B)}\]
+The law of total probability. \[P(B) = \sum_{j=1}^{n}P(B,A_j)\]
+Bayes theorem with the law of total probability. \[ P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^{n} P(B|A_j)P(A_j)}\]
+Continous bayes theorem.</description>
+    </item>
+    
+  </channel>
+</rss>
