@@ -16,24 +16,27 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [params]
   sitename = "On Guessing Well"
-
 [[menu.main]]
-    name = "Home"
-    url = "/"
+    name = "About"
+    url = "/about"
     weight = 1
+[[menu.main]]
+    name = "Posts"
+    url = "/"
+    weight = 2
 [[menu.main]]
     name = "GitHub"
     url = "https://github.com/wctelson"
-    weight = 2
+    weight = 3
 [[menu.main]]
     name = "LinkedIn"
     url = "https://www.linkedin.com/in/davidwcnelson/"
-    weight = 3
+    weight = 4
 [[menu.main]]
     name = "Twitter"
     url = "https://twitter.com/wctelson"
-    weight = 4
+    weight = 5
 [[menu.main]]
     name = "RSS"
     url = "/index.xml"
-    weight = 5
+    weight = 6
