@@ -1,8 +1,8 @@
 {
-    "path" : "~/on_guessing_well/public/post",
+    "path" : "~",
     "sortOrder" : [
         {
-            "ascending" : true,
+            "ascending" : false,
             "columnIndex" : 2
         }
     ]

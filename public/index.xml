@@ -30,12 +30,12 @@
     </item>
     
     <item>
-      <title>About</title>
+      <title>About this Blog</title>
       <link>/about/</link>
       <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>Greetings fellow humanoid!
+      <description>Greetings fellow humanoids,
 My name is David W.C. Telson and this blog is all about decision making under uncertainty. We will be exploring all sorts of topics from the realms of probability theory, decision theory, statistics, machine learning, and the philosophy of science.
 At present I am a Data Scientist working for the Federal Emergency Management Agency in Washington, DC. Most of the problems I work on involve leveraging machine learning and statistics to support decisions about the Agency&amp;rsquo;s incident workforce and field operations.</description>
     </item>
