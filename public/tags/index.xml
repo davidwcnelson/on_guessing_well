@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on On Guessing Well</title>
-    <link>/onguessingwell.com/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; W.C. Telson 2019</copyright>
     <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/onguessingwell.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Datascience</title>
-      <link>/onguessingwell.com/tags/datascience/</link>
+      <link>/tags/datascience/</link>
       <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/onguessingwell.com/tags/datascience/</guid>
+      <guid>/tags/datascience/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Machinelearning</title>
-      <link>/onguessingwell.com/tags/machinelearning/</link>
+      <link>/tags/machinelearning/</link>
       <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/onguessingwell.com/tags/machinelearning/</guid>
+      <guid>/tags/machinelearning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Predictiveinference</title>
-      <link>/onguessingwell.com/tags/predictiveinference/</link>
+      <link>/tags/predictiveinference/</link>
       <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/onguessingwell.com/tags/predictiveinference/</guid>
+      <guid>/tags/predictiveinference/</guid>
       <description></description>
     </item>
     
