@@ -7,18 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; W.C. Telson 2019</copyright>
-    <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 03 Feb 2019 15:32:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Measures of Central Tendancy</title>
+      <link>/post/measures-of-central-tendancy/</link>
+      <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
+      
+      <guid>/post/measures-of-central-tendancy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Making Our Best Guess</title>
       <link>/post/making-our-best-guess/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
       
       <guid>/post/making-our-best-guess/</guid>
-      <description>As a working data scientist, my principal role is to help inform decisions. I will</description>
+      <description>This post is an attempt to express the general theme of this blog: “how can we make good decisions under uncertainty?”, or as I prefer “how can we guess well?” As a working Data Scientist, my principal role is to support decision makers by recommending a set of actions (alternatively, a “course” of action) they can take that will help them achieve their goals. Which course of action should I recommend?</description>
     </item>
     
   </channel>

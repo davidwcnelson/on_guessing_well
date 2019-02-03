@@ -3,12 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/about/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <loc>/post/measures-of-central-tendancy/</loc>
+    <lastmod>2019-02-03T15:32:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/post/making-our-best-guess/</loc>
+    <lastmod>2019-02-03T14:32:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
     <lastmod>2019-02-03T00:00:00+00:00</lastmod>
   </url>
   
@@ -19,49 +24,61 @@
   
   <url>
     <loc>/tags/datascience/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-03T14:32:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/decisionscience/</loc>
+    <lastmod>2019-02-03T15:32:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/decisiontheory/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-03T15:32:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/machinelearning/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-03T14:32:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-03T15:32:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-03T15:32:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/predictiveinference/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-03T14:32:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/probability/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-03T15:32:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/probabilitytheory/</loc>
+    <lastmod>2019-02-03T15:32:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-03T14:32:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

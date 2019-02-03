@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; W.C. Telson 2019</copyright>
-    <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 03 Feb 2019 14:32:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,16 +15,25 @@
     <item>
       <title>Datascience</title>
       <link>/tags/datascience/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
       
       <guid>/tags/datascience/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Decisionscience</title>
+      <link>/tags/decisionscience/</link>
+      <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
+      
+      <guid>/tags/decisionscience/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Decisiontheory</title>
       <link>/tags/decisiontheory/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
       
       <guid>/tags/decisiontheory/</guid>
       <description></description>
@@ -33,7 +42,7 @@
     <item>
       <title>Machinelearning</title>
       <link>/tags/machinelearning/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
       
       <guid>/tags/machinelearning/</guid>
       <description></description>
@@ -42,7 +51,7 @@
     <item>
       <title>Predictiveinference</title>
       <link>/tags/predictiveinference/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
       
       <guid>/tags/predictiveinference/</guid>
       <description></description>
@@ -51,9 +60,18 @@
     <item>
       <title>Probability</title>
       <link>/tags/probability/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
       
       <guid>/tags/probability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Probabilitytheory</title>
+      <link>/tags/probabilitytheory/</link>
+      <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
+      
+      <guid>/tags/probabilitytheory/</guid>
       <description></description>
     </item>
     

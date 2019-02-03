@@ -42,9 +42,17 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
         identifier = "github"
         name = "GitHub"
         url = "https://github.com/wctelson"
+        weight = 3
         
     
       [[languages.en.menu.main]]
         identifier = "twitter"
         name = "Twitter"
         url = "https://twitter.com/wctelson"
+        weight = 4
+        
+      [[languages.en.menu.main]]
+        identifier = "linkedin"
+        name = "LinkedIn"
+        url = "https://www.linkedin.com/in/davidwcnelson/"
+        weight = 5

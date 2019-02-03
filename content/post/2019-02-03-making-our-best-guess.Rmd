@@ -1,7 +1,7 @@
 ---
 title: Making Our Best Guess
 author: W.C. Telson
-date: '2019-02-03'
+date: '2019-02-03T14:32:00'
 categories:
 tags:
   - dataScience
@@ -13,4 +13,5 @@ draft: yes
 slug: making-our-best-guess
 ---
 
-As a working data scientist, my principal role is to help inform decisions. I will 
+This post is an attempt to express the general theme of this blog: "how can we make good decisions under uncertainty?", or as I prefer "how can we guess well?" As a working Data Scientist, my principal role is to support decision makers by recommending a set of actions (alternatively, a "course" of action) they can take that will help them achieve their goals. Which course of action should I recommend? Intuitively, the course of action I recommend should be the one I think is most likely to achieve a decision maker's desired goal.
+
