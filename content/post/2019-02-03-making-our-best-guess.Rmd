@@ -2,7 +2,7 @@
 title: Making Our Best Guess
 author: W.C. Telson
 date: '2019-02-03'
-draft: TRUE
+draft: FALSE
 slug: making-our-best-guess
 categories:
   - Probability Theory
