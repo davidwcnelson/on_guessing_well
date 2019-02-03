@@ -3,14 +3,14 @@ title: Making Our Best Guess
 author: W.C. Telson
 date: '2019-02-03'
 categories:
-  - Decision Theory
-  - Probability Theory
 tags:
   - dataScience
-  - machineLearning
+  - probability
+  - decisionTheory
   - predictiveInference
-draft: no
+  - machineLearning
+draft: yes
 slug: making-our-best-guess
 ---
 
-The purpose of this blog is to answer the question "how should we make our best guess?" That is, given what information we have, how do we use that information to predict some outcome that we would find useful to know.
+As a working data scientist, my principal role is to help inform decisions. I will 
