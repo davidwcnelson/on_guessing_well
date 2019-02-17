@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>Central_tendancy</title>
+      <link>/tags/central_tendancy/</link>
+      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/central_tendancy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Datascience</title>
       <link>/tags/datascience/</link>
       <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
@@ -66,11 +75,56 @@
     </item>
     
     <item>
+      <title>Estimation</title>
+      <link>/tags/estimation/</link>
+      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/estimation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Machinelearning</title>
       <link>/tags/machinelearning/</link>
       <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
       
       <guid>/tags/machinelearning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mean</title>
+      <link>/tags/mean/</link>
+      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/mean/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Median</title>
+      <link>/tags/median/</link>
+      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/median/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mode</title>
+      <link>/tags/mode/</link>
+      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/mode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Point_estimate</title>
+      <link>/tags/point_estimate/</link>
+      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/point_estimate/</guid>
       <description></description>
     </item>
     
@@ -98,6 +152,15 @@
       <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
       
       <guid>/tags/probabilitytheory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Proper_scoring</title>
+      <link>/tags/proper_scoring/</link>
+      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/proper_scoring/</guid>
       <description></description>
     </item>
     

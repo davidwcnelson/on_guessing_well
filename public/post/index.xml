@@ -6,10 +6,24 @@
     <description>Recent content in Posts on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 Feb 2019 15:32:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Our Single Best Guess</title>
+      <link>/post/our-single-best-guess/</link>
+      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/our-single-best-guess/</guid>
+      <description>Intro  I wanted to share an insight that relates measures of central tendancy (e.g., mean, median, etc.) to cost functions.
+ What is a measure of central tendancy?
+ What is a cost function?
+ Measures of central tendancy as solutions to variational problems.
+   The Guessing Game  Let’s frame our problem as a guessing game.
+ Suppose we have a collection of 100 numbered tickets in a hat, where numbers can be repeated and some numbers are more frequent than others.</description>
+    </item>
     
     <item>
       <title>Measures of Central Tendancy</title>
