@@ -12,11 +12,20 @@
     
     
     <item>
-      <title>Our Single Best Guess</title>
-      <link>/post/our-single-best-guess/</link>
+      <title>Choosing a Single Best Guess</title>
+      <link>/post/killed_posts/choosing-a-single-best-guess/</link>
       <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/our-single-best-guess/</guid>
+      <guid>/post/killed_posts/choosing-a-single-best-guess/</guid>
+      <description>The purpose of this blog is to explore how we can reason about what we know to make guesses about what we don’t. We are going to “dip our toes” into this subject by exploring one of the most commonly experienced concepts in probability theory and statistics: measures of central tendency. We are going to revisit the common definitions of measures such as the mean, median, and mode; and we will attempt to build a stronger intuition of what they are and why they are useful in our goal of making better guesses.</description>
+    </item>
+    
+    <item>
+      <title>Our Single Best Guess</title>
+      <link>/post/killed_posts/our-single-best-guess/</link>
+      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/killed_posts/our-single-best-guess/</guid>
       <description>Intro  I wanted to share an insight that relates measures of central tendancy (e.g., mean, median, etc.) to cost functions.
  What is a measure of central tendancy?
  What is a cost function?

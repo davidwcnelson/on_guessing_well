@@ -13,10 +13,10 @@
     
     <item>
       <title>Bayes’ Theorem</title>
-      <link>/post/bayes-theorem/</link>
+      <link>/post/killed_posts/bayes-theorem/</link>
       <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/bayes-theorem/</guid>
+      <guid>/post/killed_posts/bayes-theorem/</guid>
       <description>This post will explore Bayes’ theorem, and its applicability to our problem of making good guesses.
 The definition of conditional probability. \[ P(A|B) = \frac{P(A,B)}{P(B)}\]
 Getting a conjunction from conditional probability. \[ P(A,B) = P(A|B)P(B) = P(B|A)P(A)\]

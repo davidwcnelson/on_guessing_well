@@ -1,0 +1,390 @@
+---
+title: 'A First Attempt w/ Central Tendency'
+author: W.C. Telson
+date: '2019-02-18'
+tags:
+  - Calculus of Variations
+  - Central Tendency
+  - Cost Functions
+  - Mean
+  - Median
+  - Mode
+  - Variational Problems
+output:
+  html_document:
+    df_print: paged
+header-includes: \usepackage{amsmath}
+slug: a-first_attempt-with-central-tendench
+---
+
+The purpose of this blog is to explore how we can reason about what we know to make guesses about what we don’t.  We are going to “dip our toes” into this subject by exploring one of the most commonly experienced concepts in probability theory and statistics: measures of central tendency. Specifically, we are going to revisit the common definitions of measures such as the mean, median, and mode; and attempt to build a stronger intuition of what they are and why they are useful in our goal of making better guesses.
+
+# Primer on Measures of Central Tendency
+
+We begin with a quick primer on measures of central tendency. A measure of central tendency can be thought as some value that represents a "typical value" of a set of data. The three most commonly encountered are the Mean, Median and Mode:
+
+## The Mean
+
+In the case of a sample (i.e. a collection of observations), the mean is the sum of the values of the observations divided by the total number of observations. The sample mean can be computed on interval and ratio data types. More generally, we say that the mean (aka the expected value) of a random variable is equal to the the sum of the possible outcomes weighted by each outcome's probability of occurance. 
+
+In symbols, the sample mean can be computed as:
+
+$$Mean(X)= \frac{X_1 + X_2 + \dots + X_n}{n} = \frac{1}{n}\sum^n_{i=1}X_i$$
+Where $X_i$ is the $i$th observation of the $n$ total observations.
+
+## The Median
+
+In the case of a sample, the median is the value of the middle most observation, when observations are ordered by their values. When there are two middle values (as is the case with an even sample size), we often define the median as the mean of the two middle values. The sample median can be computed on ordinal, interval, and ratio data. More generally the median of a random variable is the quantity where the probability that the random variable will be less than or equal to it is 50%. This makes the median equivalent to the 50th percentile. 
+
+In symbols, the sample median can be computed as:
+
+$$\begin{equation*}
+    Median(X) = \begin{cases}
+               X_{\big\lceil{\frac{n}{2}}\big\rceil}               & if \space n \space is \space odd\\
+               \frac{\bigg(X_{\frac{n}{2}} + X_{\frac{n}{2}+1}\bigg)}{2}               &  if \space n \space is \space even\\
+           \end{cases}
+\end{equation*}$$
+
+Where $X$ is a sample of observations of size $n$ and $X_i$ is the $i$th observation.
+
+## The Mode
+
+In the case of a sample, the mode is the value that occurs most frequently amongst all observations. The sample mode can be computed on nominal, ordinal, interval, and ratio data. More generally the mode of a random variable is the quantity that has the highest probability of occuran ce. There may be more than one mode, possibly even as many modes as there are possibilities (in the case of equally likely outcomes).
+
+In symbols, the sample mode can be computed as:
+
+$$Mode(X) = \underset{x}{\operatorname{arg max}} \sum^n_{i=1}1_{\{X_i =x\}}  $$
+Where $x$ is one of the values observed in the sample $X$ of size $n$;  $X_i$ is the $i$th sample of $X$; and $1_{\{X_i =x\}}$ is an indicator function, which is equal to $1$ if $X_i = x$ and $0$ otherwise. The $\operatorname{arg max}$ function returns the $x$ which maximizes the sum i.e. the value $x$ which occurs most frequently. 
+
+# Setting up a Guessing Game
+Now that we have briefly reviewed the mean, median, and mode, we want to build a better intuition for how the will assist us in our quest to make better guesses. In order to do this, we will setup a guessing game that we will seek to win.
+
+The game is simple. There are 100 balls placed in a bin. Each ball has a number printed on it, with some numbers appearing on more balls than others. A ball will be drawn "at random" from the bin, meaning that each ball is equally likely to be drawn. Note that while each ball is equally likely, this does not mean the printed numbers are equally likely to be observed. Our goal is to guess at which ball will be drawn.
+
+Let's make this setup more concrete by programming it in R.
+
+```{r}
+# set a seed to reproduce "random" results
+set.seed(1)
+
+# sampling 100 observations from a geometric distribution with probability parameter = .5
+balls <- rgeom(n = 100, prob = .25)
+
+print(balls)
+```
+
+Let's compute our three measures of central tendency:
+```{r,warning=FALSE,message=FALSE,error=FALSE}
+require(tidyverse)
+
+mean_printed_number <- mean(balls)
+
+median_printed_number <- median(balls)
+
+mode_printed_number <- 
+  balls %>% 
+  table %>% 
+  sort(decreasing = TRUE) %>% 
+  head(1) %>% 
+  names()
+
+cat('mean = ', mean_printed_number, ', median = ', median_printed_number, ', and mode = ', mode_printed_number, sep = '')
+```
+
+Note that R doesn't have a built in mode function. Part of the reason why is that there could be any number of modes in a dataset. 
+
+A better way to understand our data is by plotting the relative frequency of occurance of each printed number.
+
+```{r, warning=FALSE,message=FALSE,error=FALSE}
+require(scales)
+
+ggplot() +
+  geom_bar(aes(x = balls, y = ..count../sum(..count..))) +
+  scale_y_continuous(labels = percent, breaks = seq(0,1,.05)) +
+  scale_x_continuous(breaks = min(balls):max(balls)) +
+  labs(x = 'printed number', y = 'P(number drawn = number on x-axis)') +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+```
+
+Here we can clearly see which printed numbers occur more frequently than others. Because we  know the exact frequencies of each printed number and our drawing process is "random", we can directly equate these relative frequencies with the probability of drawing a particular number. We can then refer to this plot as the probability mass function (pmf) plot. We won't dive deep into pmfs but for now note that this plot gives us the probability of a printed number being drawn.  
+
+A nice property of this pmf plot is that the mode we computed numerically matches the mode we see graphically (the value with the tallest bar). We can use a different plot to visually discover our median: the cumulative distribution function (cdf) plot.
+
+```{r}
+ggplot() +
+  stat_ecdf(aes(x = balls)) +
+  scale_y_continuous(labels = percent, breaks = seq(0,1,.125)) +
+  scale_x_continuous(breaks = min(balls):max(balls)) +
+  labs(x = 'printed number', y = 'P(number drawn <= number on x-axis)') +
+  theme_minimal() +
+  theme(panel.grid.minor.x = element_blank())
+```
+
+This plot tells us the probability that the printed number drawn will be less than or equal to the printed number on the x-axis. If we find the x value that corresponds with a y value of 50% we will find the median: `r median_printed_number`. 
+
+We now have a lot of information about our game, but there still remains a pressing question: which number should we guess will be printed on the ball drawn? The mean, median, and mode all seem like reasonable choices (the most likely, middle value, and sum of values weighted by their probability of occurance), but which do we choose? The answer depends on a critically important but missing feature to our game: how do we win the game?
+
+# Scoring the Game with Objective Functions
+
+Our game requires a winning condition. We will define a winning condition using a mathematical tool called an objective function. Objective functions are the heart and soul of optimization problems: our aim is find an input into the objective function that eithier maximizes or minimizes the objective function. 
+
+In our case we will opt for the category of objective functions called loss or cost functions, where we wish to minimize the output of the function. You can think of this as a scoring system akin to that in golf: the less points you incur during the game the better. Our loss function has to be a function of a players guess and the actual number printed on the ball that is drawn.
+
+Our goal then is to find some guess that minimizes the points we accrue given our loss function. Since we don't know what the outcome will be in advance, we will borrow from decision theory and search for the guess that minimizes our _expected_ loss. We can state this in symbols as follows:
+
+$$g^* = \underset{g}{\operatorname{arg min}} f(g)$$
+
+Where $g^*$ is the optimal guess (the guess that minimizes the loss), $g$ is some guess, and $f$ is some loss function.
+
+The question still remains: what form does our loss function actually take? There are many possibilities, but certain options give rise to new insights regarding our measures of central tendancy and how they can help us in our guessing game.
+
+# Inequality Penalty
+The first loss function we will explore is perhaps the most simple. We get 1 point for guessing incorrectly and 0 points for guessing correctly (again, or goal is to get the fewest points possibility). We can refer to this as an inequality penalty. 
+
+In symbols:
+
+$$d(g,x) = 1_{\{g\space\not=\space x\}}$$
+Where $d(g,x)$ is the inequality penalty function given a guess $g$ and outcome $x$, and $1_{\{g\space\not=\space x\}}$ is an indicator function returing $1$ if $g\space\not=\space x$ and $0$ otherwise. 
+
+We actually want to take an expectation over all possibile outcomes, so we can write the expected penalty for a given guess $g$ as:
+
+$$E[d(g,X)] = \sum_{i=1}^nd(g,x_i)P(x_i) = \sum_{i=1}^n1_{\{g\space\not=\space x_i\}}P(x_i)$$
+
+As the expectation of an indicator function is the probability of the condition contained within the indicator function, we can actually reduce our expected penalty to:
+
+$$E[d(g,X)] = P(X \not = g) = 1 - P(X = g)$$
+
+So we now have our inequality penalty function, and we can compute its expectation for a given guess. What guess minimizes this penalty? Let's examine it numerically and visually:
+
+```{r}
+possible_guesses <- min(balls):max(balls)
+
+expected_inequality_penalties <- map_dbl(possible_guesses, function(current_guess){
+  
+  mean(current_guess != balls)
+  
+})
+
+ggplot() +
+  geom_line(aes(x = possible_guesses, y = expected_inequality_penalties)) +
+  scale_y_continuous(labels = percent, breaks = seq(0,1,.05)) +
+  scale_x_continuous(breaks = min(balls):max(balls)) +
+  labs(x = 'guessed printed number', y = 'expected inequality penalty') +
+  theme_minimal() +
+  theme(panel.grid.minor.x = element_blank())
+
+```
+
+The penalty is minimized at the guess of $0$, which is the mode of our distribution. The relationship should be apparent: the penalty associated with the guess $g$ is the compliment of the probability the printed number will be $g$. Because probabilities are bounded between $0$ and $1$ our minimization problem has an equivalent maximization problem:
+
+$$g^* = \underset{g}{\operatorname{arg min}} P(X \not= g) =  \underset{g}{\operatorname{arg max}} P(X = g) = Mode(X)$$
+
+To minimize the probability that the guess is wrong we have to maximize the probability the guess is right. The printed number that has the highest probability of occuring is by definition the mode. When our scoring system only cares whether we were exactly right, we ought to choose the mode as our best guess; but what if we give ourselves some credit for guesses that are near the printed number actually drawn?
+
+# Absolute Difference Penalty
+
+An alternative penalty function is that of the absolute difference between our guess and the actual outcome. This will gives us some credit for making guesses that are close to the actual outcome. For example, if we were to guess 5, and the outcome were 3, we would recieve 2 points. If our guess was 2 and the outcome were 3, we would recieve 1 point. In symbols:
+
+$$d(g,x) = |g-x|$$
+
+Again, we wish to take an expectation of this loss function.
+
+$$E[d(g,X)] = E(|g-X|) = \sum_{i=1}^n |g-x_i|P(x_i)$$
+
+What guess will minimize the expectation of our loss function? Let's find out numerically:
+```{r}
+possible_guesses <- min(balls):max(balls)
+
+expected_abs_diff_penalties <- map_dbl(possible_guesses, function(current_guess){
+  
+  mean(abs(current_guess - balls))
+  
+})
+
+ggplot() +
+  geom_line(aes(x = possible_guesses, y = expected_abs_diff_penalties)) +
+  # scale_y_continuous(labels = percent, breaks = seq(0,1,.05)) +
+  scale_x_continuous(breaks = min(balls):max(balls)) +
+  labs(x = 'guessed printed number', y = 'expected absolute difference penalty') +
+  theme_minimal() +
+  theme(panel.grid.minor.x = element_blank())
+
+```
+
+Our absolute difference penalty finds its minimum at 2, which is the median of our distribution. Why is this so? Why does the median minimize the absolute difference penalty? Let's see if we can build an intuition.
+
+Let's begin by sorting the balls by their printed number.
+```{r}
+sorted_balls <- sort(balls)
+
+print(sorted_balls)
+```
+
+Next, let's examine the penalty for every ball if we guess a specific number, say 3.
+```{r}
+abs(sorted_balls - 3)
+```
+
+Rather than looking at the absolute differences that our penatly proides, let's instead look at just the differences.
+
+```{r}
+sorted_balls - 3
+```
+
+We can see that any outcomes less than our guess is negative, any outcome above our value is positive, and any value equal to our guess is 0. Let's focus just on the sign of the differenes.
+
+```{r}
+sign(sorted_balls - 3)
+```
+
+We can tally the occurance of each sign given our guess.
+```{r}
+table(sign(sorted_balls - 3))
+```
+
+We can see that there are 56 negative values and 30 positive values given our guess of 3. What if we were guess a larger number?
+
+```{r}
+table(sign(sorted_balls - 6))
+```
+
+The count of negative signs increase and the count of positive signs decrease. What if we were to guess a smaller number?
+
+```{r}
+table(sign(sorted_balls - 1))
+```
+
+The count of positive signs increase and the count of negative signs decrease. Let's look at this graphically for all possible guesses.
+
+```{r, warning=FALSE}
+map_df(possible_guesses, function(current_guess){
+  
+  table(sign(sorted_balls - current_guess)) %>%
+    tibble(sign = names(.), total = ., guess = current_guess) 
+  
+}) %>%
+  filter(sign != 0) %>%
+  left_join(expand.grid(sign = .$sign, guess = .$guess), ., by = c('sign','guess')) %>%
+  mutate(total = if_else(is.na(total), 0L, total)) %>%
+  ggplot() +
+  geom_col(aes(x = guess, y = total, fill = sign), position = 'dodge') +
+  scale_x_continuous(breaks = min(balls):max(balls)) +
+  labs(x = 'guessed printed number', y = 'count of observations') +
+  theme_minimal() +
+  theme(panel.grid.minor.x = element_blank(),
+        panel.grid.major.x = element_blank())
+  
+```
+
+We see here that as our guess moves to the right of the median, the count of negative signs increases. The opposite is true as our guess moves to the left of the median. When we guess the median, the number of negative and positive signs is equal. As a guess, the median perfectly balances the number of negative and positive differences. 
+
+# Squared Difference Penalty
+
+We have seen how the mode and the median are optimal given an inequality and absolute difference penalty respectively. What role does the mean play? The answer arises when we wish to penalize larger errors worse than smaller errors.
+
+Let's imagine that we want to give oursleves more credit when we are very near to the right answer, but penalize ourselves when we are very far. One way to do this would be to take the squared differences between our guess and the actual outcome. For example, if we guess $2$, and the result is $3$, we get $1^2=1$ point; if we guess $2$ and the result is $4$ we get $2^2=4$ points, and if we guess $2$ and the result is $10$ we get $8^2 = 64$ points. It becomes much more more important to avoid large errors.
+
+Here is our cost function in symbols:
+
+$$d(g,x) = (g-x)^2$$
+
+As per usual, we would like to take this as an expectation.
+
+$$E[d(g,X)] = E[(g-X)^2] = \sum_{i=1}^n (g-x_i)^2P(x_i)$$
+
+Let's find the minumum of this cost function numerically and visually:
+
+```{r}
+possible_guesses <- seq(min(balls), max(balls),.01)
+
+expected_sqr_diff_penalties <- map_dbl(possible_guesses, function(current_guess){
+  
+  mean((current_guess - balls)^2)
+  
+})
+
+ggplot() +
+  geom_line(aes(x = possible_guesses, y = expected_sqr_diff_penalties)) +
+  # scale_y_continuous(labels = percent, breaks = seq(0,1,.05)) +
+  scale_x_continuous(breaks = min(balls):max(balls)) +
+  labs(x = 'guessed printed number', y = 'expected squared difference penalty') +
+  theme_minimal() +
+  theme(panel.grid.minor.x = element_blank())
+
+```
+
+The expected squared difference penalty bottoms out at 2.56, which is the mean of our distribution. An analytic derivation of the mean as a solution to squared distances can be found [on stack exchange](https://math.stackexchange.com/questions/2554243/understanding-the-mean-minimizes-the-mean-squared-error). We won't cover the details here.
+
+So the mean is the best guess when were are being penalized by the squared difference between our guess and the actual outcome. We now can associate each of the three most common measures of central tendency as being the best guess given some scoring system that penalizes us for guessing incorrectly. In this way we see measures of central tendency as solutions to variational problems, a concept taken from the calculus of variations.
+
+# Lp metrics
+Before we close,we should touch on the common thread that spans all three of the cost functions we discussed: the concept of Lp metrics.
+
+All of our cost functions discussed so far are special cases of a more general form:
+$$d(g,x) = |g-x|^p$$
+
+We will refer to this general form as an Lp metric. We note here that Lp metrics are actually far more general than what we will cover in this post, and will be a recurring topic as we dive deeper into machine learning in particular. For now though, we will continue to discuss the form we have just described.
+
+Each of our cost functions is a special case of the general form. When $p = 1$, we get the absolute difference penalty. When $p = 2$, we get the squared difference penalty. We define the limit $p \to 0 $ as the inequality penalty. In this way, as $p$ gets smaller we begin to treat any difference as being equally bad, whereas when $p$ gets larger bigger differences matter much much more. What happens when $p \to \infty$? 
+
+Let's demonstrate what happens in R:
+
+```{r}
+map_df(c(2^c(0:7)), function(p){
+  
+ tibble(x = seq(0,11,.01), y = x^p, p = p)
+  
+}) %>%
+  group_by(p) %>%
+  mutate(y = y/sum(y)) %>%
+  ggplot() +
+  geom_line(aes(x = x, y = y, color = factor(p))) +
+  theme_minimal() +
+  scale_color_discrete(name = 'p') +
+  labs(x = 'difference', y = 'normalized difference^p')
+```
+
+On the x axis we have the absolute value of the difference between a guess and an actual outcome. On the y axis we have difference raised to a power $p$. The y axis has been normalized so that we can see all of the lines together. From here the trend as $p \to \infty$ is quite apparent: only the largest differences matter. What this results in is a penalty function that gives as many points as the maximum difference:
+
+$$E[d(g,X)] = max|g-X|$$
+
+What value minimizes this extreme cost function?
+
+```{r}
+possible_guesses <- seq(min(balls),max(balls),.01)
+
+expected_max_diff_penalties <- map_dbl(possible_guesses, function(current_guess){
+  
+  max(abs(current_guess - balls))
+  
+})
+
+ggplot() +
+  geom_line(aes(x = possible_guesses, y = expected_max_diff_penalties)) +
+  # scale_y_continuous(labels = percent, breaks = seq(0,1,.05)) +
+  scale_x_continuous(breaks = min(balls):max(balls)) +
+  labs(x = 'guessed printed number', y = 'expected maximum difference penalty') +
+  theme_minimal() +
+  theme(panel.grid.minor.x = element_blank())
+
+```
+
+The expected maximum difference penalty bottoms out when we guess the number that is halfway between our minimum and maximum value i.e. the midrange. When we want to minimize the single largest difference we ought to choose the midrange. This is an extreme cost function, and one that has a severe limitation: the maximum and the minimum of the possible outcomes must be defined. While this works fine for our current guessing game, it is impossible to compute when talking about a probability distribution missing an upper or lower bound. 
+
+# Aftermath
+
+We covered a lot of ground in this post, but here is a brief recap:
+
+- The mean, median, and mode are all measures of central tendency: numbers that represent typical values in a dataset.
+
+- When trying to make a good guess using a measure of central tendency, we have to know how we are defining success i.e. what is the penalty if we make a mistake?
+
+- Use the mode when minimizing the penalty for inequality; use the median when minimizing the absolute difference penalty; use the mean when minimizing the squared difference penalty; and use the midrange (if it exists) when minimizing the maximum difference penalty.
+
+Often we will come across problems when cost functions are ill defined (if at all), and we don't have complete knowledge of the outcomes or their probabilities. This makes the problem of guessing well replete with challenges that we will need to build an arsenal of tools to solve.
+
+Until next time,
+
+W.C.

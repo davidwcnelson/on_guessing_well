@@ -13,28 +13,28 @@
     
     <item>
       <title>Measures of Central Tendancy</title>
-      <link>/post/measures-of-central-tendancy/</link>
+      <link>/post/killed_posts/measures-of-central-tendancy/</link>
       <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
       
-      <guid>/post/measures-of-central-tendancy/</guid>
+      <guid>/post/killed_posts/measures-of-central-tendancy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Making Our Best Guess</title>
-      <link>/post/making-our-best-guess/</link>
+      <link>/post/killed_posts/making-our-best-guess/</link>
       <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
       
-      <guid>/post/making-our-best-guess/</guid>
+      <guid>/post/killed_posts/making-our-best-guess/</guid>
       <description>This post is an attempt to express the general theme of this blog: “how can we make good decisions under uncertainty?”, or as I prefer “how can we guess well?” As a data scientist my role is to support decision makers by recommending a course of action that is likely to achieve their goals. This task requires us to predict (or guess) at how likely any set of actions is to succeed.</description>
     </item>
     
     <item>
       <title>Bayes’ Theorem</title>
-      <link>/post/bayes-theorem/</link>
+      <link>/post/killed_posts/bayes-theorem/</link>
       <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/bayes-theorem/</guid>
+      <guid>/post/killed_posts/bayes-theorem/</guid>
       <description>This post will explore Bayes’ theorem, and its applicability to our problem of making good guesses.
 The definition of conditional probability. \[ P(A|B) = \frac{P(A,B)}{P(B)}\]
 Getting a conjunction from conditional probability. \[ P(A,B) = P(A|B)P(B) = P(B|A)P(A)\]

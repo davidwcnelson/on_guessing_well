@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Variational Problems on On Guessing Well</title>
+    <link>/tags/variational-problems/</link>
+    <description>Recent content in Variational Problems on On Guessing Well</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 18 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/variational-problems/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A First Attempt w/ Central Tendency</title>
+      <link>/post/a-first_attempt-with-central-tendench/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/a-first_attempt-with-central-tendench/</guid>
+      <description>The purpose of this blog is to explore how we can reason about what we know to make guesses about what we don’t. We are going to “dip our toes” into this subject by exploring one of the most commonly experienced concepts in probability theory and statistics: measures of central tendency. Specifically, we are going to revisit the common definitions of measures such as the mean, median, and mode; and attempt to build a stronger intuition of what they are and why they are useful in our goal of making better guesses.</description>
+    </item>
+    
+  </channel>
+</rss>

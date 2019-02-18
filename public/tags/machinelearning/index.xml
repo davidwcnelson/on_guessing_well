@@ -13,10 +13,10 @@
     
     <item>
       <title>Making Our Best Guess</title>
-      <link>/post/making-our-best-guess/</link>
+      <link>/post/killed_posts/making-our-best-guess/</link>
       <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
       
-      <guid>/post/making-our-best-guess/</guid>
+      <guid>/post/killed_posts/making-our-best-guess/</guid>
       <description>This post is an attempt to express the general theme of this blog: “how can we make good decisions under uncertainty?”, or as I prefer “how can we guess well?” As a data scientist my role is to support decision makers by recommending a course of action that is likely to achieve their goals. This task requires us to predict (or guess) at how likely any set of actions is to succeed.</description>
     </item>
     

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>
+    
+    
+     Our Single Best Guess 
+    
+  </title>
+  <link rel="canonical" href="/post/killed_posts/our-single-best-guess/">
+
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  
+</head>
+
+<body>
+<section id=nav>
+  <h1><a href="/">On Guessing Well</a></h1>
+  <ul>
+    
+    <li><a href="/about">About</a></li>
+    
+    <li><a href="/">Posts</a></li>
+    
+    <li><a href="https://github.com/wctelson">GitHub</a></li>
+    
+    <li><a href="https://www.linkedin.com/in/davidwcnelson/">LinkedIn</a></li>
+    
+    <li><a href="https://twitter.com/wctelson">Twitter</a></li>
+    
+    <li><a href="/index.xml">RSS</a></li>
+    
+  </ul>
+</section>
+
+
+<section id=content>
+  <h1> Our Single Best Guess </h1>
+
+  <div id=sub-header>
+    WC Telson · 2019/02/17 · 8 minute read
+  </div>
+
+  <div class="entry-content">
+    
+
+
+<div id="intro" class="section level1">
+<h1>Intro</h1>
+<ul>
+<li><p>I wanted to share an insight that relates measures of central tendancy (e.g., mean, median, etc.) to cost functions.</p></li>
+<li><p>What is a measure of central tendancy?</p></li>
+<li><p>What is a cost function?</p></li>
+<li><p>Measures of central tendancy as solutions to variational problems.</p></li>
+</ul>
+</div>
+<div id="the-guessing-game" class="section level1">
+<h1>The Guessing Game</h1>
+<ul>
+<li><p>Let’s frame our problem as a guessing game.</p></li>
+<li><p>Suppose we have a collection of 100 numbered tickets in a hat, where numbers can be repeated and some numbers are more frequent than others.</p></li>
+<li><p>We are asked to guess which ticket will be drawn from the hat (we assume that this drawing process is “random”), and we will be awarded points based upon what are guess was and what the actual result was.</p></li>
+<li><p>What number should we guess will be drawn next?</p></li>
+<li><p>The answer depends entirely on the scoring system.</p></li>
+<li><p>Let’s explore this example in R.</p></li>
+<li><p>First, let’s create our collection of 100 tickets.</p></li>
+</ul>
+<pre class="r"><code># load packages
+require(&#39;tidyverse&#39;)
+require(&#39;scales&#39;)
+
+# set a seed so we can reproduce &quot;random&quot; results
+set.seed(1)
+
+# generate 100 samples from a geometric distribution with parameter prob = 1/5
+x &lt;- rgeom(n = 100, prob = 1/5)
+
+print(x)</code></pre>
+<pre><code>##   [1]  2  2 12  0  5  1  2  6  6  0  2 15  5 12  2  0  0  4  0  9  1  0  0
+##  [24]  5  6  3  4  5  3  1  0  6  2  7  1  3  0  2  4  1  0  4  3  6  1  4
+##  [47]  3  1  2  0  0  4  1  1  3  7  6  4  2  5  5  4  4  2  1  0  9  4  1
+##  [70]  2  0  2  1  4  0  4  4 13  2  3  0  4  0  8  2  5  6  2  4  0  6  4
+##  [93]  2  7  3  3  3  2  3  7</code></pre>
+<ul>
+<li>We can get a better intuition of how our tickets are number by plotting them with a bar plot.</li>
+</ul>
+<pre class="r"><code># create a dot plot of the frequency of each unique value in x
+ggplot() +
+  geom_bar(aes(x = x)) +
+  scale_x_continuous(breaks = seq(min(x),max(x))) + 
+  scale_y_continuous(breaks = seq(0,max(table(x)),2)) + 
+  labs(x = &#39;x value&#39;, y = &#39;count of occurances of x value&#39;) +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())</code></pre>
+<p><img src="/post/2019-02-17-our-single-best-guess_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<ul>
+<li><p>We can see that very few tickets have a value greater than 9, but the most common number for a ticket to have is 0.</p></li>
+<li><p>It seems intuitive at this point that we should guess a number that occurs frequently, as we believe this to be most “likely”.</p></li>
+<li><p>Note this connection between this notion of “likely” and “frequent”, as it is an important relationship we will explore in the future.</p></li>
+<li><p>We can also look at this distribution not as counts but as proportions of the whole:</p></li>
+</ul>
+<pre class="r"><code>ggplot() +
+  geom_bar(aes(x = x, ..count../sum(..count..))) +
+  scale_x_continuous(breaks = seq(min(x),max(x))) + 
+  scale_y_continuous(breaks = seq(0,1,.025), labels = percent) +
+  labs(x = &#39;x value&#39;, y = &#39;count of occurances of x value&#39;) +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())</code></pre>
+<p><img src="/post/2019-02-17-our-single-best-guess_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="mode" class="section level1">
+<h1>Mode</h1>
+<ul>
+<li><p>If we were given a penalty for every incorrect guess, i.e. we only win if we guess the exact number of the ticket, what is our best strategy?</p></li>
+<li><p>Let’s capture this rule in a cost function:</p></li>
+</ul>
+<pre class="r"><code># the exact penalty function
+exact_penalty &lt;- function(guess, outcome){
+  
+  as.numeric(guess != outcome)
+  
+}
+
+# penalty if we guess exactly right
+exact_penalty(guess = 5, outcome = 5) </code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code># penalty if we guess wrong
+exact_penalty(guess = 4, outcome = 5) </code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code># penalty if we are wong by a large amount
+exact_penalty(guess = 100, outcome = 5) </code></pre>
+<pre><code>## [1] 1</code></pre>
+<ul>
+<li><p>Note that we are penalized the same regardless of whether we are off by a small or large amount i.e. the only thing that matters is that we weren’t exactly right.</p></li>
+<li><p>Let’s use this penalty to examine which guess is best amongst the possible outcomes.</p></li>
+<li><p>We can do this by mapping each possible guess to each possible outcome.</p></li>
+</ul>
+<pre class="r"><code>possible_guesses &lt;- min(x):max(x)
+
+expected_exact_penalty &lt;- map_dbl(possible_guesses, function(current_guess){
+  
+  exact_penalty(guess = current_guess, outcome = x) %&gt;% mean()
+  
+})
+
+ggplot() +
+  geom_point(aes(x = possible_guesses, y = expected_exact_penalty)) +
+  geom_line(aes(x = possible_guesses, y = expected_exact_penalty)) +
+  scale_x_continuous(breaks = seq(min(x),max(x))) + 
+  scale_y_continuous(breaks = seq(.8,1,.05)) + 
+  labs(x = &#39;x value&#39;, y = &#39;mean exact penalty&#39;) +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())</code></pre>
+<p><img src="/post/2019-02-17-our-single-best-guess_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<ul>
+<li><p>Note that the expected exact penalty is the compliment of the proportion of all tickets made up by the given ticket number i.e. <span class="math inline">\(1-p_i\)</span> where <span class="math inline">\(p_i\)</span> is the proportion of tickets made up by the <span class="math inline">\(i\)</span>th number.</p></li>
+<li><p>With that in mind, the guess that minimizes our penalty over any guess is the ticket that makes up the largest proportion i.e. is the most frequent i.e. is the most likely, which consequently is the mode of our tickets.</p></li>
+</ul>
+</div>
+<div id="median" class="section level1">
+<h1>Median</h1>
+<p>What if we gave ourselves some extra credit for guesses that are closer to the outcome? Let’s say that our penalty is equal to the absolute difference between our guess and the outcome.</p>
+<pre class="r"><code># absolute difference penalty
+abs_diff_penalty &lt;- function(guess, outcome){
+  
+  abs(guess - outcome)
+  
+}
+
+# penalty if we guess exactly right
+abs_diff_penalty(guess = 5, outcome = 5) </code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code># penalty if we guess wrong
+abs_diff_penalty(guess = 4, outcome = 5) </code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code># penalty if we are wong by a large amount
+abs_diff_penalty(guess = 100, outcome = 5) </code></pre>
+<pre><code>## [1] 95</code></pre>
+<ul>
+<li><p>Now if our guess is further off, we are penalized more than if it is closer.</p></li>
+<li><p>As we did we the exact penalty, let’s see which guess minimizes this penalty.</p></li>
+</ul>
+<pre class="r"><code>possible_guesses &lt;- min(x):max(x)
+
+expected_abs_diff_penalty &lt;- map_dbl(possible_guesses, function(current_guess){
+  
+  abs_diff_penalty(guess = current_guess, outcome = x) %&gt;% mean()
+  
+})
+
+ggplot() +
+  geom_point(aes(x = possible_guesses, y = expected_abs_diff_penalty)) +
+  geom_line(aes(x = possible_guesses, y = expected_abs_diff_penalty)) +
+  scale_x_continuous(breaks = seq(min(x),max(x))) + 
+  scale_y_continuous(breaks = seq(0,15,1)) +
+  labs(x = &#39;x value&#39;, y = &#39;mean abs diff penalty&#39;) +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())</code></pre>
+<p><img src="/post/2019-02-17-our-single-best-guess_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<ul>
+<li>We see here that the minimum is at 3, which is of course the median of the ticket values i.e. it is the value of the ticket that is in the middle of all tickets when we line them up from smallest to largest value.</li>
+</ul>
+</div>
+<div id="mean" class="section level1">
+<h1>Mean</h1>
+<ul>
+<li><p>We have seen how the mode and the median are natural choices for a guess given a certain penalty system, but where does the mean come into play?</p></li>
+<li><p>While the median gives us credit for being close to the actual outcome, we may think that being off by larger and larger amounts is worse and worse i.e. being off by 10 is more than 10x as bad as being off by 1.</p></li>
+<li><p>In this way, we could choose to penalize larger difference more by taking the square of the distances as our penalty.</p></li>
+</ul>
+<pre class="r"><code># squared difference penalty
+sqr_diff_penalty &lt;- function(guess, outcome){
+  
+  (guess - outcome)^2
+  
+}
+
+# penalty if we guess exactly right
+sqr_diff_penalty(guess = 5, outcome = 5) </code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code># penalty if we guess wrong
+sqr_diff_penalty(guess = 4, outcome = 5) </code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code># penalty if we are wong by a large amount
+sqr_diff_penalty(guess = 100, outcome = 5) </code></pre>
+<pre><code>## [1] 9025</code></pre>
+<ul>
+<li>Here we can see that a large difference is much much worse than a small difference.</li>
+<li>Let’s find the value that minimizes this penalty.</li>
+</ul>
+<pre class="r"><code>possible_guesses &lt;- seq(min(x),max(x),.01)
+
+expected_sqr_diff_penalty &lt;- map_dbl(possible_guesses, function(current_guess){
+  
+  sqr_diff_penalty(guess = current_guess, outcome = x) %&gt;% mean()
+  
+})
+
+ggplot() +
+  # geom_point(aes(x = possible_guesses, y = expected_abs_diff_penalty)) +
+  geom_line(aes(x = possible_guesses, y = expected_sqr_diff_penalty)) +
+  scale_x_continuous(breaks = seq(min(x),max(x))) + 
+  # scale_y_continuous(breaks = seq(0,15,1)) +
+  labs(x = &#39;x value&#39;, y = &#39;mean sqr diff penalty&#39;) +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())</code></pre>
+<p><img src="/post/2019-02-17-our-single-best-guess_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<ul>
+<li>here we hit our minimum between 3 and 4, or to be precise the minimum is achieved when we guess 3.32 which is equivalent to the mean.</li>
+</ul>
+</div>
+<div id="midrange" class="section level1">
+<h1>Midrange</h1>
+<p>At this point, we wish to point out a general pattern. All of the aforementioned penalty functions take the general form: <span class="math display">\[|guess - outcome|^p\]</span> We raise the absolte difference between our guess and outcome to some power <span class="math inline">\(L\)</span>. If <span class="math inline">\(p = 1\)</span> then the median is the optimal guess. If <span class="math inline">\(p = 2\)</span> then the mean is the optimal guess. We can interpret the mode as the optimal guess when <span class="math inline">\(p \to 0\)</span>. This naturally begs the question: what if <span class="math inline">\(p \to \infty\)</span>?</p>
+<p>To understand what we mean by this, we should consider what happens to a non-zero, non-unit difference as <span class="math inline">\(p\)</span> gets larger and larger.</p>
+<pre class="r"><code>tibble(p = seq(0,10,.01), d = 5^p) %&gt;%
+  ggplot(aes(x = p, y = d)) +
+  geom_line() +
+  theme_minimal() +
+  labs(x = &#39;p&#39;, y = &#39;penalty&#39;)</code></pre>
+<p><img src="/post/2019-02-17-our-single-best-guess_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<ul>
+<li><p>We can see that as p increases, the penalty assigned to (in this case the number 5) grows exponentially.</p></li>
+<li><p>Further, we should note what happens to points that are near eachother when p is very large.</p></li>
+</ul>
+<pre class="r"><code>tibble(abs_diff = seq(0,100,.01), penalty = abs_diff^10) %&gt;%
+  ggplot(aes(x = abs_diff, y = penalty)) +
+  geom_line() +
+  theme_minimal() +
+  labs(x = &#39;absolute difference&#39;, y = &#39;penalty&#39;)</code></pre>
+<p><img src="/post/2019-02-17-our-single-best-guess_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<ul>
+<li><p>Here we see a similiar pattern, but note what it means: the bigger differences matter exponentially more than smaller differences. As we take <span class="math inline">\(p\)</span> to be larger and larger, the largest difference dwarfs all other differences i.e. the only difference that matters is the biggest one.</p></li>
+<li><p>Let’s create a penalty function that returns the largest possible difference. Two important notes: A) this penalty function requires that we have an upper and lower limit to our possibilities. This condition is easily met by our current guessing game, but it will become useless when the possibilities extend to negative or positive infinity. B) we cannot define this penalty on a single guess and outcome. We have to know the extremes of our possibilities.</p></li>
+</ul>
+<pre class="r"><code>possible_guesses &lt;- seq(min(x),max(x),.01)
+
+expected_max_diff_penalty &lt;- map_dbl(possible_guesses, function(current_guess){
+  
+  abs_diff_penalty(guess = current_guess, outcome = x) %&gt;% max()
+  
+})
+
+ggplot() +
+  # geom_point(aes(x = possible_guesses, y = expected_abs_diff_penalty)) +
+  geom_line(aes(x = possible_guesses, y = expected_max_diff_penalty)) +
+  scale_x_continuous(breaks = seq(min(x),max(x))) + 
+  # scale_y_continuous(breaks = seq(0,15,1)) +
+  labs(x = &#39;x value&#39;, y = &#39;mean max diff penalty&#39;) +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())</code></pre>
+<p><img src="/post/2019-02-17-our-single-best-guess_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<ul>
+<li>We can see that the minimum is exactly in the middle of our possible values. Specifically, our minimum is the minimum x plus the maximum x divided by 2 i.e. the midrange.</li>
+</ul>
+</div>
+<div id="aftermath" class="section level1">
+<h1>Aftermath</h1>
+<div id="applicability-of-measures-to-kinds-of-data" class="section level2">
+<h2>Applicability of Measures to Kinds of Data</h2>
+<ul>
+<li><p>Nominal, Ordinal, Interval, Ratio</p></li>
+<li><p>Finiteness</p></li>
+<li><p>Discreteness</p></li>
+</ul>
+</div>
+<div id="proofs" class="section level2">
+<h2>Proofs</h2>
+</div>
+</div>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="/post/killed_posts/measures-of-central-tendancy/">&laquo; Measures of Central Tendancy</a>
+    
+    
+      <a class="basic-alignment left" href="/post/killed_posts/choosing-a-single-best-guess/">Choosing a Single Best Guess &raquo;</a>
+    
+  </div>
+</section>
+
+<section id="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+      
+      
+      if (window.location.hostname == "localhost")
+                return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = '';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+  
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+</body>
+</html>
+

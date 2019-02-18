@@ -6,96 +6,42 @@
     <description>Recent content in Tags on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Bayesianstatistics</title>
-      <link>/tags/bayesianstatistics/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      <title>Calculus of Variations</title>
+      <link>/tags/calculus-of-variations/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/bayesianstatistics/</guid>
+      <guid>/tags/calculus-of-variations/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Bayesrule</title>
-      <link>/tags/bayesrule/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      <title>Central Tendency</title>
+      <link>/tags/central-tendency/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/bayesrule/</guid>
+      <guid>/tags/central-tendency/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Bayestheorem</title>
-      <link>/tags/bayestheorem/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      <title>Cost Functions</title>
+      <link>/tags/cost-functions/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/bayestheorem/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Central_tendancy</title>
-      <link>/tags/central_tendancy/</link>
-      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/central_tendancy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Datascience</title>
-      <link>/tags/datascience/</link>
-      <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
-      
-      <guid>/tags/datascience/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Decisionscience</title>
-      <link>/tags/decisionscience/</link>
-      <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
-      
-      <guid>/tags/decisionscience/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Decisiontheory</title>
-      <link>/tags/decisiontheory/</link>
-      <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
-      
-      <guid>/tags/decisiontheory/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Estimation</title>
-      <link>/tags/estimation/</link>
-      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/estimation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Machinelearning</title>
-      <link>/tags/machinelearning/</link>
-      <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
-      
-      <guid>/tags/machinelearning/</guid>
+      <guid>/tags/cost-functions/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mean</title>
       <link>/tags/mean/</link>
-      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/mean/</guid>
       <description></description>
@@ -104,7 +50,7 @@
     <item>
       <title>Median</title>
       <link>/tags/median/</link>
-      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/median/</guid>
       <description></description>
@@ -113,63 +59,18 @@
     <item>
       <title>Mode</title>
       <link>/tags/mode/</link>
-      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/mode/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Point_estimate</title>
-      <link>/tags/point_estimate/</link>
-      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      <title>Variational Problems</title>
+      <link>/tags/variational-problems/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/point_estimate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Predictiveinference</title>
-      <link>/tags/predictiveinference/</link>
-      <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
-      
-      <guid>/tags/predictiveinference/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Probability</title>
-      <link>/tags/probability/</link>
-      <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
-      
-      <guid>/tags/probability/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Probabilitytheory</title>
-      <link>/tags/probabilitytheory/</link>
-      <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
-      
-      <guid>/tags/probabilitytheory/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Proper_scoring</title>
-      <link>/tags/proper_scoring/</link>
-      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/proper_scoring/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Statistics</title>
-      <link>/tags/statistics/</link>
-      <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
-      
-      <guid>/tags/statistics/</guid>
+      <guid>/tags/variational-problems/</guid>
       <description></description>
     </item>
     

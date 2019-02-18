@@ -6,65 +6,18 @@
     <description>Recent content in Posts on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 17 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Our Single Best Guess</title>
-      <link>/post/our-single-best-guess/</link>
-      <pubDate>Sun, 17 Feb 2019 00:00:00 +0000</pubDate>
+      <title>A First Attempt w/ Central Tendency</title>
+      <link>/post/a-first_attempt-with-central-tendench/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/our-single-best-guess/</guid>
-      <description>Intro  I wanted to share an insight that relates measures of central tendancy (e.g., mean, median, etc.) to cost functions.
- What is a measure of central tendancy?
- What is a cost function?
- Measures of central tendancy as solutions to variational problems.
-   The Guessing Game  Let’s frame our problem as a guessing game.
- Suppose we have a collection of 100 numbered tickets in a hat, where numbers can be repeated and some numbers are more frequent than others.</description>
-    </item>
-    
-    <item>
-      <title>Measures of Central Tendancy</title>
-      <link>/post/measures-of-central-tendancy/</link>
-      <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
-      
-      <guid>/post/measures-of-central-tendancy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Making Our Best Guess</title>
-      <link>/post/making-our-best-guess/</link>
-      <pubDate>Sun, 03 Feb 2019 14:32:00 +0000</pubDate>
-      
-      <guid>/post/making-our-best-guess/</guid>
-      <description>This post is an attempt to express the general theme of this blog: “how can we make good decisions under uncertainty?”, or as I prefer “how can we guess well?” As a data scientist my role is to support decision makers by recommending a course of action that is likely to achieve their goals. This task requires us to predict (or guess) at how likely any set of actions is to succeed.</description>
-    </item>
-    
-    <item>
-      <title>Bayes’ Theorem</title>
-      <link>/post/bayes-theorem/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bayes-theorem/</guid>
-      <description>This post will explore Bayes’ theorem, and its applicability to our problem of making good guesses.
-The definition of conditional probability. \[ P(A|B) = \frac{P(A,B)}{P(B)}\]
-Getting a conjunction from conditional probability. \[ P(A,B) = P(A|B)P(B) = P(B|A)P(A)\]
-Bayes’ theorem. \[ P(A|B) = \frac{P(B|A)P(A)}{P(B)}\]
-The law of total probability. \[P(B) = \sum_{j=1}^{n}P(B,A_j)\]
-Bayes theorem with the law of total probability. \[ P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^{n} P(B|A_j)P(A_j)}\]
-Continous bayes theorem.</description>
-    </item>
-    
-    <item>
-      <title>ggplot test</title>
-      <link>/post/ggplot-test/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/ggplot-test/</guid>
-      <description> require(ggplot2) ## Loading required package: ggplot2 qplot(rnorm(1000)) ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`. </description>
+      <guid>/post/a-first_attempt-with-central-tendench/</guid>
+      <description>The purpose of this blog is to explore how we can reason about what we know to make guesses about what we don’t. We are going to “dip our toes” into this subject by exploring one of the most commonly experienced concepts in probability theory and statistics: measures of central tendency. Specifically, we are going to revisit the common definitions of measures such as the mean, median, and mode; and attempt to build a stronger intuition of what they are and why they are useful in our goal of making better guesses.</description>
     </item>
     
   </channel>
