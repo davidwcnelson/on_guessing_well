@@ -15,7 +15,7 @@ output:
   html_document:
     df_print: paged
 header-includes: \usepackage{amsmath}
-slug: a-first_attempt-with-central-tendench
+slug: a-first_attempt-with-central-tendency
 ---
 
 The purpose of this blog is to explore how we can reason about what we know to make guesses about what we don’t.  We are going to “dip our toes” into this subject by exploring one of the most commonly experienced concepts in probability theory and statistics: measures of central tendency. Specifically, we are going to revisit the common definitions of measures such as the mean, median, and mode; and attempt to build a stronger intuition of what they are and why they are useful in our goal of making better guesses.
@@ -26,7 +26,7 @@ We begin with a quick primer on measures of central tendency. A measure of centr
 
 ## The Mean
 
-In the case of a sample (i.e. a collection of observations), the mean is the sum of the values of the observations divided by the total number of observations. The sample mean can be computed on interval and ratio data types. More generally, we say that the mean (aka the expected value) of a random variable is equal to the the sum of the possible outcomes weighted by each outcome's probability of occurance. 
+In the case of a sample (i.e. a collection of observations), the mean is the sum of the values of the observations divided by the total number of observations. The sample mean can be computed on interval and ratio data types. More generally, we say that the mean (aka the expected value) of a random variable is equal to the the sum of the possible outcomes weighted by each outcome's probability of occurrence. 
 
 In symbols, the sample mean can be computed as:
 
@@ -50,7 +50,7 @@ Where $X$ is a sample of observations of size $n$ and $X_i$ is the $i$th observa
 
 ## The Mode
 
-In the case of a sample, the mode is the value that occurs most frequently amongst all observations. The sample mode can be computed on nominal, ordinal, interval, and ratio data. More generally the mode of a random variable is the quantity that has the highest probability of occuran ce. There may be more than one mode, possibly even as many modes as there are possibilities (in the case of equally likely outcomes).
+In the case of a sample, the mode is the value that occurs most frequently among all observations. The sample mode can be computed on nominal, ordinal, interval, and ratio data. More generally the mode of a random variable is the quantity that has the highest probability of occurrence. There may be more than one mode, possibly even as many modes as there are possibilities (in the case of equally likely outcomes).
 
 In symbols, the sample mode can be computed as:
 
@@ -92,9 +92,9 @@ mode_printed_number <-
 cat('mean = ', mean_printed_number, ', median = ', median_printed_number, ', and mode = ', mode_printed_number, sep = '')
 ```
 
-Note that R doesn't have a built in mode function. Part of the reason why is that there could be any number of modes in a dataset. 
+Note that R doesn't have a built in mode function. Part of the reason why is that there could be any number of modes in a data set. 
 
-A better way to understand our data is by plotting the relative frequency of occurance of each printed number.
+A better way to understand our data is by plotting the relative frequency of occurrence of each printed number.
 
 ```{r, warning=FALSE,message=FALSE,error=FALSE}
 require(scales)
@@ -125,11 +125,11 @@ ggplot() +
 
 This plot tells us the probability that the printed number drawn will be less than or equal to the printed number on the x-axis. If we find the x value that corresponds with a y value of 50% we will find the median: `r median_printed_number`. 
 
-We now have a lot of information about our game, but there still remains a pressing question: which number should we guess will be printed on the ball drawn? The mean, median, and mode all seem like reasonable choices (the most likely, middle value, and sum of values weighted by their probability of occurance), but which do we choose? The answer depends on a critically important but missing feature to our game: how do we win the game?
+We now have a lot of information about our game, but there still remains a pressing question: which number should we guess will be printed on the ball drawn? The mean, median, and mode all seem like reasonable choices (the most likely, middle value, and sum of values weighted by their probability of occurrence), but which do we choose? The answer depends on a critically important but missing feature to our game: how do we win the game?
 
 # Scoring the Game with Objective Functions
 
-Our game requires a winning condition. We will define a winning condition using a mathematical tool called an objective function. Objective functions are the heart and soul of optimization problems: our aim is find an input into the objective function that eithier maximizes or minimizes the objective function. 
+Our game requires a winning condition. We will define a winning condition using a mathematical tool called an objective function. Objective functions are the heart and soul of optimization problems: our aim is find an input into the objective function that either maximizes or minimizes the objective function. 
 
 In our case we will opt for the category of objective functions called loss or cost functions, where we wish to minimize the output of the function. You can think of this as a scoring system akin to that in golf: the less points you incur during the game the better. Our loss function has to be a function of a players guess and the actual number printed on the ball that is drawn.
 
@@ -139,7 +139,7 @@ $$g^* = \underset{g}{\operatorname{arg min}} f(g)$$
 
 Where $g^*$ is the optimal guess (the guess that minimizes the loss), $g$ is some guess, and $f$ is some loss function.
 
-The question still remains: what form does our loss function actually take? There are many possibilities, but certain options give rise to new insights regarding our measures of central tendancy and how they can help us in our guessing game.
+The question still remains: what form does our loss function actually take? There are many possibilities, but certain options give rise to new insights regarding our measures of central tendency and how they can help us in our guessing game.
 
 # Inequality Penalty
 The first loss function we will explore is perhaps the most simple. We get 1 point for guessing incorrectly and 0 points for guessing correctly (again, or goal is to get the fewest points possibility). We can refer to this as an inequality penalty. 
@@ -147,9 +147,9 @@ The first loss function we will explore is perhaps the most simple. We get 1 poi
 In symbols:
 
 $$d(g,x) = 1_{\{g\space\not=\space x\}}$$
-Where $d(g,x)$ is the inequality penalty function given a guess $g$ and outcome $x$, and $1_{\{g\space\not=\space x\}}$ is an indicator function returing $1$ if $g\space\not=\space x$ and $0$ otherwise. 
+Where $d(g,x)$ is the inequality penalty function given a guess $g$ and outcome $x$, and $1_{\{g\space\not=\space x\}}$ is an indicator function returning $1$ if $g\space\not=\space x$ and $0$ otherwise. 
 
-We actually want to take an expectation over all possibile outcomes, so we can write the expected penalty for a given guess $g$ as:
+We actually want to take an expectation over all possible outcomes, so we can write the expected penalty for a given guess $g$ as:
 
 $$E[d(g,X)] = \sum_{i=1}^nd(g,x_i)P(x_i) = \sum_{i=1}^n1_{\{g\space\not=\space x_i\}}P(x_i)$$
 
@@ -182,11 +182,11 @@ The penalty is minimized at the guess of $0$, which is the mode of our distribut
 
 $$g^* = \underset{g}{\operatorname{arg min}} P(X \not= g) =  \underset{g}{\operatorname{arg max}} P(X = g) = Mode(X)$$
 
-To minimize the probability that the guess is wrong we have to maximize the probability the guess is right. The printed number that has the highest probability of occuring is by definition the mode. When our scoring system only cares whether we were exactly right, we ought to choose the mode as our best guess; but what if we give ourselves some credit for guesses that are near the printed number actually drawn?
+To minimize the probability that the guess is wrong we have to maximize the probability the guess is right. The printed number that has the highest probability of occurring is by definition the mode. When our scoring system only cares whether we were exactly right, we ought to choose the mode as our best guess; but what if we give ourselves some credit for guesses that are near the printed number actually drawn?
 
 # Absolute Difference Penalty
 
-An alternative penalty function is that of the absolute difference between our guess and the actual outcome. This will gives us some credit for making guesses that are close to the actual outcome. For example, if we were to guess 5, and the outcome were 3, we would recieve 2 points. If our guess was 2 and the outcome were 3, we would recieve 1 point. In symbols:
+An alternative penalty function is that of the absolute difference between our guess and the actual outcome. This will gives us some credit for making guesses that are close to the actual outcome. For example, if we were to guess 5, and the outcome were 3, we would receive 2 points. If our guess was 2 and the outcome were 3, we would receive 1 point. In symbols:
 
 $$d(g,x) = |g-x|$$
 
@@ -228,19 +228,19 @@ Next, let's examine the penalty for every ball if we guess a specific number, sa
 abs(sorted_balls - 3)
 ```
 
-Rather than looking at the absolute differences that our penatly proides, let's instead look at just the differences.
+Rather than looking at the absolute differences that our penalty provides, let's instead look at just the differences.
 
 ```{r}
 sorted_balls - 3
 ```
 
-We can see that any outcomes less than our guess is negative, any outcome above our value is positive, and any value equal to our guess is 0. Let's focus just on the sign of the differenes.
+We can see that any outcomes less than our guess is negative, any outcome above our value is positive, and any value equal to our guess is 0. Let's focus just on the sign of the differences.
 
 ```{r}
 sign(sorted_balls - 3)
 ```
 
-We can tally the occurance of each sign given our guess.
+We can tally the occurrence of each sign given our guess.
 ```{r}
 table(sign(sorted_balls - 3))
 ```
@@ -285,7 +285,7 @@ We see here that as our guess moves to the right of the median, the count of neg
 
 We have seen how the mode and the median are optimal given an inequality and absolute difference penalty respectively. What role does the mean play? The answer arises when we wish to penalize larger errors worse than smaller errors.
 
-Let's imagine that we want to give oursleves more credit when we are very near to the right answer, but penalize ourselves when we are very far. One way to do this would be to take the squared differences between our guess and the actual outcome. For example, if we guess $2$, and the result is $3$, we get $1^2=1$ point; if we guess $2$ and the result is $4$ we get $2^2=4$ points, and if we guess $2$ and the result is $10$ we get $8^2 = 64$ points. It becomes much more more important to avoid large errors.
+Let's imagine that we want to give ourselves more credit when we are very near to the right answer, but penalize ourselves when we are very far. One way to do this would be to take the squared differences between our guess and the actual outcome. For example, if we guess $2$, and the result is $3$, we get $1^2=1$ point; if we guess $2$ and the result is $4$ we get $2^2=4$ points, and if we guess $2$ and the result is $10$ we get $8^2 = 64$ points. It becomes much more more important to avoid large errors.
 
 Here is our cost function in symbols:
 
@@ -295,7 +295,7 @@ As per usual, we would like to take this as an expectation.
 
 $$E[d(g,X)] = E[(g-X)^2] = \sum_{i=1}^n (g-x_i)^2P(x_i)$$
 
-Let's find the minumum of this cost function numerically and visually:
+Let's find the minimum of this cost function numerically and visually:
 
 ```{r}
 possible_guesses <- seq(min(balls), max(balls),.01)
@@ -378,7 +378,7 @@ The expected maximum difference penalty bottoms out when we guess the number tha
 
 We covered a lot of ground in this post, but here is a brief recap:
 
-- The mean, median, and mode are all measures of central tendency: numbers that represent typical values in a dataset.
+- The mean, median, and mode are all measures of central tendency: numbers that represent typical values in a data set.
 
 - When trying to make a good guess using a measure of central tendency, we have to know how we are defining success i.e. what is the penalty if we make a mistake?
 
