@@ -1,0 +1,9 @@
+---
+title: Oddities of the Principle of Indifference
+author: David Telson
+date: '2019-07-12'
+slug: oddities-of-the-principle-of-indifference
+categories: []
+tags: []
+---
+
