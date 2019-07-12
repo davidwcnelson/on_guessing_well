@@ -5,5 +5,6 @@ date: '2019-07-12'
 slug: oddities-of-the-principle-of-indifference
 categories: []
 tags: []
+draft: TRUE
 ---
 
