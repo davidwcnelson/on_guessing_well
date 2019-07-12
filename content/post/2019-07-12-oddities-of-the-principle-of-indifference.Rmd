@@ -1,10 +1,15 @@
 ---
-title: Oddities of the Principle of Indifference
+title: Principle of Insufficient Reason
 author: David Telson
 date: '2019-07-12'
-slug: oddities-of-the-principle-of-indifference
+slug: the-principle-of-insufficient-reason
 categories: []
 tags: []
 draft: TRUE
 ---
 
+# Introduction to the Principle of Insufficient Reason
+
+# Principle of Insufficient Reason on Countably Infinite Sets
+
+# Principle of Insufficient Reason on Uncountably Infinite Sets
