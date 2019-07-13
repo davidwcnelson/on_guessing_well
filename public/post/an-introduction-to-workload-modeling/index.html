@@ -50,7 +50,7 @@
   <h1> An Introduction to Workload Modeling </h1>
 
   <div id=sub-header>
-    David Nelson · 2019/05/12 · 21 minute read
+    David WC Telson · 2019/05/12 · 21 minute read
   </div>
 
   <div class="entry-content">
@@ -230,20 +230,6 @@ ggplot(.) +
   labs(title = &#39;Our Epistemic Uncertainty About The Distribution of N_t&#39;, 
        x = &#39;n_t&#39;, 
        y = &#39;P(N_t = n_t)&#39;)</code></pre>
-<pre><code>## Warning: `as_dictionary()` is soft-deprecated as of rlang 0.3.0.
-## Please use `as_data_pronoun()` instead
-## This warning is displayed once per session.</code></pre>
-<pre><code>## Warning: `new_overscope()` is soft-deprecated as of rlang 0.2.0.
-## Please use `new_data_mask()` instead
-## This warning is displayed once per session.</code></pre>
-<pre><code>## Warning: The `parent` argument of `new_data_mask()` is deprecated.
-## The parent of the data mask is determined from either:
-## 
-##   * The `env` argument of `eval_tidy()`
-##   * Quosure environments when applicable
-## This warning is displayed once per session.</code></pre>
-<pre><code>## Warning: `overscope_clean()` is soft-deprecated as of rlang 0.2.0.
-## This warning is displayed once per session.</code></pre>
 <p><img src="/post/2019-05-12-an-introduction-to-workload-modeling_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Each line in the above plot represents a possible distribution given a specific value of <span class="math inline">\(M\)</span>, with the more likely distributions appearing more frequently (darker areas). We can easily integrate this uncertainty, which symbolically looks like the following:</p>
 <p><span class="math display">\[P(N_t = n_t) = \int_\mu P(N_t = n_t|M = \mu) \cdot p(M = \mu) \ d\mu\]</span></p>
