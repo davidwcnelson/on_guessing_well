@@ -6,10 +6,19 @@
     <description>Recent content in Posts on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 12 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Probability in a Finite and Deterministic Universe</title>
+      <link>/post/probability-in-a-finite-and-deterministic-universe/</link>
+      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/probability-in-a-finite-and-deterministic-universe/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Some Oddities of the Principle of Insufficient Reason</title>
