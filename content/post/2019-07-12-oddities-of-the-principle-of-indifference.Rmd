@@ -1,6 +1,6 @@
 ---
 title: Some Oddities of the Principle of Insufficient Reason
-author: David Telson
+author: David W.C. Telson
 date: '2019-07-12'
 slug: some_oddities_of_the-principle-of-insufficient-reason
 categories: 
@@ -10,9 +10,7 @@ draft: FALSE
 
 We are keenly interested in reasoning with incomplete or uncertain information i.e. how we should make a "best guess" given that we have imperfect knowledge. One of the classical tools in our tool belt is the so called "principle of insufficient reason" also known as the "principle of indifference". More on the history and extensions of the principle, but for now I want to focus on some oddities that occur by trying to reason with the principle.
 
-The principle of insufficient reason essentially states that: 
-
->If we have $n > 1$ mutually exclusive and collectively exhaustive propositions, and we have no reason to suspect any subset of them being more probable than another, then we should assign a probability of $\frac{1}{n}$ to each proposition.
+The principle of insufficient reason essentially states that if we have $n > 1$ mutually exclusive and collectively exhaustive propositions, and we have no reason to suspect any subset of them being more probable than another, then we should assign a probability of $\frac{1}{n}$ to each proposition.
 
 In symbols we could rephrase this as follows: suppose $a = \{a_1,a_2,...,a_n\}$ is a collection of propositions such that $\bigoplus_{i=1}^{n}a_i$. Here $\oplus$ is the "exclusive disjunction" i.e. "exclusive or" i.e. "XOR" operator, meaning that one and only one of the propositions is true. If we are unable to distinguish between the propositions except for their label $i$, then the principle tells us to assign a probability of $\frac{1}{n}$ to each i.e. $\forall a_i \in a$, $p_i = P(a_i) = \frac{1}{n}$.
 
