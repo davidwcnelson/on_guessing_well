@@ -158,7 +158,7 @@ qplot(x = f(10), y = '') +
 
 We can see the CDF of this function if we run it iteratively 10 times:
 
-```{r}
+```{r, warning = FALSE, message = FALSE, error = FALSE}
 tibble(x = f(10), y = cumsum(1:length(x))/sum(1:length(x))) %>%
   ggplot() +
   geom_line(aes(x = x, y = y)) +
@@ -168,7 +168,7 @@ tibble(x = f(10), y = cumsum(1:length(x))/sum(1:length(x))) %>%
 
 We could also see how the function changes for each iteration:
 
-```{r}
+```{r, warning = FALSE, message = FALSE, error = FALSE}
 map_df(1:12, function(n){
   
   f(n) %>%

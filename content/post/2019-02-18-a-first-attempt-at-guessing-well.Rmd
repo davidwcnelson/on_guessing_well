@@ -386,6 +386,4 @@ We covered a lot of ground in this post, but here is a brief recap:
 
 Often we will come across problems when cost functions are ill defined (if at all), and we don't have complete knowledge of the outcomes or their probabilities. This makes the problem of guessing well replete with challenges that we will need to build an arsenal of tools to solve.
 
-Until next time,
-
-W.C.
+That's all for now. More on this later, also expect this post to get revised and refined!

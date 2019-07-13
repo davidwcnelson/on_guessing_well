@@ -135,20 +135,6 @@ qplot(x = f(10), y = &#39;&#39;) +
   facet_wrap(~n) +
   theme_minimal() +
   scale_y_continuous(labels = percent)</code></pre>
-<pre><code>## Warning: `as_dictionary()` is soft-deprecated as of rlang 0.3.0.
-## Please use `as_data_pronoun()` instead
-## This warning is displayed once per session.</code></pre>
-<pre><code>## Warning: `new_overscope()` is soft-deprecated as of rlang 0.2.0.
-## Please use `new_data_mask()` instead
-## This warning is displayed once per session.</code></pre>
-<pre><code>## Warning: The `parent` argument of `new_data_mask()` is deprecated.
-## The parent of the data mask is determined from either:
-## 
-##   * The `env` argument of `eval_tidy()`
-##   * Quosure environments when applicable
-## This warning is displayed once per session.</code></pre>
-<pre><code>## Warning: `overscope_clean()` is soft-deprecated as of rlang 0.2.0.
-## This warning is displayed once per session.</code></pre>
 <p><img src="/post/2019-07-12-oddities-of-the-principle-of-indifference_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Here we can see that a CDF, or at least an approximate CDF, becomes more plausible. Again, if we assume that we need a CDF to sample from, then this looks like a candidate we can sample from that is not finite nor bounded and continuous.</p>
 <p>That’s all for now. More on this later, also expect this post to get revised and refined!</p>
