@@ -259,7 +259,7 @@ This histogram represents our uncertainty that the parameter $M$ will be a certa
 
 We can use this distribution to examine our epistemic uncertainty about the data generating process for $N_t$. Remember that $N_t \sim Possion(M)$.
 
-```{r}
+```{r, warning = FALSE, message = FALSE, error = FALSE}
 samples_of_Nt_dist <- samples_of_Mu %>% 
   sample(size = 50) %>%
   map_df(function(current_Mu){
@@ -290,7 +290,7 @@ $$P(N_t = n_t) = \int_\mu P(N_t = n_t|M = \mu) \cdot p(M = \mu) \ d\mu$$
 
 We can implement this in R by feeding random numbers into a random number generator.
 
-```{r}
+```{r, warning = FALSE, message = FALSE, error = FALSE}
 rexp(10000, rate = 1/6) %>%
   rpois(n = length(.), lambda = .) %>%
   tibble(nt = .) %>%
@@ -318,7 +318,7 @@ LaplacesDemon::rtrunc(n = 10000, 'exp', a = 1, b = Inf, rate = 1/2) %>% # 0 <= g
 
 We can use these two distributions to simulate workloads over time. We will write a function to do so. Before we do, we will say that the time alloted for production, $s$ is 4 hours. 
 
-```{r}
+```{r, warning = FALSE, message = FALSE, error = FALSE}
 # setting s
 s <- 4
 
@@ -356,7 +356,7 @@ W <- map_dbl(1:length(N_t), function(t0){
 ```
 
 Using these simulations we can examine the requirements for workers over time.
-```{r}
+```{r, warning = FALSE, message = FALSE, error = FALSE}
 # Workers over time
 W %>%
   ggplot() +
@@ -366,7 +366,7 @@ W %>%
 ```
 
 We can also examine the probability of needing a certain number of workers at any given time (ignorant of how many workers were required at other points in time).
-```{r}
+```{r, warning = FALSE, message = FALSE, error = FALSE}
 # PMF of Workers Required
 W %>%
   ggplot() +
@@ -377,7 +377,7 @@ W %>%
 ```
 
 Most importantly, we can examine the cumulative distribution function of our simulations, which tell us how often we can expect to need a certain number of workers or less. This is highly useful in making risk based resourcing decisions.
-```{r}
+```{r, warning = FALSE, message = FALSE, error = FALSE}
 # CDF of Workers Required
 W %>%
   ggplot() +
