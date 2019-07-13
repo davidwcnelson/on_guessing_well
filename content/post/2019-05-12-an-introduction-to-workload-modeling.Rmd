@@ -1,0 +1,394 @@
+---
+title: An Introduction to Workload Modeling
+author: David Nelson
+date: '2019-05-12'
+slug: an-introduction-to-workload-modeling
+categories: []
+tags: []
+---
+
+# The Purpose of this Post
+This post presents a brief introduction to workload modeling. For our purposes we define workload modeling as "an effort to usefully represent the relationship between A) the demand for products (or services), B) the production (or service delivery) process, C) and the requirement for resources". This should be taken as a working definition, as we are sure that our own investigation into this subject will shape and change our fundamental understanding in the future.
+
+It is our hope that readers will be able to gain a foundational understanding of workload modeling, and be able to eithier A) research and grow the available knowledge of workload modeling, B) usefully apply workload models to solve real world problems. The latter item is most important to us, but we mention the former as our own investigations were difficult as the literature seems to be dispersed across fields with varying terminology. We think it would be even better if more work were dedicated to its exploration and application, especially in a world of growing complexity and huge quantities of data being generated at rapid speeds. 
+
+This post is broken into several parts. The next two sections serve as a foundation to be built atop by later sections. The later sections are mostly orthogonal i.e. they can be read in any order with some exceptions. That being said, this post was designed to be read in a linear fashion, with each topic introduced being slightly more complex than previous. The final section provides a practical demonstration of workload modeling using the R Language. 
+
+
+# Variables of Interest
+There are four elementary variables of interest in our problem:
+
+$w =$ the number of workers required to produce a certain amount of products in a certain amount of time.
+
+$n =$ the number of products demanded to be produced in a certain amount of time.
+
+$s =$ the time alloted for producing all products demanded i.e. the production performance standard in units of time.
+
+$y =$ the amount of time it takes one worker to produce one product, also known as the inverse worker production capability.
+
+Please note that for simplicity we assume that $s$ and $y$ are in the same units e.g., "hours", "days", etc.
+
+While we speak in terms of "workers" and "products", these really are just abstract symbols that could be applied to different situations involving a "workload" like scheme. For instance, instead of "workers" we could say "raw materials" or even "teams of workers"; and instead of "products", we could say "projects", "tasks", or some other unit of work.
+
+# Form of the Model
+Our model must take some mathematical form. There are many ways in which to determine such a form, but in our case we will explore several considerations and find a simple, if not unique form. 
+
+Our first consideration is that $w$ should be a function of $n$, $s$, and $y$. In symbols:
+$$w = f(n, s, y)$$
+
+Next, we consider what must happen if $s$ is equal to $y$, that is if the amount of time alloted for production is equal to the amount of time it takes one worker to produce one product. In this case, the number of workers required should equal the number of products demanded.
+$$s = y \Rightarrow w = n$$
+
+What if $s$ is greater than $y$? Then the number of workers required must be less than the number of products demanded. 
+$$s > y \Rightarrow w < n$$
+
+The opposite must be true if $s$ is less than $y$, or at least it is if we assume the work on one unit to be divisible across multiple workers. For simplicity, we take this assumption.
+$$s < y \Rightarrow w > n$$
+
+A simple formula that perfectly captures these aforementioned considerations is the following equation, herein refered to as the "base equation":
+$$w = \frac{n\cdot y}{s}$$
+
+Sometimes it will be necessary for us to consider only non-fractional workers, meaning that we take the ceiling of the right hand side of the equation. A rationale for this is that you can't really employ a fractional worker, and instead must take on the inefficiency of having a full worker, partially employed, in order to meet performance expectations. In symbols:
+$$w = \bigg\lceil \frac{n\cdot y}{s}\bigg\rceil$$
+
+## Additional Noteworthy Relationships
+There are a few additional relationships that are worth mentioning, but we will spend no further time addressing them in detail.
+
+$c = \frac{1}{y} =$ worker production capability i.e. the number of products one worker can produce in one unit of time.
+
+This leads to the alternative parameterization of our base equation:
+$$w = \frac{n\cdot \frac{1}{c}}{s} =  \frac{n}{s\cdot c}$$
+
+$\frac{n}{s} =$ the number of products demanded per unit of time. Also known as the rate of production demanded.
+
+$\frac{s}{n} =(\frac{n}{s})^{-1} =$ the amount of time per product demanded. Also known as the takt time, which has great importance in lean manufacturing methods.
+
+# Demand Over Time
+Our first major extension of the base equation is to incorporate the idea of new demand occuring over time. $n_t$ now denotes the demand at the $t$th unit of time. The question of interest is "what is the number of workers required at time $t = t_0$?" The following equation yields the desired result:
+$$w_{t_0} = \frac{y}{s}\sum_{t = t_0 - s + 1}^{t_0}n_t$$
+
+Intuitively this is the sum of all products being actively worked at time $t_0$ (those between time $t_0 - s + 1$ and $t_0$) multiplied by the inverse worker capability divided by the performance standard. We add 1 to the start of the index as we are counting "fence faces"" and not "fence posts". Further, because of the linearity of summation, we can uncover the following useful identity:
+$$w_{t_0} = \sum_{t = t_0 - s +1}^{t_0}\frac{n_t\cdot y}{s}$$
+
+The focus is now on the base equation being applied to each unit of time. This will be a much more useful form in the future as we allow $y$ and $s$ to vary.
+
+Before we move on, we should note that a rich theory can be created for the variable $n_t$, specifically one can make $N_t$ be a random variable distributed by some sort of probability distribution. This idea will be explored later in this post when we discuss expectation of $W_t$ i.e. the average number of workers required.
+
+# Product Groups
+The next modification to the base equation is to incorporate the idea of "product groups". The concept can be used to group products into categories to allow for different product demands, worker production capabilities, or performance standards. For instance it is easy to imagine wanting to capture the variation between building model airplanes and real airplanes. Alternatively it is concievable that different clients will have different performance standards, as would be the case in clients who pay more to get their goods faster.
+
+The notation is quite simple:
+$$w_j = \frac{n_j\cdot y_j}{s_j}$$
+
+Here $w_j$ is the number of workers working on products in the $j$th product group, with $n_j$,$y_j$, and $s_j$ being interpreted similiarly for their respective variables. We can determine the total number of workers required by summating over all product groups.
+$$w = \sum_{j=1}^m\frac{n_j\cdot y_j}{s_j}$$
+
+Where $m$ is the total number of product groups. This formula can be further generalized to include multiple different kinds of product groupings (customer, product-type, product-difficutly, etc.), but for now we will move on.
+
+# Sequence of Steps
+Rarely does any one production scheme have only one step in its process, rather work is typically broken down into many different steps in a process. Here we wish to build some machinary to describe how work moves within a sequence of steps. For our purpose we will imagine work moving from one step to another as products moving from one station to another station as work is completed.
+
+The number of products at station $k_0$ at time $t_0$ is equivalent to the number of products at station $k_0 - 1$ at time $t_0 - s_{k_0-1}$ i.e. the number of products at one station is the same as the prior station shifted by the prior station's time allocated for production. In symbols:
+$$n_{k_0,t_0} = n_{k_0 - 1,t_0 - s_{k_0-1}}$$
+
+We note two things: 
+
+1. We assume that products move in batches: when products enter the production process together, they stay together until all products are complete. This assumption can be reworked to provide greater generality, but for now it meets our purposes. 
+
+2. The last equation merely tells us the number of products at a station at a point in time relative to the previous station. We would have to recursively work backwards to the very first station to determine how many products were at our deks of interest. 
+
+In order to address our second point, we introduce the "shift" function. The shift or offset of station $k_0$ is equivalent to the sum of the time allocated for production of all previous stations. For $k_0 > 1$ (if $k_0 = 0, \Delta_{k_0} = 0$): 
+$$\Delta(k_0) = \Delta_{k_0}  = \sum_{k=1}^{k_0-1}s_k$$
+
+With this new function in tow, we can answer the question "how many workers are required at station $k_0$ at time $t_0$?"
+$$w_{k_0,t_0} = \sum_{t=t_0-s_{d_0}+1-\Delta_{k_0}}^{t_0-\Delta_{k_0}}\frac{n_t\cdot y_{d_0}}{s_{d_0}}$$
+
+Further, we can determine how many workers there are in total, across all stations, at time $t_0$ with the equation:
+$$w_{t_0} = \sum_{k_0 = 1}^{l}\sum_{\tiny t=t_0-s_{d_0}+1-\Delta_{k_0}}^{t_0-\Delta_{k_0}}\frac{n_t\cdot y_{d_0}}{s_{d_0}}$$
+
+Where $l$ is the total number of work stations. This notation is quite unruly, and in truth doesn't express the full generality of the notion of work stations and steps within a sequence. To give a rough idea of what other lines of inquiry we could dive down, we provide the following concepts:
+
+ - Mergers: when multiple stations feed a single station.
+ - Forks: when a single station feeds multiple stations, with some products going from one to the other.
+ - Skips: when some products skip stations altogether.
+ - Cycles: when some products return to be worked on by stations previously visited e.g., rework.
+ 
+ There is rich theory to be explored in these concepts, and they don't fully describe the universe of possibilities when talking about how to model steps in a sequence. A final teaser would be to mention that graph theory (i.e. the analysis of networks) could easily and usefully be applied in modeling out such processes.
+
+# The Variability of Product Units
+Thus far, we have assumed that the time for one worker to produce one unit of product is constant over a number of products demanded. To be fair, we allowed this quantity to vary by product group, but still it was assumed it was still constant within the product group. Now we wish to allow the time for one worker to produce one unit of product to vary by each unit of product. In symbols:
+$$w = \sum_{i=1}^{n}\frac{y_i}{s}$$
+
+If $y_i = y$ for all $i$, then our equation reduces to our original base equation by the linearity of summation.
+$$w = \sum_{i=1}^{n}\frac{y}{s} = \frac{n \cdot y}{s}$$
+
+While this new formulation allows us to arbitrarily vary each $y_i$, we want to further extend our thinking to capture concepts like random variation and the effects of covariates. First we consider a very simple model.
+$$y_i = \mu + \epsilon_i$$
+
+Where $\mu$ is a location paramter i.e. a central tendancy, and $\epsilon_i$ is the random deviate of the $i$th unit of product from the location parameter. Typically we assume that $\epsilon_i$ is a random variable whose value is determined by a probability distribution, that is $\epsilon_i \sim F_{\epsilon}$.
+
+We can take our model further by incorporating the effects of product groups (or some other covariate associated with $y_i$) into account.
+$$y_{j,i} = \mu + \alpha_j + \epsilon_{j,i}$$
+
+Here $\alpha_j$ is the effect of the $jth$ product group on the baseline $\mu$. We can further expand this model by incoporating another effect (say the station being worked, $k$) plus an interaction between product group and station.
+$$y_{j,k,i} = \mu + \alpha_j+ \beta_k + \alpha_j \cdot\beta_k +\epsilon_{j,k,i}$$
+
+In the fuller generality, we might use a Generalized Linear Model (GLM) to capture a large number of covariates associated with the $ith$ product unit. 
+$$y_i = f\bigg(\sum_{o=0}^{h}\beta_o \cdot x_{i,o}\bigg)+\epsilon_i$$
+
+Where $f$ is a link function to transform the linear equation into a non-linear parameter space, $\beta_o$ is the coefficient of the $o$th term, and $x_{i,o}$ is the $o$th covariate of the $i$th product unit. There are many other ways we could build such a model beyond the GLM (e.g., the Generalized Additive Model, Nerual Networks, etc.), but the GLM will be sufficient for our needs. We can incorporate the GLM into our base equation as follows:
+$$w = \sum_{i=1}^{n}\frac{f\bigg(\sum_{o=0}^{h}\beta_o \cdot x_{i,o}\bigg)+\epsilon_i}{s}$$
+
+# Managing Expectations
+The previous section introduced the idea of random variation in the time it takes for workers to produce one unit of product. We will extend this idea further in treating three of our key variables of interest as random variables and determining their expectation.
+
+Let us begin with our equation showing demand over time, but modified to allow $y$ to vary by product unit (as was done in the previous section).
+$$w_{t_0} = \sum_{t = t_0 - s +1}^{t_0}\sum_{i=1}^{n_t}\frac{y_{i}}{s}$$
+
+Let us convert this equation into one that deals with $w$,$n$, and $y$ as random variables. 
+$$W_{t_0} = \sum_{t = t_0 - s +1}^{t_0}\sum_{i=1}^{N_t}\frac{Y_{i}}{s}$$
+
+If we assume that all $Y_{i}$ are independently and identically distributed (I.I.D.), and that all $N_t$ are as well, we can use the expectation for $Y$ and $N_t$ to find the expectation for $W$.
+$$E(W_{t}) = \sum_{t = 1}^{s}\sum_{i=1}^{E(N_t)}\frac{E(Y)}{s}$$
+
+Because of the linearity of expectations and summation, this reduces down to:
+$$E(W_{t}) = s\cdot \frac{E(N_t)E(Y)}{s} = E(N_t)E(Y)$$
+
+Thus, given our independence assumptions, the expected number of workers at any time is the product of the expected demand at any time and the expected time it takes for one worker to produce one resource. With additional machinary from probability theory, we could do away with these independence assumptions and tackle more realistic challenges e.g., auto-correlated demand or worker production capability improving over time.
+
+# Anticipated Performance Given Workers Assigned
+Our next exploration leverages a trivial algrebraic relation in our base equation to give us an understanding of the anticipated performance (i.e. how long it will take for products to be made) given the numbr of workers currently assigned to the task.
+
+Begining with our base equation, som simple rearranging allows us to go from this:
+$$w = \frac{n \cdot y}{s}$$
+
+\centering to this:
+
+\raggedright
+$$s = \frac{n \cdot y}{w}$$
+
+While the manipulation was easy, there is a lot of practical utility to be had from such a transformation. Specifically it allows us to communicate our expectations of performance to customers given our resource constraints. This also allows us to think about how different kinds of workers should have different expectations associated with them. 
+
+For instance, let's imagine that you group workers into two different classes: qualified and trainee, where a qualified person is expected to have greater capability i.e. they can produce more in less time. We could represent the ratio of the time it takes a trainee worker to complete a single product to the time it takes a qualified worker.
+$$r = \frac{y_{q=0}}{y_{q=1}}$$
+Here $r$ is the aforementioned ratio, which will will call the "trainee equivalence rate" or perhaps the "trainee discount rate". $y_q$ is the time it takes one worker to produce one product for the worker class $q$. $q=1$ means the qualified woker class, whereas $q=0$ is the unqualified/trainee worker class. 
+
+We could alternatively write this in terms of expectations. This perspective allows of to estimate the expectation from empirical data using statisitical methods.
+$$r = \frac{E(Y|Q=0)}{E(Y|Q=1)}$$
+
+Using our newfound knowledge, we can change our anticipated performance $s$ (which is the performance standard in the usual context), by incoporating the sum of workers $w_q$ from each class in the denominator our of base equation, with the trainee sum being weighted by $r$.
+$$s = \frac{n \cdot y}{w_{q=1}+w_{q=0}\cdot r}$$
+
+More generally, we could ascribe equivalency weights to a number of mutually exclusive classes.
+$$s = \frac{n \cdot y}{\sum_{q=1}^uw_q\cdot r_q}$$
+
+There is even more to explore with this line of inquiry, which may have the most practical utility (compared to the base equation) when dealing with a scare supply of resources.
+
+# Putting It All Together
+This next section is rather brief. Our only aim is to explicate how all of the concepts we have just discussed (save anticipated performance given workers) come together into a single formula. This formula represents the broadest and most general expansion of our base equation.
+$$w_{t_0} = \sum_{k_0=1}^{l}\sum_{j=1}^{m}\sum_{\tiny t=t_0-s_{k_0}+1-\Delta_{k_0}}^{t_0 - \Delta_{k_0}}\sum_{i=1}^{n_{k,j,t}}\frac{f\bigg(\sum_{o=0}^{h}\beta_o \cdot x_{i,o}\bigg)+\epsilon_i}{s_{k,j}}$$
+
+Where:
+
+- $w_{t_0}$ is the number of workers required at time $t_0$;
+- $k_0$ is the $k$th station out of $l$ stations;
+- $j$ is the $jth$ product group out of $m$ product groups;
+- $\Delta_{k_0}$ is the shift of the $k_0$th station from the 1st station;
+- $n_k,j,t$ is the product demand at the $k$th station of the $j$th product group at time $t$;
+- $i$ is the $i$th product unit of $n_{k,j,t}$ total products at station $k$ for group $j$ at time $t$;
+- $f$ is a link function;
+- $\beta_o$ is the $o$th coefficient out of $h$ coefficients; and
+- $x_{o,i}$ is the $o$th covariate of the $i$th product unit.
+
+This is a lot of infromation and makes for a rather busy equation. That being said, this equation represents a composition of most of our previously discussed topics related to workload modeling, and can be used to capture a very general and complex system. That being said, it is possibly far more useful to use certain components of this equation while omitting others e.g., elimiating the notion of stations to capture work being done by different groups. 
+
+While this is our final note on the theory of workload modeling, the next section will walkthrough a practical demonstration of setting up a workload modeling using the programming language R.
+
+#A Demonstration of a Simple Workload Model
+In this section, we will walk though the creation of a very simple workload model using the R programming language. Recall that our base equation takes the following form:
+$$w = \bigg\lceil\frac{n\cdot y}{s}\bigg\rceil$$
+
+Where $w$ is the number of workers required, $n$ is the number of products demanded, $y$ is the time it takes for a single worker to produce a single prodcut, and $s$ is the time alloted for production (think "performance standard" for production). We take the ceiling as if we require a fractional resource, we must deploy a full resource to meet the demand in the time alloted. 
+
+We will take this base equation and incorporate two elements that we described earlier in the post: demand varying over time, and the time for a single worker to produce a single product varying by product unit. We will treat these two quantities as random variables. In symbols:
+$$w_{t_0} = \Bigg\lceil\sum_{t=t_0-s+1}^{t_0} \sum_{i=1}^{N_t}\frac{Y_{t,i}}{s}\Bigg\rceil$$
+
+We are going to make some distributional assumptions about $N_t$ and $Y_{t,i}$. First, we will assume that each is IID. Second, we will assign a particular distributional form to each. 
+
+The number of products demanded at time $t$ is Poisson distributed with mean parameter $\mu$. In symbols:
+$$N_t \sim F_{N_t} \equiv Poisson(\mu)$$
+
+The time it takes for one worker to produce a particular product is geometrically distributed with rate parameter $\gamma$. In symbols:
+$$Y_{t,i} \sim F_{Y_{t,i}} \equiv geometric(\gamma)$$
+
+The Poisson and geometric distributions are simple and natural choices for count variables and discrete time variables respectively, though often they are insufficient for more complex real-world phenomenon. For our purposes they will be suffice. 
+
+Next comes the question of what the values of $\mu$ and $\gamma$ are in our model. In the real world, there will usually be a lot of prior uncertainty as to what these values are, however subject matter experts will have some indication. In order to capture the epistemic uncertainty, and to enable us to easily assimilate future data to update the parameters of the model, we will leverage Bayesian prior distributions and the principle of maximum entropy (MaxEnt).
+
+Let's say that an SME tells us that they think the average number of products demanded per hour is 6, and the average number of hours to complete a product is 2, but nothing else. The principle of maximum entropy tells us that the distribution we should choose to represent our epistemic uncertainty is the one that maximizes our uncertainty subject to constraints. In the case of $\mu$ and $\gamma$, where all we know is the SME's prediction of the mean and (as a consequence the nature of counts and durations) each is a positive real number, the distribution that maximizes our uncertainty is the exponential distribution. In symbols:
+
+__Note: because both $\mu$ and $\gamma$ are being treated as random variables, we will use $M$ and $\Gamma$ in their place.__  -->
+
+$$ M \sim F_{M} \equiv exponential(\lambda_{M} = 6^{-1})$$
+\centering and 
+$$\Gamma\sim F_{\Gamma} \equiv exponential(\lambda_{\Gamma} = 2^{-1})$$
+\raggedright
+
+To visualize our uncertainty, we can use the random number generator functions in R, and visualize the results via the ggplot2 package.
+
+```{r, warning=FALSE, message=FALSE}
+# load requisite packages
+require(tidyverse)
+require(scales)
+
+# sample the gamma parameter from an exponential distribution with rate 1/6
+samples_of_Mu <- rexp(n = 1000, rate = 1/6)
+
+# visualize the draws of our gamma parameter
+ggplot() +
+  geom_histogram(aes(x = samples_of_Mu, y = ..count../sum(..count..))) +
+  theme_minimal() +
+  scale_y_continuous(labels = percent) +
+  labs(title = 'Our Epistemic Uncertainty About M', 
+       x = expression(mu), 
+       y = expression('P(M'*' = '*mu*')'))
+
+```
+
+This histogram represents our uncertainty that the parameter $M$ will be a certain value $\mu$. Again, sense we are treating our parameter as a random variable, we use $M$ to now describe the parameter, and $\mu$ to be a possible value of the parameter. 
+
+We can use this distribution to examine our epistemic uncertainty about the data generating process for $N_t$. Remember that $N_t \sim Possion(M)$.
+
+```{r}
+samples_of_Nt_dist <- samples_of_Mu %>% 
+  sample(size = 50) %>%
+  map_df(function(current_Mu){
+  
+  rpois(n = 1000, lambda = current_Mu) %>%
+    tibble(Mu = current_Mu, Nt = .)
+  
+})
+
+samples_of_Nt_dist %>%
+  group_by(Mu, Nt) %>%
+  summarize(count = n()) %>%
+  group_by(Mu) %>%
+  mutate(prob = count/sum(count)) %>%
+  ungroup() %>%
+ggplot(.) +
+  geom_line(aes(x = Nt, y = prob, group = Mu)) +
+  theme_minimal() +
+  labs(title = 'Our Epistemic Uncertainty About The Distribution of N_t', 
+       x = 'n_t', 
+       y = 'P(N_t = n_t)')
+  
+```
+
+Each line in the above plot represents a possible distribution given a specific value of $M$, with the more likely distributions appearing more frequently (darker areas). We can easily integrate this uncertainty, which symbolically looks like the following:
+
+$$P(N_t = n_t) = \int_\mu P(N_t = n_t|M = \mu) \cdot p(M = \mu) \ d\mu$$
+
+We can implement this in R by feeding random numbers into a random number generator.
+
+```{r}
+rexp(10000, rate = 1/6) %>%
+  rpois(n = length(.), lambda = .) %>%
+  tibble(nt = .) %>%
+  ggplot() +
+  geom_bar(aes(x = nt, y = ..count../sum(..count..))) +
+  theme_minimal() +
+  scale_y_continuous(labels = percent) +
+  labs(x = 'n_t', y = 'P(N_t = n_t)', title = 'Our Integrated Uncertainty About N_t')
+```
+
+This distribution represents our uncertainty about the number of products demanded at a specific time, $N_t$. It integrates our epistemic and aleatoric uncertainty (where aleatoric i.e. physical or irreducible variability is described by the Possion distribution). We can do the same thing for the amount of time it takes for a single worker to produce a product $Y_{t,i}$.
+
+```{r, warning=FALSE}
+LaplacesDemon::rtrunc(n = 10000, 'exp', a = 1, b = Inf, rate = 1/2) %>% # 0 <= gamma <= 1
+  `/`(1,.) %>%  # reciprocal
+  rgeom(n = length(.), prob = .) %>%
+  `+`(1) %>% # we are using the alt def of geom dist
+  tibble(yti = .) %>%
+  ggplot() +
+  geom_bar(aes(x = yti, y = ..count../sum(..count..))) +
+  theme_minimal() +
+  scale_y_continuous(labels = percent) +
+  labs(x = 'y_ti', y = 'P(Y_ti = y_ti)', title = 'Our Integrated Uncertainty About N_t')
+```
+
+We can use these two distributions to simulate workloads over time. We will write a function to do so. Before we do, we will say that the time alloted for production, $s$ is 4 hours. 
+
+```{r}
+# setting s
+s <- 4
+
+# products demanded at time t
+N_t <- rexp(10000, rate = 1/6) %>%
+  rpois(n = length(.), lambda = .)
+
+# time to produce the ith product
+Y_ti <- LaplacesDemon::rtrunc(n = sum(N_t), 'exp', a = 1, b = Inf, rate = 1/2) %>% 
+  `/`(1,.) %>%
+  rgeom(n = length(.), prob = .) %>%
+  `+`(1)
+
+# a function to compute the number of workers needed at t0
+W_t0 <- function(t0, N_t, Y_ti, s){
+ 
+   rep(1:length(N_t), N_t) %>%
+   (function(x){x > t0 - s & x <= t0})(.) %>%
+    which() %>%
+    `[`(Y_ti,.) %>%
+    `/`(s) %>%
+    sum() %>%
+    ceiling()
+  
+}
+
+# a dataframe capturing the number of workers at any given time t
+W <- map_dbl(1:length(N_t), function(t0){
+  
+  W_t0(t0 = t0, N_t = N_t, Y_ti = Y_ti, s = s)
+  
+}) %>%
+  tibble(t0 = 1:length(.), W_t0 = .) 
+
+```
+
+Using these simulations we can examine the requirements for workers over time.
+```{r}
+# Workers over time
+W %>%
+  ggplot() +
+  geom_step(aes(x = t0, y = W_t0)) +
+  theme_minimal() +
+  labs(x = 't', y = 'W_t', title = 'The Number of Workers W Required at Time t')
+```
+
+We can also examine the probability of needing a certain number of workers at any given time (ignorant of how many workers were required at other points in time).
+```{r}
+# PMF of Workers Required
+W %>%
+  ggplot() +
+  geom_bar(aes(x = W_t0, y = ..count../sum(..count..))) +
+  theme_minimal() +
+  labs(y = 'P(W_t = w_t)', x = 'w_t', title = 'PMF of Workers Required At Any Time') +
+  scale_y_continuous(labels = percent)
+```
+
+Most importantly, we can examine the cumulative distribution function of our simulations, which tell us how often we can expect to need a certain number of workers or less. This is highly useful in making risk based resourcing decisions.
+```{r}
+# CDF of Workers Required
+W %>%
+  ggplot() +
+  stat_ecdf(aes(x = W_t0)) +
+  theme_minimal() +
+  labs(y = 'P(W_t = w_t)', x = 'w_t', title = 'PMF of Workers Required At Any Time') +
+  scale_y_continuous(labels = percent)
+
+```
+
+
+# Closing Thoughts
+
+This concludes the post for now. There is plenty to clean up, so expect revisions in the future!

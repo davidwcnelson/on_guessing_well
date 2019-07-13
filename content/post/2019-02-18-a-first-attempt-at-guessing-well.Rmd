@@ -328,7 +328,7 @@ $$d(g,x) = |g-x|^p$$
 
 We will refer to this general form as an Lp metric. We note here that Lp metrics are actually far more general than what we will cover in this post, and will be a recurring topic as we dive deeper into machine learning in particular. For now though, we will continue to discuss the form we have just described.
 
-Each of our cost functions is a special case of the general form. When $p = 1$, we get the absolute difference penalty. When $p = 2$, we get the squared difference penalty. We define the limit $p \to 0 $ as the inequality penalty. In this way, as $p$ gets smaller we begin to treat any difference as being equally bad, whereas when $p$ gets larger bigger differences matter much much more. What happens when $p \to \infty$? 
+Each of our cost functions is a special case of the general form. When $p = 1$, we get the absolute difference penalty. When $p = 2$, we get the squared difference penalty. We define the limit $p \to 0$ as the inequality penalty. In this way, as $p$ gets smaller we begin to treat any difference as being equally bad, whereas when $p$ gets larger bigger differences matter much much more. What happens when $p \to \infty$? 
 
 Let's demonstrate what happens in R:
 
