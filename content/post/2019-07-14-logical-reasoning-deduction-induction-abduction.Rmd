@@ -1,0 +1,97 @@
+---
+title: 'Logical Reasoning: Deduction, Induction, Abduction'
+author: David W.C. Telson
+date: '2019-07-14'
+slug: logical-reasoning-deduction-induction-abduction
+categories: []
+tags: []
+draft: TRUE
+---
+
+My last post was an introduction to deductive reasoning, that is reasoning via deductive argument. I wanted to breifly outline two other forms of reasoning so we can compare and contrast their merits, as well as identify their usage.
+
+## Deduction
+
+As we stated in our last post, deduction is reasoning that, given premises, garuntees the truth of the conclusion. The origin of the name "deduction" is "deduce" which means "to arrive at by reasoning". It can be thought of as taking a general truth and using it to make a specific claim. Two major forms of deduction are "Modus Ponens" and "Modus Tollens". For two arbitrary propositions $P$ and $Q$, these rules of inference take the following forms:
+
+**Modus Ponens i.e. Affirm by Affirming:**
+
+$$
+\begin{aligned}
+& \ P \implies Q & \text{If P is true, Q is also true.}\\ 
+& \ P & \text{P is true.}\\ 
+& \therefore \ Q & \text{Therefore Q is also true.}\\ 
+\end{aligned}
+$$
+
+**Modus Tollens i.e. Deny by Denying:**
+
+$$
+\begin{aligned}
+& \ P \implies Q & \text{If P is true, Q is also true.}\\ 
+& \ \neg Q & \text{Q is false.}\\ 
+& \therefore \ \neg P & \text{Therefore P is also false.}\\ 
+\end{aligned}
+$$
+
+The truth of these conclusions is necessary given the premises (here "given" means assuming the premises are true). This can be seen via a truth table for the implication operator $\implies$:
+
+$$
+\begin{array}{|c|c|c|}
+P & Q & P \implies Q\\ 
+\hline 
+T & T & T\\
+T & F & F\\
+F & T & T\\
+F & F & T\\
+\end{array}
+$$
+
+In this table there is only one row where $P$ and $P \implies Q$ are true, and in this row $Q$ is also true. Analogously there is only one row where $P \implies Q$ is true and $Q$ is false, which also has a false value for $P$. This is what necessitates the truth of the conclusions given the premises. Note that this doesn't garuntee the truth of the premises: we assumed they were true.
+
+## Induction
+Induction could be considered as the opposite of deduction in that we take a specific claim and reason about a general truth (there are more kinds of inductive arguements, but we digress). In fact, the form of induction is equivalent to a formal fallacy in deduction: affirming the consequent. Pardon the figurative "yellow warning tape" that accompanies the following example. 
+
+**!!THE FOLLOWING IS AN EXAMPLE OF AN ERROR IN DEDUCTIVE REASONING!!**
+
+**Affirming the Consequent i.e. The Converse Error**
+
+$$
+\begin{aligned}
+& \ P \implies Q & \text{If P is true, Q is also true.}\\ 
+& \ Q & \text{Q is true.}\\ 
+& \therefore \ P & \text{Therefore P is also true.}\\ 
+\end{aligned}
+$$
+
+**!!THE AFOREMENTIONED EXAMPLE IS AN ERROR IN DEDUCTIVE REASONING!!**
+
+Affirming the consequent is a formal error in deductive logic. You can see this by examining the truth table associated for $\implies$. Even if $Q$ is true, it is still possible that $P$ is false given $P \implies Q$ i.e. there is a row with $P$ being true and false in the truth table for $\implies$. 
+
+Inductive reasoning is not actually the same as affirming the consequent, as it doesn't make as strong a claim as a deductive argument i.e. it doesn't say that the conclusions have to be true, just that in some sense they are more plausible. We could phrase it as follows:
+
+$$
+\begin{aligned}
+& \ P \implies Q \\ 
+& \ Q \\ 
+& \therefore\ \text{P is more plausible}\\ 
+\end{aligned}
+$$
+
+Where does this form of reasoning get its justification? 
+
+One could reason that by learning $Q$ after having been given $P \implies Q$, the ratio of cases where $P$ is true increases from $\frac{1}{3}$ to $\frac{1}{2}$. However if we had been given $Q$ and then learned $P \implies Q$, the ratio of cases where $P$ is true doens't change i.e. learning $P \implies Q$ doesn't tell you anything. Further, the initial ratio of cases before learning the truth of eithier premise is the same as the ratio after learning both premises. Should the order matter of when we learn things matter, or just the final set of possible values in truth table? Should the full truth table (where all truth values are possible for all premises) be our initial state, or should we begin with $P \implies Q$ being true?
+
+Rather than using ratios, we could use the count of the number of cases where $P$ is true or false, but this doesn't change the issue what should be our initial state and if order should matter. The least we could say is that it is still possible for $P$ to be true or false.
+
+Let's think about this using a concrete example. Suppose we have a scientific hypothesis that we call $H$. Further our theory predicts that after an experiment we would observe some data $D$, that is $H \implies D$. We wish to reason about the truth of $H$, knowing that $H \implies D$. Now, we conduct an experiment and observe $D$ is true, meaning that there is one less possible case of our hypothesis being wrong. Again as before, the least we can say is that it is still possible for $H$ to be true or false.
+
+But wait, what does it mean to have $D$ first, followed by $H \implies D$? Is this even a sensical and meaningful statement? No wonder C.D. Broad said "induction is the glory of science and the scandal of philosophy." David Hume reasoned that induction is unjustifiable with respect to the standards of deduction i.e. there is still a chance that our conlcusions are wrong. One might propose that we can justify induction because it has worked well for humans in the past, but this is folly! This justification of induction is an inductive argument! 
+
+Hume's ultimate conclusion: no amount of limited finite experience can garuntee a more universal conclusion, whether we are talking about inferring a property of a population from a sample, or predicting the future given the past. But not even deductive logic can hold up to "Humean skepticism", as many non-trivial applications of deduction rest on premises that cannot be shown to be true deductively. 
+
+Many philosphers have tackled this particular "Problem of Induction" over the years, each coming to unsatisfying results. In my opinion, the most satisfying conclusion comes from Karl Popper, who essentially said "yup, induction is unjustifable." and turned his attention to developing a Philsophy of Science through application of "Modus Tollens" called "falsiciationism". In Popper's philosophy, scientists don't learn by collecting evidence to confirm their hypothesis, instead they learn by collecting evidence to disconfirm their hypothesis. 
+
+We will return to induction in the future, especially when we attempt to use the language of probability to convey how evidence strengthens or weakens a claim within an inductive argument. 
+
+## Abduction
