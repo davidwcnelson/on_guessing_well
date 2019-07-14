@@ -5,7 +5,7 @@ date: '2019-07-14'
 slug: an-introduction-to-deductive-reasoning
 categories: []
 tags: []
-draft: TRUE
+draft: FALSE
 ---
 
 One of my absolute favorites books is [*Probability: the Logic of Science* by E.T. Jaynes](http://www.med.mcgill.ca/epidemiology/hanley/bios601/GaussianModel/JaynesProbabilityTheory.pdf). The book was published posthumously in 2003, after Jayne's death in 1998. While the book presents a compelling philosophical argument for probability theory, [it is known to be incomplete and to contain errors](http://ksvanhorn.com/bayes/jaynes/). Despite this, I think it is a very important work in the history of probability theory, and a great foundation for how one can reason with incomplete information. 
@@ -137,7 +137,7 @@ $$
 
 If we examine the truth table for implication, we see that in the row where $P \implies Q$ and $P$ are both true, $Q$ is also true. There are no other cases where both premises are true, so the truth value of $Q$ is forced upon us! This is the power of deductive logic: the premises guarantee the truth value of the conclusion. This specific form of reasoning is referred to as "[Modus Ponens](https://en.wikipedia.org/wiki/Modus_ponens)", which is Latin for "affirming by affirming".
 
-Note that the converse is not true i.e. that is if we know $Q$, we cannot guarantee that $P$ is also true. This is because $P$ can be true or false given that $Q$ is true. This can be seen via the truth table for implication. This is a [formal fallacy](https://en.wikipedia.org/wiki/Formal_fallacy) (i.e. error of form) referred to as "[Affirming the Consequent](https://en.wikipedia.org/wiki/Affirming_the_consequent)". This fallacy is the very premise of "[inductive reasoning](https://en.wikipedia.org/wiki/Inductive_reasoning)" where the premises do not guarantee the conclusion, they only make the conclusion more plausible. We will have a lot more to say of this in the future.
+Note that the converse is not true i.e. that is if we know $Q$, we cannot guarantee that $P$ is also true. This is because $P$ can be true or false given that $Q$ is true. This can be seen via the truth table for implication. This is a [formal fallacy](https://en.wikipedia.org/wiki/Formal_fallacy) (i.e. error of form) referred to as "[Affirming the Consequent](https://en.wikipedia.org/wiki/Affirming_the_consequent)". This fallacy is the very premise of "[abductive reasoning](https://en.wikipedia.org/wiki/Abductive_reasoning#Deduction,_induction,_and_abduction)". We will have a lot more to say of this in the future.
 
 A deductive argument that suffers from an error of form is said to be "invalid". An argument whose conclusions are guaranteed by its premises is said to be valid. A deductive argument whose premises are false is referred to as "unsound", whereas an argument whose premises are true is referred to as "sound." The soundness of an argument cannot necessarily be guaranteed by form of the argument! This is an important issue that has major implications for how we reason in the real world.  
 
