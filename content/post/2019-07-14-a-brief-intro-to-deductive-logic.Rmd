@@ -131,6 +131,7 @@ $$
 \begin{aligned}
 & \ P \implies Q\\
 & \ P \\
+\hline
 & \therefore \ Q
 \end{aligned}
 $$
@@ -147,6 +148,7 @@ $$
 \begin{aligned}
 & \ P \implies Q\\
 & \ \neg Q \\
+\hline
 & \therefore \ \neg P
 \end{aligned}
 $$
