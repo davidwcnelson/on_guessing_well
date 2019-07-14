@@ -1,11 +1,11 @@
 ---
-title: Some Oddities of the Principle of Insufficient Reason
-author: David W.C. Telson
+title: "Some Oddities of the Principle of Insufficient Reason"
+author: "David W.C. Telson"
 date: '2019-07-12'
+draft: no
 slug: some_oddities_of_the-principle-of-insufficient-reason
-categories: 
-tags: 
-draft: FALSE
+tags: null
+categories: null
 ---
 
 We are keenly interested in reasoning with incomplete or uncertain information i.e. how we should make a "best guess" given that we have imperfect knowledge. One of the classical tools in our tool belt is the so called "principle of insufficient reason" also known as the "principle of indifference". More on the history and extensions of the principle, but for now I want to focus on some oddities that occur by trying to reason with the principle.
