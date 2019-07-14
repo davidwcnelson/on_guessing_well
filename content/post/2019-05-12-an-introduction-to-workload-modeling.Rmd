@@ -1,5 +1,5 @@
 ---
-title: "An Introduction to Workload Modeling"
+title: An Introduction to Workload Modeling
 author: "David W.C. Telson"
 date: '2019-05-12'
 slug: an-introduction-to-workload-modeling
