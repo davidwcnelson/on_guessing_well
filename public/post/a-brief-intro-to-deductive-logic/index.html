@@ -14,7 +14,7 @@
   <title>
     
     
-     A Brief Intro to Deductive Logic 
+     An Introduction to Deductive Reasoning 
     
   </title>
   <link rel="canonical" href="/post/a-brief-intro-to-deductive-logic/">
@@ -47,17 +47,82 @@
 
 
 <section id=content>
-  <h1> A Brief Intro to Deductive Logic </h1>
+  <h1> An Introduction to Deductive Reasoning </h1>
 
   <div id=sub-header>
-    David W.C. Telson · 2019/07/14 · 0 minute read
+    David W.C. Telson · 2019/07/14 · 7 minute read
   </div>
 
   <div class="entry-content">
     
 
 
-
+<p>One of my absolute favorites books is <a href="http://www.med.mcgill.ca/epidemiology/hanley/bios601/GaussianModel/JaynesProbabilityTheory.pdf"><em>Probability the Logic of Science</em> by E.T. Jaynes</a>. The book was published posthumously in 2003, after Jayne’s death in 1998. While the book presents a compelling philosophical argument for probability theory, <a href="http://ksvanhorn.com/bayes/jaynes/">it is known to be incomplete and to contain errors</a>. Despite this, I think it is a very important work in the history of probability theory, and a great foundation for how one can reason with incomplete information.</p>
+<p>In the initial chapters of the book, Jaynes begins with an introduction to <a href="https://en.wikipedia.org/wiki/Deductive_reasoning">deductive logic</a>, which is considered by many to be the “gold standard” of reasoning. After Jaynes explicates the general concept of deductive logic, he goes on to expand it to cases where there is insufficient information to perform deduction via reference to George Polya’s <a href="https://en.wikipedia.org/wiki/Mathematics_and_Plausible_Reasoning">plausible reasoning</a>. It is only after this point that he invokes <a href="https://en.wikipedia.org/wiki/Cox%27s_theorem">Cox’s theorem</a> to quantify plausible reasoning into the familiar form of probability theory.</p>
+<p>With all that said, I thought it would be useful to explore deductive reasoning on our own, to serve as a foundation for plausible, and then probabilistic reasoning in the same vein as Jaynes. I will admit that this is pedagogical for my own understanding as well. Aside from using Jayne’s book, I also will reference from the book <a href="https://www.amazon.com/How-Prove-Structured-Approach-2nd/dp/0521675995"><em>How to Prove It</em> by Daniel Velleman</a>.</p>
+<p>We begin with the notion of a proposition. We define a proposition as a statement about the universe that is eithier true or false. There is a lot more to the nature of propositions e.g. the implications of <a href="https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel’s famous incompleteness theorems</a>; but we will hold these ideas back for now. Here are some propositions we could consider:</p>
+<ul>
+<li><p><span class="math inline">\(P_1 \equiv ``\text{My favorite color is purple.&#39;&#39;}\)</span></p></li>
+<li><p><span class="math inline">\(P_2 \equiv ``\text{It will rain today.&#39;&#39;}\)</span></p></li>
+</ul>
+<p><em>Author’s note: I apologize for the use of in-quote and out-quote punctuation. I am hoping to make it clear that a proposition is a complete statement, while also closing out my sentences with appropriate punctuation. I recognize there might be a better way to do so.</em></p>
+<p>Notice that we use the <span class="math inline">\(\equiv\)</span> sign rather than <span class="math inline">\(=\)</span>, as we mean “equivalent by definition”, that is <span class="math inline">\(P_1\)</span> actually stands for <span class="math inline">\(``\text{My favorite color is purple.&#39;&#39;}\)</span>, or more precisely they have the same “truth value”. Also note that <span class="math inline">\(P_1\)</span> is an opinion (held by me), rather than some universal truth. Both propositions are both vague in some sense, e.g. when is “today?” and what geography is this limited to, as surely it is bound to rain some amount somewhere on the planet we call “Earth” today. We do not let this vaugeness bother us for now.</p>
+<p>Both of these propositions have a “truth” value, that is they are necessarily eithier true or false (<a href="https://plato.stanford.edu/entries/logic-manyvalued/">at least in the form of logic we are using</a>). We sometimes write something that is always true (also called a <a href="https://en.wikipedia.org/wiki/Tautology_(logic)">tautology</a>) as <span class="math inline">\(\top\)</span>, and something that is always false (also called a <a href="https://en.wikipedia.org/wiki/Contradiction">contradiction</a>) as <span class="math inline">\(\bot\)</span>. We use deductive logic to reason about the truth or falsity about a proposition, given other propositions and logical connectivess (also called logical operators) between them.</p>
+<p>The first logical operator we will discuss is called negation, written as <span class="math inline">\(\neg\)</span>. We use negation in tandem with a proposition, e.g. <span class="math inline">\(\neg P\)</span>. What does negation do? Intuitively it gives us the opposite (or negative) of the proposition e.g., if <span class="math inline">\(P_2 \equiv ``\text{It will rain today.&#39;&#39;}\)</span>, then <span class="math inline">\(\neg P_2 \equiv ``\text{It will not rain today.&#39;&#39;}\)</span>. If we say that <span class="math inline">\(P_3 \equiv \neg P_2\)</span>, then <span class="math inline">\(\neg P_3 \equiv \neg\neg P_2 \equiv P_2\)</span>. This operator will be very useful in practice.</p>
+<p>The next operator we wish to introduce is “disjunction”, or more intuitively, the “or” operator, symbolizes with <span class="math inline">\(\vee\)</span>. Whereas <span class="math inline">\(\neg\)</span> was a “unary” (un as in one e.g., unity) operator, <span class="math inline">\(\vee\)</span> is a “binary” is an operator that works on two propositions. For instance, we could say <span class="math inline">\(P_2 \vee P_3\)</span>, that is <span class="math inline">\(``\text{Either it will or will not rain today.&#39;&#39;}\)</span>. We could assign this disjunction to a proposition <span class="math inline">\(P_4 \equiv P_2 \vee P_3\)</span>. Disjunction is not exlusive: one or both of the propositions can be true for the disjunction to return true. An exclusive or “XOR” operator does exist, and is often symbolizes with <span class="math inline">\(\oplus\)</span>.</p>
+<p>Notice that since <span class="math inline">\(P_3 \equiv \neg P2\)</span>, we have <span class="math inline">\(P_4 \equiv P_2 \vee \neg P_2\)</span>. Since <span class="math inline">\(P_2\)</span> is eithier true or false, and its negation has the opposite truth value, we must have <span class="math inline">\(P_4 \equiv P_2 \vee \neg P_2 \equiv \top\)</span>, that is <span class="math inline">\(P_4\)</span> must always be true i.e. <span class="math inline">\(P_4\)</span> is a tautology. This is not necessarily true of all disjunctions, just in the case where we have a disjunction of a proposition and its negation.</p>
+<p>The opposite of “disjunction” could be considered to be “conjunction”, that is the “and” operator, symbolized with <span class="math inline">\(\wedge\)</span>. Like <span class="math inline">\(\vee\)</span>, <span class="math inline">\(\wedge\)</span> works on two propositions, e.g. <span class="math inline">\(P_6 \equiv P_5 \wedge P_2 \equiv``\text{It will be cloudy today and it will rain today.&#39;&#39;}\)</span>, where <span class="math inline">\(P_5 \equiv `\text{It will be cloudy today.&#39;&#39;}\)</span>. Notice the effect when we use conjunction on a proposition and its negation: <span class="math inline">\(P_7 \equiv P_2 \wedge \neg P_2 \equiv \bot\)</span>, i.e. the conjunction of a proposition and its negation is neccesarily false i.e. it is a contradiction.</p>
+<p>Interestingly, we don’t actually need to define conjunction to use it: it can be derived from disjunction and negation. Even more interestingly, is that all three logical operators can be derived from one of two single operators, referred to as <a href="https://en.wikipedia.org/wiki/Sheffer_stroke">NAND</a> (not both) with the symbol <span class="math inline">\(\uparrow\)</span>, and <a href="https://en.wikipedia.org/wiki/Logical_NOR">NOR</a> (not either) with the symbol <span class="math inline">\(\downarrow\)</span>. We’re not going to get into concept of “<a href="https://en.wikipedia.org/wiki/Functional_completeness">functional completeness</a>”, but it is really cool and I highly suggest you check it out.</p>
+<p>Before we go any further, we should really talk about “<a href="https://en.wikipedia.org/wiki/Truth_table">Truth Tables</a>”. Truth tables are an increadibly useful tool in deductive logic that let us understand the relationships between premises given all possible truth values of the premises. What follows is a truth table for two arbitrary propositions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> and thier conjunction <span class="math inline">\(P \wedge Q\)</span>. Here <span class="math inline">\(T\)</span> represents a truth value of “True” and <span class="math inline">\(F\)</span> stands for a truth value of “False”:</p>
+<p><span class="math display">\[
+\begin{array}{|c|c|c|}
+P &amp; Q &amp; P \wedge Q\\ 
+\hline 
+T &amp; T &amp; T\\
+T &amp; F &amp; F\\
+F &amp; T &amp; F\\
+F &amp; F &amp; F\\
+\end{array}
+\]</span></p>
+<p>We can extend this table to show all of our elementary logical operators:</p>
+<p><span class="math display">\[
+\begin{array}{|c|c|c|c|c|}
+P &amp; Q &amp; \neg P &amp; P \wedge Q &amp; P \vee Q\\ 
+\hline 
+T &amp; T &amp; F &amp; T &amp; T\\
+T &amp; F &amp; F &amp; F &amp; T\\
+F &amp; T &amp; T &amp; F &amp; T\\
+F &amp; F &amp; T &amp; F &amp; F\\
+\end{array}
+\]</span></p>
+<p>We can even include a third proposition, and look at the relationships implied:</p>
+<p><span class="math display">\[
+\begin{array}{|c|c|c|c|}
+P &amp; Q &amp; R &amp; P \vee Q \vee R\\ 
+\hline 
+T &amp; T &amp; T &amp; T \\
+T &amp; T &amp; F &amp; T \\
+T &amp; F &amp; T &amp; T \\
+F &amp; T &amp; T &amp; T \\
+F &amp; F &amp; T &amp; T \\
+F &amp; T &amp; F &amp; T \\
+T &amp; F &amp; F &amp; T \\
+F &amp; F &amp; F &amp; F \\
+\end{array}
+\]</span></p>
+<p>As we add propositions that are independent (where the truth value is not determined by the truth values of the other propositions) with non trivial truth values (i.e. not contradictions or tautologies), we have to add additional rows to our truth table. Can we determine how many rows will be required given a number of independent propositions with non-trivial truth values? Yes we can! Let’s examine how:</p>
+<ul>
+<li><p>A single independent non-trivial proposition can take on one of two truth values, eithier <span class="math inline">\(T\)</span> or <span class="math inline">\(F\)</span>.</p></li>
+<li><p>Two independent non-trivial propositions can collectively take on one of four possibilities, eithier <span class="math inline">\(\{T,T\}\)</span>, <span class="math inline">\(\{T,F\}\)</span>, <span class="math inline">\(\{F,T\}\)</span>, or <span class="math inline">\(\{F,F\}\)</span>.</p></li>
+<li><p>Using the same reasoning, we can see that <span class="math inline">\(n\)</span> independent and non-trivial propositions can take on one of <span class="math inline">\(2^n\)</span> possible values.</p></li>
+</ul>
+<p>So we need a truth table with <span class="math inline">\(2^n\)</span> rows to represent <span class="math inline">\(n\)</span> independent and non-trivial propositions. The number of columns depends on what relations amongst the propositions we care to examine.</p>
+<p>We should note that the logical operators discussed that far have an order of operations just like in arithmetic or algebra. Technically this order is arbitrary, but in this article we adopt the <a href="https://en.wikipedia.org/wiki/Logical_connective#Order_of_precedence">order of precedence featured in this article</a>. Additionally, logical relations amongst propositions have a number of equivalencies that help to simplify the analysis of thier truth values. We don’t dive into these equivalencies here, but <a href="https://en.wikipedia.org/wiki/Logical_equivalence">some useful ones are listed here</a>.</p>
+<ul>
+<li><p><span class="math inline">\(P_3 \equiv ``\text{2 + 2  = 4&#39;&#39;}\)</span></p></li>
+<li><p><span class="math inline">\(P_4 \equiv ``\text{2 + x  = 4&#39;&#39;}\)</span></p></li>
+</ul>
+<p>Some things to</p>
 
   </div>
 
@@ -91,6 +156,9 @@
 
   
   
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 
 
 </body>
