@@ -6,10 +6,19 @@
     <description>Recent content on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 13 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A Brief Intro to Deductive Logic</title>
+      <link>/post/a-brief-intro-to-deductive-logic/</link>
+      <pubDate>Sun, 14 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/a-brief-intro-to-deductive-logic/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Probability in a Finite and Deterministic Universe</title>
