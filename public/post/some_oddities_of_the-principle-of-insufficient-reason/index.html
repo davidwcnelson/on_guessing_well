@@ -91,11 +91,11 @@ a_i \mapsto \frac{1}{|a|} = \frac{1}{n}
 <p>We are resigned to the fact that we cannot simultaneously take both limits (the limit of the sums and the sums of the limit). We could have encounter a similar result from a different perspective: assuming that <span class="math inline">\(u\)</span> is a probability assignment applied uniformly on a set of propositions, then <span class="math inline">\(\sum_{i=1}^{\infty}u\)</span> is either infinite or zero, neither of which satisfies the second axiom. These results are directly related to the fact that a computer cannot sample from a countably infinite set, but can easily sample from an arbitrarily large finite one.</p>
 <p>One interesting question to ponder: if we cannot sample uniformly from a countably infinite set like the one described using a computer, how come we can sample from an uncountably infinite one such as a continuous uniform distribution defined on <span class="math inline">\([0,1]\)</span>? If we can sample from a continuous uniform on <span class="math inline">\([0,1]\)</span>, can we sample just the rational rational numbers in this range? I have two conjectures that I want to explore in the future:</p>
 <ol style="list-style-type: decimal">
-<li><p>If a set of numbers is bounded, then we can sample from a uniformly continuous distribution defined on it.</p></li>
-<li><p>If a set is a bounded interval (e.g., <span class="math inline">\([a,b]\)</span> with <span class="math inline">\(a, b \in \mathbb{R}\)</span>), then we can sample from a uniformly continuous distribution defined on it.</p></li>
+<li><p>If a set of numbers is bounded, then we can sample from a uniformly distribution defined on it.</p></li>
+<li><p>If a set is a bounded interval (e.g., <span class="math inline">\([a,b]\)</span> with <span class="math inline">\(a, b \in \mathbb{R}\)</span>), then we can sample from a uniform distribution defined on it.</p></li>
 </ol>
 <p>The reason I think 1. and 2. are plausible is that I believe having a cumulative distribution function (CDF) makes it possible to sample using a computer. Since I can sample a number uniformly between <span class="math inline">\([0,1]\)</span> on a machine, if I have a CDF, I can feed the uniform sample into the inverse CDF to sample from the CDF.</p>
-<p>The reason I doubt 1., but think 2. is more plausible is that the set <span class="math inline">\(\{1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4},...\}\)</span> is bounded below by <span class="math inline">\(0\)</span> and above by <span class="math inline">\(1\)</span>, but is countably infinite and in fact is just the reciprocal of the natural numbers. Perhaps its the space between rationale numbers that make it impossible to sample i.e. finitivity or bounded continuity is a requisite for sampling.</p>
+<p>The reason I doubt 1., but think 2. is more plausible is that the set <span class="math inline">\(\{1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4},...\}\)</span> is bounded below by <span class="math inline">\(0\)</span> and above by <span class="math inline">\(1\)</span>, but is countably infinite and in fact is just the reciprocal of the natural numbers. Perhaps its the space between rational numbers that make it impossible to sample i.e. finitivity or bounded continuity is a requisite for sampling.</p>
 <p>A quick visual of <span class="math inline">\(\{1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4},...\}\)</span>:</p>
 <pre class="r"><code>require(tidyverse)
 require(scales)
@@ -183,7 +183,7 @@ qplot(x = f(10), y = &#39;&#39;) +
   theme_minimal() +
   scale_y_continuous(labels = percent)</code></pre>
 <p><img src="/post/2019-07-12-oddities-of-the-principle-of-indifference_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Here we can see that a CDF, or at least an approximate CDF, becomes more plausible. Again, if we assume that we need a CDF to sample from, then this looks like a candidate we can sample from that is not finite nor bounded and continuous.</p>
+<p>Here we can see that a CDF, or at least an approximate CDF, exists. Again, if we assume that we need a CDF to sample from, then this looks like a candidate we can sample from that is not finite nor both bounded and continuous.</p>
 <p>That’s all for now. More on this later, also expect this post to get revised and refined!</p>
 
   </div>

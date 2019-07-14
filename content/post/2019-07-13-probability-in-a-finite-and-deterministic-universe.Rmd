@@ -1,11 +1,10 @@
 ---
 title: Probability in a Finite and Deterministic Universe
-author: David Nelson
+author: David W.C. Telson
 date: '2019-07-13'
 slug: probability-in-a-finite-and-deterministic-universe
 categories: []
 tags: []
-draft: FALSE
 ---
 
 My previous post got me thinking about the nature of infinity. It lead me to a thought provoking post by Steve Patterson on [logical errors regarding infinite sets](http://steve-patterson.com/cantor-wrong-no-infinite-sets/). While I haven't taken enough time to fully appreciate his logic, it got me thinking about how probability relates to metaphysics and epistemology. Steve's claim is that modern mathematics has made a mistake with regards to infinity, specifically that by definition a set cannot be infinite (or else it would be finite), and thus arguments built on this premise are invalid (though the logic, granting the premise may be sound). Steve does a great job illustrating this point in numerous posts, which I won't dive into here. The least I can do is encourage you to check them out for yourself.
