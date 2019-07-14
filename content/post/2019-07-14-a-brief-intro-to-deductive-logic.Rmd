@@ -5,7 +5,7 @@ date: '2019-07-14'
 slug: an-introduction-to-deductive-reasoning
 categories: []
 tags: []
-draft: TRUE
+draft: FALSE
 ---
 
 One of my absolute favorites books is [*Probability the Logic of Science* by E.T. Jaynes](http://www.med.mcgill.ca/epidemiology/hanley/bios601/GaussianModel/JaynesProbabilityTheory.pdf). The book was published posthumously in 2003, after Jayne's death in 1998. While the book presents a compelling philosophical argument for probability theory, [it is known to be incomplete and to contain errors](http://ksvanhorn.com/bayes/jaynes/). Despite this, I think it is a very important work in the history of probability theory, and a great foundation for how one can reason with incomplete information. 
