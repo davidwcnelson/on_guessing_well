@@ -55,7 +55,7 @@ In this table there is only one row where $P$ and $P \implies Q$ are true, and i
 
 Induction can be defined as reasoning from a specific premise to a general conclusion. The English philosopher David Hume (of whom we will have much more to say) referred to induction as reasoning that "instances of which we have had no experience resemble those of which we have had experience." 
 
-In some cases induction can be seen as the opposite of deduction in that deduction begins with a general premise and reasons about specific conclusion. A more informative way to differentiate the two is thus: the premises of a deductive argument makes the truth value of a conclusion absolutely certain; whereas the premises of an inductive argument only lend evidence to a conclusion probabilistically.
+In some cases induction can be seen as the opposite of deduction in that deduction begins with a general premise and reasons about specific conclusions. A more informative way to differentiate the two is thus: the premises of a deductive argument makes the truth value of a conclusion absolutely certain; whereas the premises of an inductive argument only lend evidence to a conclusion probabilistically.
 
 Using induction we could make a variety of arguments to include the following examples:
 
