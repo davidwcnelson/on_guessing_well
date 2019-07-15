@@ -51,13 +51,45 @@ F &amp; F &amp; T\\
 <p>In some cases induction can be seen as the opposite of deduction in that deduction begins with a general premise and reasons about specific conclusions. A more informative way to differentiate the two is thus: the premises of a deductive argument makes the truth value of a conclusion absolutely certain; whereas the premises of an inductive argument only lend evidence to a conclusion probabilistically.</p>
 <p>Using induction we could make a variety of arguments to include the following examples:</p>
 <p><strong>Generalization</strong></p>
-<p>If we observe a sample from a larger population, and <span class="math inline">\(P\)</span> percent of the sample possesses a quality, we can infer that it is likely that <span class="math inline">\(P\)</span> percent of the population also possesses the quality. Note that <span class="math inline">\(P\)</span> could be 100 i.e the entire sample. Also note that the size and representativeness of the sample has an influence on the strength of our assertion.</p>
+<p>If we observe a sample from a larger population, and some percent of the sample possesses a quality, we can infer that it is likely that some percent of the population also possesses the quality. Note that some could be 100% i.e the entire sample. Also note that the size and representativeness of the sample has an influence on the strength of our assertion.</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; Q(x)\\
+&amp; x \in \mathcal{X}\\ 
+\hline
+&amp; \therefore Q(\mathcal{X})\\\\
+\end{aligned}
+\]</span></p>
 <p><strong>Statistical Syllogism</strong></p>
-<p>If we know that <span class="math inline">\(P\)</span> percent of members of a population possess a quality, then we can infer that that there is a <span class="math inline">\(P\)</span> percent chance that a member possesses the quality. Note that how we select a member from the population is important (e.g. random draw), as a sub-population may have a different proportion of members with the certain quality. We could also pair generalization with a statistical syllogism: inferring a characteristic of a member of a population from the characteristics of a sample from a population.</p>
+<p>If we know that some percent of members of a population possess a quality, then we can infer that that there is some percent chance that a member possesses the quality. Note that how we select a member from the population is important (e.g. random draw), as a sub-population may have a different proportion of members with the certain quality. We could also pair generalization with a statistical syllogism: inferring a characteristic of a member of a population from the characteristics of a sample from a population.</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; Q(\mathcal{X})\\
+&amp; x \in \mathcal{X}\\ 
+\hline
+&amp; \therefore Q(x)\\\\
+\end{aligned}
+\]</span></p>
 <p><strong>Inductive Analogy</strong></p>
-<p>If we know that objects <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> share a certain set of characteristics, and that <span class="math inline">\(A\)</span> also possesses an additional characteristic, then it is likely that <span class="math inline">\(B\)</span> shares this characteristic as well. Note that the number of known shared characteristics (as well as the number of known unshared characteristics) influences the strength of our argument. This kind of reasoning can be seen as equivalent to the composition of generalization and statistical syllogism.</p>
+<p>If we know that two objects share a certain set of characteristics, and that the first object also possesses an additional characteristic, then it is likely that second shares this characteristic as well. Note that the number of known shared characteristics (as well as the number of known unshared characteristics) influences the strength of our argument. This kind of reasoning can be seen as equivalent to the composition of generalization and statistical syllogism.</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; Q(x) \wedge Q(y)\\
+&amp; R(x)\\ 
+\hline
+&amp; \therefore R(y)\\\\
+\end{aligned}
+\]</span></p>
 <p><strong>Predicting the Future Based Upon the Past</strong></p>
-<p>If we know that object <span class="math inline">\(A\)</span> has always possessed a certain quality before time <span class="math inline">\(t\)</span>, then we can infer that it will possess the quality on and after time <span class="math inline">\(t\)</span>. This is very akin to <span class="math inline">\(generalization\)</span> where all of time is the population and the past is the sample. Arguably the biggest weakness to this form of induction is that the past history of an object is possibly both A) not very large relative to its potential future, and B) not very representative relative to its potential future.</p>
+<p>If we know that object has always possessed a certain quality before a certain time, then we can infer that it will possess the quality on and after time. This is very akin to generalization where all of time is the population and the past is the sample. Arguably the biggest weakness to this form of induction is that the past history of an object is likely both A) not very large relative to its potential future, and B) not very representative relative to its potential future.</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \forall t &lt; t_0 : Q(x|t)\\
+&amp; \forall t &lt; t_0: t \in \mathcal{T} =\{t : t &lt; t_0\} \cap  \{t : t \ge t_0\}\\ 
+\hline
+&amp; \therefore \forall t \in \mathcal{T} : Q(x|t)\\\\
+\end{aligned}
+\]</span></p>
 <div id="justifying-induction" class="section level3">
 <h3>Justifying Induction</h3>
 <p>As we previously mentioned, induction does not guarantee its conclusions. Then how can we justify using this kind of reasoning? One might propose that we can justify induction because in the course of human history, induction has worked out very well for us. A keen observer will note that this justification is equivalent to the form of induction described by “predicting the future based upon the past”. This would be justifying induction by induction!</p>
@@ -69,13 +101,22 @@ F &amp; F &amp; T\\
 <h1>Abduction</h1>
 <p>Abduction can be described as “reasoning to the most likely explanation.” For example, supposing we were awaken one night to a sound coming from upstairs (say from the attic of a single story home). There are a number of possible sources for the noise, such as a couple of boxes falling over, a bat having found its way into your home, or perhaps a gremlin has snuck into your home and is causing havoc. Abduction would have you reason about how likely each conclusion is, and choose the one with the highest likelihood.</p>
 <p>Abduction is well described by the famous Sherlock Holmes (really Sir Arthur Conan Doyle, I suppose) quote: “once you’ve eliminated the impossible, whatever remains, no matter how improbable, must be the truth.” Essentially this describes a process of collecting evidence and applying a composition of Modus Tollens and abduction. Maximum Likelihood Estimation (MLE) in frequentist statistics, and Bayesian inference as a whole could be considered as forms of abduction, almost by definition.</p>
-<p>It should also be noted that formally speaking, abduction takes the form of the logical fallacy “Affirming the Consequent,” albeit with a weaker conclusion. We could represent this symbolically as:</p>
-<p><span class="math display">\[
+<p>It should also be noted that formally speaking, abduction takes a form similiar (if not identical) the logical fallacy “Affirming the Consequent,” albeit with a weaker conclusion. In abduction we would have observed some event <span class="math inline">\(Q\)</span>, and we would have a set of possible explainations of <span class="math inline">\(Q\)</span>, <span class="math inline">\(P = \{P_1, P_2, ... P_n\}\)</span>.</p>
+<p>For each <span class="math inline">\(P_i \in P\)</span>, we have: <span class="math display">\[
 \begin{aligned}
-&amp; \ P \implies Q \\ 
+&amp; \ P_i \implies Q \\ 
 &amp; \ Q \\ 
 \hline
-&amp; \therefore \ P \ \text{becomes more plausible}\\ 
+&amp; \therefore \ P_i \ \text{is plausible}\\ 
+\end{aligned}
+\]</span></p>
+<p>Abduction as a rule requires one additional premise to be added to the argument. Imagine we are able to measure the plausibility, or how well an explaination fits the observation, with a function <span class="math inline">\(R\)</span>. The higher the value of <span class="math inline">\(R\)</span>, the better the explaination fits the observation.</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \ Q \\
+&amp; \ \forall P_i \in P : P_i\implies Q \\ 
+\hline
+&amp; \therefore \ P_i^* := argmax_i\  R(P_i)\\ 
 \end{aligned}
 \]</span></p>
 <p>Like induction, abduction does not garauntee its conclusions. It is frought with similiar difficulties in justification, but also comes with unique challenges in rationalizing its use. Despite this, we will find abduction as a very useful tool as we explore how to reason about uncertain or incomplete information.</p>

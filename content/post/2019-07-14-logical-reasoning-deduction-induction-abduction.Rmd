@@ -61,19 +61,55 @@ Using induction we could make a variety of arguments to include the following ex
 
 **Generalization**
 
-If we observe a sample from a larger population, and $P$ percent of the sample possesses a quality, we can infer that it is likely that $P$ percent of the population also possesses the quality. Note that $P$ could be 100 i.e the entire sample. Also note that the size and representativeness of the sample has an influence on the strength of our assertion.
+If we observe a sample from a larger population, and some percent of the sample possesses a quality, we can infer that it is likely that some percent of the population also possesses the quality. Note that some could be 100% i.e the entire sample. Also note that the size and representativeness of the sample has an influence on the strength of our assertion.
+
+$$
+\begin{aligned}
+& Q(x)\\
+& x \in \mathcal{X}\\ 
+\hline
+& \therefore Q(\mathcal{X})\\\\
+\end{aligned}
+$$
 
 **Statistical Syllogism**
 
-If we know that $P$ percent of members of a population possess a quality, then we can infer that that there is a $P$ percent chance that a member possesses the quality. Note that how we select a member from the population is important (e.g. random draw), as a sub-population may have a different proportion of members with the certain quality. We could also pair generalization with a statistical syllogism: inferring a characteristic of a member of a population from the characteristics of a sample from a population.
+If we know that some percent of members of a population possess a quality, then we can infer that that there is some percent chance that a member possesses the quality. Note that how we select a member from the population is important (e.g. random draw), as a sub-population may have a different proportion of members with the certain quality. We could also pair generalization with a statistical syllogism: inferring a characteristic of a member of a population from the characteristics of a sample from a population.
+
+$$
+\begin{aligned}
+& Q(\mathcal{X})\\
+& x \in \mathcal{X}\\ 
+\hline
+& \therefore Q(x)\\\\
+\end{aligned}
+$$
 
 **Inductive Analogy**
 
-If we know that objects $A$ and $B$ share a certain set of characteristics, and that $A$ also possesses an additional characteristic, then it is likely that $B$ shares this characteristic as well. Note that the number of known shared characteristics (as well as the number of known unshared characteristics) influences the strength of our argument. This kind of reasoning can be seen as equivalent to the composition of generalization and statistical syllogism. 
+If we know that two objects share a certain set of characteristics, and that the first object also possesses an additional characteristic, then it is likely that second shares this characteristic as well. Note that the number of known shared characteristics (as well as the number of known unshared characteristics) influences the strength of our argument. This kind of reasoning can be seen as equivalent to the composition of generalization and statistical syllogism. 
+
+$$
+\begin{aligned}
+& Q(x) \wedge Q(y)\\
+& R(x)\\ 
+\hline
+& \therefore R(y)\\\\
+\end{aligned}
+$$
 
 **Predicting the Future Based Upon the Past**
 
-If we know that object $A$ has always possessed a certain quality before time $t$, then we can infer that it will possess the quality on and after time $t$. This is very akin to $generalization$ where all of time is the population and the past is the sample. Arguably the biggest weakness to this form of induction is that the past history of an object is possibly both A) not very large relative to its potential future, and B) not very representative relative to its potential future.
+If we know that object has always possessed a certain quality before a certain time, then we can infer that it will possess the quality on and after time. This is very akin to generalization where all of time is the population and the past is the sample. Arguably the biggest weakness to this form of induction is that the past history of an object is likely both A) not very large relative to its potential future, and B) not very representative relative to its potential future.
+
+$$
+\begin{aligned}
+& \forall t < t_0 : Q(x|t)\\
+& \forall t < t_0: t \in \mathcal{T} =\{t : t < t_0\} \cap  \{t : t \ge t_0\}\\ 
+\hline
+& \therefore \forall t \in \mathcal{T} : Q(x|t)\\\\
+\end{aligned}
+$$
 
 ### Justifying Induction
 
@@ -89,14 +125,26 @@ Abduction can be described as "reasoning to the most likely explanation." For ex
 
 Abduction is well described by the famous Sherlock Holmes (really Sir Arthur Conan Doyle, I suppose) quote: "once you've eliminated the impossible, whatever remains, no matter how improbable, must be the truth." Essentially this describes a process of collecting evidence and applying a composition of Modus Tollens and abduction. Maximum Likelihood Estimation (MLE) in frequentist statistics, and Bayesian inference as a whole could be considered as forms of abduction, almost by definition. 
 
-It should also be noted that formally speaking, abduction takes the form of the logical fallacy "Affirming the Consequent," albeit with a weaker conclusion. We could represent this symbolically as:
+It should also be noted that formally speaking, abduction takes a form similiar (if not identical) the logical fallacy "Affirming the Consequent," albeit with a weaker conclusion. In abduction we would have observed some event $Q$, and we would have a set of possible explainations of $Q$, $P = \{P_1, P_2, ... P_n\}$. 
+
+For each $P_i \in P$, we have:
+$$
+\begin{aligned}
+& \ P_i \implies Q \\ 
+& \ Q \\ 
+\hline
+& \therefore \ P_i \ \text{is plausible}\\ 
+\end{aligned}
+$$
+
+Abduction as a rule requires one additional premise to be added to the argument. Imagine we are able to measure the plausibility, or how well an explaination fits the observation, with a function $R$. The higher the value of $R$, the better the explaination fits the observation.
 
 $$
 \begin{aligned}
-& \ P \implies Q \\ 
-& \ Q \\ 
+& \ Q \\
+& \ \forall P_i \in P : P_i\implies Q \\ 
 \hline
-& \therefore \ P \ \text{becomes more plausible}\\ 
+& \therefore \ P_i^* := argmax_i\  R(P_i)\\ 
 \end{aligned}
 $$
 
