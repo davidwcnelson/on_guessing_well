@@ -8,11 +8,11 @@ tags: []
 draft: FALSE
 ---
 
-My last post was an introduction to deductive reasoning, that is reasoning via deductive argument. I wanted to briefly outline two other forms of reasoning so we can compare and contrast their merits, as well as identify their usage.
+My last post was an introduction to deductive reasoning, that is reasoning via deductive argument. I wanted to briefly outline two other forms of reasoning so we can identify their usage and compare their strengths and weakness in future applications.
 
 # Deduction
 
-As we stated in our last post, deduction is reasoning that, given premises, guarantees the truth of its conclusion. Two major forms of deduction are "Modus Ponens" and "Modus Tollens". For two arbitrary propositions $P$ and $Q$, these rules of inference take the following forms:
+As we stated in our last post, deduction is reasoning that, given premises, guarantees the truth of its conclusion. Two major forms of deductive argument are "Modus Ponens" and "Modus Tollens". For two arbitrary propositions $P$ and $Q$, these rules of inference take the following forms:
 
 **Modus Ponens i.e. Affirm by Affirming:**
 
@@ -49,110 +49,140 @@ F & F & T\\
 \end{array}
 $$
 
-In this table there is only one row where $P$ and $P \implies Q$ are true, and in this row $Q$ is also true. Analogously there is only one row where $P \implies Q$ is true and $Q$ is false, which also has a false value for $P$. This is what necessitates the truth of the conclusions given the premises. Note that this doesn't guarantee the truth of the premises: we assumed they were true.
+In this table there is only one row where $P$ and $P \implies Q$ are true, and in this row $Q$ is also true. Analogously there is only one row where $P \implies Q$ is true and $Q$ is false, which features a false value for $P$. This illustrates the necessity of the truth of the conclusions given the premises. Note that this doesn't guarantee the truth of the premises: we assumed they were true.
 
 # Induction
 
-Induction can be defined as reasoning from a specific premise to a general conclusion. The English philosopher David Hume (of whom we will have much more to say) referred to induction as reasoning that "instances of which we have had no experience resemble those of which we have had experience." 
+Induction can be defined as reasoning from a specific premise to a general conclusion. The English philosopher David Hume (of whom we will have much more to say) described induction as reasoning that claims "instances of which we have had no experience resemble those of which we have had experience." 
 
 In some cases induction can be seen as the opposite of deduction in that deduction begins with a general premise and reasons about specific conclusions. A more informative way to differentiate the two is thus: the premises of a deductive argument makes the truth value of a conclusion absolutely certain; whereas the premises of an inductive argument only lend evidence to a conclusion probabilistically.
 
 Using induction we could make a variety of arguments to include the following examples:
 
-**Generalization**
+**Inductive Generalization**
 
-If we observe a sample from a larger population, and some percent of the sample possesses a quality, we can infer that it is likely that some percent of the population also possesses the quality. Note that some could be 100% i.e the entire sample. Also note that the size and representativeness of the sample has an influence on the strength of our assertion.
+If we observe a sample from a larger population, and some percent of the sample possesses a quality, we can infer that it is likely that some percent of the population also possesses the quality. Note that "some percent" could be 100% i.e the entire sample. Also note that the size and representativeness of the sample has an influence on the strength of our assertion.
 
 $$
 \begin{aligned}
-& Q(x)\\
-& x \in \mathcal{X}\\ 
+& Q(x) & \text{Some sample x has quality Q} \\
+& x \in X& \text{The sample x is from a population X} \\
 \hline
-& \therefore Q(\mathcal{X})\\\\
+& \therefore Q(X)& \text{Therefore it is likely X has quality Q} \\
 \end{aligned}
 $$
 
 **Statistical Syllogism**
 
-If we know that some percent of members of a population possess a quality, then we can infer that that there is some percent chance that a member possesses the quality. Note that how we select a member from the population is important (e.g. random draw), as a sub-population may have a different proportion of members with the certain quality. We could also pair generalization with a statistical syllogism: inferring a characteristic of a member of a population from the characteristics of a sample from a population.
+If we know that some percent of members of a population possess a quality, then we can infer that there is some percent chance that an individual member possesses the quality as well. Note that how we select a member from the population is important (e.g. random draw), as a sub-population may have a different proportion of members with the certain quality. Note how in some respects this is a deductive-like argument: we begin with a general premise and apply it to a specific instance. The difference is that the conclusion is probabilistic. Also note that the statistical syllogism shares it's second premise with inductive generalization, and the first premise and conclusion are swapped between the two. 
 
 $$
 \begin{aligned}
-& Q(\mathcal{X})\\
-& x \in \mathcal{X}\\ 
+& Q(X) & \text{Some population X has quality Q} \\
+& x \in X\ & \text{Some sample x is from the population X} \\
 \hline
-& \therefore Q(x)\\\\
+& \therefore Q(x) & \text{Therefore it is likely that some sample x has quality Q} \\
 \end{aligned}
 $$
 
 **Inductive Analogy**
 
-If we know that two objects share a certain set of characteristics, and that the first object also possesses an additional characteristic, then it is likely that second shares this characteristic as well. Note that the number of known shared characteristics (as well as the number of known unshared characteristics) influences the strength of our argument. This kind of reasoning can be seen as equivalent to the composition of generalization and statistical syllogism. 
+If we know that two objects share a certain set of characteristics, and that the first object also possesses an additional characteristic, then it is likely that second shares this characteristic as well. Note that the number of known shared characteristics (as well as the number of known unshared characteristics) influences the strength of our argument. This can be seen as a chain of reasoning which leverages inductive generalization and statistical syllogism:
+
+1. We claim that if $x$ and $y$ share characteristics, it is likely they are samples of the same population.
 
 $$
 \begin{aligned}
-& Q(x) \wedge Q(y)\\
-& R(x)\\ 
+& Q(x) & \text{Some sample x has quality Q} \\
+& Q(y) & \text{Some sample y has quality Q} \\
+& x \in X& \text{The sample x is from a population X} \\
 \hline
-& \therefore R(y)\\\\
+& \therefore y \in X& \text{Therefore it is likely y is a sample from X} \\
 \end{aligned}
 $$
 
-**Predicting the Future Based Upon the Past**
-
-If we know that object has always possessed a certain quality before a certain time, then we can infer that it will possess the quality on and after time. This is very akin to generalization where all of time is the population and the past is the sample. Arguably the biggest weakness to this form of induction is that the past history of an object is likely both A) not very large relative to its potential future, and B) not very representative relative to its potential future.
+2. We apply inductive generalization: stating a characteristic $R$ of a sample $x$ is probably true of a population $X$:
 
 $$
 \begin{aligned}
-& \forall t < t_0 : Q(x|t)\\
-& \forall t < t_0: t \in \mathcal{T} =\{t : t < t_0\} \cap  \{t : t \ge t_0\}\\ 
+& R(x) & \text{Some sample x has quality R} \\
+& x \in X& \text{The sample x is from a population X} \\
 \hline
-& \therefore \forall t \in \mathcal{T} : Q(x|t)\\\\
+& \therefore R(X)& \text{Therefore it is likely X has quality R} \\
+\end{aligned}
+$$
+
+3. Finally we apply a statistical syllogism using conclusions from the previous two arguments: 
+
+$$
+\begin{aligned}
+& R(X) & \text{Some population X likely has quality R} \\
+& y \in X\ & \text{Some sample y is likely from the population X} \\
+\hline
+& \therefore R(y) & \text{Therefore it is likely that some sample y has quality R} \\
+\end{aligned}
+$$
+
+
+**Predicting the Future Based Upon the Past**
+
+If we know that object has always possessed a certain quality before a certain time, then we can inductively infer that it will possess the quality on and after said time. This is very akin to generalization where all of time is the population and the past is the sample. Arguably the biggest weakness to this form of induction is that the past history of an object is likely both A) not very large relative to its potential future, and B) not very representative relative to its potential future.
+
+$$
+\begin{aligned}
+& Q(T_{<t}) & \text{A quality Q has existed for all time before t} \\
+& T_{<t} \subseteq T = {T_{<t}}\cap{T_{\ge t}}& \text{All of time before t is a sample from all of time T} \\
+\hline
+& \therefore Q(T)& \text{Therefore it is likely a quality Q will exist for all of time} \\
 \end{aligned}
 $$
 
 ### Justifying Induction
 
-As we previously mentioned, induction does not guarantee its conclusions. Then how can we justify using this kind of reasoning? One might propose that we can justify induction because in the course of human history, induction has worked out very well for us. A keen observer will note that this justification is equivalent to the form of induction described by "predicting the future based upon the past". This would be justifying induction by induction! 
+As we previously mentioned, induction does not guarantee conclusions. Then how can we justify using this kind of reasoning? One might propose that we can justify induction because in the course of human history, induction has worked out very well for us. A keen observer will note that this justification is equivalent to the form of induction described by "predicting the future based upon the past". This would be justifying induction by induction! 
 
-David Hume explored and popularized this "Problem of Induction". Essentially Hume showed that it was impossible to justify induction deductively, and justification via induction was unacceptable (as it is circular). The philosopher Nelson Goodman expanded the woes of induction with his "New Riddle of Induction" which exacerbates the issue by introducing concepts like "Grue" and "Bleen" to illustrate the fact that induction stands on even shakier footing than we initial thought.
+David Hume explored and popularized this "Problem of Induction". Essentially Hume showed that it was impossible to justify induction deductively, and justification via induction was unacceptable (as it is an example of circular reasoning). The philosopher Nelson Goodman expanded the woes of induction with his "New Riddle of Induction" which exacerbates the issue by introducing concepts like "Grue" and "Bleen" to illustrate the fact that induction over time stands on even shakier footing than we initial thought.
 
-Many philosophers (e.g. Emmanuel Kant) attempted to find satisfactory resolution to the problem of induction to no avail. In the mid 20th century, a German philosopher of science named Karl Popper proposed a solution: accept the problem of induction renders induction unjustifiable, and instead frame the growth of scientific knowledge as a program of learning from error via Modus Tollens i.e. scientists learn by subjecting their theory to falsification, rather than confirmation. Falsificationism will be of great use to us in the future.
+Many philosophers (e.g. Emmanuel Kant) attempted to find satisfactory resolution to the problem of induction to no avail. In the mid 20th century, a German philosopher of science named Karl Popper proposed a solution: accept that we cannot justify induction, and instead learn from error via the deductive logic of Modus Tollens. Popper postulated that scientists can learn by subjecting their hypotheses to falsification, rather than confirmation. Falsificationism will be of great use to us in the future.
 
 # Abduction
 
-Abduction can be described as "reasoning to the most likely explanation." For example, supposing we were awaken one night to a sound coming from upstairs (say from the attic of a single story home). There are a number of possible sources for the noise, such as a couple of boxes falling over, a bat having found its way into your home, or perhaps a gremlin has snuck into your home and is causing havoc. Abduction would have you reason about how likely each conclusion is, and choose the one with the highest likelihood.  
+Abduction can be described as "reasoning to the most likely explanation." For example, suppose you awoke one night to some noises coming from your attic (If you, like me, do not have an attic, just imagine that you do). There are infinite possible sources of the noise (e.g., boxes falling over, wild animals getting in, a burglar, a gremlin, etc.), the only limitation to enumeration being your imagination and time. Using abduction, we would consider some subset of the possibilities that we deem plausible, and select the most plausible from among them. 
 
-Abduction is well described by the famous Sherlock Holmes (really Sir Arthur Conan Doyle, I suppose) quote: "once you've eliminated the impossible, whatever remains, no matter how improbable, must be the truth." Essentially this describes a process of collecting evidence and applying a composition of Modus Tollens and abduction. Maximum Likelihood Estimation (MLE) in frequentist statistics, and Bayesian inference as a whole could be considered as forms of abduction, almost by definition. 
+The great fictional detective Sherlock Holmes said (well, I suppose his author Sir Arthur Conan Doyle wrote) "after you have eliminated the impossible, whatever remains, no matter how improbable, must be the truth." This is an very reasonable description of the abductive process, and one can see how it usefully relates to our understanding of the scientific method. Further, statistical methods such as Maximum Likelihood Estimation (MLE), or even the field of Bayesian inference itself could be considered forms of abductive reasoning.
 
-It should also be noted that formally speaking, abduction takes a form similiar (if not identical) the logical fallacy "Affirming the Consequent," albeit with a weaker conclusion. In abduction we would have observed some event $Q$, and we would have a set of possible explainations of $Q$, $P = \{P_1, P_2, ... P_n\}$. 
+It should also be noted that formally speaking, abduction takes a form similar (if not identical) to the logical fallacy named "Affirming the Consequent," albeit with a weaker conclusion. In abduction we would have observed some data $D$, and we would have a set of possible hypotheses that explain $D$, $H = \{H_1, H_2, ... H_n\}$ from which to reason. 
 
-For each $P_i \in P$, we have:
-$$
-\begin{aligned}
-& \ P_i \implies Q \\ 
-& \ Q \\ 
-\hline
-& \therefore \ P_i \ \text{is plausible}\\ 
-\end{aligned}
-$$
+We also introduce some notion of how well the hypotheses explains the data, a concept we will refer to as a hypothesis' plausibility $P$. We loosely describe a plausible proposition as one that is neithier necessarily false nor necessarily true given the truth of the propositions we do know. The question of what makes a proposition more or less plausible (save learning the actual truth value of the proposition deductively) is a great debate in the statistics and philosophy of science literature. Related concepts include Likelihood Functions, Generalization/Overfitting, Occam's Razor, and Epicurus' Principle of Multiple Explaination.
 
-Abduction as a rule requires one additional premise to be added to the argument. Imagine we are able to measure the plausibility, or how well an explaination fits the observation, with a function $R$. The higher the value of $R$, the better the explaination fits the observation.
+Let's examine a formal abductive argument, which follows two steps:
+
+Step 1: determine which hypotheses are plausible i.e. not necessarily true or false given the premises.
 
 $$
 \begin{aligned}
-& \ Q \\
-& \ \forall P_i \in P : P_i\implies Q \\ 
+& \ H_i \implies D & \text{If} \ H_i\text{ is true then D is true}\\  
+& \ D & \text{D is true}\\ 
 \hline
-& \therefore \ P_i^* := argmax_i\  R(P_i)\\ 
+& \therefore \ P(H_i) &\ \ H_i \text{ is plausible}\\ 
 \end{aligned}
 $$
 
-Like induction, abduction does not garauntee its conclusions. It is frought with similiar difficulties in justification, but also comes with unique challenges in rationalizing its use. Despite this, we will find abduction as a very useful tool as we explore how to reason about uncertain or incomplete information.
+Step 2: determine which of the plausible hypotheses is most plausible.
 
-Another note on how abduction relates to induction is that often in determining the likelihood of possibilities, we often use induction! For example, I have never seen a Gremlin, therefore I don't think it is very likely that a Gremlin is the cause of my mystery noise, even though a Gremlin perfectly explains the noise. Conversely, I have a lot of boxes in my attic and boxes have fallen in my attic in the past. Using this line of reasoning, I can say that the conclusion that a box fell in the attic is the best explaination of the noise both in terms of my prior experience with the possibilities, and how well the possibilities explain the noise. 
+$$
+\begin{aligned}
+& \ D & \text{D is true}\\ 
+& \ H = \{H_i : P(H_i|D) > 0\} & \text{H is the set of all plausible } H_i \text{ given D is true} \\  
+& (\exists H_i \in H \ni \forall H_j \not= H_i\in H) \ P(H_i) > P(H_j) & \text{There is a most plausible} \ H_i\\
+\hline
+& \therefore \ H^* := \underset{H_i}{\operatorname{argmax}}P(H_i)  &\ \ H^* \text{ is the best explaination of D}\\ 
+\end{aligned}
+$$
 
+One can interpret Bayesian reasoning (and Bayesian probability) as a combination of induction and abduction. Specifically, Bayes' rule allows inference about the probability of a hypothesis being true given the observation of data through the product of a likelihood and prior probability. The likelihood (i.e. how likely the data is given our hypothesis) can be considered an abductive component, while the prior (i.e. likely the hypothesis is given our prior experience) can be considered an inductive component. Note also that if the hypothesis makes the data impossible, then Modus Tollens (i.e. a form of deduction) is applied naturally in the process. A key difference between Bayesian reasoning and abduction is that abduction requires that we choose a best guess, whereas Bayesian reasoning keeps all guesses, weighting by their relative plausibilities. 
 
+Like induction, abduction does not guarantee its conclusions. It possesses similar difficulties in its justification, but also comes with unique challenges in rationalizing its use. Despite this, we will find abduction as a very useful tool as we explore how to reason about uncertain or incomplete information.
 
 
 
