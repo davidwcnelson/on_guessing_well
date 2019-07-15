@@ -1,19 +1,19 @@
 ---
-title: 'Logical Reasoning: Deduction, Induction, Abduction'
+title: 'Reasoning via Deduction, Induction, and Abduction'
 author: David W.C. Telson
 date: '2019-07-14'
-slug: logical-reasoning-deduction-induction-abduction
+slug: reasoning-via-deduction-induction-and-abduction
 categories: []
 tags: []
-draft: TRUE
+draft: FALSE
 ---
 
 
 
-<p>My last post was an introduction to deductive reasoning, that is reasoning via deductive argument. I wanted to breifly outline two other forms of reasoning so we can compare and contrast their merits, as well as identify their usage.</p>
-<div id="deduction" class="section level2">
-<h2>Deduction</h2>
-<p>As we stated in our last post, deduction is reasoning that, given premises, garuntees the truth of the conclusion. The origin of the name “deduction” is “deduce” which means “to arrive at by reasoning”. It can be thought of as taking a general truth and using it to make a specific claim. Two major forms of deduction are “Modus Ponens” and “Modus Tollens”. For two arbitrary propositions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, these rules of inference take the following forms:</p>
+<p>My last post was an introduction to deductive reasoning, that is reasoning via deductive argument. I wanted to briefly outline two other forms of reasoning so we can compare and contrast their merits, as well as identify their usage.</p>
+<div id="deduction" class="section level1">
+<h1>Deduction</h1>
+<p>As we stated in our last post, deduction is reasoning that, given premises, guarantees the truth of its conclusion. Two major forms of deduction are “Modus Ponens” and “Modus Tollens”. For two arbitrary propositions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, these rules of inference take the following forms:</p>
 <p><strong>Modus Ponens i.e. Affirm by Affirming:</strong></p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -43,61 +43,41 @@ F &amp; T &amp; T\\
 F &amp; F &amp; T\\
 \end{array}
 \]</span></p>
-<p>In this table there is only one row where <span class="math inline">\(P\)</span> and <span class="math inline">\(P \implies Q\)</span> are true, and in this row <span class="math inline">\(Q\)</span> is also true. Analogously there is only one row where <span class="math inline">\(P \implies Q\)</span> is true and <span class="math inline">\(Q\)</span> is false, which also has a false value for <span class="math inline">\(P\)</span>. This is what necessitates the truth of the conclusions given the premises. Note that this doesn’t garuntee the truth of the premises: we assumed they were true.</p>
+<p>In this table there is only one row where <span class="math inline">\(P\)</span> and <span class="math inline">\(P \implies Q\)</span> are true, and in this row <span class="math inline">\(Q\)</span> is also true. Analogously there is only one row where <span class="math inline">\(P \implies Q\)</span> is true and <span class="math inline">\(Q\)</span> is false, which also has a false value for <span class="math inline">\(P\)</span>. This is what necessitates the truth of the conclusions given the premises. Note that this doesn’t guarantee the truth of the premises: we assumed they were true.</p>
 </div>
-<div id="induction" class="section level2">
-<h2>Induction</h2>
-<p>If P is true for some X, then X is true for all X</p>
+<div id="induction" class="section level1">
+<h1>Induction</h1>
+<p>Induction can be defined as reasoning from a specific premise to a general conclusion. The English philosopher David Hume (of whom we will have much more to say) referred to induction as reasoning that “instances of which we have had no experience resemble those of which we have had experience.”</p>
+<p>In some cases induction can be seen as the opposite of deduction in that deduction begins with a general premise and reasons about specific conclusion. A more informative way to differentiate the two is thus: the premises of a deductive argument makes the truth value of a conclusion absolutely certain; whereas the premises of an inductive argument only lend evidence to a conclusion probabilistically.</p>
+<p>Using induction we could make a variety of arguments to include the following examples:</p>
+<p><strong>Generalization</strong></p>
+<p>If we observe a sample from a larger population, and <span class="math inline">\(P\)</span> percent of the sample possesses a quality, we can infer that it is likely that <span class="math inline">\(P\)</span> percent of the population also possesses the quality. Note that <span class="math inline">\(P\)</span> could be 100 i.e the entire sample. Also note that the size and representativeness of the sample has an influence on the strength of our assertion.</p>
+<p><strong>Statistical Syllogism</strong></p>
+<p>If we know that <span class="math inline">\(P\)</span> percent of members of a population possess a quality, then we can infer that that there is a <span class="math inline">\(P\)</span> percent chance that a member possesses the quality. Note that how we select a member from the population is important (e.g. random draw), as a sub-population may have a different proportion of members with the certain quality. We could also pair generalization with a statistical syllogism: inferring a characteristic of a member of a population from the characteristics of a sample from a population.</p>
+<p><strong>Inductive Analogy</strong></p>
+<p>If we know that objects <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> share a certain set of characteristics, and that <span class="math inline">\(A\)</span> also possesses an additional characteristic, then it is likely that <span class="math inline">\(B\)</span> shares this characteristic as well. Note that the number of known shared characteristics (as well as the number of known unshared characteristics) influences the strength of our argument. This kind of reasoning can be seen as equivalent to the composition of generalization and statistical syllogism.</p>
+<p><strong>Predicting the Future Based Upon the Past</strong></p>
+<p>If we know that object <span class="math inline">\(A\)</span> has always possessed a certain quality before time <span class="math inline">\(t\)</span>, then we can infer that it will possess the quality on and after time <span class="math inline">\(t\)</span>. This is very akin to <span class="math inline">\(generalization\)</span> where all of time is the population and the past is the sample. Arguably the biggest weakness to this form of induction is that the past history of an object is possibly both A) not very large relative to its potential future, and B) not very representative relative to its potential future.</p>
+<div id="justifying-induction" class="section level3">
+<h3>Justifying Induction</h3>
+<p>As we previously mentioned, induction does not guarantee its conclusions. Then how can we justify using this kind of reasoning? One might propose that we can justify induction because in the course of human history, induction has worked out very well for us. A keen observer will note that this justification is equivalent to the form of induction described by “predicting the future based upon the past”. This would be justifying induction by induction!</p>
+<p>David Hume explored and popularized this “Problem of Induction”. Essentially Hume showed that it was impossible to justify induction deductively, and justification via induction was unacceptable (as it is circular). The philosopher Nelson Goodman expanded the woes of induction with his “New Riddle of Induction” which exacerbates the issue by introducing concepts like “Grue” and “Bleen” to illustrate the fact that induction stands on even shakier footing than we initial thought.</p>
+<p>Many philosophers (e.g. Emmanuel Kant) attempted to find satisfactory resolution to the problem of induction to no avail. In the mid 20th century, a German philosopher of science named Karl Popper proposed a solution: accept the problem of induction renders induction unjustifiable, and instead frame the growth of scientific knowledge as a program of learning from error via Modus Tollens i.e. scientists learn by subjecting their theory to falsification, rather than confirmation. Falsificationism will be of great use to us in the future.</p>
+</div>
+</div>
+<div id="abduction" class="section level1">
+<h1>Abduction</h1>
+<p>Abduction can be described as “reasoning to the most likely explanation.” For example, supposing we were awaken one night to a sound coming from upstairs (say from the attic of a single story home). There are a number of possible sources for the noise, such as a couple of boxes falling over, a bat having found its way into your home, or perhaps a gremlin has snuck into your home and is causing havoc. Abduction would have you reason about how likely each conclusion is, and choose the one with the highest likelihood.</p>
+<p>Abduction is well described by the famous Sherlock Holmes (really Sir Arthur Conan Doyle, I suppose) quote: “once you’ve eliminated the impossible, whatever remains, no matter how improbable, must be the truth.” Essentially this describes a process of collecting evidence and applying a composition of Modus Tollens and abduction. Maximum Likelihood Estimation (MLE) in frequentist statistics, and Bayesian inference as a whole could be considered as forms of abduction, almost by definition.</p>
+<p>It should also be noted that formally speaking, abduction takes the form of the logical fallacy “Affirming the Consequent,” albeit with a weaker conclusion. We could represent this symbolically as:</p>
 <p><span class="math display">\[
 \begin{aligned}
-&amp; \ P \implies Q &amp; \text{If P is true for some x, Q is also true.}\\ 
-&amp; \ P &amp; \text{P is true.}\\ 
+&amp; \ P \implies Q \\ 
+&amp; \ Q \\ 
 \hline
-&amp; \therefore \ Q &amp; \text{Therefore Q is also true.}\\ 
+&amp; \therefore \ P \ \text{becomes more plausible}\\ 
 \end{aligned}
 \]</span></p>
-</div>
-<div id="abduction" class="section level2">
-<h2>Abduction</h2>
-<p><strong>!!THE FOLLOWING IS AN EXAMPLE OF AN ERROR IN DEDUCTIVE REASONING!!</strong></p>
-<p><strong>Affirming the Consequent i.e. The Converse Error</strong></p>
-<p><span class="math display">\[
-\begin{aligned}
-&amp; \ P \implies Q &amp; \text{If P is true, Q is also true.}\\
-&amp; \ Q &amp; \text{Q is true.}\\
-\hline
-&amp; \therefore \ P &amp; \text{Therefore P is also true.}\\
-\end{aligned}
-\]</span></p>
-<p><strong>!!THE AFOREMENTIONED EXAMPLE IS AN ERROR IN DEDUCTIVE REASONING!!</strong></p>
-<!-- ## Induction -->
-<!-- Induction could be considered as the opposite of deduction in that we take a specific claim and reason about a general truth (there are more kinds of inductive arguements, but we digress). In fact, the form of induction is equivalent to a formal fallacy in deduction: affirming the consequent. Pardon the figurative "yellow warning tape" that accompanies the following example.  -->
-<!-- **!!THE FOLLOWING IS AN EXAMPLE OF AN ERROR IN DEDUCTIVE REASONING!!** -->
-<!-- **Affirming the Consequent i.e. The Converse Error** -->
-<!-- $$ -->
-<!-- \begin{aligned} -->
-<!-- & \ P \implies Q & \text{If P is true, Q is also true.}\\  -->
-<!-- & \ Q & \text{Q is true.}\\  -->
-<!-- & \therefore \ P & \text{Therefore P is also true.}\\  -->
-<!-- \end{aligned} -->
-<!-- $$ -->
-<!-- **!!THE AFOREMENTIONED EXAMPLE IS AN ERROR IN DEDUCTIVE REASONING!!** -->
-<!-- Affirming the consequent is a formal error in deductive logic. You can see this by examining the truth table associated for $\implies$. Even if $Q$ is true, it is still possible that $P$ is false given $P \implies Q$ i.e. there is a row with $P$ being true and false in the truth table for $\implies$.  -->
-<!-- Inductive reasoning is not actually the same as affirming the consequent, as it doesn't make as strong a claim as a deductive argument i.e. it doesn't say that the conclusions have to be true, just that in some sense they are more plausible. We could phrase it as follows: -->
-<!-- $$ -->
-<!-- \begin{aligned} -->
-<!-- & \ P \implies Q \\  -->
-<!-- & \ Q \\  -->
-<!-- & \therefore\ \text{P is more plausible}\\  -->
-<!-- \end{aligned} -->
-<!-- $$ -->
-<!-- Where does this form of reasoning get its justification?  -->
-<!-- One could reason that by learning $Q$ after having been given $P \implies Q$, the ratio of cases where $P$ is true increases from $\frac{1}{3}$ to $\frac{1}{2}$. However if we had been given $Q$ and then learned $P \implies Q$, the ratio of cases where $P$ is true doens't change i.e. learning $P \implies Q$ doesn't tell you anything. Further, the initial ratio of cases before learning the truth of eithier premise is the same as the ratio after learning both premises. Should the order matter of when we learn things matter, or just the final set of possible values in truth table? Should the full truth table (where all truth values are possible for all premises) be our initial state, or should we begin with $P \implies Q$ being true? -->
-<!-- Rather than using ratios, we could use the count of the number of cases where $P$ is true or false, but this doesn't change the issue what should be our initial state and if order should matter. The least we could say is that it is still possible for $P$ to be true or false. -->
-<!-- Let's think about this using a concrete example. Suppose we have a scientific hypothesis that we call $H$. Further our theory predicts that after an experiment we would observe some data $D$, that is $H \implies D$. We wish to reason about the truth of $H$, knowing that $H \implies D$. Now, we conduct an experiment and observe $D$ is true, meaning that there is one less possible case of our hypothesis being wrong. Again as before, the least we can say is that it is still possible for $H$ to be true or false. -->
-<!-- But wait, what does it mean to have $D$ first, followed by $H \implies D$? Is this even a sensical and meaningful statement? No wonder C.D. Broad said "induction is the glory of science and the scandal of philosophy." David Hume reasoned that induction is unjustifiable with respect to the standards of deduction i.e. there is still a chance that our conlcusions are wrong. One might propose that we can justify induction because it has worked well for humans in the past, but this is folly! This justification of induction is an inductive argument!  -->
-<!-- Hume's ultimate conclusion: no amount of limited finite experience can garuntee a more universal conclusion, whether we are talking about inferring a property of a population from a sample, or predicting the future given the past. But not even deductive logic can hold up to "Humean skepticism", as many non-trivial applications of deduction rest on premises that cannot be shown to be true deductively.  -->
-<!-- Many philosphers have tackled this particular "Problem of Induction" over the years, each coming to unsatisfying results. In my opinion, the most satisfying conclusion comes from Karl Popper, who essentially said "yup, induction is unjustifable." and turned his attention to developing a Philsophy of Science through application of "Modus Tollens" called "falsiciationism". In Popper's philosophy, scientists don't learn by collecting evidence to confirm their hypothesis, instead they learn by collecting evidence to disconfirm their hypothesis.  -->
-<!-- We will return to induction in the future, especially when we attempt to use the language of probability to convey how evidence strengthens or weakens a claim within an inductive argument.  -->
-<!-- ## Abduction -->
+<p>Like induction, abduction does not garauntee its conclusions. It is frought with similiar difficulties in justification, but also comes with unique challenges in rationalizing its use. Despite this, we will find abduction as a very useful tool as we explore how to reason about uncertain or incomplete information.</p>
+<p>Another note on how abduction relates to induction is that often in determining the likelihood of possibilities, we often use induction! For example, I have never seen a Gremlin, therefore I don’t think it is very likely that a Gremlin is the cause of my mystery noise, even though a Gremlin perfectly explains the noise. Conversely, I have a lot of boxes in my attic and boxes have fallen in my attic in the past. Using this line of reasoning, I can say that the conclusion that a box fell in the attic is the best explaination of the noise both in terms of my prior experience with the possibilities, and how well the possibilities explain the noise.</p>
 </div>

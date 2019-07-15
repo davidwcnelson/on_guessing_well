@@ -14,10 +14,10 @@
   <title>
     
     
-     Logical Reasoning: Deduction, Induction, Abduction 
+     Reasoning via Deduction, Induction, and Abduction 
     
   </title>
-  <link rel="canonical" href="/post/logical-reasoning-deduction-induction-abduction/">
+  <link rel="canonical" href="/post/reasoning-via-deduction-induction-and-abduction/">
 
   <link rel="stylesheet" href="/css/fonts.css" />
   <link rel="stylesheet" href="/css/style.css" />
@@ -47,10 +47,10 @@
 
 
 <section id=content>
-  <h1> Logical Reasoning: Deduction, Induction, Abduction </h1>
+  <h1> Reasoning via Deduction, Induction, and Abduction </h1>
 
   <div id=sub-header>
-    David W.C. Telson · 2019/07/14 · 6 minute read
+    David W.C. Telson · 2019/07/14 · 7 minute read
   </div>
 
   <div class="entry-content">
@@ -60,7 +60,7 @@
 <p>My last post was an introduction to deductive reasoning, that is reasoning via deductive argument. I wanted to briefly outline two other forms of reasoning so we can compare and contrast their merits, as well as identify their usage.</p>
 <div id="deduction" class="section level1">
 <h1>Deduction</h1>
-<p>As we stated in our last post, deduction is reasoning that, given premises, guarantees the truth of the conclusion. Two major forms of deduction are “Modus Ponens” and “Modus Tollens”. For two arbitrary propositions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, these rules of inference take the following forms:</p>
+<p>As we stated in our last post, deduction is reasoning that, given premises, guarantees the truth of its conclusion. Two major forms of deduction are “Modus Ponens” and “Modus Tollens”. For two arbitrary propositions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, these rules of inference take the following forms:</p>
 <p><strong>Modus Ponens i.e. Affirm by Affirming:</strong></p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -94,12 +94,13 @@ F &amp; F &amp; T\\
 </div>
 <div id="induction" class="section level1">
 <h1>Induction</h1>
-<p>Induction can be defined as reasoning from a specific premise to a general conclusion. The English philosopher David Hume (of whom we will have much more to say) referred to induction as reasoning that “instances of which we have had no experience resemble those of which we have had experience.” Induction can be seen as the opposite of deduction in that deduction begins with a general premise and reasons about specific conclusion. A more informative way to differentiate is thus: the premises of a deductive argument make the truth value of a conclusion absolutely certain; whereas the premises of an inductive argument only lend evidence to a conclusion probabilistically.</p>
+<p>Induction can be defined as reasoning from a specific premise to a general conclusion. The English philosopher David Hume (of whom we will have much more to say) referred to induction as reasoning that “instances of which we have had no experience resemble those of which we have had experience.”</p>
+<p>In some cases induction can be seen as the opposite of deduction in that deduction begins with a general premise and reasons about specific conclusion. A more informative way to differentiate the two is thus: the premises of a deductive argument makes the truth value of a conclusion absolutely certain; whereas the premises of an inductive argument only lend evidence to a conclusion probabilistically.</p>
 <p>Using induction we could make a variety of arguments to include the following examples:</p>
 <p><strong>Generalization</strong></p>
-<p>If we observe a sample from a larger population, and <span class="math inline">\(P\)</span> percent of the sample possesses a certain quality, we can infer that it is likely that <span class="math inline">\(P\)</span> percent of the population also possesses the certain quality. Note that <span class="math inline">\(P\)</span> could be 100%. Also note that the size and representativeness of the sample has an influence on the strength of our assertion.</p>
+<p>If we observe a sample from a larger population, and <span class="math inline">\(P\)</span> percent of the sample possesses a quality, we can infer that it is likely that <span class="math inline">\(P\)</span> percent of the population also possesses the quality. Note that <span class="math inline">\(P\)</span> could be 100 i.e the entire sample. Also note that the size and representativeness of the sample has an influence on the strength of our assertion.</p>
 <p><strong>Statistical Syllogism</strong></p>
-<p>If we know that <span class="math inline">\(P\)</span> percent of members of a population possess a certain quality, then we can infer that that there is a <span class="math inline">\(P\)</span> percent change that a member possesses the certain quality. Note that how we select a member from the population is important, as a sub-population may have a different proportion of members with the certain quality. We could also pair generalization with a statistical syllogism: inferring a characteristic of a member of a population from the characteristics of a sample from a population.</p>
+<p>If we know that <span class="math inline">\(P\)</span> percent of members of a population possess a quality, then we can infer that that there is a <span class="math inline">\(P\)</span> percent chance that a member possesses the quality. Note that how we select a member from the population is important (e.g. random draw), as a sub-population may have a different proportion of members with the certain quality. We could also pair generalization with a statistical syllogism: inferring a characteristic of a member of a population from the characteristics of a sample from a population.</p>
 <p><strong>Inductive Analogy</strong></p>
 <p>If we know that objects <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> share a certain set of characteristics, and that <span class="math inline">\(A\)</span> also possesses an additional characteristic, then it is likely that <span class="math inline">\(B\)</span> shares this characteristic as well. Note that the number of known shared characteristics (as well as the number of known unshared characteristics) influences the strength of our argument. This kind of reasoning can be seen as equivalent to the composition of generalization and statistical syllogism.</p>
 <p><strong>Predicting the Future Based Upon the Past</strong></p>
@@ -107,8 +108,8 @@ F &amp; F &amp; T\\
 <div id="justifying-induction" class="section level3">
 <h3>Justifying Induction</h3>
 <p>As we previously mentioned, induction does not guarantee its conclusions. Then how can we justify using this kind of reasoning? One might propose that we can justify induction because in the course of human history, induction has worked out very well for us. A keen observer will note that this justification is equivalent to the form of induction described by “predicting the future based upon the past”. This would be justifying induction by induction!</p>
-<p>David Hume explored and popularized this “Problem of Induction”. Essentially Hume showed that it was impossible to justify induction deductively, and justification via induction was unacceptable (as it is circular). The philosopher Nelson Goodman expanded the woes of induction with his “New Riddle of Induction” which exacerbates the issue by introducing concepts like “Grue” and “Bleen” to illustrate the fact that induction stands on even shakier footing.</p>
-<p>Many philosophers (e.g. Emmanuel Kant) attempted to find satisfactory resolution to the problem of induction to no avail. In the mid 20th century, a German philosopher of science named Karl Popper proposed a solution: accepting the problem of induction renders induction unjustifiable, and instead refocusing the growth of scientific knowledge as a program of learning from error via Modus Tollens i.e. scientists learn by subjecting their theory to falsification, rather than confirmation. Falsificationism will be of great use to us in the future.</p>
+<p>David Hume explored and popularized this “Problem of Induction”. Essentially Hume showed that it was impossible to justify induction deductively, and justification via induction was unacceptable (as it is circular). The philosopher Nelson Goodman expanded the woes of induction with his “New Riddle of Induction” which exacerbates the issue by introducing concepts like “Grue” and “Bleen” to illustrate the fact that induction stands on even shakier footing than we initial thought.</p>
+<p>Many philosophers (e.g. Emmanuel Kant) attempted to find satisfactory resolution to the problem of induction to no avail. In the mid 20th century, a German philosopher of science named Karl Popper proposed a solution: accept the problem of induction renders induction unjustifiable, and instead frame the growth of scientific knowledge as a program of learning from error via Modus Tollens i.e. scientists learn by subjecting their theory to falsification, rather than confirmation. Falsificationism will be of great use to us in the future.</p>
 </div>
 </div>
 <div id="abduction" class="section level1">
@@ -125,6 +126,7 @@ F &amp; F &amp; T\\
 \end{aligned}
 \]</span></p>
 <p>Like induction, abduction does not garauntee its conclusions. It is frought with similiar difficulties in justification, but also comes with unique challenges in rationalizing its use. Despite this, we will find abduction as a very useful tool as we explore how to reason about uncertain or incomplete information.</p>
+<p>Another note on how abduction relates to induction is that often in determining the likelihood of possibilities, we often use induction! For example, I have never seen a Gremlin, therefore I don’t think it is very likely that a Gremlin is the cause of my mystery noise, even though a Gremlin perfectly explains the noise. Conversely, I have a lot of boxes in my attic and boxes have fallen in my attic in the past. Using this line of reasoning, I can say that the conclusion that a box fell in the attic is the best explaination of the noise both in terms of my prior experience with the possibilities, and how well the possibilities explain the noise.</p>
 </div>
 
   </div>
