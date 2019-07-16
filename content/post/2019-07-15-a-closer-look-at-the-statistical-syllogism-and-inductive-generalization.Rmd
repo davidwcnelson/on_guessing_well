@@ -1,0 +1,110 @@
+---
+title: A Closer Look at the Statistical Syllogism and Inductive Generalization
+author: David W.C. Telson
+date: '2019-07-15'
+slug: a-closer-look-at-the-statistical-syllogism-and-inductive-generalization
+categories: []
+tags: []
+draft: FALSE
+---
+
+A recent post compared and contrasted deduction, induction, and abduction. Within that post we touched on both the statistical syllogism (inferring characteristics of a sample from a population), and inductive generalization (inferring characteristics of population from a sample). I wanted to spend a little more time with each of these concepts to get a better sense of their justification and how we can interpret them. My hope is that through this post, we will gain some intuition of probable reasoning; and experience the interplay between induction, abduction, and deduction.
+
+# The Statistical Syllogism
+
+We begin with the Statistical Syllogism, as it is both the most similar in form to deduction, but also in my opinion the easiest to justify (relative to inductive generalization). Recall from the previous post that the statistical syllogism takes a characteristic known to be true for some members of a population, and infers that characteristic is probably true for a given member of the population. In our previous post, we outlined the statistical syllogism's form using a certain notation. We opt here to change our notation in order to provide more clarity. We note here that for our purposes, we shall only consider finite sets, that is sets that have a finite (thought potentially arbitrarily large) number of members.
+
+Let's introduce our key terms:
+
+1. $X = \{x_1, x_2, ..., x_{|X|}\} =$ the set representing a population of interest. 
+2. $X_q = \{x \in X : q(x)\}=$ the set of all elements $x$ in the population $X$ where $q(x)$ is true.
+3. $p_{X_{q}} = \frac{|X_q|}{|X|}=$ the proportion of $x$ in the population $X$ where $q(x)$ is true.
+4. $Y  = \{x_{(1)},x_{(2)},...,x_{(|Y|)}\} \subseteq X=$  a sample of interest which is the subset of the population $X$.
+5. $Y_q = \{x \in Y : q(x)\}=$ the set of all elements $x$ in the sample $Y$ where $q(x)$ is true.
+6. $p_{Y_{q}} = \frac{|Y_q|}{|Y|}=$ the proportion of $x$ in the sample $Y$ where $q(x)$ is true.
+
+We can now provide a form to our statistical syllogism:
+
+$$
+\begin{aligned}
+&p_{X_{q}} & \text{There is a proportion of elements in X where q(x) is true}\\ 
+&Y \subseteq X & \text{Y is a subset of X}\\
+\hline
+& \therefore p_{Y_{q}} \approx p_{X_{q}} & \text{Y likely has a similiar proportion of elements where q(x) is true }\\
+\end{aligned}
+$$
+
+Note that different authors claim different levels of strength for the conclusion, e.g., some authors claim that we can (perhaps even should) assert $p_{Y_{q}}$ is exactly equal to $p_{X_{q}}$, or that if $p_{X_{q}} \ge .5$ we should claim that $q(x)$ is true in $Y$! This is especially the case when considering a sample size of 1 i.e. $|Y| = 1$. We prefer the weaker claim that the proportions are likely to be similar. It is important to clarify the notion that, while $p_{Y_{q}}$ is a probability statement, it is not the probability statement made by the inductive argument. The probability statement made by induction is with respects to the equality of $p_{Y_{q}}$ and $p_{X_{q}}$.
+
+How can we justify this claim? Well, as a first pass we might suggest that if the sample were big enough, it would representative of (look similar to) $X$. At the extreme if $|Y| = |X|$ and $Y \subseteq X$, then $Y = X$, thus $Y$ would be trivially representative of $X$. However, a good justification shouldn't be reliant on the notion of the "size" of our sample. We would want our reasoning to be valid no matter the size of $Y$ or the size of $X$ (because a big $Y$ could be dwarfed by an even bigger $X$). 
+
+A second pass at a justification might say that if we choose $Y$ randomly, it has a good chance of looking similar (being representative of $X$). There are two problems with this approach. Firstly, what does it mean for a sample to be "random"? We often think we know what "randomness" means, but its much harder to pin down than you might think. Trivially we could say that it means "non-deterministic", but that really isn't a definition. I would propose two possible definitions: 
+
+1. "Selected from among all elements with no discernible rule."; and 
+2. "Selected from among all elements with equal probability."
+
+This second definition just begs the question (sorry, straw-man!) as implicitly the terms "random", "chance", "likelihood", and "probability" are all tied up in a tangled mess of ambiguity. The first definition poses a different kind of problem: it asserts that randomness is a function of our ignorance (our inability to discern a rule), versus some feature of nature. Personally I like the latter definition, because it puts the onus on our inability to understand nature, versus nature's inability to be understood. All that being said, the second flaw with the randomness argument: even if we could sample from the population by chance, it doesn't mean that is how we got the sample! Our justification must be agnostic to HOW the sample was collected.
+
+How can we justify the statistical syllogism given that our reason needs to be agnostic towards the size of the sample and the method of sampling? What if we consider all possible deterministic selection procedures? Here we define a "deterministic selection procedure" as a rule that takes a predetermined number of elements from pre-determined positions from a population. Each rule is "deterministic" in that if we reset our population, a given rule would pull the same samples over and over again.
+
+*Author's Note: For simplicity, we will demonstrate this line of reasoning using a sample of size 1, but eithier now or in the near future we will attempt a demonstration at arbitrary scale. The chief reason: we are opting for a sample size of 1 to avoid having to deal with whether or not we are sampling with or without replacement.*
+
+Suppose that we have a population $X$ with $p_{X_{q}}$ proportion of elements where $q(x)$ is true. We wish to make a claim that a sample $Y$ of size $|Y|=1$ will likely have $p_{Y_{q}}$ proportion of elements where $q(x)$ is true very similar to $p_{X_{q}}$. Technically in this case, we say that the probability that $q(x)$ is true for the single element $x \in Y$ is nearly equal to $p_{X_{q}}$. We proceed as follows:
+
+1. Imagine a deterministic selection procedure to select 1 element from $X$.
+2. Imagine a deterministic selection procedure to select 1 element from $X$ that is different from the element chosen by the first selection procedure.
+3. Repeat this process until you have 1 deterministic selection procedure for each element in $X$.
+4. Store your deterministic selection procedures in a list, and repeat steps 1 through 3 for a brand new set of selection procedure.
+5. Repeat step 4 for a sufficiently large amount of time, in principle indefinitely.
+
+The point is thus, if we can imagine a deterministic selection procedure that selects the 1st element of $X$, we can just as easily imagine one for each of the remaining elements. If we proceed in successive rounds of "imagineering" as we have described, there will always be an equal number of deterministic selection procedures for each element in $X$. We can normalize these counts so that after an arbitrary number of rounds, the normalized counts are the same i.e. they stay consistent after any number of rounds. These normalized counts are identical to the proportion of deterministic selection procedures made up by the $ith$ element in $X$.
+
+Using this reasoning, it becomes apparent that there are many "redundancies" within the set of imagined deterministic selection procedures i.e. many of these selection procedures yield equivalent outcomes. Instead of considering an arbitrarily large number of selection procedures, we can just consider "unique" procedures. There is one unique procedure for each element in $X$, thus there are effectively $|X|$ deterministic selection procedures to consider. 
+
+It is at this point that our justification reveals itself: $p_{X_{q}}$ is equal to the average of the $p_{Y_{q}}$ over every possible deterministic selection procedure for $Y$. For $|Y| = 1$, this is demonstrated by summing the normalized count of deterministic selection procedures for each $x \in X$, i.e. $\sum_{i=1}^{|X|}q(x_i)*p_i$ where $p_i$ is the normalized count of deterministic selection procedures. We can easily extend this to cases of larger samples, both in the special case of sampling without replacement and the general case of sampling with replacement. To rephrase our justification of the claim: the statistical syllogism asserts that the expected (average) value of $p_{Y_{q}}$ over all possible samples $Y$ of a population $X$ is equivalent to $p_{X_{q}}$. From my mind, this seems like a perfectly reasonable justification for the syllogism. 
+
+# Inductive Generalization
+
+Inductive generalization is in a sense the opposite of the statistical syllogism. It asserts that the characteristics of a specific premise apply to a general conclusion i.e. we can infer that the characteristic of a sample applies to a population. Using the same notation as applied earlier in this post, we can describe the form of inductive generalization:
+
+$$
+\begin{aligned}
+&p_{Y_{q}} & \text{There is a proportion of elements in Y where q(x) is true}\\ 
+&Y \subseteq X & \text{Y is a subset of X}\\
+\hline
+& \therefore p_{X_{q}} \approx p_{Y_{q}} & \text{X likely has a similiar proportion of elements where q(x) is true }\\
+\end{aligned}
+$$
+
+In fact, our reasoning is exactly the opposite of the statistical syllogism. In statistics and probability theory this is referred to as an "inverse" problem. The proposed solutions to such problems separate the schools of Frequentism and Bayesianism i.e. they split the very fabric of the field of statistics and probability theory. We do not take this lightly. Our role in this conversation is not necessarily to debate philosophy (though our conclusions will most certainty have implications), but instead to find a reasonable justification given that we wish to use inductive generalization.
+
+To provide a sufficient justification of inductive generalization, we wish to apply similar reasoning as we did the statistical syllogism, only in an extended way. Recall that in inductive generalization, we conceived of a large number of deterministic selection procedures (in principle we conceived of all possible such methods). In layman's terms, we counted the number of ways we could get a sample, and then reasoned about what to expected given all the ways. We wish to do a similar analysis here.
+
+Rather than examining how many ways we can produce any sample, we must instead reason about two things. First, we must determining how many ways we can create a population $X$, and second we must determine how many ways can create a sample that is identical to the observed sample $Y$. After considering the number of ways these two constructions are possible, we will take a point estimate just as we did with the statistical syllogism, but we will choose a measure other than the mean (in particular, the mode).
+
+We begin by considering how many ways we can create a population $X$. Recall that a characteristic of the population is asserted by the conclusion of inductive generalization, so the population is of primary concern. We can see that as far as $q(x)$ is concerned, the population is determined by $p_{X_{q}}$ i.e. the proportion of elements $x \in X$ where $q(x)$ is true. Holding $|X|$ constant, we have that $p_{X_{q}}$ must take on a value in the set $P_{X_{q}} = \{0 =\frac{0}{|X|},\frac{1}{|X|},\frac{2}{|X|},...,\frac{|X|}{|X|}=1\}$, thus $0 \le p_{X_{q}} \le 1$. We can now apply an identical argument to that of statistical syllogism, in that we can produce an arbitrarily large set of deterministic selection procedures to choose a $p_{X_{q}} \in P_{X_{q}}$. Whereas this was the end of reasoning for the syllogism, it only concludes the first part of justifying inductive generalization.
+
+The next line in our chain of reasoning is determining, give some population $|X|$, how many ways we could have gotten a specific sample $Y$. Note that the question is not "how many ways can we get a sample $Y$" as it was for the statistical syllogism, instead we are asking about as specific set $Y$ i.e. one that is already determined. At this point we will assume that we are sampling with replacement, though the demonstration for sampling without replacement is similar. The reason we choose the former is that it is equivalent to the later when populations and sample sizes are larger.
+
+Assuming that we are sampling with replacement, the normalized count of ways we can get a sample where $q(x)$ is true for exactly $|Y_{q}|$ elements out of $|Y|$ draws is ${|Y|\choose|Y_Q|}{p_{X_{q}}}^{|Y_q|}(1 -p_{X_{q}})^{|Y|-|Y_q|}$. Practiced readers of probability theory and statistics will recognize this as the probability mass function of a negative binomially distribution. With it, we can compute a normalized count of ways we can produce the sample $Y$ given a $p_{X_{q}}$. 
+
+Using the products of 1.) the count of ways we could have a given $p_{X_{q}}$, and 2.) the count of ways we could have $Y$ given $p_{X_{q}}$, we can determine the count of ways that we could have gotten both $p_{X_{q}}$ and $Y$. This will give us a sense of how much more often one pair appears than another. The formulation appears as follows:
+
+$$
+\begin{align}
+P(p_{X_{q}}|Y) &\propto P(Y|p_{X_{q}})\cdot P(p_{X_{q}}) \\
+&= {|Y|\choose|Y_Q|}{p_{X_{q}}}^{|Y_q|}(1 -p_{X_{q}})^{|Y|-|Y_q|} \cdot \frac{1}{|P_{X_q}|}
+\end{align}
+$$
+
+Keen observers will note that this is proportional to a Bayesian posterior, where the count of ways $Y$ is possible given ${p_{X_q}}$ is the likelihood, and the count of ways that ${p_{X_q}}$ is possible is the prior. In this way, Bayesian inference is simply counting the ways that a population is possible given it produced some sample of the data. With that said, the inductive generalization argument that $p_{X_{q}} \approx p_{Y_{q}}$ can be justified by recognizing that $p_{Y_{q}}$ is the Maximum A Posterior (MAP) estimate of $p_{X_{q}}$ given uniform priors, that is it is the peak of the distribution of possible ways that $Y$ and $\p_{X_{q}}$ can occur together. (this is equivalent to the frequentist Maximum Likelihood Estimate [MLE]). Priors are uniform when we say there are an equal number of ways each possible $p_{X_{q}}$ could be selected. 
+
+While the justification is different than the statistical syllogism in that it provides the mode of a distribution rather than its mean, this justification appears to be perfectly reasonable. However, it should be noted that we would prefer to not have to make a single best guess, but instead look at the range of our uncertainty about which values have more ways of realizing a given result.
+
+
+
+
+
+
+
+

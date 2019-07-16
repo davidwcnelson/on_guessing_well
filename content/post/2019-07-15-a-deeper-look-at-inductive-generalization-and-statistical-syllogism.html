@@ -1,0 +1,80 @@
+---
+title: A Closer Look at Inductive Generalization and the Statistical Syllogism
+author: David W.C. Telson
+date: '2019-07-15'
+slug: a-closer-look-at-inductive-generalization-and-the-statistical-syllogism
+categories: []
+tags: []
+draft: TRUE
+---
+
+
+
+<p>A recent post compared and contrasted deduction, induction, and abduction. Within that post we touched on inductive generalization (inferring characteristics of population from a sample), and the statistical syllogism (inferring characteristics of a sample from a population). I briefly wanted to spend a little more time with each of these concepts, and talk about what conclusions are plausible (i.e. not necessarily true or false given what we know) when applying them.</p>
+<p><em>Author’s Note: This post is messy, and needs to be cleaned up. I want to do more derivations that what is currently presented. Additionally, in both explorations we consider only finite sets. We intend to explore conceptions of infinite sets in the future. We also implicitly consider sampling with replacement, but we also intend on exploring more means of sampling as well.</em></p>
+<div id="the-statistical-syllogism" class="section level1">
+<h1>The Statistical Syllogism</h1>
+<p>Let’s begin with statistical syllogism, as it is the most akin in form to deduction. Recall from the previous post that the statistical syllogism takes a characteristic known to be true for some members of a population, and infers that characteristic is probably true for a given member of the population. Its logical form looks like this:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; Q(X) &amp; \text{Some population X has quality Q} \\
+&amp; x \in X\ &amp; \text{Some sample x is from the population X} \\
+\hline
+&amp; \therefore Q(x) &amp; \text{Therefore it is likely that some sample x has quality Q} \\
+\end{aligned}
+\]</span></p>
+<p>We could be more explicit about the probabilistic nature of the argument:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; p = \frac{1}{|X|}\sum_{x\in X}1_{\{Q(x)\}} &amp; \text{The proportion of elements in X with Q(x) is p}\\
+&amp; x \in X\ &amp;  \text{x is an element of X}\\
+\hline
+&amp; \therefore  P(Q(x)|x \in X) = p &amp;\text{the probability that Q(x) is true is p}\\
+\end{aligned}
+\]</span></p>
+<p>We can see here that the statistical syllogism says that the probability a member of a population will have a characteristic is equal to the proportion of members of the population who have that characteristic. Is this reasoning justifiable? Note that the statistical syllogism says nothing about how a member of a population was chosen. What does this imply?</p>
+<p>I would argue that the syllogism implies that the member was chosen randomly, where randomly is loosely defined either as “selected from among all elements with no discernible rule” or as “selected from among all elements with equal probability”. While both loose descriptions match some intuitions about randomness, they both have problems. The later begs the question about how to make a selection with probabilities i.e. at random (hence why it is circular). The former essentially says that the conclusion holds because we are merely ignorant of the process of selection.</p>
+<p>Let’s explore a different line of reasoning: what if the syllogism’s conclusion is an expectation considering all possible deterministic selection procedures? When we say “deterministic” we mean that the selection procedure results in the same outcome time and time again. Surely there is no limit to the number of potential deterministic selection procedures i.e. the number of selection procedures is infinite. Despite this, if we assume that the number of elements in <span class="math inline">\(X\)</span> is finite (as we have implicitly been doing so, whoops), then there is a finite number of outcomes available for the infinite number of selection procedures to take on.</p>
+<p>If we can reasonably assume (as we can with the infinite nature of possible deterministic selection procedures) that for every deterministic selection procedure that chooses element <span class="math inline">\(x_i \in X\)</span>, we can create <span class="math inline">\(|X|-1\)</span> more that each choose a different <span class="math inline">\(x_j \not= x_i \in X\)</span>, then there are effectively as many deterministic selection procedures that choose <span class="math inline">\(x_i\)</span> as choose any other <span class="math inline">\(x_j \not= x_i\)</span> i.e. practically we only have to consider a single selection procedure for each <span class="math inline">\(x_i \in X\)</span>. Thus if we take all of the “practical” selection procedures into account, sum the total number that have select an element a feature we wish to care about, and divided by the total number of practical selection features, we end up with <span class="math inline">\(p\)</span>, which we now interpret as the proportion of practically different deterministic selection procedures that result in a selection with our feature of interest i.e. <span class="math inline">\(P(Q(x) | x \in X)\)</span>.</p>
+<p>We can think about the statistical syllogism as a kind of abduction where we consider all possible explanations (i.e. hypotheses) for how we selected a member from a population, but instead of choosing the hypothesis that best explains the data (as we don’t know what the data is), we take the average of the predictions made by the hypotheses. In essence, this is what a Bayesian posterior predictive distribution does.</p>
+<p>I am reasonably satisfied with this justification of the statistical syllogism, but it raises some large questions. For instance, it seems to have a frequentist interpretation in that we are talking about samples from a population, however it also appears Bayesian in that we are conditioning on our ignorance about how we select selection procedures, rather than some empirical phenomenon that makes certain selection procedures more likely than others. We still don’t have an answer to “what is randomness” and “does randomness exist”, however I suspect we will never have a satisfying answer to these questions. I still am keen on exploring them though!</p>
+</div>
+<div id="inductive-generalization" class="section level1">
+<h1>Inductive Generalization</h1>
+<p>Inductive generalization is essentially the inverse of the statistical syllogism. It takes a characteristic known to be true for some members of a sample, and infers that characteristic is probably true for some members of the population. I think we will see that this is a bit harder to justify than the statistical syllogism. Its logical form looks like this:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; Q(Y) &amp; \text{The sample } Y\text{ has quality Q} \\
+&amp; Y \subset X&amp; \text{The sample } Y\text{ is from a population X} \\
+\hline
+&amp; \therefore Q(X)&amp; \text{Therefore it is likely X has quality Q} \\
+\end{aligned}
+\]</span></p>
+<p>Again, as with the statistical syllogism, we can explicate the probabilistic nature of the argument:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; p = \frac{1}{|Y|}\sum_{x\in Y}1_{\{Q(x)\}} &amp; \text{The proportion of elements in the sample }Y\text{ with Q(x) is true is p}\\
+&amp; Y \subseteq X &amp; \text{The sample } Y\text{ is from the population X} \\
+\hline
+&amp; \therefore  P(Q(x)|x \in X) = p &amp; \text{the proportion of members in X in which Q(x) is true is p}\\
+\end{aligned}
+\]</span></p>
+<p>There are some analogous challenges to this reasoning as there were for the statistical syllogism. Two challenges we identified in our previous post related to the size of the sample and its Representativeness i.e. how closely the sample resembles the population. In principle, these can be considered as parts of a selection procedure, which allows us to examine inductive generalization in a similar way to the statistical syllogism.</p>
+<p>Instead of working with the proportions (such as the one in our conclusion), it is easier to work with the count of elements of a specific set that possess the particular quality of interest. In particular we care about <span class="math inline">\(Y_Q = \{x : x \in Y \wedge Q(x)\}\)</span> and <span class="math inline">\(X_Q = \{x : x \in X \wedge Q(x)\}\)</span>, where we know <span class="math inline">\(Y_Q\)</span> and wish to use it to make a conclusion about <span class="math inline">\(X_Q\)</span>.</p>
+<p>Let’s identify the bounds of the possibilities for <span class="math inline">\(X_Q\)</span>. Since <span class="math inline">\(Y_Q\)</span> is a subset of <span class="math inline">\(X\)</span>, we have that <span class="math inline">\(X_Q\)</span> must be at least as large as <span class="math inline">\(Y_Q\)</span>. Further, since <span class="math inline">\(Y_{\neg Q}\)</span> (the subset of <span class="math inline">\(Y\)</span> where <span class="math inline">\(Q(x)\)</span> is not true) is also in <span class="math inline">\(X\)</span>, <span class="math inline">\(X_Q\)</span> must be at least as small as <span class="math inline">\(X/Y_{\neg Q}\)</span>. In other words: <span class="math inline">\(|Y_Q| \le |X_Q| \le |X|-|Y_{\neg Q}|\)</span>, which means that <span class="math inline">\(\frac{|Y_Q|}{|X|} \le p_X \le \frac{|X|-|Y_{\neg Q}|}{|X|}\)</span>, where <span class="math inline">\(p_X = \frac{|X_Q|}{|X|}\)</span>.</p>
+<p>Numerically speaking, the smallest <span class="math inline">\(p_X\)</span> is when the sample has no occurrences of <span class="math inline">\(Q(x)\)</span> and the sample is equivalent to the population, in which case <span class="math inline">\(p_X = 0\)</span>. The largest <span class="math inline">\(p_X\)</span> is when the sample has no occurrences of <span class="math inline">\(\neg Q(x)\)</span> and the sample is equivalent to the population, in which case <span class="math inline">\(p_X = 1\)</span>.</p>
+<p>In our case, we can’t necessarily just consider all possible deterministic selection procedures to select a sample of <span class="math inline">\(Y\)</span> from a population <span class="math inline">\(X\)</span> (which will give us <span class="math inline">\({|X| \choose |Y|} = \frac{|X|!}{|Y|!(|X|-|Y|)!}\)</span> practical possibilities), as would have been the case with an application of the statistical syllogism. We are faced with a different kind of problem, an <strong>inverse</strong> problem. These are the exact kinds of problems lead to the divide between frequentists and Bayesians! Rather than speaking of selection procedures, we must speak of all possible populations, and subsequently consider selections from those populations.</p>
+<p>We know that <span class="math inline">\(|X| = |X_Q| + |X_{\neg Q}|\)</span>, that is the size of <span class="math inline">\(X\)</span> is the sum of the number of elements for which <span class="math inline">\(Q(x)\)</span> is true and those elements for which <span class="math inline">\(Q(x)\)</span> is false. Keeping <span class="math inline">\(|X|\)</span> constant, varying <span class="math inline">\(|X_Q|\)</span> determines <span class="math inline">\(|X_{\neg Q}|\)</span>, so we can focus just on the quantity <span class="math inline">\(p_X = \frac{|X_Q|}{|X|}\)</span>. We know that <span class="math inline">\(p_X\)</span> is a member of the set <span class="math inline">\(P_X = \{\frac{0}{|X|},\frac{1}{|X|}\,\frac{2}{|X|},...,\frac{|X|}{|X|}\}\)</span>, but other than that we don’t know anything about the value of <span class="math inline">\(p_X\)</span> without considering <span class="math inline">\(p_Y\)</span>. We can thus consider all possible deterministic selection procedures that would have selected <span class="math inline">\(p_X\)</span>. Using identical reasoning as we did for statistical syllogism, we can infer that there are effectively <span class="math inline">\(|P_X|\)</span> deterministic selection procedures that could have selected <span class="math inline">\(p_X\)</span>. If we were to stop here, we would be making an error, as we have a sample <span class="math inline">\(Y\)</span> which possesses information about.</p>
+<p>We still are not done. We need to inject one more bit of reasoning. Suppose we have a population <span class="math inline">\(X\)</span> and a subset of that population <span class="math inline">\(Y\)</span>. How many different ways could we have selected <span class="math inline">\(X\)</span> from <span class="math inline">\(Y\)</span>? Well, there are <span class="math inline">\({|X| \choose |Y|} = \frac{|X|!}{|Y|!(|X|-|Y|)!}\)</span> possible ways to construct any sample (here we assume sampling without replacement), however that is not the number of ways we could have produced <span class="math inline">\(Y\)</span> in particular! Let’s reason about how we could determine this count.</p>
+<p>We know that <span class="math inline">\(Y\)</span> has exactly <span class="math inline">\(|Y_Q|\)</span> elements where <span class="math inline">\(Q(x)\)</span> is true. We also know that there is some number of elements of <span class="math inline">\(X\)</span> where <span class="math inline">\(Q(x)\)</span> is true too, <span class="math inline">\(|X_Q|\)</span>. So we can reason that there are <span class="math inline">\({|X_Q| \choose |Y_Q|}\)</span> ways of getting exactly <span class="math inline">\(|Y_Q|\)</span> number of elements from <span class="math inline">\(X\)</span> where <span class="math inline">\(Q(x)\)</span> is true. We also have that there are <span class="math inline">\({|X|-|Y_Q| \choose |Y|-|Y_Q|}\)</span> ways of getting exactly <span class="math inline">\(|Y| - |Y_Q| = |Y_{\neg Q}|\)</span> number of elements from <span class="math inline">\(X\)</span> where <span class="math inline">\(Q(x)\)</span> is false. If we multiply these two factors together, we get the total number of ways we can get our sample <span class="math inline">\(Y\)</span> from our population <span class="math inline">\(X\)</span>, i.e. <span class="math inline">\({|X_Q| \choose |Y_Q|}\cdot{|X|-|Y_Q| \choose |Y|-|Y_Q|}\)</span>. Taking into account the number of ways to produce any sample, we can talk about the proportion of all possible samples that would produce the same <span class="math inline">\(p_Y\)</span> as our sample:</p>
+<p><span class="math display">\[ P_{X_Q,X}(|Y_Q|  ) =\frac{{|X_Q| \choose |Y_Q|}\cdot{|X|-|Y_Q| \choose |Y|-|Y_Q|}}{{|X| \choose |Y|}} \]</span></p>
+<p>Readers of probability theory and statistics will recognize this as the hypergeometric distribution. We can now speak of how many possible ways we can produce any population, and given a population, we can speak of how many ways we could produce our sample. It is at this point that we invoke Bayes’ rule:</p>
+<p><span class="math display">\[P(p_{X,i}|Y) = \frac{P(Y|p_{X,i})\cdot P(p_{X,i})}{\sum_{j=1}^{|P_X|}P(Y|p_{X,j})\cdot P(p_{X,j})}\]</span></p>
+<p>Which, in our particular case translates to:</p>
+<p><span class="math display">\[P(p_{X,i}|Y) = \frac{\frac{{|X_{Q,i}| \choose |Y_Q|}\cdot{|X|-|Y_Q| \choose |Y|-|Y_Q|}}{{|X| \choose |Y|}\cdot|P_X|}}{\sum_{j=1}^{|P_X|}\frac{{|X_{Q,i}| \choose |Y_Q|}\cdot{|X|-|Y_Q| \choose |Y|-|Y_Q|}}{{|X| \choose |Y|}\cdot|P_X|}}\]</span></p>
+<p>While this formula is unweildly, the mode of the distribution it produces</p>
+<pre class="r"><code>require(ggplot2)</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre class="r"><code>qplot(1:100/100, dhyper(x = 3, m = 1:100, n = 100 - 1:100, k = 10)/sum(dhyper(x = 3, m = 1:100, n = 100 - 1:100, k = 10)))</code></pre>
+<p><img src="/post/2019-07-15-a-deeper-look-at-inductive-generalization-and-statistical-syllogism_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>

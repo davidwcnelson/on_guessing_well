@@ -1,0 +1,18 @@
+---
+title: The Principle of Insufficient Reason
+author: David W.C. Telson
+date: '2019-07-15'
+slug: the-principle-of-insufficient-reason
+categories: []
+tags: []
+draft: TRUE
+---
+
+- Definition
+- History
+- Example 
+- Rule of Succession
+- Apparent Paradox
+    - Coin with three sides
+    - Continious Distributions
+- Generalization via the Principle of Maximum Entropy

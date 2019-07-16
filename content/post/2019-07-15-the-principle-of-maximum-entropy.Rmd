@@ -1,0 +1,19 @@
+---
+title: The Principle of Maximum Entropy
+author: David W.C. Telson
+date: '2019-07-15'
+slug: the-principle-of-maximum-entropy
+categories: []
+tags: []
+draft: TRUE
+---
+
+- Information Content/Surprisal
+- Entropy
+- Maximizing Entropy Given Constraints
+  - Lagrangian Multipliers
+- Exponential Distributions
+- Applications
+  - Likelihoods
+  - Priors
+- Example

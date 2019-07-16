@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>
+    
+    
+     A Deeper Look at Inductive Generalization and the Statistical Syllogism 
+    
+  </title>
+  <link rel="canonical" href="/post/a-deeper-look-at-inductive-generalization-and-the-statistical-syllogism/">
+
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  
+</head>
+
+<body>
+<section id=nav>
+  <h1><a href="/">On Guessing Well</a></h1>
+  <ul>
+    
+    <li><a href="/about">About</a></li>
+    
+    <li><a href="/">Posts</a></li>
+    
+    <li><a href="https://github.com/wctelson">GitHub</a></li>
+    
+    <li><a href="https://www.linkedin.com/in/davidwcnelson/">LinkedIn</a></li>
+    
+    <li><a href="https://twitter.com/wctelson">Twitter</a></li>
+    
+    <li><a href="/index.xml">RSS</a></li>
+    
+  </ul>
+</section>
+
+
+<section id=content>
+  <h1> A Deeper Look at Inductive Generalization and the Statistical Syllogism </h1>
+
+  <div id=sub-header>
+    David W.C. Telson · 2019/07/15 · 6 minute read
+  </div>
+
+  <div class="entry-content">
+    
+
+
+<p>A recent post compared and contrasted deduction, induction, and abduction. Within that post we touched on inductive generalization (inferring characteristics of population from a sample), and the statistical syllogism (inferring characteristics of a sample from a population). I briefly wanted to spend a little more time with each of these concepts, and talk about what conclusions are plausible (i.e. not necessarily true or false given what we know) when applying them.</p>
+<p><em>Author’s Note: in both explorations we consider only finite sets. We intend to explore conceptions of infinite sets in the future.</em></p>
+<div id="the-statistical-syllogism" class="section level1">
+<h1>The Statistical Syllogism</h1>
+<p>Let’s begin with statistical syllogism, as it is the most akin in form to deduction. Recall from the previous post that the statistical syllogism takes a characteristic known to be true for some members of a population, and infers that characteristic is probably true for a given member of the population. Its logical form looks like this:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; Q(X) &amp; \text{Some population X has quality Q} \\
+&amp; x \in X\ &amp; \text{Some sample x is from the population X} \\
+\hline
+&amp; \therefore Q(x) &amp; \text{Therefore it is likely that some sample x has quality Q} \\
+\end{aligned}
+\]</span></p>
+<p>We could be more explicit about the probabilistic nature of the argument:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; p = \frac{1}{|X|}\sum_{x\in X}1_{\{Q(x)\}} &amp; \text{The proportion of elements in X with Q(x) is p}\\
+&amp; x \in X\ &amp;  \text{x is an element of X}\\
+\hline
+&amp; \therefore  P(Q(x)|x \in X) = p &amp;\text{the probability that Q(x) is true is p}\\
+\end{aligned}
+\]</span></p>
+<p>We can see here that the statistical syllogism says that the probability a member of a population will have a characteristic is equal to the proportion of members of the population who have that characteristic. Is this reasoning justifiable? Note that the statistical syllogism says nothing about how a member of a population was chosen. What does this imply?</p>
+<p>I would argue that the syllogism implies that the member was chosen randomly, where randomly is loosely defined either as “selected from among all elements with no discernible rule” or as “selected from among all elements with equal probability”. While both loose descriptions match some intuitions about randomness, they both have problems. The later begs the question about how to make a selection with probabilities i.e. at random (hence why it is circular). The former essentially says that the conclusion holds because we are merely ignorant of the process of selection.</p>
+<p>Let’s explore a different line of reasoning: what if the syllogism’s conclusion is an expectation considering all possible deterministic selection procedures? When we say “deterministic” we mean that the selection procedure results in the same outcome time and time again. Surely there is no limit to the number of potential deterministic selection procedures i.e. the number of selection procedures is infinite. Despite this, if we assume that the number of elements in <span class="math inline">\(X\)</span> is finite (as we have implicitly been doing so, whoops), then there is a finite number of outcomes available for the infinite number of selection procedures to take on.</p>
+<p>If we can reasonably assume (as we can with the infinite nature of possible deterministic selection procedures) that for every deterministic selection procedure that chooses element <span class="math inline">\(x_i \in X\)</span>, we can create <span class="math inline">\(|X|-1\)</span> more that each choose a different <span class="math inline">\(x_j \not= x_i \in X\)</span>, then there are effectively as many deterministic selection procedures that choose <span class="math inline">\(x_i\)</span> as choose any other <span class="math inline">\(x_j \not= x_i\)</span> i.e. practically we only have to consider a single selection procedure for each <span class="math inline">\(x_i \in X\)</span>. Thus if we take all of the “practical” selection procedures into account, sum the total number that have select an element a feature we wish to care about, and divided by the total number of practical selection features, we end up with <span class="math inline">\(p\)</span>, which we now interpret as the proportion of practically different deterministic selection procedures that result in a selection with our feature of interest i.e. <span class="math inline">\(P(Q(x) | x \in X)\)</span>.</p>
+<p>We can think about the statistical syllogism as a kind of abduction where we consider all possible explanations (i.e. hypotheses) for how we selected a member from a population, but instead of choosing the hypothesis that best explains the data (as we don’t know what the data is), we take the average of the predictions made by the hypotheses. In essence, this is what a Bayesian posterior predictive distribution does.</p>
+<p>I am reasonably satisfied with this justification of the statistical syllogism, but it raises some large questions. For instance, it seems to have a frequentist interpretation in that we are talking about samples from a population, however it also appears Bayesian in that we are conditioning on our ignorance about how we select selection procedures, rather than some empirical phenomenon that makes certain selection procedures more likely than others. We still don’t have an answer to “what is randomness” and “does randomness exist”, however I suspect we will never have a satisfying answer to these questions. I still am keen on exploring them though!</p>
+</div>
+<div id="inductive-generalization" class="section level1">
+<h1>Inductive Generalization</h1>
+<p>Inductive generalization is essentially the inverse of the statistical syllogism. It takes a characteristic known to be true for some members of a sample, and infers that characteristic is probably true for some members of the population. I think we will see that this is a bit harder to justify than the statistical syllogism. Its logical form looks like this:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; Q(\mathcal{X}) &amp; \text{The sample } \mathcal{X}\text{ has quality Q} \\
+&amp; \mathcal{X} \subset X&amp; \text{The sample } \mathcal{X}\text{ is from a population X} \\
+\hline
+&amp; \therefore Q(X)&amp; \text{Therefore it is likely X has quality Q} \\
+\end{aligned}
+\]</span></p>
+<p>Again, as with the statistical syllogism, we can explicate the probabilistic nature of the argument. We now use <span class="math inline">\(Y\)</span> to represent the sample :</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; p = \frac{1}{|\mathcal{X}|}\sum_{x\in \mathcal{X}}1_{\{Q(x)\}} &amp; \text{The proportion of elements in the sample }\mathcal{X}\text{ with Q(x) is true is p}\\
+&amp; \mathcal{X} \subseteq X &amp; \text{The sample } \mathcal{X}\text{ is from the population X} \\
+\hline
+&amp; \therefore  P(Q(x)|x \in X) = p &amp; \text{the proportion of members in X in which Q(x) is true is p}\\
+\end{aligned}
+\]</span></p>
+<p>There are some analogous challenges to this reasoning as there were for the statistical syllogisim. Two challenges we identified in our previous post related to the size of the sample and its represntativeness i.e. how closely the sample resembles the population. In principle, these can be considered as parts of a selection procedure, so that we may examine this reasoning in a similiar way to the statistical slyllogism.</p>
+<p>First, let’s reason about the upper and lower bound on <span class="math inline">\(p_X\)</span>, the proportion of <span class="math inline">\(X\)</span> where <span class="math inline">\(Q(x)\)</span> is true. Since we assume that <span class="math inline">\(X\)</span> is finite, we know that it has a finite size <span class="math inline">\(|X|\)</span>. Further, the sample <span class="math inline">\(\mathcal{X}\)</span> is a subset of <span class="math inline">\(X\)</span>, so we must have <span class="math inline">\(1 \le |\mathcal{X}| \le |X|\)</span>. At the very least <span class="math inline">\(p_X = p_{\mathcal{X}}\cdot |\mathcal{X}|\)</span>, and at the very most <span class="math inline">\(p_X = p_{\mathcal{X}}\cdot |\mathcal{X}|\)</span>.</p>
+</div>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="/post/chinese-restaurants-and-indian-buffets/">&laquo; Chinese Resaurants and Indian Buffets</a>
+    
+    
+  </div>
+</section>
+
+<section id="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+      
+      
+      if (window.location.hostname == "localhost")
+                return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = '';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+  
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+</body>
+</html>
+

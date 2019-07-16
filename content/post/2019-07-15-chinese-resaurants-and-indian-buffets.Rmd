@@ -1,0 +1,16 @@
+---
+title: Chinese Resaurants and Indian Buffets
+author: David W.C. Telson
+date: '2019-07-15'
+slug: chinese-restaurants-and-indian-buffets
+categories: []
+tags: []
+draft: TRUE
+---
+
+- Definition of a Stochastic Process
+- Sampling with Replacement
+- Sampling without Replacement
+- Polya's Urn Process
+- Chinese Restaurant Process
+- Indian Buffet Process

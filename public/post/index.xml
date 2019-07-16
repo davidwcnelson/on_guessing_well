@@ -6,10 +6,55 @@
     <description>Recent content in Posts on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 14 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A Closer Look at Inductive Generalization and the Statistical Syllogism</title>
+      <link>/post/a-closer-look-at-inductive-generalization-and-the-statistical-syllogism/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/a-closer-look-at-inductive-generalization-and-the-statistical-syllogism/</guid>
+      <description>A recent post compared and contrasted deduction, induction, and abduction. Within that post we touched on inductive generalization (inferring characteristics of population from a sample), and the statistical syllogism (inferring characteristics of a sample from a population). I briefly wanted to spend a little more time with each of these concepts, and talk about what conclusions are plausible (i.e. not necessarily true or false given what we know) when applying them.</description>
+    </item>
+    
+    <item>
+      <title>A Closer Look at the Statistical Syllogism and Inductive Generalization</title>
+      <link>/post/a-closer-look-at-the-statistical-syllogism-and-inductive-generalization/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/a-closer-look-at-the-statistical-syllogism-and-inductive-generalization/</guid>
+      <description>A recent post compared and contrasted deduction, induction, and abduction. Within that post we touched on both the statistical syllogism (inferring characteristics of a sample from a population), and inductive generalization (inferring characteristics of population from a sample). I wanted to spend a little more time with each of these concepts to get a better sense of their justification and how we can interpret them. My hope is that through this post, we will gain some intuition of probable reasoning; and experience the interplay between induction, abduction, and deduction.</description>
+    </item>
+    
+    <item>
+      <title>Chinese Resaurants and Indian Buffets</title>
+      <link>/post/chinese-restaurants-and-indian-buffets/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/chinese-restaurants-and-indian-buffets/</guid>
+      <description>  Definition of a Stochastic Process Sampling with Replacement Sampling without Replacement Polya’s Urn Process Chinese Restaurant Process Indian Buffet Process  </description>
+    </item>
+    
+    <item>
+      <title>The Principle of Insufficient Reason</title>
+      <link>/post/the-principle-of-insufficient-reason/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/the-principle-of-insufficient-reason/</guid>
+      <description>  Definition History Example Rule of Succession Apparent Paradox  Coin with three sides Continious Distributions  Generalization via the Principle of Maximum Entropy  </description>
+    </item>
+    
+    <item>
+      <title>The Principle of Maximum Entropy</title>
+      <link>/post/the-principle-of-maximum-entropy/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/the-principle-of-maximum-entropy/</guid>
+      <description>  Information Content/Surprisal Entropy Maximizing Entropy Given Constraints Lagrangian Multipliers Exponential Distributions Applications Likelihoods Priors Example  </description>
+    </item>
     
     <item>
       <title>An Introduction to Deductive Reasoning</title>
