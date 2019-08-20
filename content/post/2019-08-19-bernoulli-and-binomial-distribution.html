@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="David Telson" />
+<meta name="author" content="David W.C. Telson" />
 
 <meta name="date" content="2019-08-19" />
 
@@ -120,7 +120,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Bernoulli and Binomial Distribution</h1>
-<h4 class="author"><em>David Telson</em></h4>
+<h4 class="author"><em>David W.C. Telson</em></h4>
 <h4 class="date"><em>2019-08-19</em></h4>
 
 </div>
@@ -145,6 +145,8 @@ $(document).ready(function () {
 <p>For students of combinatorics, you may recall the “n choose k” function (notated as <span class="math inline">\(n \choose k\)</span>) that tells you how many combinations without repeition are possible when choosing <span class="math inline">\(k\)</span> items from a set of <span class="math inline">\(n\)</span> items. We can use this choose function to eliminated the redundancy our prior attempt at a binomial pmf created. Further, <span class="math inline">\(n \choose k\)</span> is referred to as a <a href="https://en.wikipedia.org/wiki/Binomial_coefficient">“binomial coefficient”</a>, hence the name of our distribution. Using this tool, we can write a new pmf:</p>
 <p><span class="math display">\[P(Y = y) = \text{pmf}_Y(y) =  {n \choose y}\theta^y(1-\theta)^{n-y}\]</span></p>
 <p>This new form is the canonical binomial distribution. You can see its relationship to the Bernoulli on the right hand side of the last identity. Keen readers will note that we can recover the Bernoulli by setting <span class="math inline">\(n = 1\)</span>.</p>
+<p>With that, we close out today’s post. In the near future we will take this binomial distribution to its limit to derive a new pmf named the Poisson distribution.</p>
+<p>Until next time!</p>
 
 
 
