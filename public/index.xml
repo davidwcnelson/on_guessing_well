@@ -6,10 +6,19 @@
     <description>Recent content on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 15 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bernoulli and Binomial Distribution</title>
+      <link>/post/bernoulli-and-binomial-distribution/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bernoulli-and-binomial-distribution/</guid>
+      <description>Today’s post will explore a fundamental probability distribution, the Bernoulli distribution, and its generalization the binomial distribution. The Bernoulli distribution is named after Jacob Bernoulli, one of the several mathematicians in the Bernoulli family. We can use this distribution to represent the probability of a single experiment with a binary (bīnārius is latin for “consisting of two”) outcome. Classically, this probability setup can be thought of as the outcome of a single coin toss, however it can be generalized to a great many practical applications.</description>
+    </item>
     
     <item>
       <title>A Closer Look at Inductive Generalization and the Statistical Syllogism</title>
@@ -35,7 +44,7 @@
       <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/chinese-restaurants-and-indian-buffets/</guid>
-      <description>  Definition of a Stochastic Process Sampling with Replacement Sampling without Replacement Polya’s Urn Process Chinese Restaurant Process Indian Buffet Process  </description>
+      <description>Today I wanted to talk about one of my all time favorite subjects in probability theory: stochastic processes. Many stochastic processes can be thought of as sequences of random variables. For instance a Bernoulli process is a sequence of binary random variables, which can be though of as a listing of the outcomes of successive coin flips. Today we are going to talk about an interesting set of stochastic processes that are closely related to one of the most fundamental idea in probability and statistics: sampling.</description>
     </item>
     
     <item>

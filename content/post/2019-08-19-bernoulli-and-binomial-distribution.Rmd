@@ -1,0 +1,47 @@
+---
+title: Bernoulli and Binomial Distribution
+author: David Telson
+date: '2019-08-19'
+slug: bernoulli-and-binomial-distribution
+categories: []
+tags: []
+draft: FALSE
+---
+
+Today's post will explore a fundamental probability distribution, the Bernoulli distribution, and its generalization the binomial distribution. The Bernoulli distribution is named after Jacob Bernoulli, one of the several mathematicians in the Bernoulli family. We can use this distribution to represent the probability of a single experiment with a binary (bīnārius is latin for "consisting of two") outcome. Classically, this probability setup can be thought of as the outcome of a single coin toss, however it can be generalized to a great many practical applications.
+
+To get a bit more formal, let's introduce some suitable notation. Let's call $Y$ the unknown outcome of interest, which can take on one of the values in the set $\{0,1\}$. We wish to define a probability mass faction (pmf) such that given one of the possible values for $Y$, it will return the probability that $Y$ will take on that value. 
+
+Let's suppose that $P(Y = 1) = \theta$ (the greek letter theta), that is the probability that $Y$ is equal to the outcome $1$ is some number $\theta \in [0,1]$. Thanks to [the axiom of unity](https://en.wikipedia.org/wiki/Probability_axioms), we know that since $P(Y = 1 \cup Y = 0) = 1 = P(Y = 1) + P(Y = 0)$ we must have $P(Y = 0) = 1 - \theta$. With this in place, we now have enough information to define a probability mass function. Let's make a first attempt:
+
+$$ P(Y = y) = \text{pmf}_Y(y)= 
+\begin{cases}
+    \theta,& \text{if } y = 1\\
+    1-\theta,              & \text{if } y = 0\\
+\end{cases}$$
+
+This function as defined will return $\theta$ when provided $1$ and $1 - \theta$ when provided $0$ literally by definition. While technically correct, the conditional definition doesn't look very streamlined, and as we shall see it limits us from discovering more general forms of our pmf. We can avoid the clunkiness of the original formula by replacing it with the following functional form:
+
+$$P(Y = y) = \text{pmf}_Y(y) = \theta^y(1-\theta)^{1-y}$$
+
+We can test the possible inputs of this function to see if it gives us the right probabilities. If $y = 1$, then $\theta^y(1-\theta)^{1-y} = \theta^1(1-\theta)^{1-1} = \theta$. If $y = 0$, then $\theta^y(1-\theta)^{1-y} = \theta^0(1-\theta)^{1-0} = (1-\theta)$. Indeed, our function works! 
+
+The Bernoulli is arguably the most fundamental probability model available. While there are many great applications of the model as is, it also serves as the foundation for a great many additional models that we will explore throughout this blog. Let's explore the first of many generalizations: the binomial distribution.
+
+While the Bernoulli distribution models the probability of an outcome of a single binary experiment (we use the term experiment loosely), the binomial (bi meaning two, and nomial meaning name) distribution extends the Bernoulli to multiple independent binary experiments by reimagining $Y$ not as an indicator for "success" or "failure", but rather as the total number of successes observed after $n$ trails. 
+
+Let's attempt to build such a pmf. We will begin will a brief review of "independence" in probability. Two events $A$ and $B$ are said to be independent (sometimes denoted $A \perp B$) if $P(A\cap B) = P(A)P(B)$. Thus a binomial distribution with $n = 2$ should be the product of two Bernoulli distributions. Let's call the result of the first trial $Y_1$ and the result of the second $Y_2$. Then a pmf might be:
+
+$$P(Y_1 = y_1, Y_2 = y_2) = \text{pmf}_{Y_1, Y_2}(y_1, y_2) = \theta^{y_1}(1-\theta)^{1-{y_1}}\cdot\theta^{y_2}(1-\theta)^{1-{y_2}}$$
+
+While this pmf is usable, it does have some rather unappealing properties. First, in order to specify $n + 1$ trials, we have to specify an additional outcome and add an additional term to our product. Second, if we just care about the number of success, we are unnecessarily specifying the order of our outcomes i.e. order doesn't matter. This last insight is key to addressing both our concerns in deriving a new probability mass function.
+
+For students of combinatorics, you may recall the "n choose k" function (notated as $n \choose k$) that tells you how many combinations without repeition are possible when choosing $k$ items from a set of $n$ items. We can use this choose function to eliminated the redundancy our prior attempt at a binomial pmf created. Further, $n \choose k$ is referred to as a ["binomial coefficient"](https://en.wikipedia.org/wiki/Binomial_coefficient), hence the name of our distribution. Using this tool, we can write a new pmf:
+
+$$P(Y = y) = \text{pmf}_Y(y) =  {n \choose y}\theta^y(1-\theta)^{n-y}$$
+
+This new form is the canonical binomial distribution. You can see its relationship to the Bernoulli on the right hand side of the last identity. Keen readers will note that we can recover the Bernoulli by setting $n = 1$.
+
+With that, we close out today's post. In the near future we will take this binomial distribution to its limit to derive a new pmf named the Poisson distribution.
+
+Until next time!
