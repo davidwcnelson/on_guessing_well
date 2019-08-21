@@ -17,7 +17,7 @@
       <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/bernoulli-and-binomial-distribution/</guid>
-      <description>Today’s post will explore a fundamental probability distribution, the Bernoulli distribution, and its generalization the binomial distribution. The Bernoulli distribution is named after Jacob Bernoulli, one of the several mathematicians in the Bernoulli family. We can use this distribution to represent the probability of a single experiment with a binary (bīnārius is latin for “consisting of two”) outcome. Classically, this probability setup can be thought of as the outcome of a single coin toss, however it can be generalized to a great many practical applications.</description>
+      <description>Today’s post will explore a fundamental probability distribution and its generalization: the Bernoulli and binomial distribution. The Bernoulli distribution is named after Jacob Bernoulli, one of several famous mathematicians from the Bernoulli family. We can use this distribution to represent the probability of a single experiment with a binary (bīnārius is latin for “consisting of two”) outcome. Classically, this probability setup can be thought of as the outcome of a single coin toss, however it can be generalized to a great many practical applications.</description>
     </item>
     
     <item>
