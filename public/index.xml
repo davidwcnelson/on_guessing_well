@@ -12,12 +12,13 @@
     
     
     <item>
-      <title>The Prediction Problem</title>
-      <link>/post/the-prediction-problem/</link>
+      <title>Rebooting the Blog</title>
+      <link>/post/rebooting-the-blog/</link>
       <pubDate>Sat, 02 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/the-prediction-problem/</guid>
-      <description></description>
+      <guid>/post/rebooting-the-blog/</guid>
+      <description>Greetings and salutations wonderful humans,
+For those who have been following the blog, you may have noticed that my previous posts are no longer available. This is because I am rebooting the blog. I felt that the posts up until now strayed too far away from the central theme of the blog, and felt far less polished than I would like. Additionally, I focused too much on mathematical notation and theory, and not enough on inutition and application (let alone featuring more code!</description>
     </item>
     
     <item>
@@ -135,7 +136,7 @@ Deduction As we stated in our last post, deduction is reasoning that, given prem
       <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>Greetings fellow humanoids,
+      <description>Greetings wonderful humans,
 My name is David W.C. Telson and this blog is all about decision making under uncertainty. We will be exploring all sorts of topics from the realms of probability theory, decision theory, statistics, machine learning, and the philosophy of science.
 At present I am a Data Scientist working for the Federal Emergency Management Agency in Washington, DC. Most of the problems I work on involve leveraging machine learning and statistics to support decisions about the Agency&amp;rsquo;s incident workforce and field operations.</description>
     </item>

@@ -4,7 +4,7 @@ title: About This Blog
 date: '2019-02-03T00:00:00'
 ---
 
-Greetings fellow humanoids,
+Greetings wonderful humans,
 
 My name is David W.C. Telson and this blog is all about decision making under uncertainty. We will be exploring all sorts of topics from the realms of probability theory, decision theory, statistics, machine learning, and the philosophy of science. 
 
