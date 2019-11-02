@@ -2,7 +2,7 @@
 title: 'A First Attempt w/ Central Tendency'
 author: 'David W.C. Telson'
 date: '2019-02-18'
-draft: FALSE
+draft: TRUE
 tags:
   - Calculus of Variations
   - Central Tendency

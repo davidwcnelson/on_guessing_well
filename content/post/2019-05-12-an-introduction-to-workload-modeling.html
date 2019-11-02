@@ -5,7 +5,7 @@ date: '2019-05-12'
 slug: an-introduction-to-workload-modeling
 tags: []
 categories: []
-draft: FALSE
+draft: TRUE
 ---
 
 
@@ -29,47 +29,62 @@ draft: FALSE
 <div id="form-of-the-model" class="section level1">
 <h1>Form of the Model</h1>
 <p>Our model must take some mathematical form. There are many ways in which to determine such a form, but in our case we will explore several considerations and find a simple, if not unique form.</p>
-<p>Our first consideration is that <span class="math inline">\(w\)</span> should be a function of <span class="math inline">\(n\)</span>, <span class="math inline">\(s\)</span>, and <span class="math inline">\(y\)</span>. In symbols: <span class="math display">\[w = f(n, s, y)\]</span></p>
-<p>Next, we consider what must happen if <span class="math inline">\(s\)</span> is equal to <span class="math inline">\(y\)</span>, that is if the amount of time alloted for production is equal to the amount of time it takes one worker to produce one product. In this case, the number of workers required should equal the number of products demanded. <span class="math display">\[s = y \Rightarrow w = n\]</span></p>
-<p>What if <span class="math inline">\(s\)</span> is greater than <span class="math inline">\(y\)</span>? Then the number of workers required must be less than the number of products demanded. <span class="math display">\[s &gt; y \Rightarrow w &lt; n\]</span></p>
-<p>The opposite must be true if <span class="math inline">\(s\)</span> is less than <span class="math inline">\(y\)</span>, or at least it is if we assume the work on one unit to be divisible across multiple workers. For simplicity, we take this assumption. <span class="math display">\[s &lt; y \Rightarrow w &gt; n\]</span></p>
-<p>A simple formula that perfectly captures these aforementioned considerations is the following equation, herein refered to as the “base equation”: <span class="math display">\[w = \frac{n\cdot y}{s}\]</span></p>
-<p>Sometimes it will be necessary for us to consider only non-fractional workers, meaning that we take the ceiling of the right hand side of the equation. A rationale for this is that you can’t really employ a fractional worker, and instead must take on the inefficiency of having a full worker, partially employed, in order to meet performance expectations. In symbols: <span class="math display">\[w = \bigg\lceil \frac{n\cdot y}{s}\bigg\rceil\]</span></p>
+<p>Our first consideration is that <span class="math inline">\(w\)</span> should be a function of <span class="math inline">\(n\)</span>, <span class="math inline">\(s\)</span>, and <span class="math inline">\(y\)</span>. In symbols:
+<span class="math display">\[w = f(n, s, y)\]</span></p>
+<p>Next, we consider what must happen if <span class="math inline">\(s\)</span> is equal to <span class="math inline">\(y\)</span>, that is if the amount of time alloted for production is equal to the amount of time it takes one worker to produce one product. In this case, the number of workers required should equal the number of products demanded.
+<span class="math display">\[s = y \Rightarrow w = n\]</span></p>
+<p>What if <span class="math inline">\(s\)</span> is greater than <span class="math inline">\(y\)</span>? Then the number of workers required must be less than the number of products demanded.
+<span class="math display">\[s &gt; y \Rightarrow w &lt; n\]</span></p>
+<p>The opposite must be true if <span class="math inline">\(s\)</span> is less than <span class="math inline">\(y\)</span>, or at least it is if we assume the work on one unit to be divisible across multiple workers. For simplicity, we take this assumption.
+<span class="math display">\[s &lt; y \Rightarrow w &gt; n\]</span></p>
+<p>A simple formula that perfectly captures these aforementioned considerations is the following equation, herein refered to as the “base equation”:
+<span class="math display">\[w = \frac{n\cdot y}{s}\]</span></p>
+<p>Sometimes it will be necessary for us to consider only non-fractional workers, meaning that we take the ceiling of the right hand side of the equation. A rationale for this is that you can’t really employ a fractional worker, and instead must take on the inefficiency of having a full worker, partially employed, in order to meet performance expectations. In symbols:
+<span class="math display">\[w = \bigg\lceil \frac{n\cdot y}{s}\bigg\rceil\]</span></p>
 <div id="additional-noteworthy-relationships" class="section level2">
 <h2>Additional Noteworthy Relationships</h2>
 <p>There are a few additional relationships that are worth mentioning, but we will spend no further time addressing them in detail.</p>
 <p><span class="math inline">\(c = \frac{1}{y} =\)</span> worker production capability i.e. the number of products one worker can produce in one unit of time.</p>
-<p>This leads to the alternative parameterization of our base equation: <span class="math display">\[w = \frac{n\cdot \frac{1}{c}}{s} =  \frac{n}{s\cdot c}\]</span></p>
+<p>This leads to the alternative parameterization of our base equation:
+<span class="math display">\[w = \frac{n\cdot \frac{1}{c}}{s} =  \frac{n}{s\cdot c}\]</span></p>
 <p><span class="math inline">\(\frac{n}{s} =\)</span> the number of products demanded per unit of time. Also known as the rate of production demanded.</p>
 <p><span class="math inline">\(\frac{s}{n} =(\frac{n}{s})^{-1} =\)</span> the amount of time per product demanded. Also known as the takt time, which has great importance in lean manufacturing methods.</p>
 </div>
 </div>
 <div id="demand-over-time" class="section level1">
 <h1>Demand Over Time</h1>
-<p>Our first major extension of the base equation is to incorporate the idea of new demand occuring over time. <span class="math inline">\(n_t\)</span> now denotes the demand at the <span class="math inline">\(t\)</span>th unit of time. The question of interest is “what is the number of workers required at time <span class="math inline">\(t = t_0\)</span>?” The following equation yields the desired result: <span class="math display">\[w_{t_0} = \frac{y}{s}\sum_{t = t_0 - s + 1}^{t_0}n_t\]</span></p>
-<p>Intuitively this is the sum of all products being actively worked at time <span class="math inline">\(t_0\)</span> (those between time <span class="math inline">\(t_0 - s + 1\)</span> and <span class="math inline">\(t_0\)</span>) multiplied by the inverse worker capability divided by the performance standard. We add 1 to the start of the index as we are counting “fence faces”&quot; and not “fence posts”. Further, because of the linearity of summation, we can uncover the following useful identity: <span class="math display">\[w_{t_0} = \sum_{t = t_0 - s +1}^{t_0}\frac{n_t\cdot y}{s}\]</span></p>
+<p>Our first major extension of the base equation is to incorporate the idea of new demand occuring over time. <span class="math inline">\(n_t\)</span> now denotes the demand at the <span class="math inline">\(t\)</span>th unit of time. The question of interest is “what is the number of workers required at time <span class="math inline">\(t = t_0\)</span>?” The following equation yields the desired result:
+<span class="math display">\[w_{t_0} = \frac{y}{s}\sum_{t = t_0 - s + 1}^{t_0}n_t\]</span></p>
+<p>Intuitively this is the sum of all products being actively worked at time <span class="math inline">\(t_0\)</span> (those between time <span class="math inline">\(t_0 - s + 1\)</span> and <span class="math inline">\(t_0\)</span>) multiplied by the inverse worker capability divided by the performance standard. We add 1 to the start of the index as we are counting “fence faces”&quot; and not “fence posts”. Further, because of the linearity of summation, we can uncover the following useful identity:
+<span class="math display">\[w_{t_0} = \sum_{t = t_0 - s +1}^{t_0}\frac{n_t\cdot y}{s}\]</span></p>
 <p>The focus is now on the base equation being applied to each unit of time. This will be a much more useful form in the future as we allow <span class="math inline">\(y\)</span> and <span class="math inline">\(s\)</span> to vary.</p>
 <p>Before we move on, we should note that a rich theory can be created for the variable <span class="math inline">\(n_t\)</span>, specifically one can make <span class="math inline">\(N_t\)</span> be a random variable distributed by some sort of probability distribution. This idea will be explored later in this post when we discuss expectation of <span class="math inline">\(W_t\)</span> i.e. the average number of workers required.</p>
 </div>
 <div id="product-groups" class="section level1">
 <h1>Product Groups</h1>
 <p>The next modification to the base equation is to incorporate the idea of “product groups”. The concept can be used to group products into categories to allow for different product demands, worker production capabilities, or performance standards. For instance it is easy to imagine wanting to capture the variation between building model airplanes and real airplanes. Alternatively it is concievable that different clients will have different performance standards, as would be the case in clients who pay more to get their goods faster.</p>
-<p>The notation is quite simple: <span class="math display">\[w_j = \frac{n_j\cdot y_j}{s_j}\]</span></p>
-<p>Here <span class="math inline">\(w_j\)</span> is the number of workers working on products in the <span class="math inline">\(j\)</span>th product group, with <span class="math inline">\(n_j\)</span>,<span class="math inline">\(y_j\)</span>, and <span class="math inline">\(s_j\)</span> being interpreted similiarly for their respective variables. We can determine the total number of workers required by summating over all product groups. <span class="math display">\[w = \sum_{j=1}^m\frac{n_j\cdot y_j}{s_j}\]</span></p>
+<p>The notation is quite simple:
+<span class="math display">\[w_j = \frac{n_j\cdot y_j}{s_j}\]</span></p>
+<p>Here <span class="math inline">\(w_j\)</span> is the number of workers working on products in the <span class="math inline">\(j\)</span>th product group, with <span class="math inline">\(n_j\)</span>,<span class="math inline">\(y_j\)</span>, and <span class="math inline">\(s_j\)</span> being interpreted similiarly for their respective variables. We can determine the total number of workers required by summating over all product groups.
+<span class="math display">\[w = \sum_{j=1}^m\frac{n_j\cdot y_j}{s_j}\]</span></p>
 <p>Where <span class="math inline">\(m\)</span> is the total number of product groups. This formula can be further generalized to include multiple different kinds of product groupings (customer, product-type, product-difficutly, etc.), but for now we will move on.</p>
 </div>
 <div id="sequence-of-steps" class="section level1">
 <h1>Sequence of Steps</h1>
 <p>Rarely does any one production scheme have only one step in its process, rather work is typically broken down into many different steps in a process. Here we wish to build some machinary to describe how work moves within a sequence of steps. For our purpose we will imagine work moving from one step to another as products moving from one station to another station as work is completed.</p>
-<p>The number of products at station <span class="math inline">\(k_0\)</span> at time <span class="math inline">\(t_0\)</span> is equivalent to the number of products at station <span class="math inline">\(k_0 - 1\)</span> at time <span class="math inline">\(t_0 - s_{k_0-1}\)</span> i.e. the number of products at one station is the same as the prior station shifted by the prior station’s time allocated for production. In symbols: <span class="math display">\[n_{k_0,t_0} = n_{k_0 - 1,t_0 - s_{k_0-1}}\]</span></p>
+<p>The number of products at station <span class="math inline">\(k_0\)</span> at time <span class="math inline">\(t_0\)</span> is equivalent to the number of products at station <span class="math inline">\(k_0 - 1\)</span> at time <span class="math inline">\(t_0 - s_{k_0-1}\)</span> i.e. the number of products at one station is the same as the prior station shifted by the prior station’s time allocated for production. In symbols:
+<span class="math display">\[n_{k_0,t_0} = n_{k_0 - 1,t_0 - s_{k_0-1}}\]</span></p>
 <p>We note two things:</p>
 <ol style="list-style-type: decimal">
 <li><p>We assume that products move in batches: when products enter the production process together, they stay together until all products are complete. This assumption can be reworked to provide greater generality, but for now it meets our purposes.</p></li>
 <li><p>The last equation merely tells us the number of products at a station at a point in time relative to the previous station. We would have to recursively work backwards to the very first station to determine how many products were at our deks of interest.</p></li>
 </ol>
-<p>In order to address our second point, we introduce the “shift” function. The shift or offset of station <span class="math inline">\(k_0\)</span> is equivalent to the sum of the time allocated for production of all previous stations. For <span class="math inline">\(k_0 &gt; 1\)</span> (if <span class="math inline">\(k_0 = 0, \Delta_{k_0} = 0\)</span>): <span class="math display">\[\Delta(k_0) = \Delta_{k_0}  = \sum_{k=1}^{k_0-1}s_k\]</span></p>
-<p>With this new function in tow, we can answer the question “how many workers are required at station <span class="math inline">\(k_0\)</span> at time <span class="math inline">\(t_0\)</span>?” <span class="math display">\[w_{k_0,t_0} = \sum_{t=t_0-s_{d_0}+1-\Delta_{k_0}}^{t_0-\Delta_{k_0}}\frac{n_t\cdot y_{d_0}}{s_{d_0}}\]</span></p>
-<p>Further, we can determine how many workers there are in total, across all stations, at time <span class="math inline">\(t_0\)</span> with the equation: <span class="math display">\[w_{t_0} = \sum_{k_0 = 1}^{l}\sum_{\tiny t=t_0-s_{d_0}+1-\Delta_{k_0}}^{t_0-\Delta_{k_0}}\frac{n_t\cdot y_{d_0}}{s_{d_0}}\]</span></p>
+<p>In order to address our second point, we introduce the “shift” function. The shift or offset of station <span class="math inline">\(k_0\)</span> is equivalent to the sum of the time allocated for production of all previous stations. For <span class="math inline">\(k_0 &gt; 1\)</span> (if <span class="math inline">\(k_0 = 0, \Delta_{k_0} = 0\)</span>):
+<span class="math display">\[\Delta(k_0) = \Delta_{k_0}  = \sum_{k=1}^{k_0-1}s_k\]</span></p>
+<p>With this new function in tow, we can answer the question “how many workers are required at station <span class="math inline">\(k_0\)</span> at time <span class="math inline">\(t_0\)</span>?”
+<span class="math display">\[w_{k_0,t_0} = \sum_{t=t_0-s_{d_0}+1-\Delta_{k_0}}^{t_0-\Delta_{k_0}}\frac{n_t\cdot y_{d_0}}{s_{d_0}}\]</span></p>
+<p>Further, we can determine how many workers there are in total, across all stations, at time <span class="math inline">\(t_0\)</span> with the equation:
+<span class="math display">\[w_{t_0} = \sum_{k_0 = 1}^{l}\sum_{\tiny t=t_0-s_{d_0}+1-\Delta_{k_0}}^{t_0-\Delta_{k_0}}\frac{n_t\cdot y_{d_0}}{s_{d_0}}\]</span></p>
 <p>Where <span class="math inline">\(l\)</span> is the total number of work stations. This notation is quite unruly, and in truth doesn’t express the full generality of the notion of work stations and steps within a sequence. To give a rough idea of what other lines of inquiry we could dive down, we provide the following concepts:</p>
 <ul>
 <li>Mergers: when multiple stations feed a single station.</li>
@@ -81,40 +96,59 @@ draft: FALSE
 </div>
 <div id="the-variability-of-product-units" class="section level1">
 <h1>The Variability of Product Units</h1>
-<p>Thus far, we have assumed that the time for one worker to produce one unit of product is constant over a number of products demanded. To be fair, we allowed this quantity to vary by product group, but still it was assumed it was still constant within the product group. Now we wish to allow the time for one worker to produce one unit of product to vary by each unit of product. In symbols: <span class="math display">\[w = \sum_{i=1}^{n}\frac{y_i}{s}\]</span></p>
-<p>If <span class="math inline">\(y_i = y\)</span> for all <span class="math inline">\(i\)</span>, then our equation reduces to our original base equation by the linearity of summation. <span class="math display">\[w = \sum_{i=1}^{n}\frac{y}{s} = \frac{n \cdot y}{s}\]</span></p>
-<p>While this new formulation allows us to arbitrarily vary each <span class="math inline">\(y_i\)</span>, we want to further extend our thinking to capture concepts like random variation and the effects of covariates. First we consider a very simple model. <span class="math display">\[y_i = \mu + \epsilon_i\]</span></p>
+<p>Thus far, we have assumed that the time for one worker to produce one unit of product is constant over a number of products demanded. To be fair, we allowed this quantity to vary by product group, but still it was assumed it was still constant within the product group. Now we wish to allow the time for one worker to produce one unit of product to vary by each unit of product. In symbols:
+<span class="math display">\[w = \sum_{i=1}^{n}\frac{y_i}{s}\]</span></p>
+<p>If <span class="math inline">\(y_i = y\)</span> for all <span class="math inline">\(i\)</span>, then our equation reduces to our original base equation by the linearity of summation.
+<span class="math display">\[w = \sum_{i=1}^{n}\frac{y}{s} = \frac{n \cdot y}{s}\]</span></p>
+<p>While this new formulation allows us to arbitrarily vary each <span class="math inline">\(y_i\)</span>, we want to further extend our thinking to capture concepts like random variation and the effects of covariates. First we consider a very simple model.
+<span class="math display">\[y_i = \mu + \epsilon_i\]</span></p>
 <p>Where <span class="math inline">\(\mu\)</span> is a location paramter i.e. a central tendancy, and <span class="math inline">\(\epsilon_i\)</span> is the random deviate of the <span class="math inline">\(i\)</span>th unit of product from the location parameter. Typically we assume that <span class="math inline">\(\epsilon_i\)</span> is a random variable whose value is determined by a probability distribution, that is <span class="math inline">\(\epsilon_i \sim F_{\epsilon}\)</span>.</p>
-<p>We can take our model further by incorporating the effects of product groups (or some other covariate associated with <span class="math inline">\(y_i\)</span>) into account. <span class="math display">\[y_{j,i} = \mu + \alpha_j + \epsilon_{j,i}\]</span></p>
-<p>Here <span class="math inline">\(\alpha_j\)</span> is the effect of the <span class="math inline">\(jth\)</span> product group on the baseline <span class="math inline">\(\mu\)</span>. We can further expand this model by incoporating another effect (say the station being worked, <span class="math inline">\(k\)</span>) plus an interaction between product group and station. <span class="math display">\[y_{j,k,i} = \mu + \alpha_j+ \beta_k + \alpha_j \cdot\beta_k +\epsilon_{j,k,i}\]</span></p>
-<p>In the fuller generality, we might use a Generalized Linear Model (GLM) to capture a large number of covariates associated with the <span class="math inline">\(ith\)</span> product unit. <span class="math display">\[y_i = f\bigg(\sum_{o=0}^{h}\beta_o \cdot x_{i,o}\bigg)+\epsilon_i\]</span></p>
-<p>Where <span class="math inline">\(f\)</span> is a link function to transform the linear equation into a non-linear parameter space, <span class="math inline">\(\beta_o\)</span> is the coefficient of the <span class="math inline">\(o\)</span>th term, and <span class="math inline">\(x_{i,o}\)</span> is the <span class="math inline">\(o\)</span>th covariate of the <span class="math inline">\(i\)</span>th product unit. There are many other ways we could build such a model beyond the GLM (e.g., the Generalized Additive Model, Nerual Networks, etc.), but the GLM will be sufficient for our needs. We can incorporate the GLM into our base equation as follows: <span class="math display">\[w = \sum_{i=1}^{n}\frac{f\bigg(\sum_{o=0}^{h}\beta_o \cdot x_{i,o}\bigg)+\epsilon_i}{s}\]</span></p>
+<p>We can take our model further by incorporating the effects of product groups (or some other covariate associated with <span class="math inline">\(y_i\)</span>) into account.
+<span class="math display">\[y_{j,i} = \mu + \alpha_j + \epsilon_{j,i}\]</span></p>
+<p>Here <span class="math inline">\(\alpha_j\)</span> is the effect of the <span class="math inline">\(jth\)</span> product group on the baseline <span class="math inline">\(\mu\)</span>. We can further expand this model by incoporating another effect (say the station being worked, <span class="math inline">\(k\)</span>) plus an interaction between product group and station.
+<span class="math display">\[y_{j,k,i} = \mu + \alpha_j+ \beta_k + \alpha_j \cdot\beta_k +\epsilon_{j,k,i}\]</span></p>
+<p>In the fuller generality, we might use a Generalized Linear Model (GLM) to capture a large number of covariates associated with the <span class="math inline">\(ith\)</span> product unit.
+<span class="math display">\[y_i = f\bigg(\sum_{o=0}^{h}\beta_o \cdot x_{i,o}\bigg)+\epsilon_i\]</span></p>
+<p>Where <span class="math inline">\(f\)</span> is a link function to transform the linear equation into a non-linear parameter space, <span class="math inline">\(\beta_o\)</span> is the coefficient of the <span class="math inline">\(o\)</span>th term, and <span class="math inline">\(x_{i,o}\)</span> is the <span class="math inline">\(o\)</span>th covariate of the <span class="math inline">\(i\)</span>th product unit. There are many other ways we could build such a model beyond the GLM (e.g., the Generalized Additive Model, Nerual Networks, etc.), but the GLM will be sufficient for our needs. We can incorporate the GLM into our base equation as follows:
+<span class="math display">\[w = \sum_{i=1}^{n}\frac{f\bigg(\sum_{o=0}^{h}\beta_o \cdot x_{i,o}\bigg)+\epsilon_i}{s}\]</span></p>
 </div>
 <div id="managing-expectations" class="section level1">
 <h1>Managing Expectations</h1>
 <p>The previous section introduced the idea of random variation in the time it takes for workers to produce one unit of product. We will extend this idea further in treating three of our key variables of interest as random variables and determining their expectation.</p>
-<p>Let us begin with our equation showing demand over time, but modified to allow <span class="math inline">\(y\)</span> to vary by product unit (as was done in the previous section). <span class="math display">\[w_{t_0} = \sum_{t = t_0 - s +1}^{t_0}\sum_{i=1}^{n_t}\frac{y_{i}}{s}\]</span></p>
-<p>Let us convert this equation into one that deals with <span class="math inline">\(w\)</span>,<span class="math inline">\(n\)</span>, and <span class="math inline">\(y\)</span> as random variables. <span class="math display">\[W_{t_0} = \sum_{t = t_0 - s +1}^{t_0}\sum_{i=1}^{N_t}\frac{Y_{i}}{s}\]</span></p>
-<p>If we assume that all <span class="math inline">\(Y_{i}\)</span> are independently and identically distributed (I.I.D.), and that all <span class="math inline">\(N_t\)</span> are as well, we can use the expectation for <span class="math inline">\(Y\)</span> and <span class="math inline">\(N_t\)</span> to find the expectation for <span class="math inline">\(W\)</span>. <span class="math display">\[E(W_{t}) = \sum_{t = 1}^{s}\sum_{i=1}^{E(N_t)}\frac{E(Y)}{s}\]</span></p>
-<p>Because of the linearity of expectations and summation, this reduces down to: <span class="math display">\[E(W_{t}) = s\cdot \frac{E(N_t)E(Y)}{s} = E(N_t)E(Y)\]</span></p>
+<p>Let us begin with our equation showing demand over time, but modified to allow <span class="math inline">\(y\)</span> to vary by product unit (as was done in the previous section).
+<span class="math display">\[w_{t_0} = \sum_{t = t_0 - s +1}^{t_0}\sum_{i=1}^{n_t}\frac{y_{i}}{s}\]</span></p>
+<p>Let us convert this equation into one that deals with <span class="math inline">\(w\)</span>,<span class="math inline">\(n\)</span>, and <span class="math inline">\(y\)</span> as random variables.
+<span class="math display">\[W_{t_0} = \sum_{t = t_0 - s +1}^{t_0}\sum_{i=1}^{N_t}\frac{Y_{i}}{s}\]</span></p>
+<p>If we assume that all <span class="math inline">\(Y_{i}\)</span> are independently and identically distributed (I.I.D.), and that all <span class="math inline">\(N_t\)</span> are as well, we can use the expectation for <span class="math inline">\(Y\)</span> and <span class="math inline">\(N_t\)</span> to find the expectation for <span class="math inline">\(W\)</span>.
+<span class="math display">\[E(W_{t}) = \sum_{t = 1}^{s}\sum_{i=1}^{E(N_t)}\frac{E(Y)}{s}\]</span></p>
+<p>Because of the linearity of expectations and summation, this reduces down to:
+<span class="math display">\[E(W_{t}) = s\cdot \frac{E(N_t)E(Y)}{s} = E(N_t)E(Y)\]</span></p>
 <p>Thus, given our independence assumptions, the expected number of workers at any time is the product of the expected demand at any time and the expected time it takes for one worker to produce one resource. With additional machinary from probability theory, we could do away with these independence assumptions and tackle more realistic challenges e.g., auto-correlated demand or worker production capability improving over time.</p>
 </div>
 <div id="anticipated-performance-given-workers-assigned" class="section level1">
 <h1>Anticipated Performance Given Workers Assigned</h1>
 <p>Our next exploration leverages a trivial algrebraic relation in our base equation to give us an understanding of the anticipated performance (i.e. how long it will take for products to be made) given the numbr of workers currently assigned to the task.</p>
-<p>Begining with our base equation, som simple rearranging allows us to go from this: <span class="math display">\[w = \frac{n \cdot y}{s}\]</span></p>
+<p>Begining with our base equation, som simple rearranging allows us to go from this:
+<span class="math display">\[w = \frac{n \cdot y}{s}\]</span></p>
 <p>to this:</p>
+
 <p><span class="math display">\[s = \frac{n \cdot y}{w}\]</span></p>
 <p>While the manipulation was easy, there is a lot of practical utility to be had from such a transformation. Specifically it allows us to communicate our expectations of performance to customers given our resource constraints. This also allows us to think about how different kinds of workers should have different expectations associated with them.</p>
-<p>For instance, let’s imagine that you group workers into two different classes: qualified and trainee, where a qualified person is expected to have greater capability i.e. they can produce more in less time. We could represent the ratio of the time it takes a trainee worker to complete a single product to the time it takes a qualified worker. <span class="math display">\[r = \frac{y_{q=0}}{y_{q=1}}\]</span> Here <span class="math inline">\(r\)</span> is the aforementioned ratio, which will will call the “trainee equivalence rate” or perhaps the “trainee discount rate”. <span class="math inline">\(y_q\)</span> is the time it takes one worker to produce one product for the worker class <span class="math inline">\(q\)</span>. <span class="math inline">\(q=1\)</span> means the qualified woker class, whereas <span class="math inline">\(q=0\)</span> is the unqualified/trainee worker class.</p>
-<p>We could alternatively write this in terms of expectations. This perspective allows of to estimate the expectation from empirical data using statisitical methods. <span class="math display">\[r = \frac{E(Y|Q=0)}{E(Y|Q=1)}\]</span></p>
-<p>Using our newfound knowledge, we can change our anticipated performance <span class="math inline">\(s\)</span> (which is the performance standard in the usual context), by incoporating the sum of workers <span class="math inline">\(w_q\)</span> from each class in the denominator our of base equation, with the trainee sum being weighted by <span class="math inline">\(r\)</span>. <span class="math display">\[s = \frac{n \cdot y}{w_{q=1}+w_{q=0}\cdot r}\]</span></p>
-<p>More generally, we could ascribe equivalency weights to a number of mutually exclusive classes. <span class="math display">\[s = \frac{n \cdot y}{\sum_{q=1}^uw_q\cdot r_q}\]</span></p>
+<p>For instance, let’s imagine that you group workers into two different classes: qualified and trainee, where a qualified person is expected to have greater capability i.e. they can produce more in less time. We could represent the ratio of the time it takes a trainee worker to complete a single product to the time it takes a qualified worker.
+<span class="math display">\[r = \frac{y_{q=0}}{y_{q=1}}\]</span>
+Here <span class="math inline">\(r\)</span> is the aforementioned ratio, which will will call the “trainee equivalence rate” or perhaps the “trainee discount rate”. <span class="math inline">\(y_q\)</span> is the time it takes one worker to produce one product for the worker class <span class="math inline">\(q\)</span>. <span class="math inline">\(q=1\)</span> means the qualified woker class, whereas <span class="math inline">\(q=0\)</span> is the unqualified/trainee worker class.</p>
+<p>We could alternatively write this in terms of expectations. This perspective allows of to estimate the expectation from empirical data using statisitical methods.
+<span class="math display">\[r = \frac{E(Y|Q=0)}{E(Y|Q=1)}\]</span></p>
+<p>Using our newfound knowledge, we can change our anticipated performance <span class="math inline">\(s\)</span> (which is the performance standard in the usual context), by incoporating the sum of workers <span class="math inline">\(w_q\)</span> from each class in the denominator our of base equation, with the trainee sum being weighted by <span class="math inline">\(r\)</span>.
+<span class="math display">\[s = \frac{n \cdot y}{w_{q=1}+w_{q=0}\cdot r}\]</span></p>
+<p>More generally, we could ascribe equivalency weights to a number of mutually exclusive classes.
+<span class="math display">\[s = \frac{n \cdot y}{\sum_{q=1}^uw_q\cdot r_q}\]</span></p>
 <p>There is even more to explore with this line of inquiry, which may have the most practical utility (compared to the base equation) when dealing with a scare supply of resources.</p>
 </div>
 <div id="putting-it-all-together" class="section level1">
 <h1>Putting It All Together</h1>
-<p>This next section is rather brief. Our only aim is to explicate how all of the concepts we have just discussed (save anticipated performance given workers) come together into a single formula. This formula represents the broadest and most general expansion of our base equation. <span class="math display">\[w_{t_0} = \sum_{k_0=1}^{l}\sum_{j=1}^{m}\sum_{\tiny t=t_0-s_{k_0}+1-\Delta_{k_0}}^{t_0 - \Delta_{k_0}}\sum_{i=1}^{n_{k,j,t}}\frac{f\bigg(\sum_{o=0}^{h}\beta_o \cdot x_{i,o}\bigg)+\epsilon_i}{s_{k,j}}\]</span></p>
+<p>This next section is rather brief. Our only aim is to explicate how all of the concepts we have just discussed (save anticipated performance given workers) come together into a single formula. This formula represents the broadest and most general expansion of our base equation.
+<span class="math display">\[w_{t_0} = \sum_{k_0=1}^{l}\sum_{j=1}^{m}\sum_{\tiny t=t_0-s_{k_0}+1-\Delta_{k_0}}^{t_0 - \Delta_{k_0}}\sum_{i=1}^{n_{k,j,t}}\frac{f\bigg(\sum_{o=0}^{h}\beta_o \cdot x_{i,o}\bigg)+\epsilon_i}{s_{k,j}}\]</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(w_{t_0}\)</span> is the number of workers required at time <span class="math inline">\(t_0\)</span>;</li>
@@ -129,20 +163,25 @@ draft: FALSE
 </ul>
 <p>This is a lot of infromation and makes for a rather busy equation. That being said, this equation represents a composition of most of our previously discussed topics related to workload modeling, and can be used to capture a very general and complex system. That being said, it is possibly far more useful to use certain components of this equation while omitting others e.g., elimiating the notion of stations to capture work being done by different groups.</p>
 <p>While this is our final note on the theory of workload modeling, the next section will walkthrough a practical demonstration of setting up a workload modeling using the programming language R.</p>
-</div>
-<div id="a-demonstration-of-a-simple-workload-model" class="section level1">
-<h1>A Demonstration of a Simple Workload Model</h1>
-<p>In this section, we will walk though the creation of a very simple workload model using the R programming language. Recall that our base equation takes the following form: <span class="math display">\[w = \bigg\lceil\frac{n\cdot y}{s}\bigg\rceil\]</span></p>
+<p>#A Demonstration of a Simple Workload Model
+In this section, we will walk though the creation of a very simple workload model using the R programming language. Recall that our base equation takes the following form:
+<span class="math display">\[w = \bigg\lceil\frac{n\cdot y}{s}\bigg\rceil\]</span></p>
 <p>Where <span class="math inline">\(w\)</span> is the number of workers required, <span class="math inline">\(n\)</span> is the number of products demanded, <span class="math inline">\(y\)</span> is the time it takes for a single worker to produce a single prodcut, and <span class="math inline">\(s\)</span> is the time alloted for production (think “performance standard” for production). We take the ceiling as if we require a fractional resource, we must deploy a full resource to meet the demand in the time alloted.</p>
-<p>We will take this base equation and incorporate two elements that we described earlier in the post: demand varying over time, and the time for a single worker to produce a single product varying by product unit. We will treat these two quantities as random variables. In symbols: <span class="math display">\[w_{t_0} = \Bigg\lceil\sum_{t=t_0-s+1}^{t_0} \sum_{i=1}^{N_t}\frac{Y_{t,i}}{s}\Bigg\rceil\]</span></p>
+<p>We will take this base equation and incorporate two elements that we described earlier in the post: demand varying over time, and the time for a single worker to produce a single product varying by product unit. We will treat these two quantities as random variables. In symbols:
+<span class="math display">\[w_{t_0} = \Bigg\lceil\sum_{t=t_0-s+1}^{t_0} \sum_{i=1}^{N_t}\frac{Y_{t,i}}{s}\Bigg\rceil\]</span></p>
 <p>We are going to make some distributional assumptions about <span class="math inline">\(N_t\)</span> and <span class="math inline">\(Y_{t,i}\)</span>. First, we will assume that each is IID. Second, we will assign a particular distributional form to each.</p>
-<p>The number of products demanded at time <span class="math inline">\(t\)</span> is Poisson distributed with mean parameter <span class="math inline">\(\mu\)</span>. In symbols: <span class="math display">\[N_t \sim F_{N_t} \equiv Poisson(\mu)\]</span></p>
-<p>The time it takes for one worker to produce a particular product is geometrically distributed with rate parameter <span class="math inline">\(\gamma\)</span>. In symbols: <span class="math display">\[Y_{t,i} \sim F_{Y_{t,i}} \equiv geometric(\gamma)\]</span></p>
+<p>The number of products demanded at time <span class="math inline">\(t\)</span> is Poisson distributed with mean parameter <span class="math inline">\(\mu\)</span>. In symbols:
+<span class="math display">\[N_t \sim F_{N_t} \equiv Poisson(\mu)\]</span></p>
+<p>The time it takes for one worker to produce a particular product is geometrically distributed with rate parameter <span class="math inline">\(\gamma\)</span>. In symbols:
+<span class="math display">\[Y_{t,i} \sim F_{Y_{t,i}} \equiv geometric(\gamma)\]</span></p>
 <p>The Poisson and geometric distributions are simple and natural choices for count variables and discrete time variables respectively, though often they are insufficient for more complex real-world phenomenon. For our purposes they will be suffice.</p>
 <p>Next comes the question of what the values of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\gamma\)</span> are in our model. In the real world, there will usually be a lot of prior uncertainty as to what these values are, however subject matter experts will have some indication. In order to capture the epistemic uncertainty, and to enable us to easily assimilate future data to update the parameters of the model, we will leverage Bayesian prior distributions and the principle of maximum entropy (MaxEnt).</p>
 <p>Let’s say that an SME tells us that they think the average number of products demanded per hour is 6, and the average number of hours to complete a product is 2, but nothing else. The principle of maximum entropy tells us that the distribution we should choose to represent our epistemic uncertainty is the one that maximizes our uncertainty subject to constraints. In the case of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\gamma\)</span>, where all we know is the SME’s prediction of the mean and (as a consequence the nature of counts and durations) each is a positive real number, the distribution that maximizes our uncertainty is the exponential distribution. In symbols:</p>
 <p><strong>Note: because both <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\gamma\)</span> are being treated as random variables, we will use <span class="math inline">\(M\)</span> and <span class="math inline">\(\Gamma\)</span> in their place.</strong> –&gt;</p>
-<p><span class="math display">\[ M \sim F_{M} \equiv exponential(\lambda_{M} = 6^{-1})\]</span> and <span class="math display">\[\Gamma\sim F_{\Gamma} \equiv exponential(\lambda_{\Gamma} = 2^{-1})\]</span> </p>
+<p><span class="math display">\[ M \sim F_{M} \equiv exponential(\lambda_{M} = 6^{-1})\]</span>
+and
+<span class="math display">\[\Gamma\sim F_{\Gamma} \equiv exponential(\lambda_{\Gamma} = 2^{-1})\]</span>
+</p>
 <p>To visualize our uncertainty, we can use the random number generator functions in R, and visualize the results via the ggplot2 package.</p>
 <pre class="r"><code># load requisite packages
 require(tidyverse)

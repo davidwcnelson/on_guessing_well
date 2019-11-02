@@ -2,7 +2,7 @@
 title: "Bernoulli and Binomial Distribution"
 author: "David W.C. Telson"
 date: '2019-08-19'
-draft: no
+draft: TRUE
 slug: bernoulli-and-binomial-distribution
 tags: []
 categories: []

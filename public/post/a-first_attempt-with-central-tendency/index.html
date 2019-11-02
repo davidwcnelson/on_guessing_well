@@ -65,7 +65,8 @@
 <h2>The Mean</h2>
 <p>In the case of a sample (i.e. a collection of observations), the mean is the sum of the values of the observations divided by the total number of observations. The sample mean can be computed on interval and ratio data types. More generally, we say that the mean (aka the expected value) of a random variable is equal to the the sum of the possible outcomes weighted by each outcome’s probability of occurrence.</p>
 <p>In symbols, the sample mean can be computed as:</p>
-<p><span class="math display">\[Mean(X)= \frac{X_1 + X_2 + \dots + X_n}{n} = \frac{1}{n}\sum^n_{i=1}X_i\]</span> Where <span class="math inline">\(X_i\)</span> is the <span class="math inline">\(i\)</span>th observation of the <span class="math inline">\(n\)</span> total observations.</p>
+<p><span class="math display">\[Mean(X)= \frac{X_1 + X_2 + \dots + X_n}{n} = \frac{1}{n}\sum^n_{i=1}X_i\]</span>
+Where <span class="math inline">\(X_i\)</span> is the <span class="math inline">\(i\)</span>th observation of the <span class="math inline">\(n\)</span> total observations.</p>
 </div>
 <div id="the-median" class="section level2">
 <h2>The Median</h2>
@@ -83,7 +84,8 @@
 <h2>The Mode</h2>
 <p>In the case of a sample, the mode is the value that occurs most frequently among all observations. The sample mode can be computed on nominal, ordinal, interval, and ratio data. More generally the mode of a random variable is the quantity that has the highest probability of occurrence. There may be more than one mode, possibly even as many modes as there are possibilities (in the case of equally likely outcomes).</p>
 <p>In symbols, the sample mode can be computed as:</p>
-<p><span class="math display">\[Mode(X) = \underset{x}{\operatorname{arg max}} \sum^n_{i=1}1_{\{X_i =x\}}  \]</span> Where <span class="math inline">\(x\)</span> is one of the values observed in the sample <span class="math inline">\(X\)</span> of size <span class="math inline">\(n\)</span>; <span class="math inline">\(X_i\)</span> is the <span class="math inline">\(i\)</span>th sample of <span class="math inline">\(X\)</span>; and <span class="math inline">\(1_{\{X_i =x\}}\)</span> is an indicator function, which is equal to <span class="math inline">\(1\)</span> if <span class="math inline">\(X_i = x\)</span> and <span class="math inline">\(0\)</span> otherwise. The <span class="math inline">\(\operatorname{arg max}\)</span> function returns the <span class="math inline">\(x\)</span> which maximizes the sum i.e. the value <span class="math inline">\(x\)</span> which occurs most frequently.</p>
+<p><span class="math display">\[Mode(X) = \underset{x}{\operatorname{arg max}} \sum^n_{i=1}1_{\{X_i =x\}}  \]</span>
+Where <span class="math inline">\(x\)</span> is one of the values observed in the sample <span class="math inline">\(X\)</span> of size <span class="math inline">\(n\)</span>; <span class="math inline">\(X_i\)</span> is the <span class="math inline">\(i\)</span>th sample of <span class="math inline">\(X\)</span>; and <span class="math inline">\(1_{\{X_i =x\}}\)</span> is an indicator function, which is equal to <span class="math inline">\(1\)</span> if <span class="math inline">\(X_i = x\)</span> and <span class="math inline">\(0\)</span> otherwise. The <span class="math inline">\(\operatorname{arg max}\)</span> function returns the <span class="math inline">\(x\)</span> which maximizes the sum i.e. the value <span class="math inline">\(x\)</span> which occurs most frequently.</p>
 </div>
 </div>
 <div id="setting-up-a-guessing-game" class="section level1">
@@ -158,7 +160,8 @@ ggplot() +
 <h1>Inequality Penalty</h1>
 <p>The first loss function we will explore is perhaps the most simple. We get 1 point for guessing incorrectly and 0 points for guessing correctly (again, or goal is to get the fewest points possibility). We can refer to this as an inequality penalty.</p>
 <p>In symbols:</p>
-<p><span class="math display">\[d(g,x) = 1_{\{g\space\not=\space x\}}\]</span> Where <span class="math inline">\(d(g,x)\)</span> is the inequality penalty function given a guess <span class="math inline">\(g\)</span> and outcome <span class="math inline">\(x\)</span>, and <span class="math inline">\(1_{\{g\space\not=\space x\}}\)</span> is an indicator function returning <span class="math inline">\(1\)</span> if <span class="math inline">\(g\space\not=\space x\)</span> and <span class="math inline">\(0\)</span> otherwise.</p>
+<p><span class="math display">\[d(g,x) = 1_{\{g\space\not=\space x\}}\]</span>
+Where <span class="math inline">\(d(g,x)\)</span> is the inequality penalty function given a guess <span class="math inline">\(g\)</span> and outcome <span class="math inline">\(x\)</span>, and <span class="math inline">\(1_{\{g\space\not=\space x\}}\)</span> is an indicator function returning <span class="math inline">\(1\)</span> if <span class="math inline">\(g\space\not=\space x\)</span> and <span class="math inline">\(0\)</span> otherwise.</p>
 <p>We actually want to take an expectation over all possible outcomes, so we can write the expected penalty for a given guess <span class="math inline">\(g\)</span> as:</p>
 <p><span class="math display">\[E[d(g,X)] = \sum_{i=1}^nd(g,x_i)P(x_i) = \sum_{i=1}^n1_{\{g\space\not=\space x_i\}}P(x_i)\]</span></p>
 <p>As the expectation of an indicator function is the probability of the condition contained within the indicator function, we can actually reduce our expected penalty to:</p>
@@ -302,7 +305,8 @@ ggplot() +
 <div id="lp-metrics" class="section level1">
 <h1>Lp metrics</h1>
 <p>Before we close,we should touch on the common thread that spans all three of the cost functions we discussed: the concept of Lp metrics.</p>
-<p>All of our cost functions discussed so far are special cases of a more general form: <span class="math display">\[d(g,x) = |g-x|^p\]</span></p>
+<p>All of our cost functions discussed so far are special cases of a more general form:
+<span class="math display">\[d(g,x) = |g-x|^p\]</span></p>
 <p>We will refer to this general form as an Lp metric. We note here that Lp metrics are actually far more general than what we will cover in this post, and will be a recurring topic as we dive deeper into machine learning in particular. For now though, we will continue to discuss the form we have just described.</p>
 <p>Each of our cost functions is a special case of the general form. When <span class="math inline">\(p = 1\)</span>, we get the absolute difference penalty. When <span class="math inline">\(p = 2\)</span>, we get the squared difference penalty. We define the limit <span class="math inline">\(p \to 0\)</span> as the inequality penalty. In this way, as <span class="math inline">\(p\)</span> gets smaller we begin to treat any difference as being equally bad, whereas when <span class="math inline">\(p\)</span> gets larger bigger differences matter much much more. What happens when <span class="math inline">\(p \to \infty\)</span>?</p>
 <p>Let’s demonstrate what happens in R:</p>

@@ -2,7 +2,7 @@
 title: "Some Oddities of the Principle of Insufficient Reason"
 author: "David W.C. Telson"
 date: '2019-07-12'
-draft: no
+draft: TRUE
 slug: some_oddities_of_the-principle-of-insufficient-reason
 tags: null
 categories: null
@@ -13,7 +13,8 @@ categories: null
 <p>We are keenly interested in reasoning with incomplete or uncertain information i.e. how we should make a “best guess” given that we have imperfect knowledge. One of the classical tools in our tool belt is the so called “principle of insufficient reason” also known as the “principle of indifference”. More on the history and extensions of the principle, but for now I want to focus on some oddities that occur by trying to reason with the principle.</p>
 <p>The principle of insufficient reason essentially states that if we have <span class="math inline">\(n &gt; 1\)</span> mutually exclusive and collectively exhaustive propositions, and we have no reason to suspect any subset of them being more probable than another, then we should assign a probability of <span class="math inline">\(\frac{1}{n}\)</span> to each proposition.</p>
 <p>In symbols we could rephrase this as follows: suppose <span class="math inline">\(a = \{a_1,a_2,...,a_n\}\)</span> is a collection of propositions such that <span class="math inline">\(\bigoplus_{i=1}^{n}a_i\)</span>. Here <span class="math inline">\(\oplus\)</span> is the “exclusive disjunction” i.e. “exclusive or” i.e. “XOR” operator, meaning that one and only one of the propositions is true. If we are unable to distinguish between the propositions except for their label <span class="math inline">\(i\)</span>, then the principle tells us to assign a probability of <span class="math inline">\(\frac{1}{n}\)</span> to each i.e. <span class="math inline">\(\forall a_i \in a\)</span>, <span class="math inline">\(p_i = P(a_i) = \frac{1}{n}\)</span>.</p>
-<p>Even more abstractly, we could say that the principle of indifference is a function <span class="math inline">\(P\)</span>, defined as: <span class="math display">\[
+<p>Even more abstractly, we could say that the principle of indifference is a function <span class="math inline">\(P\)</span>, defined as:
+<span class="math display">\[
 P: a \rightarrow \mathbb{R^+} \\
 a_i \mapsto \frac{1}{|a|} = \frac{1}{n}  
 \]</span></p>
@@ -26,9 +27,11 @@ a_i \mapsto \frac{1}{|a|} = \frac{1}{n}
 <p>The first two axioms are easily understood, but the last takes some thought. On finite sets, it is a triviality, but its utility is in finding meaningful probability statements within infinite sets, as we shall soon see.</p>
 <p>The principle of indifference on a non-empty finite set of propositions meets the requirement of the first axiom easily, as any such set will have a cardinality <span class="math inline">\(0 &lt; |a| = n &lt; \infty\)</span> with <span class="math inline">\(n \in N\)</span> so that <span class="math inline">\(\frac{1}{n}\)</span> is always a positive real number.</p>
 <p>The principle of indifference on a non-empty finite set of propositions also meets the requirement of the second axiom. Specifically, if we assume <span class="math inline">\(\bigoplus_{i=1}^{n}a_i\)</span>, then we have:</p>
-<p><span class="math display">\[P(a) = P(\bigcup_{i=1}^{n}a_i) = \sum_{i=1}^{n}P(a_i)=\sum_{i=1}^n\frac{1}{n} = \frac{n}{n}=1\]</span> <em>Note: technically this is a case of “abuse of notation” as we stated <span class="math inline">\(a_i\)</span> were propositions, rather than sets, but we will let this go for now.</em></p>
+<p><span class="math display">\[P(a) = P(\bigcup_{i=1}^{n}a_i) = \sum_{i=1}^{n}P(a_i)=\sum_{i=1}^n\frac{1}{n} = \frac{n}{n}=1\]</span>
+<em>Note: technically this is a case of “abuse of notation” as we stated <span class="math inline">\(a_i\)</span> were propositions, rather than sets, but we will let this go for now.</em></p>
 <p>Finally let’s choose to partition our set of propositions into two mutually exclusive subsets <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span> where <span class="math inline">\(|b| = m &lt; n\)</span> and <span class="math inline">\(|c| = n - m\)</span>. For the first subset we have:</p>
-<p><span class="math display">\[P(b) = P(\bigcup_{a_i\in b}a_i) = \sum_{a_i\in b}P(a_i)=\sum_{i=1}^m\frac{1}{n} = \frac{m}{n}\lt1\]</span> The second subset will have a probability equal to <span class="math inline">\(\frac{n-m}{n} = 1 - \frac{m}{n}\)</span>. These statements of the qualities of our principle of indifference are not so much proofs that our principle of indifference meets the axioms of probabilities as they are examples to build an intuition of how the two relate.</p>
+<p><span class="math display">\[P(b) = P(\bigcup_{a_i\in b}a_i) = \sum_{a_i\in b}P(a_i)=\sum_{i=1}^m\frac{1}{n} = \frac{m}{n}\lt1\]</span>
+The second subset will have a probability equal to <span class="math inline">\(\frac{n-m}{n} = 1 - \frac{m}{n}\)</span>. These statements of the qualities of our principle of indifference are not so much proofs that our principle of indifference meets the axioms of probabilities as they are examples to build an intuition of how the two relate.</p>
 <p>Now all of this is perfectly fine w.r.t. non-empty finite sets of mutually exclusive propositions, but what happens when we start to increase the number of propositions towards infinity? In other words, can our principle of indifference be applied to countably infinite sets? Let’s approach this from a different angle, and lets proceed cautiously by defining the limit of a sequence.</p>
 <p><strong>Definition 1</strong> <em>The limit <span class="math inline">\(r\)</span> of a sequence <span class="math inline">\(f(n) = r_n\)</span> exists if for any <span class="math inline">\(\epsilon\)</span> &gt; 0, there exists an <span class="math inline">\(m \in \mathbb{N}\)</span> such that if <span class="math inline">\(n \ge m\)</span> then <span class="math inline">\(|r_n - r|&lt;\epsilon\)</span>. We write the limit <span class="math inline">\(r\)</span> of <span class="math inline">\(f(n)\)</span> as <span class="math inline">\(\lim_{n \to \infty} f(n) = r\)</span>.</em></p>
 <p>So given a sequence (simply a function <span class="math inline">\(f: \mathbb{N} \to \mathbb{R}\)</span>), we can determine its limit given the definition. Let’s create a second definition for our purposes:</p>
