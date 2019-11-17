@@ -5,7 +5,7 @@ date: '2019-07-15'
 slug: a-closer-look-at-the-statistical-syllogism-and-inductive-generalization
 categories: []
 tags: []
-draft: TRUE
+draft: FALSE
 ---
 
 A recent post compared and contrasted deduction, induction, and abduction. Within that post we touched on both the statistical syllogism (inferring characteristics of a sample from a population), and inductive generalization (inferring characteristics of population from a sample). I wanted to spend a little more time with each of these concepts to get a better sense of their justification and how we can interpret them. My hope is that through this post, we will gain some intuition of probable reasoning; and experience the interplay between induction, abduction, and deduction.

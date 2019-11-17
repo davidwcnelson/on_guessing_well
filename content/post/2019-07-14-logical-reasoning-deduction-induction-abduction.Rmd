@@ -5,7 +5,7 @@ date: '2019-07-14'
 slug: reasoning-via-deduction-induction-and-abduction
 categories: []
 tags: []
-draft: TRUE
+draft: FALSE
 ---
 
 My last post was an introduction to deductive reasoning, that is reasoning via deductive argument. I wanted to briefly outline two other forms of reasoning so we can identify their usage and compare their strengths and weakness in future applications.

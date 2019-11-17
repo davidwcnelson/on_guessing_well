@@ -1,0 +1,62 @@
+---
+title: "The Sleeping Beauty Problem"
+author: "David W.C. Telson"
+date: '2019-11-17'
+draft: FALSE
+slug: the-sleeping-beauty-problem
+tags: []
+categories: []
+---
+
+I just learned about the "Sleeping Beauty" problem in a wonderful [philosophy of probability anthology edited by Anthony Eagle](https://www.amazon.com/Philosophy-Probability-Contemporary-Readings-Routledge/dp/0415483875). The problem is raised in chapter 10 via an essay by Adam Elga. I will quote the passage directly:
+
+> "Some researches are going to put you to sleep. During the two days that your sleep lasts, they will briefly wake you up either once or twice depending on the toss of a fair coin (Heads: once; Tails: twice). After each waking, they will put you back to sleep with a drug that makes you forget that waking. When you are awakened, to what degree ought you believe that the outcome of the coin toss is Heads?"
+
+
+The author goes on to state two common positions: the probability is one half; or alternatively the probability is one third, with the author favoring the latter. I didn't find the author's initial reasoning quite convincing; however I built a simulation that yielded results akin to his own. Upon further reflection, I wasn't convinced that my simulations were answering the right questions, so I worked the problem from a different angle. What follows is my thinking:
+
+First, when we wake up, there are only three possibilities:
+
+- $a \equiv \text{the coin was flipped heads and this is the first time we have been awakened.}$ 
+
+- $b \equiv \text{the coin was flipped tails and this is the first time we have been awakened.}$
+
+- $c \equiv \text{the coin was flipped tails and this is the second time we have been awakened.}$
+
+Note that each of these possibilities is actually a conjunction of two simpler propositions:
+
+- $a \equiv h \wedge f$ where $h$ stands for "the coin was flipped heads" and $f$ for "this is the first time we have been awakened".
+
+- $b \equiv t \wedge f$ where $t$ stands for "the coin was flipped tails".
+
+- $c \equiv t \wedge s$ where $s$ stands for "this is the second time we have been awakened".
+
+Note that since heads and tails are mutually exclusive and exhaustive, as are the first and second awakenings, we can simplify our notation:
+
+- $t \wedge f \equiv \neg h \wedge f$
+
+- $t \wedge s \equiv \neg h \wedge \neg f$
+
+One final note before we dive into our analysis. The event "we have been awakened" is actually the disjunction $f \vee \neg f$, i.e. being awakened is the same as either being awakend for the first time or being awakened the second time. You will note that in our formulation, this statement is a tautology i.e. it will always be true that we will be awakened, regardless of whether the coin flips heads or tails. This is the key intuition. 
+
+Let's now get to the question asked by the "Sleeping Beauty" problem. What is $p(h|f \vee \neg f)$? The rules of probability theory give us the solution:
+
+\begin{aligned}
+
+p(h|f \vee \neg f) &= p(h|\top) & f\vee\neg f \text{ is a tautology} \\
+\\
+&= \frac{p(h \wedge \top)}{p(\top)} & \text{definition of conditional probability} \\
+\\
+
+&= p(h \wedge \top) & \text{probability of a tautology is 1}\\
+\\
+
+&= p(h) & \text{absorption law}\\
+\\
+
+\end{aligned}
+
+So the probability of the coin resulting in heads given that we have been awakened is equal to the probability that the coin results in heads i.e. being awakened gives us no new information about the whether the coin results in a heads or tails.  
+
+
+

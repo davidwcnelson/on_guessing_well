@@ -1,0 +1,172 @@
+---
+title: The Guessing Game
+author: David WC Telson
+date: "`r format(Sys.time(), '%A, %B %e, %Y at %H:%M %p')`"
+slug: the-guessing-game
+categories: []
+tags: []
+draft: TRUE
+---
+
+Greetings wonderful humans,
+
+Today's post is about what I call the "guessing game", or alternatively the "prediction problem". The guessing game asks a simple question: how do we make a best guess as to the unknown value of some object of interest? This question is at the core of this blog; and I would argue that it lies at the heart of probability theory, statistics, machine learning, decision theory, and science itself! 
+
+Before we dive into any of those fields, let's explore our foundational question a bit more. First, we are asking about a "best guess". The word "best" seems to indicate some sort of optimization, so naturally we are going to want to explore what "optimal" means in this context i.e. how are we measuring the "goodness" of guesses? This is a tricky one, because in many cases it depends upon context. That being said, we will explore different answers to this question and see the resulting consequences throughout this blog.
+
+Second, the word "guess" here could be substituted for "prediction", however I think the word "guess" gives us the kind of skepticism we should have about our predictive powers. This hearkens back to the often cited [George E.P. Box quote "all models are wrong, some are useful,"](https://en.wikipedia.org/wiki/All_models_are_wrong) as well as [Andrew Gelman's "taking a model too seriously is like not taking it seriously at all"](https://statmodeling.stat.columbia.edu/2009/11/30/just_one_of_the/). We need to be careful not to accept our models of the world (on which are guesses are based) as dogma, and instead be critical of them (see [Karl Popper's Falsificationism](https://en.wikipedia.org/wiki/Falsifiability)). Arguably this self-criticism is a defining characteristic of good science.
+
+Next, let's briefly speak to the "object of interest". I use the word "object" to be incredibly general. Our object of interest might be a number like the height of a person, or a quality like the color of a shirt, even an entire sequence like the track of a hurricane. There are a lot of things that could be "objects of interest", it just has to be something that we want/need to make a guess about. 
+
+Finally, we want to talk about this "unknown value." The word "unknown" could be exchanged with "uncertain", which will require us to adopt some language to describe the plausibility of possible values. We will use [probability theory](https://en.wikipedia.org/wiki/Probability_theory) as our language of choice, however there are other options that exist (e.g. [fuzzy logic](https://en.wikipedia.org/wiki/Fuzzy_logic), [Dempster-Shafer theory](https://en.wikipedia.org/wiki/Dempster%E2%80%93Shafer_theory)). Why choose probability theory over these other potential choices? One reason includes its ubiquity in statistics, machine learning, and decision theory i.e. there is a lot of research and tools based on probability. Additionally, there is a lot of empirical success with the application of probability theory to real world problems. Aside from these purely practical reasons, I find the philosophical justifications for the use of probability theory (most notably by [E.T. Jaynes](https://en.wikipedia.org/wiki/Edwin_Thompson_Jaynes)) highly compelling. Whether we are attempting to model the physical variation in the world around us or articulate our current state of knowledge, probability theory is a useful language to help us describe uncertainty.
+
+Now that we have touched upon the basics of the guessing game, let's explore it using mathematical notation. Here we restate our core question: how do we make a best guess as to the unknown value of some object of interest? Mathematically let's denote our unknown value of some object of interest as $y$. Further, let's say that some guess (not necessarily the best guess) is represented by $\tilde{y}$ (the little squiggle above the y is named a tilde). We intend for $\tilde{y}$ to be a close approximation of $y$. We can write this approximating relationship as follows:
+
+$$y \approx \tilde{y}$$
+
+We will leave aside the issue of how we make a particular guess $\tilde{y}$, because for now the specifics aren't very important. What is important is the issue of how good of a guess $\tilde{y}$ is at $y$ i.e. how close of an approximation is $\tilde{y}$ to $y$? The word "close" is intentional here, and should invoke some notion of the distance between the two. Here we will introduce a distance function $d$ that measures the distance (intuitively "closeness") between our guess $\tilde{y}$ and the unknown value $y$. We can write this as follows:
+
+$$d_{y,\tilde{y}} = d(y,\tilde{y})$$
+
+The distance function $d$ usually will produce values that are non-negative (i.e. ranging from $0$ to $+\infty$), achieving $0$ when our guess and the actual value are equal, and increasing the further away our guess is from the actual value. Our goal then is to find a guess that minimizes this distance, or in symbols:
+
+$$\hat{y} = \underset{\tilde{y}}{\text{arg min}} \ d(y,\tilde{y})$$
+
+Here $\hat{y}$ is our best guess i.e. the guess that minimizes the distance between itself and the real value. $\text{arg min}$ is a special function that finds the arguments of of a function that minimize the output of that function. In this case $\text{arg min}$ is finding the $\tilde{y}$ that minimizes $d(y,\tilde{y})$. Let's examine a concrete example before moving forward.
+
+Let's suppose that while we are uncertain as to the value of $y$, we know that it must a whole number between 1 and 5. In symbols we can say $y \in \{1,2,3,4,5\}$. Each of these numbers could serve as a plausible guess at the real value $y$. We will denote the set of these guesses as $\tilde{Y}=\{\tilde{y_n} = n:n\in\{1,2,3,4,5\}\}$. This should be read as $\tilde{Y}$ is the set of $\tilde{y_n}$ such that $y_n$ equals $n$, and $n$ is in the set $\{1,2,3,4,5\}$.
+
+After enumerationg our possible guesses, we must choose a distance function $d$ to measure the difference between a given $\tilde{y}_n$ and the real $y$. For our example let's arbitrarily choose $d(y,\tilde{y}) = |y - \tilde{y}|$ i.e. the absolute difference between the two values. We will explore other distance functions in the future, but for our example this one will suffice. 
+
+Now suppose that $y = 2$ i.e. we now know the value of $y$. We can then compute the distance of any of our guesses to the true value e.g. $d(y,\tilde{y_4})=|y - \tilde{y_4}| = |2 - 4| = |-2| = 2$. Let's examine a plot of the distance function over our possible guesses given that $y = 2$. Please note that all of our coding examples were produced using the R programming language. 
+
+```{r, warning = FALSE, message = FALSE}
+# load useful packages to wrangle and plot data
+library(tidyverse)
+
+# set the value of y
+y <- 2
+
+# create a table with guesses and distances
+tibble(guess = 1:5, distance = abs(y - guess)) %>% 
+# create the plot
+  ggplot(aes(x = guess, distance)) +
+# create a column geom with a "thin" width
+  geom_col(width = .01) +
+# create points atop the columns
+  geom_point() +
+# add a minimal theme
+  theme_minimal() +
+# add some labels
+  labs(x = 'Guess', y = 'Distance')
+```
+
+Notice how the further the guess is from $2$ the taller the column i.e. the further the distance. Also notice the "v" shape our distance function has over our guesses. This is a defining characteristic of the absolute difference function. As we noted early, our best guess $\hat{y}$ is the $\tilde{y}$ that minimizes $d(y,\tilde{y})$. You can find our $\hat{y}$ by looking for the value on the x-axis with the shortest column, in this case $2$.
+
+At this point, you are probably thinking "wait a minute David, won't setting $\tilde{y} = y$ be the best guess every time?" You are absolutely correct. A wonderfully trivial solution. You've also probably noted that our nice little solution is untenable in the real world, as we have to make a best guess $\hat{y}$ before knowing the value of $y$. This is what makes our guessing game a worth while problem to solve.
+
+So how do we choose a best guess $\hat{y}$ before knowing $y$? Well, one approach is to consider how every guess compares against every possible outcome. Since there are $5$ possible outcomes, there will be $5\times 5=25$ pairs of guesses and outcomes to consider. Let's visualize this in a plot similiar to our previous one.
+
+```{r}
+# create a table that features every combination of guess and outcome
+expand_grid(guess = 1:5, outcome = 1:5) %>% 
+# compute the distance for each pair of guess and outcome
+  mutate(distance = abs(outcome - guess)) %>%
+# create the plot
+  ggplot(aes(x = guess, distance, color = factor(outcome))) +
+# create lines
+  geom_line() +
+# create points 
+  geom_point() +
+# add a minimal theme
+  theme_minimal() +
+# add some labels
+  labs(x = 'Guess', y = 'Distance', color = 'Outcome')
+```
+
+Each colored line represents a distance function over guesses for a given outcome. For example, the green line is the distance function of the guesses if the outcome $y = 3$. Note how different guesses have different maximum distances. Guessing $1$ or $5$ can result in a maximum distance of $4$ whereas guessing $3$ can only attain a maximum distance of $2$. Let's examine this from a slightly different perspective. 
+
+```{r}
+# create a table that features every combination of guess and outcome
+expand_grid(guess = 1:5, outcome = 1:5) %>% 
+# compute the distance for each pair of guess and outcome
+  mutate(distance = abs(outcome - guess)) %>%
+# create the plot
+  ggplot(aes(x = guess, outcome, fill = distance)) +
+# create a raster  
+  geom_raster() +
+# add a minimal theme
+  theme_minimal() +
+# add some labels
+  labs(x = 'Guess', y = 'Outcome', color = 'Distance') +
+# make the colors a yellow to red gradient 
+  scale_fill_gradient(low = 'yellow', high = 'red')
+```
+
+This is a slighly different way of viewing the guess and outcome pairs. Here the more yellow the color the smaller the distance, and the more red the color the larger the distance. Notice again that a guess of $3$ features more yellow colors than other potential guesses, with $1$ and $5$ having the most red. The intuition we should be building here is that what matters most is how a potential guess usually behaves i.e. its central tendancy.
+
+The phrase "central tendancy" should remind us about averages. In our particular case, let's focus on the most common kind of average, the arithmetic mean, sometimes just called the mean. Recall the definition of the arithmetic mean on a set of $N$ numbers:
+
+$$\bar{x} = \frac{x_1 + x_2 + ... + x_N}{N}$$
+
+We can use the more compact sigma notation. Here the symbol $\sum$ (sigma) is used to tell us that we are adding a series of numbers, starting with $n = 1$ and ending with $n = N$. Why the symbol $\sum$? Because $\sum$ is the greek letter equivalent to "S", and the word "sum" begins with an "S". Note also that multiplying the sum by the reciprical $\frac{1}{N}$ is identical to dividing the sum by $N$. 
+
+$$\bar{x} = \frac{1}{N}\sum_{n=1}^{N}x_n$$
+
+We are going to talk a bit more about how to interpret the arithmetic mean in the context of our guessing game, but for now, let's see what happens when we take the mean distance for each guess over all possible outcomes. 
+
+```{r}
+# create a table that features every combination of guess and outcome
+expand_grid(guess = 1:5, outcome = 1:5) %>% 
+# compute the distance for each pair of guess and outcome
+  mutate(distance = abs(outcome - guess)) %>%
+# group by each guess
+  group_by(guess) %>%
+# compute the mean distance for each guess
+  mutate(mean_distance = mean(distance)) %>%
+# create the plot
+  ggplot(aes(x = guess, mean_distance)) +
+# create lines
+  geom_line() +
+# create points 
+  geom_point() +
+# add a minimal theme
+  theme_minimal() +
+# add some labels
+  labs(x = 'Guess', y = 'Mean Distance')
+```
+
+The above graph features each guess across the x-axis and the mean (i.e. average) distance across the y-axis. We can see that a guess of $3$ results in the smallest mean distance, where as $1$ and $5$ have the largest mean distance. In this current setup, a guess of $3$ represents our "best guess" as measured by the average distance over all possible outcomes. 
+
+Let's capture what we did symbolically. First a generic formulation:
+
+$$\hat{y} = \underset{\tilde{y}}{\text{arg min}} \ \frac{1}{N}\sum_{n=1}^{N}d(y_n,\tilde{y})$$
+
+Note here that $y_n$ represents the $n$th possible outcome. Thus we can interpret this as saying that our best guess is the one that minimizes the average distance over all possible outcomes. We next look at this formula, but filled in with the details of our example.
+
+$$\hat{y} = \underset{k \in \{1,2,3,4,5\}}{\text{arg min}} \ \frac{1}{5}\sum_{n=1}^{5}|n-k| = 3$$
+
+We have replace $\tilde{y}$ with $k$ to explicate what values we are considering as possible guesses. Equivalently we have replaced $y$ with $n$ because the possible outcomes are equal to thier indexes. Further $N$ has been replaced with $5$ as there are five possible outcomes. With all that said and done, $\hat{y}$ is still equal to $3$. 
+
+Now at this point there are three additional questions we should be asking. First, why did we choose the arithemtic mean to average the distance? We could have chosen to take the median or even minimum distance, so why the mean? Second, we presumed that our outcomes were all equally possible, but what if some outcomes are more likely/plausible than others? Third, why does the number $3$ minimize the mean absolute difference in the given context, and is there a more general lesson about the number in a set that minimizes the mean absolute difference? We will adress each of these questions in future posts, but for now we are going to quickly review what we've learned.
+
+1. The problem of our guessing game is thus: how do we make a best guess as to the unknown value of some object of interest?
+
+2. Formally, we can represent the unknown value of some object of interest as $y$, some guess as to this value as $\tilde{y}$, and a best guess as $\hat{y}$.
+
+3. To find which of the possible guesses is the best guess, we need to define a distance function $d$ that measures how close a guess $\tilde{y}$ is to $y$ e.g. we could use the absolute difference function $d(y,\tilde{y}) = |y-\tilde{y}|$.
+
+4. Since the actual outcome $y$ is unknown, we have to consider the mean distance each guess will achieve over all possible outcomes.
+
+
+
+
+
+
+
+
+
+
+
+
+
