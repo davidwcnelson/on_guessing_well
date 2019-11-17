@@ -6,10 +6,20 @@
     <description>Recent content on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 02 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Sleeping Beauty Problem</title>
+      <link>/post/the-sleeping-beauty-problem/</link>
+      <pubDate>Sun, 17 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/the-sleeping-beauty-problem/</guid>
+      <description>I just learned about the “Sleeping Beauty” problem in a wonderful philosophy of probability anthology edited by Anthony Eagle. The problem is raised in chapter 10 via an essay by Adam Elga. I will quote the passage directly:
+ “Some researches are going to put you to sleep. During the two days that your sleep lasts, they will briefly wake you up either once or twice depending on the toss of a fair coin (Heads: once; Tails: twice).</description>
+    </item>
     
     <item>
       <title>Rebooting the Blog</title>
@@ -22,21 +32,12 @@ For those who have been following the blog, you may have noticed that my previou
     </item>
     
     <item>
-      <title>The Guessing Game</title>
-      <link>/post/the-guessing-game/</link>
-      <pubDate>Sat, 02 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/the-guessing-game/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Bernoulli and Binomial Distribution</title>
       <link>/post/bernoulli-and-binomial-distribution/</link>
       <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/bernoulli-and-binomial-distribution/</guid>
-      <description>Today’s post will explore a fundamental probability distribution and its generalization: the Bernoulli and binomial distribution. The Bernoulli distribution is named after Jacob Bernoulli, one of several famous mathematicians from the Bernoulli family. We can use this distribution to represent the probability of a single experiment with a binary (bīnārius is latin for “consisting of two”) outcome. Classically, this probability setup can be thought of as the outcome of a single coin toss, however it can be generalized to a great many practical applications.</description>
+      <description>Today’s post will explore a fundamental probability distribution and its generalization: the Bernoulli and binomial distribution. The Bernoulli distribution is named after Jacob Bernoulli, one of several famous mathematicians from the Bernoulli family. We can use this distribution to represent the probability of a single experiment with a binary (bīnārius is Latin for “consisting of two”) outcome. Classically, this probability setup can be thought of as the outcome of a single coin toss, however it can be generalized to a great many practical applications.</description>
     </item>
     
     <item>
@@ -148,6 +149,16 @@ Deduction As we stated in our last post, deduction is reasoning that, given prem
       <description>Greetings wonderful humans,
 My name is David W.C. Telson and this blog is all about decision making under uncertainty. We will be exploring all sorts of topics from the realms of probability theory, decision theory, statistics, machine learning, and the philosophy of science.
 At present I am a Data Scientist working for the Federal Emergency Management Agency in Washington, DC. Most of the problems I work on involve leveraging machine learning and statistics to support decisions about the Agency&amp;rsquo;s incident workforce and field operations.</description>
+    </item>
+    
+    <item>
+      <title>The Guessing Game</title>
+      <link>/post/the-guessing-game/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/the-guessing-game/</guid>
+      <description>Greetings wonderful humans,
+Today’s post is about what I call the “guessing game”, or alternatively the “prediction problem”. The guessing game asks a simple question: how do we make a best guess as to the unknown value of some object of interest? This question is at the core of this blog; and I would argue that it lies at the heart of probability theory, statistics, machine learning, decision theory, and science itself!</description>
     </item>
     
   </channel>

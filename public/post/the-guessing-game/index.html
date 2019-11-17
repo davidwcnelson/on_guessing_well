@@ -50,23 +50,127 @@
   <h1> The Guessing Game </h1>
 
   <div id=sub-header>
-    David WC Telson · 2019/11/02 · 0 minute read
+    David WC Telson · 0001/01/01 · 11 minute read
   </div>
 
   <div class="entry-content">
     
 
 
+<p>Greetings wonderful humans,</p>
+<p>Today’s post is about what I call the “guessing game”, or alternatively the “prediction problem”. The guessing game asks a simple question: how do we make a best guess as to the unknown value of some object of interest? This question is at the core of this blog; and I would argue that it lies at the heart of probability theory, statistics, machine learning, decision theory, and science itself!</p>
+<p>Before we dive into any of those fields, let’s explore our foundational question a bit more. First, we are asking about a “best guess”. The word “best” seems to indicate some sort of optimization, so naturally we are going to want to explore what “optimal” means in this context i.e. how are we measuring the “goodness” of guesses? This is a tricky one, because in many cases it depends upon context. That being said, we will explore different answers to this question and see the resulting consequences throughout this blog.</p>
+<p>Second, the word “guess” here could be substituted for “prediction”, however I think the word “guess” gives us the kind of skepticism we should have about our predictive powers. This hearkens back to the often cited <a href="https://en.wikipedia.org/wiki/All_models_are_wrong">George E.P. Box quote “all models are wrong, some are useful,”</a> as well as <a href="https://statmodeling.stat.columbia.edu/2009/11/30/just_one_of_the/">Andrew Gelman’s “taking a model too seriously is like not taking it seriously at all”</a>. We need to be careful not to accept our models of the world (on which are guesses are based) as dogma, and instead be critical of them (see <a href="https://en.wikipedia.org/wiki/Falsifiability">Karl Popper’s Falsificationism</a>). Arguably this self-criticism is a defining characteristic of good science.</p>
+<p>Next, let’s briefly speak to the “object of interest”. I use the word “object” to be incredibly general. Our object of interest might be a number like the height of a person, or a quality like the color of a shirt, even an entire sequence like the track of a hurricane. There are a lot of things that could be “objects of interest”, it just has to be something that we want/need to make a guess about.</p>
+<p>Finally, we want to talk about this “unknown value.” The word “unknown” could be exchanged with “uncertain”, which will require us to adopt some language to describe the plausibility of possible values. We will use <a href="https://en.wikipedia.org/wiki/Probability_theory">probability theory</a> as our language of choice, however there are other options that exist (e.g. <a href="https://en.wikipedia.org/wiki/Fuzzy_logic">fuzzy logic</a>, <a href="https://en.wikipedia.org/wiki/Dempster%E2%80%93Shafer_theory">Dempster-Shafer theory</a>). Why choose probability theory over these other potential choices? One reason includes its ubiquity in statistics, machine learning, and decision theory i.e. there is a lot of research and tools based on probability. Additionally, there is a lot of empirical success with the application of probability theory to real world problems. Aside from these purely practical reasons, I find the philosophical justifications for the use of probability theory (most notably by <a href="https://en.wikipedia.org/wiki/Edwin_Thompson_Jaynes">E.T. Jaynes</a>) highly compelling. Whether we are attempting to model the physical variation in the world around us or articulate our current state of knowledge, probability theory is a useful language to help us describe uncertainty.</p>
+<p>Now that we have touched upon the basics of the guessing game, let’s explore it using mathematical notation. Here we restate our core question: how do we make a best guess as to the unknown value of some object of interest? Mathematically let’s denote our unknown value of some object of interest as <span class="math inline">\(y\)</span>. Further, let’s say that some guess (not necessarily the best guess) is represented by <span class="math inline">\(\tilde{y}\)</span> (the little squiggle above the y is named a tilde). We intend for <span class="math inline">\(\tilde{y}\)</span> to be a close approximation of <span class="math inline">\(y\)</span>. We can write this approximating relationship as follows:</p>
+<p><span class="math display">\[y \approx \tilde{y}\]</span></p>
+<p>We will leave aside the issue of how we make a particular guess <span class="math inline">\(\tilde{y}\)</span>, because for now the specifics aren’t very important. What is important is the issue of how good of a guess <span class="math inline">\(\tilde{y}\)</span> is at <span class="math inline">\(y\)</span> i.e. how close of an approximation is <span class="math inline">\(\tilde{y}\)</span> to <span class="math inline">\(y\)</span>? The word “close” is intentional here, and should invoke some notion of the distance between the two. Here we will introduce a distance function <span class="math inline">\(d\)</span> that measures the distance (intuitively “closeness”) between our guess <span class="math inline">\(\tilde{y}\)</span> and the unknown value <span class="math inline">\(y\)</span>. We can write this as follows:</p>
+<p><span class="math display">\[d_{y,\tilde{y}} = d(y,\tilde{y})\]</span></p>
+<p>The distance function <span class="math inline">\(d\)</span> usually will produce values that are non-negative (i.e. ranging from <span class="math inline">\(0\)</span> to <span class="math inline">\(+\infty\)</span>), achieving <span class="math inline">\(0\)</span> when our guess and the actual value are equal, and increasing the further away our guess is from the actual value. Our goal then is to find a guess that minimizes this distance, or in symbols:</p>
+<p><span class="math display">\[\hat{y} = \underset{\tilde{y}}{\text{arg min}} \ d(y,\tilde{y})\]</span></p>
+<p>Here <span class="math inline">\(\hat{y}\)</span> is our best guess i.e. the guess that minimizes the distance between itself and the real value. <span class="math inline">\(\text{arg min}\)</span> is a special function that finds the arguments of of a function that minimize the output of that function. In this case <span class="math inline">\(\text{arg min}\)</span> is finding the <span class="math inline">\(\tilde{y}\)</span> that minimizes <span class="math inline">\(d(y,\tilde{y})\)</span>. Let’s examine a concrete example before moving forward.</p>
+<p>Let’s suppose that while we are uncertain as to the value of <span class="math inline">\(y\)</span>, we know that it must a whole number between 1 and 5. In symbols we can say <span class="math inline">\(y \in \{1,2,3,4,5\}\)</span>. Each of these numbers could serve as a plausible guess at the real value <span class="math inline">\(y\)</span>. We will denote the set of these guesses as <span class="math inline">\(\tilde{Y}=\{\tilde{y_n} = n:n\in\{1,2,3,4,5\}\}\)</span>. This should be read as <span class="math inline">\(\tilde{Y}\)</span> is the set of <span class="math inline">\(\tilde{y_n}\)</span> such that <span class="math inline">\(y_n\)</span> equals <span class="math inline">\(n\)</span>, and <span class="math inline">\(n\)</span> is in the set <span class="math inline">\(\{1,2,3,4,5\}\)</span>.</p>
+<p>After enumerationg our possible guesses, we must choose a distance function <span class="math inline">\(d\)</span> to measure the difference between a given <span class="math inline">\(\tilde{y}_n\)</span> and the real <span class="math inline">\(y\)</span>. For our example let’s arbitrarily choose <span class="math inline">\(d(y,\tilde{y}) = |y - \tilde{y}|\)</span> i.e. the absolute difference between the two values. We will explore other distance functions in the future, but for our example this one will suffice.</p>
+<p>Now suppose that <span class="math inline">\(y = 2\)</span> i.e. we now know the value of <span class="math inline">\(y\)</span>. We can then compute the distance of any of our guesses to the true value e.g. <span class="math inline">\(d(y,\tilde{y_4})=|y - \tilde{y_4}| = |2 - 4| = |-2| = 2\)</span>. Let’s examine a plot of the distance function over our possible guesses given that <span class="math inline">\(y = 2\)</span>. Please note that all of our coding examples were produced using the R programming language.</p>
+<pre class="r"><code># load useful packages to wrangle and plot data
+library(tidyverse)
 
+# set the value of y
+y &lt;- 2
+
+# create a table with guesses and distances
+tibble(guess = 1:5, distance = abs(y - guess)) %&gt;% 
+# create the plot
+  ggplot(aes(x = guess, distance)) +
+# create a column geom with a &quot;thin&quot; width
+  geom_col(width = .01) +
+# create points atop the columns
+  geom_point() +
+# add a minimal theme
+  theme_minimal() +
+# add some labels
+  labs(x = &#39;Guess&#39;, y = &#39;Distance&#39;)</code></pre>
+<p><img src="/post/2019-11-02-the-guessing-game_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Notice how the further the guess is from <span class="math inline">\(2\)</span> the taller the column i.e. the further the distance. Also notice the “v” shape our distance function has over our guesses. This is a defining characteristic of the absolute difference function. As we noted early, our best guess <span class="math inline">\(\hat{y}\)</span> is the <span class="math inline">\(\tilde{y}\)</span> that minimizes <span class="math inline">\(d(y,\tilde{y})\)</span>. You can find our <span class="math inline">\(\hat{y}\)</span> by looking for the value on the x-axis with the shortest column, in this case <span class="math inline">\(2\)</span>.</p>
+<p>At this point, you are probably thinking “wait a minute David, won’t setting <span class="math inline">\(\tilde{y} = y\)</span> be the best guess every time?” You are absolutely correct. A wonderfully trivial solution. You’ve also probably noted that our nice little solution is untenable in the real world, as we have to make a best guess <span class="math inline">\(\hat{y}\)</span> before knowing the value of <span class="math inline">\(y\)</span>. This is what makes our guessing game a worth while problem to solve.</p>
+<p>So how do we choose a best guess <span class="math inline">\(\hat{y}\)</span> before knowing <span class="math inline">\(y\)</span>? Well, one approach is to consider how every guess compares against every possible outcome. Since there are <span class="math inline">\(5\)</span> possible outcomes, there will be <span class="math inline">\(5\times 5=25\)</span> pairs of guesses and outcomes to consider. Let’s visualize this in a plot similiar to our previous one.</p>
+<pre class="r"><code># create a table that features every combination of guess and outcome
+expand_grid(guess = 1:5, outcome = 1:5) %&gt;% 
+# compute the distance for each pair of guess and outcome
+  mutate(distance = abs(outcome - guess)) %&gt;%
+# create the plot
+  ggplot(aes(x = guess, distance, color = factor(outcome))) +
+# create lines
+  geom_line() +
+# create points 
+  geom_point() +
+# add a minimal theme
+  theme_minimal() +
+# add some labels
+  labs(x = &#39;Guess&#39;, y = &#39;Distance&#39;, color = &#39;Outcome&#39;)</code></pre>
+<p><img src="/post/2019-11-02-the-guessing-game_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Each colored line represents a distance function over guesses for a given outcome. For example, the green line is the distance function of the guesses if the outcome <span class="math inline">\(y = 3\)</span>. Note how different guesses have different maximum distances. Guessing <span class="math inline">\(1\)</span> or <span class="math inline">\(5\)</span> can result in a maximum distance of <span class="math inline">\(4\)</span> whereas guessing <span class="math inline">\(3\)</span> can only attain a maximum distance of <span class="math inline">\(2\)</span>. Let’s examine this from a slightly different perspective.</p>
+<pre class="r"><code># create a table that features every combination of guess and outcome
+expand_grid(guess = 1:5, outcome = 1:5) %&gt;% 
+# compute the distance for each pair of guess and outcome
+  mutate(distance = abs(outcome - guess)) %&gt;%
+# create the plot
+  ggplot(aes(x = guess, outcome, fill = distance)) +
+# create a raster  
+  geom_raster() +
+# add a minimal theme
+  theme_minimal() +
+# add some labels
+  labs(x = &#39;Guess&#39;, y = &#39;Outcome&#39;, color = &#39;Distance&#39;) +
+# make the colors a yellow to red gradient 
+  scale_fill_gradient(low = &#39;yellow&#39;, high = &#39;red&#39;)</code></pre>
+<p><img src="/post/2019-11-02-the-guessing-game_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>This is a slighly different way of viewing the guess and outcome pairs. Here the more yellow the color the smaller the distance, and the more red the color the larger the distance. Notice again that a guess of <span class="math inline">\(3\)</span> features more yellow colors than other potential guesses, with <span class="math inline">\(1\)</span> and <span class="math inline">\(5\)</span> having the most red. The intuition we should be building here is that what matters most is how a potential guess usually behaves i.e. its central tendancy.</p>
+<p>The phrase “central tendancy” should remind us about averages. In our particular case, let’s focus on the most common kind of average, the arithmetic mean, sometimes just called the mean. Recall the definition of the arithmetic mean on a set of <span class="math inline">\(N\)</span> numbers:</p>
+<p><span class="math display">\[\bar{x} = \frac{x_1 + x_2 + ... + x_N}{N}\]</span></p>
+<p>We can use the more compact sigma notation. Here the symbol <span class="math inline">\(\sum\)</span> (sigma) is used to tell us that we are adding a series of numbers, starting with <span class="math inline">\(n = 1\)</span> and ending with <span class="math inline">\(n = N\)</span>. Why the symbol <span class="math inline">\(\sum\)</span>? Because <span class="math inline">\(\sum\)</span> is the greek letter equivalent to “S”, and the word “sum” begins with an “S”. Note also that multiplying the sum by the reciprical <span class="math inline">\(\frac{1}{N}\)</span> is identical to dividing the sum by <span class="math inline">\(N\)</span>.</p>
+<p><span class="math display">\[\bar{x} = \frac{1}{N}\sum_{n=1}^{N}x_n\]</span></p>
+<p>We are going to talk a bit more about how to interpret the arithmetic mean in the context of our guessing game, but for now, let’s see what happens when we take the mean distance for each guess over all possible outcomes.</p>
+<pre class="r"><code># create a table that features every combination of guess and outcome
+expand_grid(guess = 1:5, outcome = 1:5) %&gt;% 
+# compute the distance for each pair of guess and outcome
+  mutate(distance = abs(outcome - guess)) %&gt;%
+# group by each guess
+  group_by(guess) %&gt;%
+# compute the mean distance for each guess
+  mutate(mean_distance = mean(distance)) %&gt;%
+# create the plot
+  ggplot(aes(x = guess, mean_distance)) +
+# create lines
+  geom_line() +
+# create points 
+  geom_point() +
+# add a minimal theme
+  theme_minimal() +
+# add some labels
+  labs(x = &#39;Guess&#39;, y = &#39;Mean Distance&#39;)</code></pre>
+<p><img src="/post/2019-11-02-the-guessing-game_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The above graph features each guess across the x-axis and the mean (i.e. average) distance across the y-axis. We can see that a guess of <span class="math inline">\(3\)</span> results in the smallest mean distance, where as <span class="math inline">\(1\)</span> and <span class="math inline">\(5\)</span> have the largest mean distance. In this current setup, a guess of <span class="math inline">\(3\)</span> represents our “best guess” as measured by the average distance over all possible outcomes.</p>
+<p>Let’s capture what we did symbolically. First a generic formulation:</p>
+<p><span class="math display">\[\hat{y} = \underset{\tilde{y}}{\text{arg min}} \ \frac{1}{N}\sum_{n=1}^{N}d(y_n,\tilde{y})\]</span></p>
+<p>Note here that <span class="math inline">\(y_n\)</span> represents the <span class="math inline">\(n\)</span>th possible outcome. Thus we can interpret this as saying that our best guess is the one that minimizes the average distance over all possible outcomes. We next look at this formula, but filled in with the details of our example.</p>
+<p><span class="math display">\[\hat{y} = \underset{k \in \{1,2,3,4,5\}}{\text{arg min}} \ \frac{1}{5}\sum_{n=1}^{5}|n-k| = 3\]</span></p>
+<p>We have replace <span class="math inline">\(\tilde{y}\)</span> with <span class="math inline">\(k\)</span> to explicate what values we are considering as possible guesses. Equivalently we have replaced <span class="math inline">\(y\)</span> with <span class="math inline">\(n\)</span> because the possible outcomes are equal to thier indexes. Further <span class="math inline">\(N\)</span> has been replaced with <span class="math inline">\(5\)</span> as there are five possible outcomes. With all that said and done, <span class="math inline">\(\hat{y}\)</span> is still equal to <span class="math inline">\(3\)</span>.</p>
+<p>Now at this point there are three additional questions we should be asking. First, why did we choose the arithemtic mean to average the distance? We could have chosen to take the median or even minimum distance, so why the mean? Second, we presumed that our outcomes were all equally possible, but what if some outcomes are more likely/plausible than others? Third, why does the number <span class="math inline">\(3\)</span> minimize the mean absolute difference in the given context, and is there a more general lesson about the number in a set that minimizes the mean absolute difference? We will adress each of these questions in future posts, but for now we are going to quickly review what we’ve learned.</p>
+<ol style="list-style-type: decimal">
+<li><p>The problem of our guessing game is thus: how do we make a best guess as to the unknown value of some object of interest?</p></li>
+<li><p>Formally, we can represent the unknown value of some object of interest as <span class="math inline">\(y\)</span>, some guess as to this value as <span class="math inline">\(\tilde{y}\)</span>, and a best guess as <span class="math inline">\(\hat{y}\)</span>.</p></li>
+<li><p>To find which of the possible guesses is the best guess, we need to define a distance function <span class="math inline">\(d\)</span> that measures how close a guess <span class="math inline">\(\tilde{y}\)</span> is to <span class="math inline">\(y\)</span> e.g. we could use the absolute difference function <span class="math inline">\(d(y,\tilde{y}) = |y-\tilde{y}|\)</span>.</p></li>
+<li><p>Since the actual outcome <span class="math inline">\(y\)</span> is unknown, we have to consider the mean distance each guess will achieve over all possible outcomes.</p></li>
+</ol>
 
   </div>
 
   <div id=links>
     
-      <a class="basic-alignment left" href="/post/bernoulli-and-binomial-distribution/">&laquo; Bernoulli and Binomial Distribution</a>
     
-    
-      <a class="basic-alignment left" href="/post/rebooting-the-blog/">Rebooting the Blog &raquo;</a>
+      <a class="basic-alignment left" href="/post/a-first_attempt-with-central-tendency/">A First Attempt w/ Central Tendency &raquo;</a>
     
   </div>
 </section>
@@ -93,6 +197,9 @@
 
   
   
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 
 
 </body>
