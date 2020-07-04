@@ -133,7 +133,7 @@ p(m_2|y_{1:n}) &amp;= \frac{p(y_{1:n}| m_2)p(m_2)}{p(y_{1:n})} &amp; \text{Bayes
 \\
 \end{align}
 \]</span>
-Notice how the marginal likelihood forr <span class="math inline">\(m_2\)</span> doesn’t depend on the binary sequence, only its length! This is an interesting fact (to me anyways) that speaks to how <span class="math inline">\(m_2\)</span> never really learns from data. Using these two marginal likelihoods, we can determine the Bayes factor between our two models. I will actual be comparing <span class="math inline">\(m_2\)</span> to <span class="math inline">\(m_1\)</span>.</p>
+Notice how the marginal likelihood for <span class="math inline">\(m_2\)</span> doesn’t depend on the binary sequence, only its length! This is an interesting fact (to me anyways) that speaks to how <span class="math inline">\(m_2\)</span> never really learns from data. Using these two marginal likelihoods, we can determine the Bayes factor between our two models. I will actual be comparing <span class="math inline">\(m_2\)</span> to <span class="math inline">\(m_1\)</span>.</p>
 <p><span class="math display">\[
 \begin{align}
 \text{BF}(m_2,m_1) &amp;= \frac{p(y_{1:n}|m_2)}{p(y_{1:n}|m_1)}\\
