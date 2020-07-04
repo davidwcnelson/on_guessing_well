@@ -5,7 +5,7 @@ date: '2020-07-04'
 slug: setting-expectations
 categories: []
 tags: []
-draft: TRUE
+draft: FALSE
 ---
 
 This one is a short(ish) one (just so I can keep up the momentum of posting). I absolutely love the concept of mathematical expectations, and in this post I am hoping to introduce expectations and share one of my favorite factoids about them. 
