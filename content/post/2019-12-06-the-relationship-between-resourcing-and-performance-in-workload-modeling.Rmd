@@ -1,0 +1,93 @@
+---
+title: The Relationship Between Resourcing and Performance in Workload Modeling
+author: David W.C. Telson
+date: '2019-12-06'
+slug: the-relationship-between-resourcing-and-performance-in-workload-modeling
+categories: []
+tags: []
+---
+
+$$r = \frac{w}{sc}$$
+
+$$s_0 = \frac{w}{r_0c}$$
+
+$$
+\begin{aligned}
+\frac{s_0}{s} &= \frac{\frac{w}{r_0c}}{\frac{w}{rc}} \\ 
+\\
+&= \frac{w}{r_0c}{\frac{rc}{w}} \\ 
+\\
+&= \frac{r}{r_0}
+\\
+\end{aligned}
+$$
+
+$$ E\Big(\frac{S_0}{s}\Big) = E\Big(\frac{R}{r_0}\Big) = \frac{1}{r_0}E(R)$$
+
+$$P\Big(\frac{R}{r_0} = \frac{r}{r_0}\Big) = P(R = r)$$
+
+```{r}
+library(tidyverse)
+
+# days to simulate
+D <- 10000
+
+mu <- 20
+
+phi <- .25
+
+# units of work per day
+w <- 1 + rgeom(n = D, prob = 1/(mu))
+
+# work content per unit of work (in working days). Work content is the inverse of resource capability c
+y <- rexp(n = sum(w), rate = 1/phi)
+
+# index of days for each y
+i <- rep(1:D, w)
+
+# performance standard
+s = 2
+
+sum_y_d <- tapply(X = y, INDEX = i, FUN = sum)
+
+new_r_d <- sum_y_d/s
+
+r_d <- map_dbl(1:D, function(d){
+    
+    sum(new_r_d[pmax(d-s+1,1):d])
+    
+    })
+
+# qplot(1:D, ceiling(r_d), geom = 'step')
+
+qplot(ceiling(r_d))
+
+mean(r_d)
+mu * phi
+
+# our conjecture predicts s_0/s = r/r_0
+
+r0 <- 4
+
+mean(r_d/r0)
+
+# in our to demonstrate the validity of the conjecture, we want to construct an algorithm that simulates the processing of workloads given an allocation of resources.
+
+# let's create a resource that has 10 day blocks
+
+worker_capacity <- rep(1,10)
+
+# let's create some work that will take up some time
+
+work_content <- rexp(100, rate = 1/.25)
+
+# I need to step away and think about this for a bit.
+
+
+
+
+```
+
+
+
+

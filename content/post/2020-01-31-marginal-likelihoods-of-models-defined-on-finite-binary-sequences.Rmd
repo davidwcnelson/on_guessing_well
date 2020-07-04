@@ -1,0 +1,262 @@
+---
+title: Marginal Likelihoods of Models Defined on Binary Sequences
+author: David W.C. Telson
+date: '2020-07-02'
+slug: marginal-likelihoods-of-models-defined-on-binary-sequences
+categories: []
+tags: []
+draft: FALSE
+---
+
+This post is a long time coming. I originally wrote it in January of 2020 right when my partner and I moved from Washington, DC to Seattle, WA. Needless to say, the COVID-19 pandemic dramatically shifted how we were to live our life, and since both of us work in emergency management my free time (or at least my free energy) to work on this blog became non-existent. That being said, I am glad to have the opportunity to revisit this post, possibly with a little more wisdom (probably not).
+
+This post is about Bayes factors, a topic that I am more than dubious about. In theory, Bayes factors represent a natural application of Bayes' rule to quantify the uncertainty between competing models. In practice, Bayes factors can lead to very poor results. At this point I am going to list a few relevant blog posts from some of my favorite people whom I have never met:
+
+- *[A personal essay on Bayes factors](https://djnavarro.net/post/a-personal-essay-on-bayes-factors/)* by Danielle Navarro
+
+- *[(It's never a) Total Eclipse of the Prior](https://statmodeling.stat.columbia.edu/2017/09/05/never-total-eclipse-prior/)* by Dan Simpson
+
+- *[Touch me, I want to feel your data.](https://statmodeling.stat.columbia.edu/2017/09/07/touch-want-feel-data/)* by Dan Simpson
+
+- *[I hate Bayes factors (when they’re used for null hypothesis significance testing)](https://statmodeling.stat.columbia.edu/2019/09/10/i-hate-bayes-factors-when-theyre-used-for-null-hypothesis-significance-testing/)* by Andrew Gelman
+
+- *[“Bayes factor”: where the term came from, and some references to why I generally hate it](https://statmodeling.stat.columbia.edu/2017/07/21/bayes-factor-term-came-references-generally-hate/)* by Andrew Gelman
+
+I feel for Navarro in particular, because her journey mirrors my own w.r.t. a love and hate relationship with Bayes factors. It should be noted that All three of these authors ([particularly Gelman and his book](http://www.stat.columbia.edu/~gelman/book/)) have heavily influenced my thinking on statistics, especially with regards to challenging the norms of one statistical school or the other (e.g. Bayesians and Frequentists). Further, they each offer a very good mixture of philosophy, theory, and practice.
+
+Now let's get back to business. Recall that Bayes' rule allows us to infer how likely a parameter is to be a particular value $\theta$ given some known data $y$. We write Bayes' rule symbolically as follows:
+
+$$p(\theta|y) = \frac{p(y|\theta)p(\theta)}{\int_{\theta \in \Theta}p(y|\theta)p(\theta)d\theta}$$
+The terms of this equation have the following interpretations:
+
+- $p(\theta|y)$ is the posterior probability of the parameter value $\theta$ given the data $y$.
+- $p(y|\theta)$ is the likelihood of the data $y$ given the parameter value $\theta$.
+- $p(\theta)$ is the prior probability of the parameter value $\theta$ before seeing the data $y$.
+- $\int_{\theta \in \Theta}p(y|\theta)p(\theta)d\theta = p(y)$ is the marginal likelihood (also called the evidence) of the data $y$ integrating over the possible parameter values $\theta$. 
+
+I should note that the marginal likelihood is also referred to as the prior predictive distribution, as a pre-data analogue of the posterior predictive distribution which I heavily use in my own application of model evaluation (as taught to me via Gelman's book and a multitude of papers).
+
+Loosely speaking, our goal in inference is to find a model which reasonably represents the underlying data generating process (DGP). I won't go into the notions of $\mathcal{M}\text{-open}$, $\mathcal{M}\text{-closed}$, and $\mathcal{M}\text{-complete}$ ([more info here](https://projecteuclid.org/download/pdfview_1/euclid.ba/1378729923)), but for now let's assume the aforementioned goal is in fact what we are trying to do. Suppose there are $n$ models of the DGP under consideration, each equipped with a likelihood and prior and both relying on the same data. Let's call these models $m_1, m_2,...,m_n$ respectively. Let's consider what an application of Bayes' rule looks like in this context:
+
+$$p(m_i|y) = \frac{p(y|m_i)p(m_i)}{\sum_{j=1}^np(y|m_j)p(m_j)}$$
+
+So far so good. This appears to just be a simple use of Bayes' rule; however things become a bit more complicated. Observe that by the law of total probability $p(y|m_i) = \int_{\theta \in \Theta_i}p(y|\theta, m_i)p(\theta|m_i)d\theta$ which is the marginal likelihood of $y$ given $m_i$. Thus we can rewrite our equation as:
+
+$$p(m_i|y) = \frac{\big(\int_{\theta \in \Theta_i}p(y|\theta, m_i)p(\theta|m_i)d\theta\big) p(m_i)}{\sum_{j=1}^n\big(\int_{\theta \in \Theta_j}p(y|\theta, m_j)p(\theta|m_j)d\theta\big) p(m_j)}$$
+Note that $\Theta_j$ is the parameter space of the $j$th model which may be different from  other models. To simplify things a bit, let's suppose that a priori we don't have any reason to suspect $p(m_i) \not= p(m_j)$ for any $i \not = j$, and so we assign $p(m_i) = \frac{1}{n}$ to all $i \in \{1,2,...,n\}$. Our equation then becomes:
+
+$$p(m_i|y) = \frac{\int_{\theta \in \Theta_i}p(y|\theta, m_i)p(\theta|m_i)d\theta}{\sum_{j=1}^n\int_{\theta \in \Theta_j}p(y|\theta, m_j)p(\theta|m_j)d\theta}$$
+To simplify even further, observe that $p(m_i|y)$ is proportional to the numerator of the right hand side. In symbols:
+
+$$p(m_i|y) \propto \int_{\theta \in \Theta_i}p(y|\theta, m_i)p(\theta|m_i)d\theta$$
+In other words, the posterior is proportional to the marginal likelihood. Note how the posterior of a model is heavily dependent on the prior of its parameters (this is true even without our two previous simplifications). No matter how much data you see, your model's worth is determined by the priors you set (I mean technically its worth is determined by how well the priors predict the data, but the point is that the posterior is dependent on potentially unimportant parts of the prior). This over-dependence is often the source of outcry w.r.t. the use of Bayes factors in model decision problems. 
+
+Oh, I should define a Bayes factor (duh). A Bayes factor is a ratio of two marginal likelihoods. If your Bayes factor is greater than 1, then the numerator is favored; if your Bayes factor is less the one, the denominator is favored; else neither are favored i.e. their marginal likelihoods are equal. In symbols:
+
+$$\text{BF}(m_i, m_j) = \frac{\int_{\theta \in \Theta_i}p(y|\theta, m_i)p(\theta|m_i)d\theta}{\int_{\theta \in \Theta_i}p(y|\theta, m_j)p(\theta|m_j)d\theta}$$
+Which of course is proportional to the marginal likelihood of $m_i$. We will focus on both marginal likelihoods and Bayes factors throughout this post..
+
+Now, at this point I want to highlight a paper by [E. Fong and C.C. Homes titled *On the marginal likelihood and cross-validation*](https://arxiv.org/pdf/1905.08737.pdf). This paper is generally in favor of using marginal likelihoods for the purpose of model evaluation (note: I've been using the terms model decision and model evaluation as if they were synonymous but they are not. Model evaluation is simply assessing the posterior of a model, and model decision is using this evaluation to choose a model. I prefer model averaging rather than choosing a single model). This paper is of particular interest to me as it makes a very important connection between marginal likelihoods and cross-validation, the latter being a method of model evaluation I was taught from a Machine Learning perspective. Further, this paper restored some ounce of hope in my mind that marginal likelihoods (and therefore a more general application of Bayes rule) were not fully without merit. 
+
+The most interesting part of the paper for me is the idea that "marginal likelihood is formally equivalent to exhaustive leave-p-out cross-validation averaged over all values of p and all held-out test sets when using the log posterior predictive probability as the scoring rule". This can be seen as follows:
+
+$$
+\begin{align}
+p(m|y_{1:n}) &= \frac{p(y_{1:n}| m)p(m)}{p(y_{1:n})} & \text{Bayes' rule}\\
+\\
+&\propto p(y_{1:n}| m)p(m) & \text{proportionality}\\
+\\
+&= p(m)p(y_1|m)p(y_2|m, y_1)...p(y_n|y_{1:(n-1)}) & \text{chain rule}\\
+\\
+&= p(u_0)p(u_1|u_0)...p(u_n|u_0,u_1,...u_{n-1}) & u_0 = m, u_i = y_i \\
+\\
+&= \prod_{i=0}^n p(u_i|u_{j <i}) & u_{j < i} = \{u_j : j < i\} \\
+\\
+&= e^{\text{log}\prod_{i=0}^n p(u_i|u_{j <i})} & x = e^{\text{log}(x)} \\
+\\
+&= e^{\sum_{i=0}^n \text{log} \ p(u_i|u_{j<i})} & \text{log}(a\cdot b) = log(a) + log(b) \\
+\\
+&\implies \text{log} \ p(m|y_{1:n}) \propto \sum_{i=0}^n \text{log} \ p(u_i|u_{j<i})
+\end{align}  
+$$
+
+In other words, the log marginal likelihood is proportional to the sum of successive leave $n - i$ out log posterior predictive probabilities. Since the order of the $y_i$ do not matter, the log marginal likelihood is the same for any permutation of the hold out set i.e. the marginal likelihood is the average of such sums when considering every possible holdout set. I am still grappling with how to internalize this result and whether or not such a sum is actually what is desired w.r.t. model evaluation; but the connection between cross validation and marginal likelihoods is now apparent. I should note, the authors do point out the undesirable behavior of some terms being solely dependent on the specification of a prior, and subsequently suggest a means of addressing this by truncating the sum/product.
+
+Ok, let's grant the premise that there are virtues and vices with marginal likelihoods w.r.t. model selection. I am still dubious w.r.t. their application i.e. I don't want to utterly dismiss them nor do I want to fully embrace them. That being said, let's explore one of their most often talked about virtues: being a natural Occam's Razor. I can't find the original paper that I read back in January 2020 that expounded this virtue, however I found the following links to be good contributions to this particular component of the discussion:
+
+- [Chapter 28 of *Information Theory, Inference, and Learning Algorithm's*](http://www.inference.org.uk/mackay/itprnn/ps/343.355.pdf) by D. MacKay
+
+- [*David MacKay and Occam's Razor*](https://statmodeling.stat.columbia.edu/2011/12/04/david-mackay-and-occams-razor/) by Andrew Gelman
+
+- [*Occam's Razor*](http://mlg.eng.cam.ac.uk/zoubin/papers/occam.pdf) by C. Rasmussen and Z. Ghahramani
+
+- [*Why Gelman "hates" Bayesian Model Comparison*](http://www.gatsby.ucl.ac.uk/~turner/TeaTalks/bayes-model-comp/bayes-model-comp.pdf) by R. Turner
+
+For an overly simplistic definition, [Occam's Razor](https://en.wikipedia.org/wiki/Occam%27s_razor) (sometimes Ockham's razor) is a principle which states that between multiple complex explanations, we ought to prefer the most simple of such explanation. Fans of marginal likelihoods and Bayes factors say that Bayes factors are a natural Occam's razor. Now, whether or not Occam's razor is a principle we ought to adopt is an entirely different problem, but for now let's say that we are a least interested in such a preference.
+
+Suppose we observe a binary sequence $y_{1:n}$ and we wish to find a suitable model for the data generating process. Suppose there are two models under consideration $m_1$ and $m_2$. Let $m_1$ be defined by the likelihood function $p(y_{1:n}|\theta) = \prod_{i=1}^{n}\theta^{y_i}(1-\theta)^{1-y_i}$ (i.e. $m_1$ assumes that $y_i \sim \text{Bernoulli}(\theta)$) and a uniform prior on $\theta$ s.t. $\theta \sim \text{uniform}(0,1)$. Let $m_2$ be defined by the likelihood function $p(y_{1:n}|\phi_{1:n}) = \prod_{i=1}^{n}\phi_i^{y_i}(1-\phi_i)^{1-y_i}$ and a uniform prior on each $\phi_i$. Further, let's assume that we do not believe one model is more likely than the other a priori i.e. $p(m_1) = p(m_2) = \frac{1}{2}$ (this last assumption is debatable given the definition of $m_2$, but let's stick with it).
+
+Obviously $m_2$ is a more complex model. It has $n$ parameters ($\phi_1,\phi_2,...,\phi_n$) which is exactly 1 parameter for each data point. In this way, $m_2$ could in theory perfectly predict the data if each $\phi_i = y_i$ a priori (such foresight would be magical). It is also a very dumb model because in its current form it has absolutely no predictive power, which may lead us to believe it is not useful to discuss it. Let's actually consider a slight modification to $m_2$. Let's say that the parameter of $m_2$ is the infinite vector $(\phi_1, \phi_2, ...)$, with a uniform prior set on each $\phi_i$. In this way $m_2$ can now predict an an arbitrarily large dataset, rather than one of just $n$. You may object and say that a model cannot have an infinite number of parameters; at which point I will refer you to [non-parametric models](https://en.wikipedia.org/wiki/Nonparametric_statistics#Non-parametric_models). Despite the infinite number of parameters, the likelihood function is still the same as we ignore $\phi_i$ where $i > n$. 
+
+Let's see how an application of Bayes' rule will reason about these two models. We will begin by deriving the marginal likelihood for $m_1$, followed by $m_2$. Bear with me through this math. I will try to be explicit about each step.
+
+$$
+\begin{align}
+p(m_1|y_{1:n}) &= \frac{p(y_{1:n}| m_1)p(m_1)}{p(y_{1:n})} & \text{Bayes' rule}\\
+\\
+&\propto p(y_{1:n}| m_1) & \text{removing constants} \\
+\\
+&= \int_0^1p(y_{1:n}|\theta, m_1)p(\theta|m_1)d\theta & \text{law of total probability} \\
+\\
+&= \int_0^1p(y_{1:n}|\theta, m_1)d\theta & \text{prior is uniform on } {(0,1)} \\
+\\
+&= \int_0^1 \bigg(\prod_{i=1}^n p(y_i|\theta,m_1)\bigg)d\theta & y_i \text{ are IID given } \theta \\ \\
+&= \int_0^1 \bigg(\prod_{i=1}^n \theta^{y_i}(1-\theta)^{(1-y_i)}\bigg)d\theta & \text{Bernoulli pmf} \\
+&= \int_0^1 \theta^{k}(1-\theta)^{(n-k)}d\theta & \text{where } k = \sum_{i=1}^ny_i \\
+\\
+&= B(k+1, n-k+1) & \text{beta identity} \\
+\\
+&= \frac{\Gamma(k+1)\Gamma(n-k+1)}{\Gamma(n+1)} & \text{gamma equivalent} \\
+\\
+&= \frac{k!(n-k)!}{(n+1)!} & \text{Factorial equivalent} \\
+\\
+&=\bigg(\frac{(n+1)!}{k!(n-k)!}\bigg)^{-1} & \text{inverse identity}\\
+\\
+&=\bigg((n+1)\frac{n!}{k!(n-k)!}\bigg)^{-1} & \text{factor out } n+1\\
+\\
+&=\bigg((n+1) {n \choose k}\bigg)^{-1} & \text{binomial identity}\\
+\end{align}
+$$
+
+[Uffda](https://en.wikipedia.org/wiki/Uff_da). That was a lot of math, but we have a "nice" set of equalities to use in the future. Its interesting to note the use of the gamma, factorial, beta, binomial, etc. functions throughout. I wasn't very experienced in manipulating these kinds of functions until several months ago when originally starting this post. Let's derive the marginal likelihood for $m_2$. The logic looks fairly similiar up to a point:
+
+$$
+\begin{align}
+p(m_2|y_{1:n}) &= \frac{p(y_{1:n}| m_2)p(m_2)}{p(y_{1:n})} & \text{Bayes' rule}\\
+\\
+&\propto p(y_{1:n}| m_2) & \text{removing constants} \\
+\\
+&= \int_0^1p(y_{1:n}|\phi_{1:n}, m_2)p(\phi_{1:n}|m_2)d\phi_{1:n} & \text{law of total probability} \\
+\\
+&= \int_0^1p(y_{1:n}|\phi_{1:n}, m_2)d\phi_{1:n} & \text{prior is uniform on } {(0,1)} \\
+\\
+&= \int_0^1 \bigg(\prod_{i=1}^n p(y_i|\phi_i,m_2)\bigg)d\phi_{1:n} & y_i \text{ are IID given } \phi_{} \\
+\\
+&= \int_0^1 \bigg(\prod_{i=1}^n \phi_i^{y_i}(1-\phi_i)^{(1-y_i)}\bigg)d\phi_{1:n} & \text{Bernoulli pmf} \\
+\\
+&=  \prod_{i=1}^n \int_0^1 \phi_i^{y_i}(1-\phi_i)^{(1-y_i)}d\phi_i & \text{Fubini's theorem} \\
+\\
+&=  \prod_{i=1}^n B(y_i + 1, (1-y_i) + 1) & \text{beta identity} \\
+\\
+&=  \prod_{i=1}^n B(2, 1) & \text{symmetry of arguments} \\
+\\
+&=  \prod_{i=1}^n \frac{1}{2} & \text{value of } B(2,1) \\
+\\
+&=  \bigg(\frac{1}{2}\bigg)^n & \prod_{i=1}^n c = c^n \\
+\\
+&=  \frac{1}{2^n} & \text{distributive property} \\
+\\
+&=  2^{-n} & \text{inverse identity} \\
+\\
+\end{align}
+$$
+Notice how the marginal likelihood forr $m_2$ doesn't depend on the binary sequence, only its length! This is an interesting fact (to me anyways) that speaks to how $m_2$ never really learns from data. Using these two marginal likelihoods, we can determine the Bayes factor between our two models. I will actual be comparing $m_2$ to $m_1$.
+
+$$
+\begin{align}
+\text{BF}(m_2,m_1) &= \frac{p(y_{1:n}|m_2)}{p(y_{1:n}|m_1)}\\
+\\
+&=\frac{2^{-n}}{B(k + 1, n - k + 1)} \\
+\\
+&= \frac{\frac{1}{2^n}}{\frac{1}{(n+1){n \choose k}}} \\
+\\
+&= \frac{(n+1){n \choose k}}{2^n} \\
+\\
+&= (n+1)\frac{n \choose k}{2^n} \\
+\\
+&= (n+1) {n \choose k}\frac{1}{2^n} \\
+\\
+&= (n+1) {n \choose k}\bigg(\frac{1}{2}\bigg)^n \\
+\\
+&= (n+1) {n \choose k}\bigg(\frac{1}{2}\bigg)^k\bigg(\frac{1}{2}\bigg)^{n-k} \\
+\\
+&= (n+1) \text{ binomial}(k = k \ |\  p = \frac{1}{2}, n = n) \\
+&=  \text{beta}(p = \frac{1}{2}\ | \ \alpha = k + 1, \beta = n-k+1)
+\end{align}
+$$
+Our Bayes factor is equal to the density function of a beta distribution evaluated at $p = \frac{1}{2}$. It took me an embarrassing long time (months) to figure this out, but with relationship now known, we easily examine the behavior of our Bayes factors given different observed sequences. Remember that if $BF(m_2, m_1) < 1$ then we prefer $m_1$ to $m_2$ and vice versa. 
+
+To start getting an intuition with respect to our Bayes factor, let's consider the Bayes factor prior to seeing any data. This would be equivalent to a $\text{beta}(\frac{1}{2}|1,1)$ which is equal to $1$ i.e. we have no preference between $m_1$ and $m_2$ having observed no data, or rather the evidence (which there is none) doesn't favor either. From this point on, let's examine some visuals. First, let's see $n = 1$:
+
+```{r, echo = FALSE}
+`%>%` <- magrittr::`%>%`
+
+bf_table <- function(n) {
+  
+  tibble::tibble(k = 0:n, n = n, bf = dbeta(1/2, shape1 = k + 1, shape2 = n - k + 1)) 
+  
+  }
+
+bf_plot <- function(n = NULL, bf_table_ = bf_table(n)) {
+  
+  ggplot2::ggplot(data = bf_table_, mapping = ggplot2::aes(x = factor(k, levels = k), y = bf)) +
+  ggplot2::geom_col() +
+  ggplot2::geom_hline(yintercept = 1, color = 'red', linetype = 2) +
+  ggplot2::theme_minimal() +
+    ggplot2::labs(x = 'k', y = 'Bayes factor')
+  
+  }
+
+bf_plot(n = 1)
+```
+
+The dashed red line is at $1$. If a column is below the red line we favor $m_1$, if it is above the red line we favor $m_2$ and if it is on the red line we favor neither. We can see that if $n = 1$ we still do not favor one over the other. Let's look at $n = 2$:
+
+```{r, echo = FALSE}
+bf_plot(n = 2)
+```
+Here is where things start to get interesting. If $n = 2$, our Bayes factor favors $m_2$ (the more complex model) when $k = 1$. This doesn't appear to be a natural implementation of Occam's razor, as the Bayes factor is favoring the more complex model, but note that the favoring is only happening when the posterior of $\theta$ would be dense around $\frac{1}{2}$. Let's examine some successive $n$. To make things a bit easier to compare, we will examine $\frac{k}{n}$:
+
+```{r, echo = FALSE}
+
+purrr::map_df(2^(0:10), bf_table) %>%
+  ggplot2::ggplot(data = ., mapping = ggplot2::aes(x = k/n, y = bf, color = log2(n), group = n)) +
+  ggplot2::geom_line() +
+  ggplot2::theme_minimal() +
+  ggplot2::scale_color_gradient(low = '#dadaeb', high = '#54278f') +
+  ggplot2::labs(x = 'k / n', y = 'Bayes factor') +
+   ggplot2::geom_hline(yintercept = 1, color = 'red', linetype = 2) 
+
+```
+This graphic shows us the general intuition. As $n$ gets larger, the number of possible $k$ which favor $m_2$ over $m_1$ shrink. Specifically, the interval that is above the red line (which marks equal favoring between $m_2$ and $m_1$) shrinks, but stays centered around $k = \frac{n}{2}$. In other words it appears our Bayes factor will favor the complex model when $k$ is near $\frac{n}{2}$. This is interesting, because this is when our data looks most random (or rather, has the highest entropy). Another way to say this: the Bayes factor favors a model with far more structure (recall $m_1$ has 1 parameter, and $m_2$ has $n$ parameters) when the data is the most noisy. In my opinion, this doesn't seem like an intuitive, nor ideal behavior of the Bayes factor.
+
+Does this behavior always persist i.e. will there ever be a point where the Bayes factor stops favoring $m_2$ at every point? Consider the fact the the [binomial distribution converges to the normal distribution](http://www.m-hikari.com/imf/imf-2017/9-12-2017/p/baguiIMF9-12-2017.pdf) when $p = \frac{1}{2}$ and $n \to \infty$ (there are more general cases, but here will just focus on when $p = \frac{1}{2}$ as is our case). If we keep with our perspective of $\frac{k}{n}$ we note that this normal distribution will have $\mu = \frac{1}{2}$ and $\sigma^2 = \frac{1}{4n}$. As $n \to \infty$ we have that $\sigma$ shrinks to zero but $\mu$ remains untouched. Essentially the density at $\frac{1}{2}$ is infinite and $0$ everywhere else. This means that the Bayes factor is persistent in its favoring of the (now infinitely) complex model over the simpler model when $k = \frac{n}{2}$. 
+
+To me this seems like a mark against the use of Bayes factors (at least as a natural Occam's razor), as I can't understand why it would prefer an infinitely complex model to the simpler model that (at least from my perspective) describes the data just as well (more on that in a moment). There are likely several arguments that could be made against my "toy" example above, and here is my attempt to state and address three:
+
+1. We cannot allow a model with infinite parameters; and a model with a finite parameter space wouldn't have such a problem.
+
+2. The differences in predictions between $m_1$ and $m_2$ near $k = \frac{n}{2}$ are not practically different. 
+
+3. We cannot allow a model that doesn't learn from data.
+
+*Note: there are surely more well thought out arguments against my example that I would be keen to hear.*
+
+Argument 1A doesn't pass muster with me, because we allow such models all of the time in the field of non-parametric (which really should be called infinite-parametric) models e.g. Dirichlet processes, Gaussian processes, etc. I have a hard time seeing a difference between the example above (whose complexity grows with data just like the aforementioned non-parametric models) and other non-parametric models. 
+
+To address 1B, let's grant the premise that we exclude all models with an infinite number of parameters. All we need to do is truncate our parameter set to some number greater than $n$, say $n+1$ to make future predictions. A counter argument might be that we can't allow a model which can only make a finite number of predictions. Well, what if there was some process that we were observing and we knew the process would stop after its next output (e.g. a factory that will shut down tomorrow). Any model we construct ought to predict $0$ output past the next prediction, which is essentially the same as making no predictions past the next output. Therefore our example can be consider a finite model, albeit one that makes finite predictions. A more dubious technique to "save" the example is to have the last parameter $\phi_{n+1}$ predict all future outcomes. This seems very ad-hoc to me (though I am sure there is some practical application which may justify it), but I don't think this "save" is necessary to address 1A or 1B.
+
+Argument 2 falls apart after quick examination. Suppose we have observed $n = 1000$ outcomes and $k = 500$ of those outcomes were $1$, with the other $500$ being $0$. For $m_1$, we can compute a $90$% prediction interval with the quantile function of a beta distribution where $\alpha = 1 + 500$ and $\beta = 1 + 500$. This comes out approximately as [`r round(qbeta(.05, 501, 501), 2)`,`r round(qbeta(.95, 501, 501), 2)`]. Compare this to $m_2$ whose $90$% prediction interval can be compute with the quantile function of a beta distribution where $\alpha = 1$ and $\beta =1$. This comes out as approximately [`r round(qbeta(.05, 1, 1), 2)`,`r round(qbeta(.95, 1, 1), 2)`]. These are big differences w.r.t. the size of the intervals. It is true that the expectations for both of these are the same, but with large enough $n$ we can observe $k$ close to $\frac{n}{2}$ such that the prediction interval of $m_1$ excludes the expectation of $m_2$. That being said, these differences in expectations might not be practically important given the context. Regardless, our claims about the uncertainty in the next outcome are vastly different.
+
+Argument 3 is by far the most persuasive in my opinion. Firstly, let's start by clarifying: $m_2$ does learn from data, but only in the sense of learning the parameter values for past outcomes. It doesn't learn from data in a way that generalizes to future observations. For some researchers, this might be okay; but for individuals such as myself who build models to understand general phenomenon, this "lack of learning" feels like a big reason to not consider my example as a real failure of Bayes factors. However, it also might not be a failure of Bayes factors. We've framed our assessment thus far in the sense of Bayes factors as a natural Occam's Razor. If we stop and consider what these Bayes factors might mean in a different sense, we may have a reason to consider the example reasonable. 
+
+Specifically, we can interpret the Bayes factor result as saying "when $k \approx \frac{n}{2}$, then we prefer a model which says our outcomes come from a DGP made up of independent component DGPs, rather than a single DGP which generates outcomes via $\theta = \frac{1}{2}$". This is an interesting line of reasoning, and one I wouldn't have expected to be persuasive prior to writing this post. I am not fully convinced of this argument, but it is interesting to think about whether Bayes factors could be interpreted in this way. Further, does the quantification of uncertainty make sense in this vein i.e. is our larger prediction interval given $m_2$ more justifiable versus the smaller one given by $m_1$? An answer to this question requires more thought and probably depends upon the application at hand.
+
+With all of that said, I am still dubious about Bayes factors and marginal likelihoods. They are something I truly want to believe in, because they would make model comparison and averaging a straight forward application of Bayes rule; however I cannot ignore the problems that blind applications can create. That being said, they are likely a topic I will continue to explore to gain a deeper understanding as there is much much more to Bayes factors and marginal likelihoods than what has been described in this post. 
+
+Thank you for reading and until next time,
+
+David
+
+
+
