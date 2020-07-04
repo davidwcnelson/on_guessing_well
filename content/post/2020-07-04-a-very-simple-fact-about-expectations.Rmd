@@ -1,0 +1,86 @@
+---
+title: Setting Expectations
+author: David W.C. Telson
+date: '2020-07-04'
+slug: setting-expectations
+categories: []
+tags: []
+draft: TRUE
+---
+
+This one is a short(ish) one (just so I can keep up the momentum of posting). I absolutely love the concept of mathematical expectations, and in this post I am hoping to introduce expectations and share one of my favorite factoids about them. 
+
+First things first, let's remind ourselves of what a probability is. Over simplifying (my apologies to the measure theorists out there), we say that $P(\omega)$ is the probability that an event $\omega$ occurs if $P$ satisfies the following axioms:
+
+1. $P(\omega) \in \mathbb{R_{\ge0}}$ i.e. the probability is a non-negative real number.
+
+2. $P(\Omega) = 1$ where $\Omega$ is the set of all possible outcomes.
+
+3. If $\omega_1, \omega_2, ...$ is a countably infinite collection of mutually exclusive and collectively exhaustive (MECE) events, then $P(\bigcup_{i=1}^\infty \omega_i) = \sum_{i=1}^\infty P(\omega_i)$ i.e. the probability of the union of MECE events is the sum of the probabilities of MECE events. Note that $\bigcup$ and $\sum$ take unions and sums over an index respectively.
+
+Given these three axioms (the first two definitely being more simple than the last) we can derive all of probability theory (philosophical interpretations be damned).
+
+The bridge between probabilities and expectations is via the concept of a random variable which is a mapping $X$ between $\Omega$ (the set of all possible outcomes) and $\mathbb{R}$ (the set of all real numbers), which in symbols we write $X:\Omega\to\mathbb{R}$. Technically we can apply this to things other than real numbers, but we restrict ourselves for simplicity. We can then ask the probability that $X$ is equal to some real number $x$. Formally the event $X = 2$ is equivalent to $\{\omega: X(\omega) = x\}$, so when we ask $P(X = 2)$ we really mean $P(\{\omega: X(\omega) = x\})$. 
+
+An important note is that random variables can be discrete or continuous (or both or neither but we will only focus on these first two cases). We will refer to all of the possible $x$ that $X$ could take on as the "support" of $X$ and we will denote this support as $\mathcal{X}$. When $\mathcal{X}$ contains a finite or countably infinite number of values we say that it is discrete. When we want to know the probability that $X = x$, we use $P(X=x)$ as before and refer to $P$ as a probability mass function. 
+
+When $\mathcal{X}$ contains an uncountably infinite number of values we say that the random variable is continuous. Because $X$ is uncountably infinite, $P(X = x) = 0$ for any $x$. Thus, we use a special function called a probability density function which allows us to talk about the relative likelihood of different values of $x \in \mathcal{X}$. We write this as $p_X(x)$ and require that its value be a non-negative real number and further that $\int_{x \in \mathcal{X}}p_X(x)dx=1$.   
+
+To get a feel for how a random variable works, consider a simple coin toss (how cliche). Suppose $\Omega = \{\omega_1, \omega_2\}$ where $\omega_1$ is the event "the coin toss results in heads" and $\omega_2$ is the event "the coin toss results in tails." Let $X$ be a random variable such that $X(\omega_1) = 1$ and $X(\omega_2) = 0$. Note that this random variable is discrete as it can only take on a finite number of values. We can then ask what is the probability that $X = 1$, which is equal to $P(\{\omega: X(\omega) = 1\})$. Since there is only $1$ such $\omega \in \Omega$ (namely $\omega_1$) we have $P(X = 1) = P(\omega_1)$. 
+
+Hopefully that gives a little more intuition about what a random variable is, but here is the key take away: a random variable maps an event (e.g. the coin toss results in heads) to a real number (e.g. $1$). This lets us work with probabilities defined on real numbers which enables us to do a lot of nifty things. One such thing is computing what we refer to as a "mathematical expectation", or more simply an "expectation".
+
+The expectation of a random variable is a function $E$ which maps a random variable $X$ to a real number. We have two definitions of $E(X)$ depending on whether or not $X$ is discrete or continuous (these definitions can be united through a more advanced field of mathematics called measure theory, but that is out of scope for this post). Let's examine the discrete case first:
+
+$$E(X) = \sum_{x\in\mathcal{X}}xP(X = x)$$
+In essence an expectation is just a weighted sum of the values in $\mathcal{X}$, where each $x$ is weighted by $P(X = x)$. To get an even better intuition about what this expectation is, consider $P(X = x) =\frac{1}{5}$ defined for $x \in \mathcal{X} = \{1, 2, 3, 4, 5\}$. In this case we have $E(X) = \sum_{x\in\mathcal{X}}xP(X = x) = \sum_{n=1}^5n\frac{1}{5}=\frac{1}{5}\sum_{n = 1}^5 = \frac{1}{5}(1+2+3+4+5)$ which is simply the average (specifically the arithmetic mean) of the five possibilities. This is a special case where we have a finite number of possibilities and where each has equal probability, but in general we can think of an expectation as a sort of average. There is an even deeper relationship between the expectation of a random variable and the average of a sample drawn from the random variable as demonstrated by the Law of Large Numbers and the Central Limit Theorem (CLT). I digress for now.
+
+Let's turn our attention to the definition of an expectation for a continuous random variable:
+
+$$E(X) = \int_{x\in\mathcal{X}}xp_X(x)dx$$
+
+The expectation is essentially in the same form, except that we have swapped summation for integration and exchanged a probability mass function for a probability density function. The interpretation as an average still holds here as well. 
+
+There are a lot of interesting threads to pull w.r.t. expectations, to include:
+
+- Defining the variance $V$ of a random variable $X$ as $V(X) = E(X^2)-E(X)^2$.
+
+- Obtaining the moments of a random variable $X$ e.g. $\mu_1 = E(X), \mu_2 = E(X^2),...$
+
+- Deriving the Law of Large Numbers and the Central Limit Theorem (CLT).
+
+- Making predictions given conditional expectations (a.k.a. regression) e.g. $E(Y|X=x) = \alpha + \beta x$.
+
+- Discovering the role of expectations as the solution to the variational equation $\underset{\mu}{\text{argmin}} (X - \mu)^2$.
+
+- Exploring the expectation of vector or matrix valued random variables e.g. $E(\mathbf{X}) = E(X_1,X_2,...,X_n)$.
+
+- Examining the role of expectations in decision theory vis-a-vis the maximum expected utility principle.
+
+- Noting that $E(X) = E(X|Y)$ i.e. the law of total expectation.
+
+While these are all interesting topics (to me at least), they require posts of their own (really books of their own, which there are many). Instead, I want to touch on one little topic that is a rather simple expansion of what we have discussed thus far: probabilities as an expectations. We have used probabilities to define an expectation, but did you know we can define a probability with an expectation?
+
+First, let's introduce the concept of an indicator function. An indicator function $\mathbf{1}_Q$ is a function that takes a logical proposition $Q$ and returns a $1$ if $Q$ is true, and $0$ if $Q$ is false. For instance lets take $\mathbf{1}_{u=1}$. If the statement $u = 1$ is true, $\mathbf{1}_{u=1} = 1$, otherwise $\mathbf{1}_{u=1} = 0$. Indicator functions are exactly as simple as they seem. 
+
+Now consider our coin toss example from before. Let's look at the indicator function $\mathbf{1}_\text{"the coin toss results heads"}$. Note that the indicator function is actually the same thing as our random variable $X$. Thus we know $P(\mathbf{1}_\text{"the coin toss results heads"}=1)=P(\text{"the coin toss results heads"})$. Now since our indicator function is a random variable that takes on only one of two values (remember an indicator function returns either $0$ or $1$ regardless of what proposition is under consideration), we can consider the expectation of our indicator function. By definition we have:
+
+$$
+\begin{align}
+E(\mathbf{1}_\text{"the coin toss results heads"}) &= \sum_{x\in\{0,1\}}xP(\mathbf{1}_\text{"the coin toss results heads"}=x) \\
+\\
+&=0\times P(\mathbf{1}_\text{"the coin toss results heads"}=0) + 1 \times P(\mathbf{1}_\text{"the coin toss results heads"}=1) \\
+\\
+&= P(\mathbf{1}_\text{"the coin toss results heads"}=1) \\
+\\
+&= P(\text{"the coin toss results in heads"})
+\end{align}
+$$
+
+In other words, the expectation of an indicator function is the probability the proposition given to the indicator function is true. This is true in general i.e. $E(\mathbf{1}_Q) = P(Q)$. In this way a probability is an expectation. It may not seem useful at first, but in fact it has gotten me out of big head scratchers in both theoretical and applied work.
+
+That's all for now. Thank you for reading and until next time,
+
+David
+
+

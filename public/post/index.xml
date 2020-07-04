@@ -6,10 +6,20 @@
     <description>Recent content in Posts on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 02 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Setting Expectations</title>
+      <link>/post/setting-expectations/</link>
+      <pubDate>Sat, 04 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/setting-expectations/</guid>
+      <description>This one is a short(ish) one (just so I can keep up the momentum of posting). I absolutely love the concept of mathematical expectations, and in this post I am hoping to introduce expectations and share one of my favorite factoids about them.
+First things first, let’s remind ourselves of what a probability is. Over simplifying (my apologies to the measure theorists out there), we say that \(P(\omega)\) is the probability that an event \(\omega\) occurs if \(P\) satisfies the following axioms:</description>
+    </item>
     
     <item>
       <title>Marginal Likelihoods of Models Defined on Binary Sequences</title>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>
+    
+    
+     Setting Expectations 
+    
+  </title>
+  <link rel="canonical" href="/post/setting-expectations/">
+
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  
+</head>
+
+<body>
+<section id=nav>
+  <h1><a href="/">On Guessing Well</a></h1>
+  <ul>
+    
+    <li><a href="/about">About</a></li>
+    
+    <li><a href="/">Posts</a></li>
+    
+    <li><a href="https://github.com/wctelson">GitHub</a></li>
+    
+    <li><a href="https://www.linkedin.com/in/davidwcnelson/">LinkedIn</a></li>
+    
+    <li><a href="https://twitter.com/wctelson">Twitter</a></li>
+    
+    <li><a href="/index.xml">RSS</a></li>
+    
+  </ul>
+</section>
+
+
+<section id=content>
+  <h1> Setting Expectations </h1>
+
+  <div id=sub-header>
+    David W.C. Telson · 2020/07/04 · 7 minute read
+  </div>
+
+  <div class="entry-content">
+    
+
+
+<p>This one is a short(ish) one (just so I can keep up the momentum of posting). I absolutely love the concept of mathematical expectations, and in this post I am hoping to introduce expectations and share one of my favorite factoids about them.</p>
+<p>First things first, let’s remind ourselves of what a probability is. Over simplifying (my apologies to the measure theorists out there), we say that <span class="math inline">\(P(\omega)\)</span> is the probability that an event <span class="math inline">\(\omega\)</span> occurs if <span class="math inline">\(P\)</span> satisfies the following axioms:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(P(\omega) \in \mathbb{R_{\ge0}}\)</span> i.e. the probability is a non-negative real number.</p></li>
+<li><p><span class="math inline">\(P(\Omega) = 1\)</span> where <span class="math inline">\(\Omega\)</span> is the set of all possible outcomes.</p></li>
+<li><p>If <span class="math inline">\(\omega_1, \omega_2, ...\)</span> is a countably infinite collection of mutually exclusive and collectively exhaustive (MECE) events, then <span class="math inline">\(P(\bigcup_{i=1}^\infty \omega_i) = \sum_{i=1}^\infty P(\omega_i)\)</span> i.e. the probability of the union of MECE events is the sum of the probabilities of MECE events. Note that <span class="math inline">\(\bigcup\)</span> and <span class="math inline">\(\sum\)</span> take unions and sums over an index respectively.</p></li>
+</ol>
+<p>Given these three axioms (the first two definitely being more simple than the last) we can derive all of probability theory (philosophical interpretations be damned).</p>
+<p>The bridge between probabilities and expectations is via the concept of a random variable which is a mapping <span class="math inline">\(X\)</span> between <span class="math inline">\(\Omega\)</span> (the set of all possible outcomes) and <span class="math inline">\(\mathbb{R}\)</span> (the set of all real numbers), which in symbols we write <span class="math inline">\(X:\Omega\to\mathbb{R}\)</span>. Technically we can apply this to things other than real numbers, but we restrict ourselves for simplicity. We can then ask the probability that <span class="math inline">\(X\)</span> is equal to some real number <span class="math inline">\(x\)</span>. Formally the event <span class="math inline">\(X = 2\)</span> is equivalent to <span class="math inline">\(\{\omega: X(\omega) = x\}\)</span>, so when we ask <span class="math inline">\(P(X = 2)\)</span> we really mean <span class="math inline">\(P(\{\omega: X(\omega) = x\})\)</span>.</p>
+<p>An important note is that random variables can be discrete or continuous (or both or neither but we will only focus on these first two cases). We will refer to all of the possible <span class="math inline">\(x\)</span> that <span class="math inline">\(X\)</span> could take on as the “support” of <span class="math inline">\(X\)</span> and we will denote this support as <span class="math inline">\(\mathcal{X}\)</span>. When <span class="math inline">\(\mathcal{X}\)</span> contains a finite or countably infinite number of values we say that it is discrete. When we want to know the probability that <span class="math inline">\(X = x\)</span>, we use <span class="math inline">\(P(X=x)\)</span> as before and refer to <span class="math inline">\(P\)</span> as a probability mass function.</p>
+<p>When <span class="math inline">\(\mathcal{X}\)</span> contains an uncountably infinite number of values we say that the random variable is continuous. Because <span class="math inline">\(X\)</span> is uncountably infinite, <span class="math inline">\(P(X = x) = 0\)</span> for any <span class="math inline">\(x\)</span>. Thus, we use a special function called a probability density function which allows us to talk about the relative likelihood of different values of <span class="math inline">\(x \in \mathcal{X}\)</span>. We write this as <span class="math inline">\(p_X(x)\)</span> and require that its value be a non-negative real number and further that <span class="math inline">\(\int_{x \in \mathcal{X}}p_X(x)dx=1\)</span>.</p>
+<p>To get a feel for how a random variable works, consider a simple coin toss (how cliche). Suppose <span class="math inline">\(\Omega = \{\omega_1, \omega_2\}\)</span> where <span class="math inline">\(\omega_1\)</span> is the event “the coin toss results in heads” and <span class="math inline">\(\omega_2\)</span> is the event “the coin toss results in tails.” Let <span class="math inline">\(X\)</span> be a random variable such that <span class="math inline">\(X(\omega_1) = 1\)</span> and <span class="math inline">\(X(\omega_2) = 0\)</span>. Note that this random variable is discrete as it can only take on a finite number of values. We can then ask what is the probability that <span class="math inline">\(X = 1\)</span>, which is equal to <span class="math inline">\(P(\{\omega: X(\omega) = 1\})\)</span>. Since there is only <span class="math inline">\(1\)</span> such <span class="math inline">\(\omega \in \Omega\)</span> (namely <span class="math inline">\(\omega_1\)</span>) we have <span class="math inline">\(P(X = 1) = P(\omega_1)\)</span>.</p>
+<p>Hopefully that gives a little more intuition about what a random variable is, but here is the key take away: a random variable maps an event (e.g. the coin toss results in heads) to a real number (e.g. <span class="math inline">\(1\)</span>). This lets us work with probabilities defined on real numbers which enables us to do a lot of nifty things. One such thing is computing what we refer to as a “mathematical expectation”, or more simply an “expectation”.</p>
+<p>The expectation of a random variable is a function <span class="math inline">\(E\)</span> which maps a random variable <span class="math inline">\(X\)</span> to a real number. We have two definitions of <span class="math inline">\(E(X)\)</span> depending on whether or not <span class="math inline">\(X\)</span> is discrete or continuous (these definitions can be united through a more advanced field of mathematics called measure theory, but that is out of scope for this post). Let’s examine the discrete case first:</p>
+<p><span class="math display">\[E(X) = \sum_{x\in\mathcal{X}}xP(X = x)\]</span>
+In essence an expectation is just a weighted sum of the values in <span class="math inline">\(\mathcal{X}\)</span>, where each <span class="math inline">\(x\)</span> is weighted by <span class="math inline">\(P(X = x)\)</span>. To get an even better intuition about what this expectation is, consider <span class="math inline">\(P(X = x) =\frac{1}{5}\)</span> defined for <span class="math inline">\(x \in \mathcal{X} = \{1, 2, 3, 4, 5\}\)</span>. In this case we have <span class="math inline">\(E(X) = \sum_{x\in\mathcal{X}}xP(X = x) = \sum_{n=1}^5n\frac{1}{5}=\frac{1}{5}\sum_{n = 1}^5 = \frac{1}{5}(1+2+3+4+5)\)</span> which is simply the average (specifically the arithmetic mean) of the five possibilities. This is a special case where we have a finite number of possibilities and where each has equal probability, but in general we can think of an expectation as a sort of average. There is an even deeper relationship between the expectation of a random variable and the average of a sample drawn from the random variable as demonstrated by the Law of Large Numbers and the Central Limit Theorem (CLT). I digress for now.</p>
+<p>Let’s turn our attention to the definition of an expectation for a continuous random variable:</p>
+<p><span class="math display">\[E(X) = \int_{x\in\mathcal{X}}xp_X(x)dx\]</span></p>
+<p>The expectation is essentially in the same form, except that we have swapped summation for integration and exchanged a probability mass function for a probability density function. The interpretation as an average still holds here as well.</p>
+<p>There are a lot of interesting threads to pull w.r.t. expectations, to include:</p>
+<ul>
+<li><p>Defining the variance <span class="math inline">\(V\)</span> of a random variable <span class="math inline">\(X\)</span> as <span class="math inline">\(V(X) = E(X^2)-E(X)^2\)</span>.</p></li>
+<li><p>Obtaining the moments of a random variable <span class="math inline">\(X\)</span> e.g. <span class="math inline">\(\mu_1 = E(X), \mu_2 = E(X^2),...\)</span></p></li>
+<li><p>Deriving the Law of Large Numbers and the Central Limit Theorem (CLT).</p></li>
+<li><p>Making predictions given conditional expectations (a.k.a. regression) e.g. <span class="math inline">\(E(Y|X=x) = \alpha + \beta x\)</span>.</p></li>
+<li><p>Discovering the role of expectations as the solution to the variational equation <span class="math inline">\(\underset{\mu}{\text{argmin}} (X - \mu)^2\)</span>.</p></li>
+<li><p>Exploring the expectation of vector or matrix valued random variables e.g. <span class="math inline">\(E(\mathbf{X}) = E(X_1,X_2,...,X_n)\)</span>.</p></li>
+<li><p>Examining the role of expectations in decision theory vis-a-vis the maximum expected utility principle.</p></li>
+<li><p>Noting that <span class="math inline">\(E(X) = E(X|Y)\)</span> i.e. the law of total expectation.</p></li>
+</ul>
+<p>While these are all interesting topics (to me at least), they require posts of their own (really books of their own, which there are many). Instead, I want to touch on one little topic that is a rather simple expansion of what we have discussed thus far: probabilities as an expectations. We have used probabilities to define an expectation, but did you know we can define a probability with an expectation?</p>
+<p>First, let’s introduce the concept of an indicator function. An indicator function <span class="math inline">\(\mathbf{1}_Q\)</span> is a function that takes a logical proposition <span class="math inline">\(Q\)</span> and returns a <span class="math inline">\(1\)</span> if <span class="math inline">\(Q\)</span> is true, and <span class="math inline">\(0\)</span> if <span class="math inline">\(Q\)</span> is false. For instance lets take <span class="math inline">\(\mathbf{1}_{u=1}\)</span>. If the statement <span class="math inline">\(u = 1\)</span> is true, <span class="math inline">\(\mathbf{1}_{u=1} = 1\)</span>, otherwise <span class="math inline">\(\mathbf{1}_{u=1} = 0\)</span>. Indicator functions are exactly as simple as they seem.</p>
+<p>Now consider our coin toss example from before. Let’s look at the indicator function <span class="math inline">\(\mathbf{1}_\text{&quot;the coin toss results heads&quot;}\)</span>. Note that the indicator function is actually the same thing as our random variable <span class="math inline">\(X\)</span>. Thus we know <span class="math inline">\(P(\mathbf{1}_\text{&quot;the coin toss results heads&quot;}=1)=P(\text{&quot;the coin toss results heads&quot;})\)</span>. Now since our indicator function is a random variable that takes on only one of two values (remember an indicator function returns either <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span> regardless of what proposition is under consideration), we can consider the expectation of our indicator function. By definition we have:</p>
+<p><span class="math display">\[
+\begin{align}
+E(\mathbf{1}_\text{&quot;the coin toss results heads&quot;}) &amp;= \sum_{x\in\{0,1\}}xP(\mathbf{1}_\text{&quot;the coin toss results heads&quot;}=x) \\
+\\
+&amp;=0\times P(\mathbf{1}_\text{&quot;the coin toss results heads&quot;}=0) + 1 \times P(\mathbf{1}_\text{&quot;the coin toss results heads&quot;}=1) \\
+\\
+&amp;= P(\mathbf{1}_\text{&quot;the coin toss results heads&quot;}=1) \\
+\\
+&amp;= P(\text{&quot;the coin toss results in heads&quot;})
+\end{align}
+\]</span></p>
+<p>In other words, the expectation of an indicator function is the probability the proposition given to the indicator function is true. This is true in general i.e. <span class="math inline">\(E(\mathbf{1}_Q) = P(Q)\)</span>. In this way a probability is an expectation. It may not seem useful at first, but in fact it has gotten me out of big head scratchers in both theoretical and applied work.</p>
+<p>That’s all for now. Thank you for reading and until next time,</p>
+<p>David</p>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="/post/marginal-likelihoods-of-models-defined-on-binary-sequences/">&laquo; Marginal Likelihoods of Models Defined on Binary Sequences</a>
+    
+    
+  </div>
+</section>
+
+<section id="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+      
+      
+      if (window.location.hostname == "localhost")
+                return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = '';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+  
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+</body>
+</html>
+
