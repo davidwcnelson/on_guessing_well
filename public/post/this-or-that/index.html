@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>
+    
+    
+     This OR That 
+    
+  </title>
+  <link rel="canonical" href="/post/this-or-that/">
+
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  
+</head>
+
+<body>
+<section id=nav>
+  <h1><a href="/">On Guessing Well</a></h1>
+  <ul>
+    
+    <li><a href="/about">About</a></li>
+    
+    <li><a href="/">Posts</a></li>
+    
+    <li><a href="https://github.com/wctelson">GitHub</a></li>
+    
+    <li><a href="https://www.linkedin.com/in/davidwcnelson/">LinkedIn</a></li>
+    
+    <li><a href="https://twitter.com/wctelson">Twitter</a></li>
+    
+    <li><a href="/index.xml">RSS</a></li>
+    
+  </ul>
+</section>
+
+
+<section id=content>
+  <h1> This OR That </h1>
+
+  <div id=sub-header>
+    David W.C. Telson · 2020/07/05 · 4 minute read
+  </div>
+
+  <div class="entry-content">
+    
+
+
+<p>Today I wanted to write a short post on the sum rule of probability. Specifically I wanted to show how to derive the sum rule from the three axioms of probability.</p>
+<p>Recall from previous posts this statement of Kolmogorov’s axioms:</p>
+<p><span class="math inline">\(P(\omega)\)</span> is the probability that an event <span class="math inline">\(\omega\)</span> occurs if <span class="math inline">\(P\)</span> satisfies the following:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(P(\omega) \in \mathbb{R_{\ge0}}\)</span> i.e. the probability is a non-negative real number.</p></li>
+<li><p><span class="math inline">\(P(\Omega) = 1\)</span> where <span class="math inline">\(\Omega\)</span> is the set of all possible outcomes.</p></li>
+<li><p>If <span class="math inline">\(\omega_1, \omega_2, ...\)</span> is a countably infinite collection of mutually exclusive (ME) events, then <span class="math inline">\(P(\bigcup_{i=1}^\infty \omega_i) = \sum_{i=1}^\infty P(\omega_i)\)</span> i.e. the probability of the union of ME events is the sum of the probabilities of ME events. Note that <span class="math inline">\(\bigcup\)</span> and <span class="math inline">\(\sum\)</span> take unions and sums over an index respectively.</p></li>
+</ol>
+<p>We have from the third axiom that if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive events (that is if one happens the other cannot happen) then the probability of either is the sum of their probabilities. In symbols <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span>. What if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not mutually exclusive?</p>
+<p>Suppose <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are two events that are not necessarily mutually exclusive. Consider the union of these two events <span class="math inline">\(A \cup B\)</span>. From <a href="https://en.wikipedia.org/wiki/Set_theory">set theory</a> we have that the union of two events is equivalent to the following <span class="math inline">\((A \cap B^c) \cup (A \cap B) \cup (A^c \cup B)\)</span> where <span class="math inline">\(\cup\)</span> is the union operator (OR), <span class="math inline">\(\cap\)</span> is the intersection operator (AND), and the set <span class="math inline">\(X^c\)</span> is the compliment (NOT) of the set <span class="math inline">\(X\)</span>. Let’s manipulate the probabilities of this identity further:</p>
+<p>$$
+<span class="math display">\[\begin{align}
+P(A \cup B) &amp;= P\big((A \cap B^c) \cup (A \cap B) \cup (A^c \cap B)\big) \\
+\\
+&amp;= P(A \cap B^c) \cup P(A \cap B) \cup P(A^c \cap B)\\ 
+\\
+&amp;= P(A \cap B^c) \cup P(A \cap B) \cup P(A^c \cap B) + P(A \cap B) - P(A \cap B)\\ 
+\\
+&amp;= P\big((A \cap B^c) \cup (A \cap B)\big) + P\big((A^c \cap B) \cup (A \cap B)\big) - P(A \cap B) \\
+\\
+&amp;= P(A) + P(B) - P(A\cap B)
+
+
+\end{align}\]</span>
+$$
+This proof is taken from Larry Wasserman’s excellent book <a href="https://www.amazon.com/All-Statistics-Statistical-Inference-Springer/dp/1441923225"><em>All of Statistics</em></a> which I highly recommend.</p>
+<p>Let’s break down what is happening on each line. Since we’ve already talked about the first line, lets start with the second line. The second line is simply an application of the third axiom, as each intersection is mutually exclusive of the others, therefore the probability of the unions is the sum of the probabilities. The third line is simply adding two terms than cancel out i.e. <span class="math inline">\(P(A \cap B) - P(A \cap B) = 0\)</span>. The cleverness in adding these terms is found in the fourth line when we pair up the first and third terms with identical <span class="math inline">\(P(A \cap B)\)</span> terms. The last line follows because of the absorption property of unions e.g. <span class="math inline">\((A \cap B)\cup(A \cap B^c)=A\)</span>.</p>
+<p>Thus we end up with the sum rule of probabilities which states <span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A\cap B)\)</span>. This should be interpreted as "the probability that A or B will occur is equal to the probability that A occurs plus the probability that B occurs minus the probability that A and B both occur. Note how if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive <span class="math inline">\(P(A\cap B) = 0\)</span> so the sum rule reduces to <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span> which is what we get from axiom 3.</p>
+<p>For not necessarily mutually exclusive <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, you can think of <span class="math inline">\(P(A) + P(B)\)</span> as an overestimate of <span class="math inline">\(P(A \cup B)\)</span>, where <span class="math inline">\(P(A\cap B)\)</span> is a correction factor. This line of thinking is helpful to motivate the generalization of the sum rule to a finite collection of events e.g. <span class="math inline">\(P(\bigcup_{i=1}^n A_i)\)</span> where <span class="math inline">\(A_1, A_2, ..., A_n\)</span> are not necessarily mutually exclusive. This generalization is referred to as the <a href="https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle">“principle of inclusion and exclusion”</a> and is derived from a field of mathematics called <a href="https://en.wikipedia.org/wiki/Combinatorics">combinatorics</a> which is tightly linked to probability theory. We will explore this generalization in future posts and omit its statement here.</p>
+<p>That is all for today. As always, thank you for reading!</p>
+<p>David</p>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="/post/setting-expectations/">&laquo; Setting Expectations</a>
+    
+    
+  </div>
+</section>
+
+<section id="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+      
+      
+      if (window.location.hostname == "localhost")
+                return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = '';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+  
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+</body>
+</html>
+

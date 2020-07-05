@@ -1,0 +1,54 @@
+---
+title: This OR That
+author: David W.C. Telson
+date: '2020-07-05'
+slug: this-or-that
+categories: []
+tags: []
+draft: FALSE
+---
+
+Today I wanted to write a short post on the sum rule of probability. Specifically I wanted to show how to derive the sum rule from the three axioms of probability.
+
+Recall from previous posts this statement of Kolmogorov's axioms:
+
+$P(\omega)$ is the probability that an event $\omega$ occurs if $P$ satisfies the following: 
+
+1. $P(\omega) \in \mathbb{R_{\ge0}}$ i.e. the probability is a non-negative real number.
+
+2. $P(\Omega) = 1$ where $\Omega$ is the set of all possible outcomes.
+
+3. If $\omega_1, \omega_2, ...$ is a countably infinite collection of mutually exclusive (ME) events, then $P(\bigcup_{i=1}^\infty \omega_i) = \sum_{i=1}^\infty P(\omega_i)$ i.e. the probability of the union of ME events is the sum of the probabilities of ME events. Note that $\bigcup$ and $\sum$ take unions and sums over an index respectively.
+
+We have from the third axiom that if $A$ and $B$ are mutually exclusive events (that is if one happens the other cannot happen) then the probability of either is the sum of their probabilities. In symbols $P(A \cup B) = P(A) + P(B)$. What if $A$ and $B$ are not mutually exclusive?
+
+Suppose $A$ and $B$ are two events that are not necessarily mutually exclusive. Consider the union of these two events $A \cup B$. From [set theory](https://en.wikipedia.org/wiki/Set_theory) we have that the union of two events is equivalent to the following $(A \cap B^c) \cup (A \cap B) \cup (A^c \cup B)$ where $\cup$ is the union operator (OR), $\cap$ is the intersection operator (AND), and the set $X^c$ is the compliment (NOT) of the set $X$. Let's manipulate the probabilities of this identity further:
+
+
+$$
+\begin{align}
+P(A \cup B) &= P\big((A \cap B^c) \cup (A \cap B) \cup (A^c \cap B)\big) \\
+\\
+&= P(A \cap B^c) \cup P(A \cap B) \cup P(A^c \cap B)\\ 
+\\
+&= P(A \cap B^c) \cup P(A \cap B) \cup P(A^c \cap B) + P(A \cap B) - P(A \cap B)\\ 
+\\
+&= P\big((A \cap B^c) \cup (A \cap B)\big) + P\big((A^c \cap B) \cup (A \cap B)\big) - P(A \cap B) \\
+\\
+&= P(A) + P(B) - P(A\cap B)
+
+
+\end{align}
+$$
+This proof is taken from Larry Wasserman's excellent book [*All of Statistics*](https://www.amazon.com/All-Statistics-Statistical-Inference-Springer/dp/1441923225) which I highly recommend. 
+
+Let's break down what is happening on each line. Since we've already talked about the first line, lets start with the second line. The second line is simply an application of the third axiom, as each intersection is mutually exclusive of the others, therefore the probability of the unions is the sum of the probabilities. The third line is simply adding two terms than cancel out i.e. $P(A \cap B) - P(A \cap B) = 0$. The cleverness in adding these terms is found in the fourth line when we pair up the first and third terms with identical $P(A \cap B)$ terms. The last line follows because of the absorption property of unions e.g. $(A \cap B)\cup(A \cap B^c)=A$. 
+
+Thus we end up with the sum rule of probabilities which states $P(A \cup B) = P(A) + P(B) - P(A\cap B)$. This should be interpreted as "the probability that A or B will occur is equal to the probability that A occurs plus the probability that B occurs minus the probability that A and B both occur. Note how if $A$ and $B$ are mutually exclusive $P(A\cap B) = 0$ so the sum rule reduces to $P(A \cup B) = P(A) + P(B)$ which is what we get from axiom 3. 
+
+For not necessarily mutually exclusive $A$ and $B$, you can think of $P(A) + P(B)$ as an overestimate of $P(A \cup B)$, where $P(A\cap B)$ is a correction factor. This line of thinking is helpful to motivate the generalization of the sum rule to a finite collection of events e.g. $P(\bigcup_{i=1}^n A_i)$ where $A_1, A_2, ..., A_n$ are not necessarily mutually exclusive. This generalization is referred to as the ["principle of inclusion and exclusion"](https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle) and is derived from a field of mathematics called [combinatorics](https://en.wikipedia.org/wiki/Combinatorics) which is tightly linked to probability theory. We will explore this generalization in future posts and omit its statement here.
+
+That is all for today. As always, thank you for reading!
+
+David
+
