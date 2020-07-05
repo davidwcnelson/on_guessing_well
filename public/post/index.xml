@@ -18,7 +18,7 @@
       
       <guid>/post/setting-expectations/</guid>
       <description>This one is a short(ish) one (just so I can keep up the momentum of posting). I absolutely love the concept of mathematical expectations, and in this post I am hoping to introduce expectations and share one of my favorite factoids about them.
-First things first, let’s remind ourselves of what a probability is. Over simplifying (my apologies to the measure theorists out there), we say that \(P(\omega)\) is the probability that an event \(\omega\) occurs if \(P\) satisfies the following axioms:</description>
+First things first, let’s remind ourselves of what a probability is. Over simplifying (my apologies to the measure theorists out there), we say that \(P(\omega)\) is the probability that an event \(\omega\) occurs if \(P\) satisfies the following axioms (courtesy of Kolmogorov):</description>
     </item>
     
     <item>

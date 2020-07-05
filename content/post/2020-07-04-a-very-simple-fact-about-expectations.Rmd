@@ -10,13 +10,13 @@ draft: FALSE
 
 This one is a short(ish) one (just so I can keep up the momentum of posting). I absolutely love the concept of mathematical expectations, and in this post I am hoping to introduce expectations and share one of my favorite factoids about them. 
 
-First things first, let's remind ourselves of what a probability is. Over simplifying (my apologies to the measure theorists out there), we say that $P(\omega)$ is the probability that an event $\omega$ occurs if $P$ satisfies the following axioms:
+First things first, let's remind ourselves of what a probability is. Over simplifying (my apologies to the measure theorists out there), we say that $P(\omega)$ is the probability that an event $\omega$ occurs if $P$ satisfies the following axioms (courtesy of [Kolmogorov](https://en.wikipedia.org/wiki/Probability_axioms)):
 
 1. $P(\omega) \in \mathbb{R_{\ge0}}$ i.e. the probability is a non-negative real number.
 
 2. $P(\Omega) = 1$ where $\Omega$ is the set of all possible outcomes.
 
-3. If $\omega_1, \omega_2, ...$ is a countably infinite collection of mutually exclusive and collectively exhaustive (MECE) events, then $P(\bigcup_{i=1}^\infty \omega_i) = \sum_{i=1}^\infty P(\omega_i)$ i.e. the probability of the union of MECE events is the sum of the probabilities of MECE events. Note that $\bigcup$ and $\sum$ take unions and sums over an index respectively.
+3. If $\omega_1, \omega_2, ...$ is a countably infinite collection of mutually exclusive (ME) events, then $P(\bigcup_{i=1}^\infty \omega_i) = \sum_{i=1}^\infty P(\omega_i)$ i.e. the probability of the union of ME events is the sum of the probabilities of ME events. Note that $\bigcup$ and $\sum$ take unions and sums over an index respectively.
 
 Given these three axioms (the first two definitely being more simple than the last) we can derive all of probability theory (philosophical interpretations be damned).
 
