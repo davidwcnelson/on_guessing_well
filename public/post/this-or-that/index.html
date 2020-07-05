@@ -67,8 +67,8 @@
 </ol>
 <p>We have from the third axiom that if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive events (that is if one happens the other cannot happen) then the probability of either is the sum of their probabilities. In symbols <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span>. What if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not mutually exclusive?</p>
 <p>Suppose <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are two events that are not necessarily mutually exclusive. Consider the union of these two events <span class="math inline">\(A \cup B\)</span>. From <a href="https://en.wikipedia.org/wiki/Set_theory">set theory</a> we have that the union of two events is equivalent to the following <span class="math inline">\((A \cap B^c) \cup (A \cap B) \cup (A^c \cup B)\)</span> where <span class="math inline">\(\cup\)</span> is the union operator (OR), <span class="math inline">\(\cap\)</span> is the intersection operator (AND), and the set <span class="math inline">\(X^c\)</span> is the compliment (NOT) of the set <span class="math inline">\(X\)</span>. Let’s manipulate the probabilities of this identity further:</p>
-<p>$$
-<span class="math display">\[\begin{align}
+<p><span class="math display">\[
+\begin{align}
 P(A \cup B) &amp;= P\big((A \cap B^c) \cup (A \cap B) \cup (A^c \cap B)\big) \\
 \\
 &amp;= P(A \cap B^c) \cup P(A \cap B) \cup P(A^c \cap B)\\ 
@@ -78,10 +78,8 @@ P(A \cup B) &amp;= P\big((A \cap B^c) \cup (A \cap B) \cup (A^c \cap B)\big) \\
 &amp;= P\big((A \cap B^c) \cup (A \cap B)\big) + P\big((A^c \cap B) \cup (A \cap B)\big) - P(A \cap B) \\
 \\
 &amp;= P(A) + P(B) - P(A\cap B)
-
-
-\end{align}\]</span>
-$$
+\end{align}
+\]</span>
 This proof is taken from Larry Wasserman’s excellent book <a href="https://www.amazon.com/All-Statistics-Statistical-Inference-Springer/dp/1441923225"><em>All of Statistics</em></a> which I highly recommend.</p>
 <p>Let’s break down what is happening on each line. Since we’ve already talked about the first line, lets start with the second line. The second line is simply an application of the third axiom, as each intersection is mutually exclusive of the others, therefore the probability of the unions is the sum of the probabilities. The third line is simply adding two terms than cancel out i.e. <span class="math inline">\(P(A \cap B) - P(A \cap B) = 0\)</span>. The cleverness in adding these terms is found in the fourth line when we pair up the first and third terms with identical <span class="math inline">\(P(A \cap B)\)</span> terms. The last line follows because of the absorption property of unions e.g. <span class="math inline">\((A \cap B)\cup(A \cap B^c)=A\)</span>.</p>
 <p>Thus we end up with the sum rule of probabilities which states <span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A\cap B)\)</span>. This should be interpreted as "the probability that A or B will occur is equal to the probability that A occurs plus the probability that B occurs minus the probability that A and B both occur. Note how if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive <span class="math inline">\(P(A\cap B) = 0\)</span> so the sum rule reduces to <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span> which is what we get from axiom 3.</p>

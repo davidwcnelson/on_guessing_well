@@ -36,8 +36,6 @@ P(A \cup B) &= P\big((A \cap B^c) \cup (A \cap B) \cup (A^c \cap B)\big) \\
 &= P\big((A \cap B^c) \cup (A \cap B)\big) + P\big((A^c \cap B) \cup (A \cap B)\big) - P(A \cap B) \\
 \\
 &= P(A) + P(B) - P(A\cap B)
-
-
 \end{align}
 $$
 This proof is taken from Larry Wasserman's excellent book [*All of Statistics*](https://www.amazon.com/All-Statistics-Statistical-Inference-Springer/dp/1441923225) which I highly recommend. 
