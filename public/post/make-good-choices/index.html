@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>
+    
+    
+     Make Good Choices 
+    
+  </title>
+  <link rel="canonical" href="/post/make-good-choices/">
+
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  
+</head>
+
+<body>
+<section id=nav>
+  <h1><a href="/">On Guessing Well</a></h1>
+  <ul>
+    
+    <li><a href="/about">About</a></li>
+    
+    <li><a href="/">Posts</a></li>
+    
+    <li><a href="https://github.com/wctelson">GitHub</a></li>
+    
+    <li><a href="https://www.linkedin.com/in/davidwcnelson/">LinkedIn</a></li>
+    
+    <li><a href="https://twitter.com/wctelson">Twitter</a></li>
+    
+    <li><a href="/index.xml">RSS</a></li>
+    
+  </ul>
+</section>
+
+
+<section id=content>
+  <h1> Make Good Choices </h1>
+
+  <div id=sub-header>
+    David Telson · 2020/08/07 · 4 minute read
+  </div>
+
+  <div class="entry-content">
+    
+
+
+<p><em>Authors Note: I am “soft rebooting” my blog. I feel that my posts don’t communicate ideas well. I want this blog to be easy to understand. This post is a first attempt at a different approach. <a href="wctelson@gmail.com">Let me know</a> what you think.</em></p>
+<p>This post will introduce readers to the central theme of the blog: how can we make decisions while faced with uncertainty?</p>
+<p>I wrote this post for people who have to make decisions while faced with uncertainty (for example: anyone on any given day), but don’t yet have the tools to deal with these kinds of problems (for example: <a href="https://en.wikipedia.org/wiki/Expected_utility_hypothesis">maximum expected utility</a>). If this doesn’t describe you, that’s okay. There may still be something of use for you in this post or elsewhere in the blog.</p>
+<p>This post doesn’t have formal pre-requisites, but if you do find yourself struggling with a concept, the fault is likely with my ability to communicate rather than your ability to learn. <a href="wctelson@gmail.com">Let me know</a> and I will work to clarify the ideas and update the post. Also let me know if you spot an error (we can all make mistakes, especially me).</p>
+<p>This post will introduce you to the fundamentals of decision making under uncertainty (and in particular, making good guesses). After reading this post, you should be able to answer the following:</p>
+<ul>
+<li>What kinds of problems can be thought of as “decision making under uncertainty”?</li>
+<li>How can you enumerate your possible choices?</li>
+<li>How can you enumerate the possible outcomes resulting from the possible choices?</li>
+<li>How can you measure uncertainty?</li>
+<li>How can you measure the value of an outcome?</li>
+<li>How can you decide between choices when we are uncertain of their outcomes?</li>
+</ul>
+<p>Suppose you want to watch a movie, but the only choices available to you are to rent or buy the movie. The cost of renting the movie is <span class="math inline">\(\$10.99\)</span> and the cost of buying the movie is <span class="math inline">\(\$19.99\)</span>. Do you choose to rent or buy the movie?</p>
+<p>Let’s break the problem down to see if we can determine which choice is better, given that we want to spend as little money as possible.</p>
+<p>The cost of renting the movie once is less than buying the movie; however, if you want to watch the movie multiple times, then buying may be cheaper than renting. Let <span class="math inline">\(n\)</span> be the number of times you will rewatch the movie. The cost of watching a movie <span class="math inline">\(n\)</span> times if you rent it is <span class="math inline">\(n \times \$10.99\)</span>, whereas if you bought the movie you only pay <span class="math inline">\(\$19.99\)</span> once.</p>
+<p>You can find the point at which renting becomes more expensive then buying by solving an inequality. Let <span class="math inline">\(n^*\)</span> be this point. Then <span class="math inline">\(n^* \times \$10.99\)</span> is greater than <span class="math inline">\(\$19.99\)</span>. This means that <span class="math inline">\(n^*\)</span> is greater than <span class="math inline">\(\frac{\$19.99}{\$10.99}\)</span> which is approximately <span class="math inline">\(1.8\)</span>. Since <span class="math inline">\(n^*\)</span> has to be a whole number (you can’t rent a fractio of a film) you know that <span class="math inline">\(n^*\)</span> is <span class="math inline">\(2\)</span>. So if you watch the movie <span class="math inline">\(2\times\)</span> or more times, then it would better to buy it rather than renting it.</p>
+<p>The following plot provides a visual representation. The horizontal axis lists the possible times you will watch the movie, and the vertical axis displays the corresponding cost. The blue dots represent the value if you rented the movie, whereas the red dots represent the value if you bought the movie. You can see that the blue dots are greater than the red dots after you have watched the movie 1 time.
+<img src="/post/2020-08-01-making-a-good-guess_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+Since you will watch the movie at least <span class="math inline">\(1\times\)</span>, you can boil the choice down to whether or not you will rewatch the movie. Let <span class="math inline">\(r = n - 1\)</span> be the number of times you will rewatch the movie. Then all you need to assess is whether <span class="math inline">\(r = 0\)</span> (in words: you will not rewatch the movie) or <span class="math inline">\(r &gt; 0\)</span> (in words: you will rewatch the movie). You can do this because <span class="math inline">\(n^*=2\)</span>, but in general this “reduction” won’t hold (you will learn about a more general approach soon).</p>
+<!-- Outline -->
+<!-- - We make decisions under uncertainty every day. Some decisions are BIG, others are small. When you are faced with a BIG decision, you'll usually want to be right. -->
+<!-- - Making a guess is making a decision.  -->
+<!-- Suppose $x$ is the cost of buying a movie, and $y$ is the cost of renting a movie. If you will watch the movie at more than $\frac{x}{y}$ times, then buying the movie is better than renting the movie. -->
+<!-- Suppose that you want to watch a new movie that was just released for purchase online. The website provides two options: you may either buy the movie to own it, or rent it temporarily. Let's say that the cost of buying is $\text{\$}13.99$, and the cost of renting is $\text{\$}7.99$. Let's also assume that you are prone to rewatching movies you like. Given this, do you buy or rent the movie? -->
+<!-- There is rumblings on the internet of a new movie that has been released online. The movie is incredibly divisive: half of the people who see if fall immediately and permanently in love with it, the other half of viewers absolutely hate it. Strangely, there doesn't seem to be any way to predict whether a person who views the movie will love it or hate it. With your interest peaked, you go online and are presented with two ways to view the movie: either you can buy to own, or you can rent the film for one viewing. -->
+<!-- this example actually has some problems in that it is likely too extreme -->
+<!-- Buying the movie costs $\$19.99$, renting the movie costs $\$10.99$. Which option do you choose? -->
+<!-- Obviously the cost of buying is more than renting; but, the difference between buying and renting is not just about price. It doesn't cost you money to rewatch a movie you own. If you rewatch a movie you rented, you have to rent it again. Thus your decision to buy or rent should consider how many times you will rewatch the movie. -->
+<!-- Knowing how many times you will rewatch the movie requires that you have knowledge of the future. Such knowledge is imperfect at best. If you've seen the movie in question before, then you might have some idea of its rewatchability (you are technically rewatching it after all). If you haven't seen the movie before, you might have seen a trailer or perhaps have read some reviews which might give you some clue as to whether or not you will rewatch it. Suppose for our scenario that you haven't seen it before, and nothing you have seen or heard has indicated whether or not you will rewatch it. In this case, you are completely uncertain as to whether or not you will rewatch the film. -->
+<!-- How to make the decision to buy or rent given complete uncertainty as to whether or not you will rewatch the film? Fortunately the specifics of the decision problem give some help. Consider how many times you must rent the movie before you would have wished you bought it in the first place. This is given by dividing the cost of buying the movie by the cost of renting it: $\frac{\$19.99}{\$10.99} \approx 1.8$. If you rented the movie $2\times$ or more ($2$ instead of $1.8$ because you can't rent a fraction of the movie) then you would have saved money by buying in the first place. Because this number includes your first watching, you only have to rewatch the movie $1\times$ before buying is a better option than renting. So the question is: would you rewatch the movie at least once? -->
+<!-- | Rewatch  | Rent  | Buy | -->
+<!-- |---|---|---| -->
+<!-- | $0\times$  |  $\$10.99$ | $\$19.99$ | -->
+<!-- | $1\times$  |  $\$21.98$ |  $\$19.99$ | -->
+<!-- ```{r, echo = FALSE, message = FALSE, warning = FALSE} -->
+<!-- library(knitr) -->
+<!-- library(tibble) -->
+<!-- library(scales) -->
+<!-- utility_table <- tribble(~ Rewatches, ~`Cost if Rented`, ~`Cost if Owned`, -->
+<!--                          'No Rewatches', dollar(10.99), dollar(19.99), -->
+<!--                          'One Rewatch', dollar(10.99 * 2), dollar(19.99)) -->
+<!-- kable(utility_table, -->
+<!--       format = 'pipe') -->
+<!-- ``` -->
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="/post/this-or-that/">&laquo; This OR That</a>
+    
+    
+  </div>
+</section>
+
+<section id="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+      
+      
+      if (window.location.hostname == "localhost")
+                return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = '';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+  
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+</body>
+</html>
+

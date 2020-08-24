@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/making-good-decisions/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/this-or-that/</loc>
     <lastmod>2020-07-05T00:00:00+00:00</lastmod>
   </url>
@@ -98,6 +103,22 @@
   </url>
   
   <url>
+    <loc>/post/2020-08-01-making-a-good-guess/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/actions/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/benefit/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/calculus-of-variations/</loc>
     <lastmod>2019-02-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -115,8 +136,56 @@
   </url>
   
   <url>
+    <loc>/tags/choices/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/consequences/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/cost/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/cost-functions/</loc>
     <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/decision-making/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/decision-science/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/decision-theory/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/decision-theory/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/decisions/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -140,24 +209,66 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-07-05T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/options/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/outcomes/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2020-07-05T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/probability/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/probability-theory/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/probability-theory/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/post/the-guessing-game/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/uncertainty/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/utility/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>

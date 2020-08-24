@@ -6,10 +6,28 @@
     <description>Recent content in Tags on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 18 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Actions</title>
+      <link>/tags/actions/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/actions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Benefit</title>
+      <link>/tags/benefit/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/benefit/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Calculus of Variations</title>
@@ -30,11 +48,74 @@
     </item>
     
     <item>
+      <title>Choices</title>
+      <link>/tags/choices/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/choices/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Consequences</title>
+      <link>/tags/consequences/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/consequences/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cost</title>
+      <link>/tags/cost/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/cost/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Cost Functions</title>
       <link>/tags/cost-functions/</link>
       <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/cost-functions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Decision Making</title>
+      <link>/tags/decision-making/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/decision-making/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Decision Science</title>
+      <link>/tags/decision-science/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/decision-science/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Decision Theory</title>
+      <link>/tags/decision-theory/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/decision-theory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Decisions</title>
+      <link>/tags/decisions/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/decisions/</guid>
       <description></description>
     </item>
     
@@ -62,6 +143,60 @@
       <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/mode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Options</title>
+      <link>/tags/options/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/options/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Outcomes</title>
+      <link>/tags/outcomes/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/outcomes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Probability</title>
+      <link>/tags/probability/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/probability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Probability Theory</title>
+      <link>/tags/probability-theory/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/probability-theory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Uncertainty</title>
+      <link>/tags/uncertainty/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/uncertainty/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Utility</title>
+      <link>/tags/utility/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/utility/</guid>
       <description></description>
     </item>
     

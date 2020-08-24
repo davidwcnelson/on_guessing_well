@@ -6,33 +6,20 @@
     <description>Recent content in Probability on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 Feb 2019 15:32:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/probability/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Measures of Central Tendancy</title>
-      <link>/post/killed_posts/measures-of-central-tendancy/</link>
-      <pubDate>Sun, 03 Feb 2019 15:32:00 +0000</pubDate>
+      <title>Making Good Decisions</title>
+      <link>/post/making-good-decisions/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/killed_posts/measures-of-central-tendancy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bayes’ Theorem</title>
-      <link>/post/killed_posts/bayes-theorem/</link>
-      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/killed_posts/bayes-theorem/</guid>
-      <description>This post will explore Bayes’ theorem, and its applicability to our problem of making good guesses.
-The definition of conditional probability. \[ P(A|B) = \frac{P(A,B)}{P(B)}\]
-Getting a conjunction from conditional probability. \[ P(A,B) = P(A|B)P(B) = P(B|A)P(A)\]
-Bayes’ theorem. \[ P(A|B) = \frac{P(B|A)P(A)}{P(B)}\]
-The law of total probability. \[P(B) = \sum_{j=1}^{n}P(B,A_j)\]
-Bayes theorem with the law of total probability. \[ P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^{n} P(B|A_j)P(A_j)}\]
-Continous bayes theorem.</description>
+      <guid>/post/making-good-decisions/</guid>
+      <description>Bottom Line Up Front This post introduces the basics of decision making under uncertainty. It was written for anyone interested in learning how to use decision theory to solve real-world problems.
+ Learning Objectives In this post you will learn about:
+ How to identify decision problems in the real-world. How to frame decision problems in terms of actions, outcomes, utility, and probability. How to solve decision problems by maximizing expected utility.</description>
     </item>
     
   </channel>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Utility on On Guessing Well</title>
+    <link>/tags/utility/</link>
+    <description>Recent content in Utility on On Guessing Well</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 23 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/utility/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Making Good Decisions</title>
+      <link>/post/making-good-decisions/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/making-good-decisions/</guid>
+      <description>Bottom Line Up Front This post introduces the basics of decision making under uncertainty. It was written for anyone interested in learning how to use decision theory to solve real-world problems.
+ Learning Objectives In this post you will learn about:
+ How to identify decision problems in the real-world. How to frame decision problems in terms of actions, outcomes, utility, and probability. How to solve decision problems by maximizing expected utility.</description>
+    </item>
+    
+  </channel>
+</rss>

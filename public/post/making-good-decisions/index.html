@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>
+    
+    
+     Making Good Decisions 
+    
+  </title>
+  <link rel="canonical" href="/post/making-good-decisions/">
+
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  
+</head>
+
+<body>
+<section id=nav>
+  <h1><a href="/">On Guessing Well</a></h1>
+  <ul>
+    
+    <li><a href="/about">About</a></li>
+    
+    <li><a href="/">Posts</a></li>
+    
+    <li><a href="https://github.com/wctelson">GitHub</a></li>
+    
+    <li><a href="https://www.linkedin.com/in/davidwcnelson/">LinkedIn</a></li>
+    
+    <li><a href="https://twitter.com/wctelson">Twitter</a></li>
+    
+    <li><a href="/index.xml">RSS</a></li>
+    
+  </ul>
+</section>
+
+
+<section id=content>
+  <h1> Making Good Decisions </h1>
+
+  <div id=sub-header>
+    David Telson · 2020/08/23 · 8 minute read
+  </div>
+
+  <div class="entry-content">
+    
+
+
+<div id="bottom-line-up-front" class="section level1">
+<h1>Bottom Line Up Front</h1>
+<p>This post introduces the basics of decision making under uncertainty. It was written for anyone interested in learning how to use decision theory to solve real-world problems.</p>
+</div>
+<div id="learning-objectives" class="section level1">
+<h1>Learning Objectives</h1>
+<p>In this post you will learn about:</p>
+<ul>
+<li>How to identify decision problems in the real-world.</li>
+<li>How to frame decision problems in terms of actions, outcomes, utility, and probability.</li>
+<li>How to solve decision problems by maximizing expected utility.</li>
+</ul>
+<p>If you find yourself struggling with a concept, the fault is more likely my ability to communicate than your ability to learn. <a href="wctelson@gmail.com">Send me an email</a> and I will do my best to clarify the concept and update the post. Also send me a note if you find an error and I will correct it.</p>
+</div>
+<div id="decision-problems" class="section level1">
+<h1>Decision Problems</h1>
+<p>People make decisions every day. Some decisions are as small as deciding what to eat for dinner, and some are as large as setting supply levels for the U.S. Strategic National Stockpile. The more important the decision, the more important it is that the decision maker is equipped with the tools required to make a good decision.</p>
+<p>Decision theory (and is close relative decision science) is a field of study that analyses how decision makers should make decisions (normative decision theory) and how decision makers actually make decisions (positive decision theory). This post is concerned with the former, providing the basic tools for solving decision problems.</p>
+<p>A decision problem is any situation where a decision maker needs to determine the best action to take from a set of possible actions. Figuring out what to order at a restaurant, determining the right amount for a down payment on an auto-loan, and weighing different job opportunities are all examples of decision problems.</p>
+<p>A decision problem consists of a set of possible actions, a set of possible outcomes for each action, a utility for each outcome, and a probability for each outcome. If you can identify these elements in your own decision making context, you can find a good solution and make a good decision.</p>
+<div id="actions" class="section level2">
+<h2>Actions</h2>
+<p>A possible action is any valid choice a decision maker can select in the context of a given decision problem. In the example of ordering from a restaurant, a possible action would be any combination of items on the menu that you can afford. Ordering off-menu is not a possible option, as the kitchen can’t (or won’t) make you a meal that isn’t on the menu. Ordering more than you can pay is also not a possible option, assuming you don’t want to commit the crime of “defrauding an Innkeeper” a.k.a. “dining and dashing”. Enumerating possible actions is the first step in solving a decision problem.</p>
+</div>
+<div id="outcomes" class="section level2">
+<h2>Outcomes</h2>
+<p>Every possible action has one or more possible outcomes. A possible outcome is a consequence that may result from taking a certain action. For example, suppose you wanted to go on a walk, and you have the choice of bringing an umbrella. The action of taking an umbrella has two outcomes: either you will not need the umbrella and thus be lugging it around; or you will look wise as you shield yourself from the rain. The action of not taking the umbrella also has two outcomes: either you will not need the umbrella and be unencumbered on your walk; or you will look foolish as you return from your walk soaking wet. Notice that each outcome in this example is the juxtaposition between a possible action and an uncertain event (e.g., rain vs no rain).</p>
+</div>
+<div id="utility" class="section level2">
+<h2>Utility</h2>
+<p>Every possible outcome has some amount of utility. The utility of an outcome is a quantification of the costs and benefits of that outcome if it occurs. In some cases the utility of an outcome is obvious. For instance, if you wanted to know whether to buy a particular kind of toothpaste from store A or store B, you could measure the utility as the negative of the cost (thus the cheaper the price, the more utility). In other cases utility is more tricky to quantify. In the umbrella example it is not immediately obvious how to quantify the cost of carrying an umbrella on a sunny day versus the benefit of not being soaking wet. Quantifying utility will be explored more in-depth in future posts.</p>
+</div>
+<div id="probability" class="section level2">
+<h2>Probability</h2>
+<p>Every possible outcome has some probability of occurring. The probability of an outcome is a quantification of how likely that outcome is to occur. Probabilities are defined to be numbers between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> with a larger probability indicating a more likely outcome. For a collection of outcomes where one and only one outcome will occur, the probabilities must sum to <span class="math inline">\(1\)</span>. Probabilities can come from different sources. In the case of carrying an umbrella, the probability of rain may be taken from a National Weather Service forecast. In the case of ordering food, the probability you will enjoy an item on the menu may come from your subjective experience of past meals. Probability theory will be explored more in-depth in future posts.</p>
+</div>
+<div id="maximum-expected-utility-meu" class="section level2">
+<h2>Maximum Expected Utility (MEU)</h2>
+<p>In the context of decision theory, the best choice is often defined as the action with the largest expected utility. Given a set of possible actions, a set of possible outcomes for each action, a utility for each outcome, and a probability for each outcome, you can determine the best choice and thus solve your decision problem. The expected utility of an action is the probability weighted average of the utilities of the action’s possible outcomes. Choosing the action which maximizes expected utility is referred to as the Principle of Maximum Expected Utility (MEU). MEU and mathematical expectations (think: probability weighted averages) will be explored more in-depth in future posts.</p>
+</div>
+</div>
+<div id="an-example-renting-vs-buying-a-movie" class="section level1">
+<h1>An Example: Renting vs Buying a Movie</h1>
+<p>To make this decision making framework concrete, consider the case of choosing whether to rent or buy a movie. Suppose that you would prefer to spend as little money as possible to watch the movie. Renting a movie once is often cheaper than buying a movie, but re-watching the movie requires re-renting the movie thus the cost of renting versus buying depends on the total number of times you will watch the movie. Suppose that renting the movie once costs <span class="math inline">\(\$10.99\)</span> and buying the movie costs <span class="math inline">\(\$19.99\)</span>. What would you decide to do?</p>
+<p>You can frame this choice as a decision problem. The actions in the decision problem are to rent or buy (ignoring mixing renting and buying). The possible outcomes are a juxtaposition of renting or buying and the number of times you will watch the movie e.g., <span class="math inline">\(1, 2, 3,\)</span> etc. Let <span class="math inline">\(k\)</span> be a possible number of times you will watch the movie. The utility of renting and watching the movie <span class="math inline">\(k\)</span> times is <span class="math inline">\(k \times -10.99\)</span>, whereas the utility of buying and watching the movie <span class="math inline">\(k\)</span> times is <span class="math inline">\(-19.99\)</span>. Note that utility of renting decreases proportional to the number of times you will watch the movie, whereas the utility of buying is constant.</p>
+<p>Suppose that for any <span class="math inline">\(k\)</span>, the probability that you will watch a movie <span class="math inline">\(k\)</span> times is equal to the probability you will watch a movie more than <span class="math inline">\(k\)</span> times. This implies that the probability of watching a movie <span class="math inline">\(k\)</span> times is equal to <span class="math inline">\(\frac{1}{2^k}\)</span> (a fact to be proven in a future post). In turn, the expected value for the number of times you will watch a movie is <span class="math inline">\(2\)</span>, and so the expected utility of renting is <span class="math inline">\(2 \times -10.99 = -21.98\)</span> and the expected utility of buying is <span class="math inline">\(-19.99\)</span>. A full proof of these facts will be explored in a future post, but taking the expected utilities as given you can conclude that buying is a better choice than renting in this specific situation.</p>
+</div>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
+<p>This post introduces the basics of decision making under uncertainty. The following is a recap of the key takeaways:</p>
+<ul>
+<li>Decision theory offers tools to help people make decisions of all shapes and sizes.</li>
+<li>A decision problem is any situation where a decision maker needs to determine the best action to take out of a set of possible actions.</li>
+<li>Decision problems consist of possible actions, possible outcomes for each action, a utility for each outcome, and a probability for each outcome.</li>
+<li>A possible action is any valid choice a decision maker can select in the context of a given decision problem.</li>
+<li>A possible outcome is a consequence that may result from taking a certain action.</li>
+<li>The utility of an outcome is a quantification of the costs and benefits of that outcome if it occurs.</li>
+<li>The probability of an outcome is a quantification of how likely that outcome is to occur.</li>
+<li>The expected utility of an action is the probability weighted average of the utilities of an action’s outcomes.</li>
+<li>The best action to take out of a set of possible actions is the one with the maximum expected utility.</li>
+</ul>
+<p>I hope you enjoyed reading this post and learned something that you might be able to apply in your own decision making. <a href="wctelson@gmail.com">Feel free to reach out</a> if you have any questions or comments. Be on the lookout for future posts that further explore the concepts introduced above.</p>
+</div>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="/post/this-or-that/">&laquo; This OR That</a>
+    
+    
+  </div>
+</section>
+
+<section id="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+      
+      
+      if (window.location.hostname == "localhost")
+                return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = '';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+  
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+</body>
+</html>
+

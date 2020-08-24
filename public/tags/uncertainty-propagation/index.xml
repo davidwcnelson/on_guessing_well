@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Uncertainty Propagation on On Guessing Well</title>
+    <link>/tags/uncertainty-propagation/</link>
+    <description>Recent content in Uncertainty Propagation on On Guessing Well</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 07 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/uncertainty-propagation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Make Good Choices</title>
+      <link>/post/make-good-choices/</link>
+      <pubDate>Fri, 07 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/make-good-choices/</guid>
+      <description>Authors Note: I am “soft rebooting” my blog. I feel that my posts don’t communicate ideas well. I want this blog to be easy to understand. This post is a first attempt at a different approach. Let me know what you think.
+This post will introduce readers to the central theme of the blog: how can we make decisions while faced with uncertainty?
+I wrote this post for people who have to make decisions while faced with uncertainty (for example: anyone on any given day), but don’t yet have the tools to deal with these kinds of problems (for example: maximum expected utility).</description>
+    </item>
+    
+  </channel>
+</rss>
