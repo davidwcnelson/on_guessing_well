@@ -6,10 +6,19 @@
     <description>Recent content in Posts on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 23 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A Bayesian Empirical Cumulative Distribution Function (ECDF)</title>
+      <link>/post/a-bayesian-empirical-cumulative-distribution-function-ecdf/</link>
+      <pubDate>Fri, 13 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/a-bayesian-empirical-cumulative-distribution-function-ecdf/</guid>
+      <description>I do a lot of generative modeling in my day-to-day. I use generative modeling whenever I would rather wait for simulations to run instead of doing lots of (potentially intractable) math. This most often occurs when I want to understand the distribution of an outcome that results from a complex process. Using a generative model in this way heavily relies on the law of large numbers (LLN) and the Empirical Cumulative Distribution Function (ECDF).</description>
+    </item>
     
     <item>
       <title>Making Good Decisions</title>

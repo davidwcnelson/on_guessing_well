@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>
+    
+    
+     A Bayesian Empirical Cumulative Distribution Function (ECDF) 
+    
+  </title>
+  <link rel="canonical" href="/post/a-bayesian-empirical-cumulative-distribution-function-ecdf/">
+
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  
+</head>
+
+<body>
+<section id=nav>
+  <h1><a href="/">On Guessing Well</a></h1>
+  <ul>
+    
+    <li><a href="/about">About</a></li>
+    
+    <li><a href="/">Posts</a></li>
+    
+    <li><a href="https://github.com/davidwcnelson">GitHub</a></li>
+    
+    <li><a href="https://www.linkedin.com/in/davidwcnelson">LinkedIn</a></li>
+    
+    <li><a href="https://twitter.com/davidwcnelson">Twitter</a></li>
+    
+    <li><a href="/index.xml">RSS</a></li>
+    
+  </ul>
+</section>
+
+
+<section id=content>
+  <h1> A Bayesian Empirical Cumulative Distribution Function (ECDF) </h1>
+
+  <div id=sub-header>
+    David Telson · 2020/11/13 · 7 minute read
+  </div>
+
+  <div class="entry-content">
+    
+
+
+<ul>
+<li>I do a lot of generative modeling in my day-to-day.</li>
+<li>I use generative modeling whenever I would rather wait for simulations to run instead of doing lots of (potentially intractable) math.</li>
+<li>This most often occurs when I want to understand the distribution of an outcome that results from a complex process.</li>
+<li>Using a generative model in this way heavily relies on the law of large numbers (LLN) and the Empirical Cumulative Distribution Function (ECDF).</li>
+<li>LLN states that as the number of IID samples that are drawn from a distribution tends towards infinity, the average of the sample approaches the expectation of the distribution.</li>
+<li>The ECDF is a function derived from a sample that estimates a random variable’s Cumulative Distribution Function (CDF).</li>
+<li>Specifically, the ECDF is the function defined as <span class="math inline">\(\hat{F_X}(w) = \frac{1}{n}\sum_{i = 1}^{n}1_{x_i \le w}\)</span>, where the indicator function <span class="math inline">\(1_{x_i \le w} \begin{cases}1 \text{ if } x_i \le w \\ 0 \text{ otherwise }\end{cases}\)</span>, and <span class="math inline">\((x_1, x_2, ..., x_n)\)</span> is a sample of size <span class="math inline">\(n\)</span>.</li>
+<li>Observe that the ECDF if an average of the sample (the average of the indicator) and therefore LNN guarantees that as <span class="math inline">\(n \rightarrow \infty\)</span> we have <span class="math inline">\(\hat{F_X}(w) = F_X(w) = P(X \le w)\)</span>.</li>
+<li>While this is a nice property, it doesn’t actually provide much solace for finite data.</li>
+<li>As John Maynard Keynes once said “in the long run, we are all dead”.</li>
+<li>The ECDF breaks down as an estimator of the CDF in the tails of the distribution, which is usually the area of most interest in my work.</li>
+<li>Consider the sample <span class="math inline">\((1, 1, 5, 3)\)</span> drawn from some distribution function <span class="math inline">\(F_X\)</span>.</li>
+<li>You can compute <span class="math inline">\(F_X(5) = \frac{1}{4}\sum_{i = 1}^{4}1_{x_i \le 5} = \frac{1}{4}(1 + 1 + 1 +1) = \frac{4}{4} = 1\)</span>.</li>
+<li>This means that the ECDF estimates that there is a <span class="math inline">\(100\%\)</span> probability that <span class="math inline">\(X\)</span> is less than or equal to <span class="math inline">\(5\)</span>. Clearly this is too strong a claim.</li>
+<li>At this point, proponents of the ECDF (like myself) will rightfully state that the ECDF is an estimator, and that we can establish confidence bounds that show the possibility that the CDF at evaluated at <span class="math inline">\(5\)</span> is not <span class="math inline">\(100\%\)</span>.</li>
+<li>Despite this, the ECDF’s value is the default estimate and also the maximum likelihood estimate, which seems to me to be a poor default.</li>
+<li>I believe we can improve this by adopting a Bayesian estimator.</li>
+<li>Recall the indicator function <span class="math inline">\(1_{x_i \le w} \begin{cases}1 \text{ if } x_i \le w \\ 0 \text{ otherwise }\end{cases}\)</span> used in the definition of the ECDF.</li>
+<li>Observe that <span class="math inline">\(1_{X \le w}\)</span> is a Bernoulli distributed random variable.</li>
+<li>Note that <span class="math inline">\(E(1_{X \le w}) = P(X\le w) = F_X(w)\)</span>.</li>
+<li>Let <span class="math inline">\(\Theta_w = P(X\le w)\)</span>.</li>
+<li>Notice that <span class="math inline">\(P(X \le w | \Theta_w = \theta_w) = \theta_w\)</span>.</li>
+<li>By the law of total probability <span class="math inline">\(P(X \le w) = \int_0^1 P(X \le w | \Theta_w = \theta_w)f_{\Theta_w}(\theta_w)d\theta_w\)</span>, where <span class="math inline">\(f_{\Theta_w}(\theta_w)\)</span> is the probability density function of <span class="math inline">\(\Theta_w\)</span> evaluated at a point <span class="math inline">\(\theta_w\)</span>.</li>
+<li>The existence of a density on <span class="math inline">\(\Theta_w\)</span> is controversial in the frequentist school, but it is standard practice in the Bayesian context.</li>
+<li>To make things more palatable for frequentists, you could consider the density merely as a tool for regularization.</li>
+<li>Observe that <span class="math inline">\(\int_0^1 P(X \le w | \Theta_w = \theta_w)f_{\Theta_w}(\theta_w)d\theta_w = \int_0^1 \theta_w f_{\Theta_w}(\theta_w)d\theta_w = E(\Theta_w)\)</span>.</li>
+<li>Thus <span class="math inline">\(P(X\le w) = E(\Theta_w)\)</span>.</li>
+<li>You might also notice that <span class="math inline">\(E(\Theta_w) = \Theta_w\)</span>, but since all probabilities are expectations, and the expected value of an expectation is the expectation, it is not concerning.</li>
+<li>The question remains: what is <span class="math inline">\(f_{\Theta_w}(\theta_w)d\theta_w\)</span>?</li>
+<li>In the Bayesian context it is our prior distribution, which we update after seeing data.</li>
+<li>But what is the form of the density?</li>
+<li>I would propose that it should be a beta density i.e. <span class="math inline">\(beta(\theta_w | \alpha_w, \beta_w) = \frac{\theta_w^{\alpha_w - 1} (1 - \theta_w)^{\beta_w - 1}}{B(\alpha_w, \beta_w)}\)</span>, where <span class="math inline">\(B\)</span> is the beta function.</li>
+<li>I believe this proposal is justified by the fact that the beta distribution is the conjugate prior for the Bernoulli distribution (recall our indicator function of interest is Bernoulli distributed).</li>
+<li>Conjugacy provides a closed form solution for updating the prior with data as well as computing the expectation.</li>
+<li>Additionally it gives the parameters of the prior an easy interpretation: <span class="math inline">\(\alpha_w\)</span> is the number of observed values that are less than or equal to <span class="math inline">\(w\)</span> and <span class="math inline">\(\beta_w\)</span> is the number of observed values that are greater than <span class="math inline">\(w\)</span>.</li>
+<li>Note that given the beta distribution we have <span class="math inline">\(E(\Theta_w) = \frac{\alpha_w}{\alpha_w + \beta_w}\)</span></li>
+<li>Now at this point it is important to note that we should really be talking about two different sets of parameters, a set for our prior distribution and a set for our posterior distribution.</li>
+<li>Let <span class="math inline">\(\alpha_w\)</span> and <span class="math inline">\(\beta_w\)</span> be our prior parameters, whose values we will determine in a moment.</li>
+<li>Let <span class="math inline">\(\alpha_w&#39; = \alpha_w + \sum_{i=1}^n1_{x_i \le w}\)</span> and <span class="math inline">\(\beta_w&#39; = \beta_w + \sum_{i=1}^n1_{x_i \gt w}\)</span> be our posterior parameters.</li>
+<li>Notice that all we need to do to get our posterior parameters is add the count of observations that are less than or equal to <span class="math inline">\(w\)</span> to <span class="math inline">\(\alpha_w\)</span> and add the count of observations that are greater than <span class="math inline">\(w\)</span> to <span class="math inline">\(\beta_w\)</span>.</li>
+<li>As for the value of our prior parameters, I would advocate for <span class="math inline">\(\alpha_w = 1\)</span> and <span class="math inline">\(\beta_w = 1\)</span> which produces a uniform distribution over <span class="math inline">\(\Theta_w\)</span>.</li>
+<li>This choice accords with the Principle of Insufficient Reason, the Principle of Maximum Entropy, and it also corresponds with the uniform prior that implicitly exists in frequentist estimates (i.e. the mode of this distribution is the MLE estimate of the ECDF estimate).</li>
+<li>Thus our Bayesian ECDF is <span class="math inline">\(\tilde{F} = \frac{1 + \sum_{i=1}^n1_{x_i \le w}}{2 + \sum_{i=1}^n1_{x_i \le w} + \sum_{i=1}^n1_{x_i \gt w}}\)</span>.</li>
+<li>Now there is one additional justification to the choice of prior parameters that I wish to make, which will motivate a slight change to our Bayesian ECDF.</li>
+<li>We have <span class="math inline">\(\alpha_w = 1\)</span> and <span class="math inline">\(\beta_w = 1\)</span> is if the support of <span class="math inline">\(X\)</span> is <span class="math inline">\((-\infty, \infty)\)</span>, because we always know there will be at least one value less than or equal to an observed value and one value greater than an observed value.</li>
+<li>A change to our Bayesian ECDF must be made however if the support includes its rightmost end-point e.g. <span class="math inline">\((-infty, 50]\)</span>.</li>
+<li>If this is the case, then let <span class="math inline">\(u\)</span> be the upper bound of the support and let <span class="math inline">\(beta_u = 0\)</span>. We must do this because there are no greater values that <span class="math inline">\(u\)</span>. There is no need to do an adjustment if the support includes its leftmost end-point because the inequality is “less than or equal to”.</li>
+<li>At this point I should make the minor note that we need not worry about the conditional dependence from one point to another in the CDF, because the expectation of a vector is a vector of the element-wise expectations.</li>
+<li>Let’s reexamine our case of the sample <span class="math inline">\((1, 1, 5, 3)\)</span> with the new Bayesian ECDF in tow.</li>
+<li><span class="math inline">\(\tilde{F_X}(5) = \frac{1 + 4}{2 + 4 + 0} = \frac{5}{6} = 0.8\bar{3}\)</span>.</li>
+<li>This appears to be a much more well behaved “default” estimate.</li>
+</ul>
+<pre class="r"><code># we will assume that the support is not closed on the right.
+becdf &lt;- function(w, x) {
+  
+  n_le &lt;- purrr::map_dbl(w, ~ sum(x &lt;= .x))
+  
+  n_gt &lt;- purrr::map_dbl(w, ~ sum(x &gt; .x))
+  
+  (1 + n_le) / (2 + n_le + n_gt)
+  
+  }
+
+
+x &lt;- rgeom(n = 10, prob = 1/10)
+
+y1 &lt;- ecdf(x)(x)
+
+y2 &lt;- becdf(x, x)
+
+df &lt;- tibble::tibble(f = rep(c(&#39;ECDF&#39;, &#39;BECDF&#39;), each = length(x)), i = rep(seq_along(x), times = 2), x = c(x, x), y = c(y1, y2))
+
+ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = x, y = y, color = f)) +
+  ggplot2::geom_step() +
+  ggplot2::theme_minimal() +
+  ggplot2::scale_y_continuous(labels = scales::percent) +
+  ggplot2::labs(x = &#39;w&#39;, y = &#39;P(X &lt;= w)&#39;)</code></pre>
+<p><img src="/post/2020-11-13-a-bayesian-empirical-cumulative-distribution-function-ecdf_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>`%&gt;%` &lt;- magrittr::`%&gt;%`
+
+df %&gt;%
+  tidyr::pivot_wider(names_from = f, values_from = y) %&gt;%
+ggplot2::ggplot(data = ., mapping = ggplot2::aes(x = ECDF, y = BECDF)) +
+  ggplot2::geom_point() +
+  ggplot2::theme_minimal() +
+  ggplot2::labs(x = &#39;ECDF(w)&#39;, y = &#39;BECDF(w)&#39;)</code></pre>
+<p><img src="/post/2020-11-13-a-bayesian-empirical-cumulative-distribution-function-ecdf_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>`%&gt;%` &lt;- magrittr::`%&gt;%`
+
+df %&gt;%
+  tidyr::pivot_wider(names_from = f, values_from = y) %&gt;%
+ggplot2::ggplot(data = ., mapping = ggplot2::aes(x = x, y = ECDF - BECDF, color = factor(sign(ECDF - BECDF), levels = c(-1, 0, 1)))) +
+  ggplot2::geom_point() +
+  ggplot2::scale_color_discrete(name = &#39;sign&#39;) +
+  ggplot2::theme_minimal() +
+  ggplot2::labs(x = &#39;w&#39;, y = &#39;ECDF(w) - BECDF(w)&#39;)</code></pre>
+<p><img src="/post/2020-11-13-a-bayesian-empirical-cumulative-distribution-function-ecdf_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>df %&gt;%
+  dplyr::mutate(y_actual = pgeom(q = x, prob = 1/10),
+                abs_diff = abs(y - y_actual)) %&gt;%
+  ggplot2::ggplot(ggplot2::aes(x = x, y = abs_diff, color = f)) +
+  ggplot2::geom_point()</code></pre>
+<p><img src="/post/2020-11-13-a-bayesian-empirical-cumulative-distribution-function-ecdf_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="/post/making-good-decisions/">&laquo; Making Good Decisions</a>
+    
+    
+  </div>
+</section>
+
+<section id="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+      
+      
+      if (window.location.hostname == "localhost")
+                return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = '';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+  
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+</body>
+</html>
+

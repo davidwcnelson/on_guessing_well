@@ -1,5 +1,5 @@
 ---
-author: W.C. Telson
+author: David WC Nelson
 title: About This Blog
 date: '2019-02-03T00:00:00'
 ---
@@ -12,5 +12,5 @@ At present I am a Data Scientist working for the [Federal Emergency Management A
 
 The views expressed are my own and do not reflect the views of my clients, employers, or other affiliates.
 
-Feel free to reach out via [twitter](https://twitter.com/wctelson), [linkedIn](https://www.linkedin.com/in/wctelson/) or [email](mailto:wctelson@gmail.com). I'd be happy to answer questions, take feedback, and recieve new ideas.
+Feel free to reach out via [twitter](https://twitter.com/davidwcnelson), [linkedIn](https://www.linkedin.com/in/davidwcnelson/) or [email](mailto:davidwcnelson@gmail.com). I'd be happy to answer questions, take feedback, and recieve new ideas.
 

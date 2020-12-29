@@ -1,0 +1,133 @@
+---
+title: A Bayesian Empirical Cumulative Distribution Function (ECDF)
+author: David Telson
+date: '2020-11-13'
+slug: a-bayesian-empirical-cumulative-distribution-function-ecdf
+categories: []
+draft: TRUE
+tags: []
+---
+- I do a lot of generative modeling in my day-to-day.
+- I use generative modeling whenever I would rather wait for simulations to run instead of doing lots of (potentially intractable) math.
+- This most often occurs when I want to understand the distribution of an outcome that results from a complex process.
+- Using a generative model in this way heavily relies on the law of large numbers (LLN) and the Empirical Cumulative Distribution Function (ECDF).
+- LLN states that as the number of IID samples that are drawn from a distribution tends towards infinity, the average of the sample approaches the expectation of the distribution. 
+- The ECDF is a function derived from a sample that estimates a random variable's Cumulative Distribution Function (CDF). 
+- Specifically, the ECDF is the function defined as $\hat{F_X}(w) = \frac{1}{n}\sum_{i = 1}^{n}1_{x_i \le w}$, where the indicator function $1_{x_i \le w} \begin{cases}1 \text{ if } x_i \le w \\ 0 \text{ otherwise }\end{cases}$, and $(x_1, x_2, ..., x_n)$ is a sample of size $n$.
+- Observe that the ECDF if an average of the sample (the average of the indicator) and therefore LNN guarantees that as $n \rightarrow \infty$ we have $\hat{F_X}(w) = F_X(w) = P(X \le w)$.
+- While this is a nice property, it doesn't actually provide much solace for finite data.
+- As John Maynard Keynes once said "in the long run, we are all dead".
+- The ECDF breaks down as an estimator of the CDF in the tails of the distribution, which is usually the area of most interest in my work.
+- Consider the sample $(1, 1, 5, 3)$ drawn from some distribution function $F_X$.
+- You can compute $F_X(5) = \frac{1}{4}\sum_{i = 1}^{4}1_{x_i \le 5} = \frac{1}{4}(1 + 1 + 1 +1) = \frac{4}{4} = 1$. 
+- This means that the ECDF estimates that there is a $100\%$ probability that $X$ is less than or equal to $5$. Clearly this is too strong a claim.
+- At this point, proponents of the ECDF (like myself) will rightfully state that the ECDF is an estimator, and that we can establish confidence bounds that show the possibility that the CDF at evaluated at $5$ is not $100\%$.
+- Despite this, the ECDF's value is the default estimate and also the maximum likelihood estimate, which seems to me to be a poor default.
+- I believe we can improve this by adopting a Bayesian estimator.
+- Recall the indicator function $1_{x_i \le w} \begin{cases}1 \text{ if } x_i \le w \\ 0 \text{ otherwise }\end{cases}$ used in the definition of the ECDF.
+- Observe that $1_{X \le w}$ is a Bernoulli distributed random variable.
+- Note that $E(1_{X \le w}) = P(X\le w) = F_X(w)$.
+- Let $\Theta_w = P(X\le w)$.
+- Notice that $P(X \le w | \Theta_w = \theta_w) = \theta_w$.
+- By the law of total probability $P(X \le w) = \int_0^1 P(X \le w | \Theta_w = \theta_w)f_{\Theta_w}(\theta_w)d\theta_w$, where $f_{\Theta_w}(\theta_w)$ is the probability density function of $\Theta_w$ evaluated at a point $\theta_w$.
+- The existence of a density on $\Theta_w$ is controversial in the frequentist school, but it is standard practice in the Bayesian context.
+- To make things more palatable for frequentists, you could consider the density merely as a tool for regularization.
+- Observe that $\int_0^1 P(X \le w | \Theta_w = \theta_w)f_{\Theta_w}(\theta_w)d\theta_w = \int_0^1 \theta_w f_{\Theta_w}(\theta_w)d\theta_w = E(\Theta_w)$.
+- Thus $P(X\le w) = E(\Theta_w)$.
+- You might also notice that $E(\Theta_w) = \Theta_w$, but since all probabilities are expectations, and the expected value of an expectation is the expectation, it is not concerning.
+- The question remains: what is $f_{\Theta_w}(\theta_w)d\theta_w$?
+- In the Bayesian context it is our prior distribution, which we update after seeing data.
+- But what is the form of the density? 
+- I would propose that it should be a beta density i.e. $beta(\theta_w | \alpha_w, \beta_w) = \frac{\theta_w^{\alpha_w - 1} (1 - \theta_w)^{\beta_w - 1}}{B(\alpha_w, \beta_w)}$, where $B$ is the beta function. 
+- I believe this proposal is justified by the fact that the beta distribution is the conjugate prior for the Bernoulli distribution (recall our indicator function of interest is Bernoulli distributed).
+- Conjugacy provides a closed form solution for updating the prior with data as well as computing the expectation.
+- Additionally it gives the parameters of the prior an easy interpretation: $\alpha_w$ is the number of observed values that are less than or equal to $w$ and $\beta_w$ is the number of observed values that are greater than $w$.
+- Note that given the beta distribution we have $E(\Theta_w) = \frac{\alpha_w}{\alpha_w + \beta_w}$
+- Now at this point it is important to note that we should really be talking about two different sets of parameters, a set for our prior distribution and a set for our posterior distribution. 
+- Let $\alpha_w$ and $\beta_w$ be our prior parameters, whose values we will determine in a moment.
+- Let $\alpha_w' = \alpha_w + \sum_{i=1}^n1_{x_i \le w}$ and $\beta_w' = \beta_w + \sum_{i=1}^n1_{x_i \gt w}$ be our posterior parameters. 
+- Notice that all we need to do to get our posterior parameters is add the count of observations that are less than or equal to $w$ to $\alpha_w$ and add the count of observations that are greater than $w$ to $\beta_w$.
+- As for the value of our prior parameters, I would advocate for $\alpha_w = 1$ and $\beta_w = 1$ which produces a uniform distribution over $\Theta_w$.
+- This choice accords with the Principle of Insufficient Reason, the Principle of Maximum Entropy, and it also corresponds with the uniform prior that implicitly exists in frequentist estimates (i.e. the mode of this distribution is the MLE estimate of the ECDF estimate). 
+- Thus our Bayesian ECDF is $\tilde{F} = \frac{1 + \sum_{i=1}^n1_{x_i \le w}}{2 + \sum_{i=1}^n1_{x_i \le w} + \sum_{i=1}^n1_{x_i \gt w}}$.
+- Now there is one additional justification to the choice of prior parameters that I wish to make, which will motivate a slight change to our Bayesian ECDF.
+- We have $\alpha_w = 1$ and $\beta_w = 1$ is if the support of $X$ is $(-\infty, \infty)$, because we always know there will be at least one value less than or equal to an observed value and one value greater than an observed value.
+- A change to our Bayesian ECDF must be made however if the support includes its rightmost end-point e.g. $(-infty, 50]$.
+- If this is the case, then let $u$ be the upper bound of the support and let $beta_u = 0$. We must do this because there are no greater values that $u$. There is no need to do an adjustment if the support includes its leftmost end-point because the inequality is "less than or equal to".
+- At this point I should make the minor note that we need not worry about the conditional dependence from one point to another in the CDF, because the expectation of a vector is a vector of the element-wise expectations.
+- Let's reexamine our case of the sample $(1, 1, 5, 3)$ with the new Bayesian ECDF in tow.
+- $\tilde{F_X}(5) = \frac{1 + 4}{2 + 4 + 0} = \frac{5}{6} = 0.8\bar{3}$.
+- This appears to be a much more well behaved "default" estimate.
+
+```{r}
+
+# we will assume that the support is not closed on the right.
+becdf <- function(w, x) {
+  
+  n_le <- purrr::map_dbl(w, ~ sum(x <= .x))
+  
+  n_gt <- purrr::map_dbl(w, ~ sum(x > .x))
+  
+  (1 + n_le) / (2 + n_le + n_gt)
+  
+  }
+
+
+x <- rgeom(n = 10, prob = 1/10)
+
+y1 <- ecdf(x)(x)
+
+y2 <- becdf(x, x)
+
+df <- tibble::tibble(f = rep(c('ECDF', 'BECDF'), each = length(x)), i = rep(seq_along(x), times = 2), x = c(x, x), y = c(y1, y2))
+
+ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = x, y = y, color = f)) +
+  ggplot2::geom_step() +
+  ggplot2::theme_minimal() +
+  ggplot2::scale_y_continuous(labels = scales::percent) +
+  ggplot2::labs(x = 'w', y = 'P(X <= w)')
+```
+
+
+```{r}
+`%>%` <- magrittr::`%>%`
+
+df %>%
+  tidyr::pivot_wider(names_from = f, values_from = y) %>%
+ggplot2::ggplot(data = ., mapping = ggplot2::aes(x = ECDF, y = BECDF)) +
+  ggplot2::geom_point() +
+  ggplot2::theme_minimal() +
+  ggplot2::labs(x = 'ECDF(w)', y = 'BECDF(w)')
+```
+
+```{r}
+`%>%` <- magrittr::`%>%`
+
+df %>%
+  tidyr::pivot_wider(names_from = f, values_from = y) %>%
+ggplot2::ggplot(data = ., mapping = ggplot2::aes(x = x, y = ECDF - BECDF, color = factor(sign(ECDF - BECDF), levels = c(-1, 0, 1)))) +
+  ggplot2::geom_point() +
+  ggplot2::scale_color_discrete(name = 'sign') +
+  ggplot2::theme_minimal() +
+  ggplot2::labs(x = 'w', y = 'ECDF(w) - BECDF(w)')
+```
+
+```{r}
+df %>%
+  dplyr::mutate(y_actual = pgeom(q = x, prob = 1/10),
+                abs_diff = abs(y - y_actual)) %>%
+  ggplot2::ggplot(ggplot2::aes(x = x, y = abs_diff, color = f)) +
+  ggplot2::geom_point()
+  
+```
+
+
+
+
+
+
+
+
+
+
+
