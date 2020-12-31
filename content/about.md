@@ -6,7 +6,7 @@ date: '2019-02-03T00:00:00'
 
 Greetings wonderful humans,
 
-My name is David W.C. Telson and this blog is all about decision making under uncertainty. We will be exploring all sorts of topics from the realms of probability theory, decision theory, statistics, machine learning, and the philosophy of science. 
+My name is David Nelson and this blog is all about decision making under uncertainty. We will be exploring all sorts of topics from the realms of probability theory, decision theory, statistics, machine learning, and the philosophy of science. 
 
 At present I am a Data Scientist working for the [Federal Emergency Management Agency](fema.gov) in Seattle, WA (formerly Washington, DC). Most of the problems I work on involve leveraging machine learning and statistics to support decisions about the Agency's incident workforce and field operations. 
 

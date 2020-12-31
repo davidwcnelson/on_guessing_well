@@ -5,7 +5,7 @@ date: '2020-07-05'
 slug: this-or-that
 categories: []
 tags: []
-draft: FALSE
+draft: TRUE
 ---
 
 Today I wanted to write a short post on the sum rule of probability. Specifically I wanted to show how to derive the sum rule from the three axioms of probability.

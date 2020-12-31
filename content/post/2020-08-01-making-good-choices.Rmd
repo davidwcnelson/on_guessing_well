@@ -22,7 +22,7 @@ tags:
   - benefit
   - uncertainty
   - probability
-draft: False
+draft: TRUE
 ---
 # Bottom Line Up Front
 This post introduces the basics of decision making under uncertainty. It was written for anyone interested in learning how to use decision theory to solve real-world problems.

@@ -5,7 +5,7 @@ date: '2020-07-02'
 slug: marginal-likelihoods-of-models-defined-on-binary-sequences
 categories: []
 tags: []
-draft: FALSE
+draft: TRUE
 ---
 
 This post is a long time coming. I originally wrote it in January of 2020 right when my partner and I moved from Washington, DC to Seattle, WA. Needless to say, the COVID-19 pandemic dramatically shifted how we were to live our life, and since both of us work in emergency management my free time (or at least my free energy) to work on this blog became non-existent. That being said, I am glad to have the opportunity to revisit this post, possibly with a little more wisdom (probably not).

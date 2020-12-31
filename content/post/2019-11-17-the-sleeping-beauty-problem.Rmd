@@ -2,7 +2,7 @@
 title: "The Sleeping Beauty Problem"
 author: "David W.C. Telson"
 date: '2019-11-17'
-draft: FALSE
+draft: TRUE
 slug: the-sleeping-beauty-problem
 tags: []
 categories: []
