@@ -33,6 +33,11 @@
   </url>
   
   <url>
+    <loc>/post/the-guessing-game/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/the-relationship-between-resourcing-and-performance-in-workload-modeling/</loc>
     <lastmod>2019-12-06T00:00:00+00:00</lastmod>
   </url>
@@ -110,10 +115,6 @@
   <url>
     <loc>/about/</loc>
     <lastmod>2019-02-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2020-08-01-making-a-good-guess/</loc>
   </url>
   
   <url>
@@ -263,10 +264,6 @@
     <loc>/tags/</loc>
     <lastmod>2020-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/the-guessing-game/</loc>
   </url>
   
   <url>
