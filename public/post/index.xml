@@ -6,10 +6,21 @@
     <description>Recent content in Posts on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rebooting the Blog</title>
+      <link>/post/rebooting-the-blog/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/rebooting-the-blog/</guid>
+      <description>Greetings all,
+You may have noticed that all of my previous posts have been removed from the site. This is my attempt at rebooting the blog. Bottom line up front: I haven’t really been happy with the quality of my writing or the general direction of the blog. I may restore my previous posts, but only after I make sufficient progress towards making a better blog.
+Stay tuned and thanks for understanding,</description>
+    </item>
     
     <item>
       <title>A Bayesian Empirical Cumulative Distribution Function (ECDF)</title>

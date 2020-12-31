@@ -263,7 +263,7 @@ The count of positive signs increase and the count of negative signs decrease. L
 map_df(possible_guesses, function(current_guess){
   
   table(sign(sorted_balls - current_guess)) %>%
-    tibble(sign = names(.), total = ., guess = current_guess) 
+    {tibble(sign = names(.), total = as.integer(.), guess = current_guess)}
   
 }) %>%
   filter(sign != 0) %>%
@@ -276,7 +276,8 @@ map_df(possible_guesses, function(current_guess){
   theme_minimal() +
   theme(panel.grid.minor.x = element_blank(),
         panel.grid.major.x = element_blank())
-  
+
+possible_guesses  
 ```
 
 We see here that as our guess moves to the right of the median, the count of negative signs increases. The opposite is true as our guess moves to the left of the median. When we guess the median, the number of negative and positive signs is equal. As a guess, the median perfectly balances the number of negative and positive differences. 

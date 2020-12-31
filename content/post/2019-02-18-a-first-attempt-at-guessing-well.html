@@ -2,7 +2,7 @@
 title: 'A First Attempt w/ Central Tendency'
 author: 'David W.C. Telson'
 date: '2019-02-18'
-draft: FALSE
+draft: TRUE
 tags:
   - Calculus of Variations
   - Central Tendency
@@ -63,11 +63,10 @@ set.seed(1)
 balls &lt;- rgeom(n = 100, prob = .25)
 
 print(balls)</code></pre>
-<pre><code>##   [1]  2  1  9  0  4  1  1  5  5  0  2 11  4 10  2  0  0  3  0  7  0  7  2
-##  [24]  4  2  0  0  3  1  0  4  7  3  2  3  3  0  7  0  4  2  3  1  0  3  2
-##  [47]  4  1  3  2  1  1  0  0  3  1  1  2  5  4  3  1  4  4  4  3  1  1  0
-##  [70]  7  3  0  1  0  1  1  3  0  3  4 10  1  0  4  0  0  9  0  0  2  0  5
-##  [93]  4  6  4  1  0  6  0  2</code></pre>
+<pre><code>##   [1]  2  1  9  0  4  1  1  5  5  0  2 11  4 10  2  0  0  3  0  7  0  7  2  4  2
+##  [26]  0  0  3  1  0  4  7  3  2  3  3  0  7  0  4  2  3  1  0  3  2  4  1  3  2
+##  [51]  1  1  0  0  3  1  1  2  5  4  3  1  4  4  4  3  1  1  0  7  3  0  1  0  1
+##  [76]  1  3  0  3  4 10  1  0  4  0  0  9  0  0  2  0  5  4  6  4  1  0  6  0  2</code></pre>
 <p>Let’s compute our three measures of central tendency:</p>
 <pre class="r"><code>require(tidyverse)
 
@@ -178,30 +177,27 @@ ggplot() +
 <pre class="r"><code>sorted_balls &lt;- sort(balls)
 
 print(sorted_balls)</code></pre>
-<pre><code>##   [1]  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-##  [24]  0  0  0  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  2  2
-##  [47]  2  2  2  2  2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3
-##  [70]  3  4  4  4  4  4  4  4  4  4  4  4  4  4  4  5  5  5  5  6  6  7  7
-##  [93]  7  7  7  9  9 10 10 11</code></pre>
+<pre><code>##   [1]  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+##  [26]  0  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  2  2  2  2  2  2
+##  [51]  2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  4  4
+##  [76]  4  4  4  4  4  4  4  4  4  5  5  5  5  6  6  7  7  7  7  7  9  9 10 10 11</code></pre>
 <p>Next, let’s examine the penalty for every ball if we guess a specific number, say 3.</p>
 <pre class="r"><code>abs(sorted_balls - 3)</code></pre>
-<pre><code>##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2 2 2 2 2 2 2 2
-##  [36] 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-##  [71] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 3 3 4 4 4 4 4 6 6 7 7 8</code></pre>
+<pre><code>##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2 2 2 2 2 2 2 2 2 2
+##  [38] 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1
+##  [75] 1 1 1 1 1 1 1 1 1 1 2 2 2 2 3 3 4 4 4 4 4 6 6 7 7 8</code></pre>
 <p>Rather than looking at the absolute differences that our penalty provides, let’s instead look at just the differences.</p>
 <pre class="r"><code>sorted_balls - 3</code></pre>
-<pre><code>##   [1] -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3
-##  [24] -3 -3 -3 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -1 -1
-##  [47] -1 -1 -1 -1 -1 -1 -1 -1 -1 -1  0  0  0  0  0  0  0  0  0  0  0  0  0
-##  [70]  0  1  1  1  1  1  1  1  1  1  1  1  1  1  1  2  2  2  2  3  3  4  4
-##  [93]  4  4  4  6  6  7  7  8</code></pre>
+<pre><code>##   [1] -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3
+##  [26] -3 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -1 -1 -1 -1 -1 -1
+##  [51] -1 -1 -1 -1 -1 -1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1  1  1
+##  [76]  1  1  1  1  1  1  1  1  1  2  2  2  2  3  3  4  4  4  4  4  6  6  7  7  8</code></pre>
 <p>We can see that any outcomes less than our guess is negative, any outcome above our value is positive, and any value equal to our guess is 0. Let’s focus just on the sign of the differences.</p>
 <pre class="r"><code>sign(sorted_balls - 3)</code></pre>
-<pre><code>##   [1] -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-##  [24] -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-##  [47] -1 -1 -1 -1 -1 -1 -1 -1 -1 -1  0  0  0  0  0  0  0  0  0  0  0  0  0
-##  [70]  0  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
-##  [93]  1  1  1  1  1  1  1  1</code></pre>
+<pre><code>##   [1] -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+##  [26] -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+##  [51] -1 -1 -1 -1 -1 -1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1  1  1
+##  [76]  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1</code></pre>
 <p>We can tally the occurrence of each sign given our guess.</p>
 <pre class="r"><code>table(sign(sorted_balls - 3))</code></pre>
 <pre><code>## 
@@ -221,7 +217,7 @@ print(sorted_balls)</code></pre>
 <pre class="r"><code>map_df(possible_guesses, function(current_guess){
   
   table(sign(sorted_balls - current_guess)) %&gt;%
-    tibble(sign = names(.), total = ., guess = current_guess) 
+    {tibble(sign = names(.), total = as.integer(.), guess = current_guess)}
   
 }) %&gt;%
   filter(sign != 0) %&gt;%
@@ -235,6 +231,8 @@ print(sorted_balls)</code></pre>
   theme(panel.grid.minor.x = element_blank(),
         panel.grid.major.x = element_blank())</code></pre>
 <p><img src="/post/2019-02-18-a-first-attempt-at-guessing-well_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>possible_guesses  </code></pre>
+<pre><code>##  [1]  0  1  2  3  4  5  6  7  8  9 10 11</code></pre>
 <p>We see here that as our guess moves to the right of the median, the count of negative signs increases. The opposite is true as our guess moves to the left of the median. When we guess the median, the number of negative and positive signs is equal. As a guess, the median perfectly balances the number of negative and positive differences.</p>
 </div>
 <div id="squared-difference-penalty" class="section level1">

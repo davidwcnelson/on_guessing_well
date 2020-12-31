@@ -6,10 +6,21 @@
     <description>Recent content on On Guessing Well</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rebooting the Blog</title>
+      <link>/post/rebooting-the-blog/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/rebooting-the-blog/</guid>
+      <description>Greetings all,
+You may have noticed that all of my previous posts have been removed from the site. This is my attempt at rebooting the blog. Bottom line up front: I haven’t really been happy with the quality of my writing or the general direction of the blog. I may restore my previous posts, but only after I make sufficient progress towards making a better blog.
+Stay tuned and thanks for understanding,</description>
+    </item>
     
     <item>
       <title>A Bayesian Empirical Cumulative Distribution Function (ECDF)</title>
@@ -213,7 +224,7 @@ Deduction As we stated in our last post, deduction is reasoning that, given prem
       
       <guid>/about/</guid>
       <description>Greetings wonderful humans,
-My name is David W.C. Telson and this blog is all about decision making under uncertainty. We will be exploring all sorts of topics from the realms of probability theory, decision theory, statistics, machine learning, and the philosophy of science.
+My name is David Nelson and this blog is all about decision making under uncertainty. We will be exploring all sorts of topics from the realms of probability theory, decision theory, statistics, machine learning, and the philosophy of science.
 At present I am a Data Scientist working for the Federal Emergency Management Agency in Seattle, WA (formerly Washington, DC). Most of the problems I work on involve leveraging machine learning and statistics to support decisions about the Agency&amp;rsquo;s incident workforce and field operations.</description>
     </item>
     
